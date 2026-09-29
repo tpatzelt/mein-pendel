@@ -123,14 +123,41 @@ def test_compose_follows_homelab_conventions():
 def test_compose_only_web_joins_caddy_network():
     web = _service_block(COMPOSE, "web")
     scheduler = _service_block(COMPOSE, "scheduler")
+    telegram = _service_block(COMPOSE, "telegram")
     assert "caddy_network" in web
     assert "caddy_network" not in scheduler
+    assert "caddy_network" not in telegram
 
 
 def test_compose_scheduler_disables_healthcheck():
     scheduler = _service_block(COMPOSE, "scheduler")
     assert "healthcheck" in scheduler
     assert re.search(r"disable:\s*true", scheduler)
+
+
+def test_compose_telegram_service_runs_the_poller():
+    telegram = _service_block(COMPOSE, "telegram")
+    assert '"/app/.venv/bin/python", "-m", "pendel.telegram_poll"' in telegram
+
+
+def test_compose_telegram_service_disables_healthcheck():
+    telegram = _service_block(COMPOSE, "telegram")
+    assert "healthcheck" in telegram
+    assert re.search(r"disable:\s*true", telegram)
+
+
+def test_compose_telegram_service_restarts_on_failure_only():
+    telegram = _service_block(COMPOSE, "telegram")
+    assert re.search(r"restart:\s*on-failure", telegram), (
+        "telegram exits 0 when PENDEL_TELEGRAM_BOT_TOKEN is unset; "
+        "unless-stopped would restart that exit-0 process in a loop"
+    )
+    assert not re.search(r"restart:\s*unless-stopped", telegram)
+
+
+def test_compose_telegram_service_has_no_ports():
+    telegram = _service_block(COMPOSE, "telegram")
+    assert not re.search(r"^\s*ports:", telegram, re.MULTILINE)
 
 
 # -- deploy/.pendel.env.example -------------------------------------------
@@ -150,6 +177,20 @@ def test_env_example_has_no_empty_uncommented_pendel_vars_outside_fallback():
             assert key in _OR_FALLBACK_KEYS, (
                 f"{key} is shipped empty but its code does not treat "
                 "an empty string as unset"
+            )
+
+
+def test_env_example_forwarded_allow_ips_is_commented_out():
+    assert re.search(r"^#\s*FORWARDED_ALLOW_IPS=", ENV_EXAMPLE, re.MULTILINE)
+    assert not re.search(r"^FORWARDED_ALLOW_IPS=", ENV_EXAMPLE, re.MULTILINE)
+
+
+def test_env_example_forwarded_allow_ips_is_never_a_wildcard():
+    for line in ENV_EXAMPLE.splitlines():
+        if "FORWARDED_ALLOW_IPS" in line:
+            assert "*" not in line, (
+                "FORWARDED_ALLOW_IPS must never be '*': any other container "
+                "on caddy_network could spoof X-Forwarded-For"
             )
 
 
@@ -200,3 +241,8 @@ def test_deploy_md_states_homelab_repo_is_not_edited():
     lowered = DEPLOY_MD.lower()
     assert "homelab repo" in lowered
     assert "not edited" in lowered or "no changes" in lowered
+
+
+def test_deploy_md_documents_forwarded_allow_ips_subnet_lookup():
+    assert "FORWARDED_ALLOW_IPS" in DEPLOY_MD
+    assert "docker network inspect caddy_network" in DEPLOY_MD
