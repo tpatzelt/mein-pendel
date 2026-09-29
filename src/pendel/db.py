@@ -10,10 +10,13 @@ notification state. Migrations are plain `.sql` files under
 
 from __future__ import annotations
 
+import datetime as dt
 import os
 import secrets
 import sqlite3
 from pathlib import Path
+
+from pendel.commute import Commute
 
 MIGRATIONS_DIR = Path(__file__).parent / "migrations"
 
@@ -70,3 +73,54 @@ def delete_user(conn: sqlite3.Connection, user_id: str) -> None:
     notification belonging to them (charter G5: delete my data in one click)."""
     conn.execute("DELETE FROM users WHERE id = ?", (user_id,))
     conn.commit()
+
+
+def user_exists(conn: sqlite3.Connection, user_id: str) -> bool:
+    """Whether `user_id` is a real user id (charter G2: an unknown `uid`
+    cookie is treated as no cookie, not an error)."""
+    return conn.execute("SELECT 1 FROM users WHERE id = ?", (user_id,)).fetchone() is not None
+
+
+def add_commute(conn: sqlite3.Connection, user_id: str, commute: Commute) -> int:
+    """Insert a saved commute for `user_id` and return its row id."""
+    cur = conn.execute(
+        "INSERT INTO commutes (user_id, origin_stop_id, destination_stop_id, lines, "
+        "weekdays, window_start, window_end, delay_threshold_min) "
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+        (
+            user_id,
+            commute.origin_stop_id,
+            commute.destination_stop_id,
+            ",".join(sorted(commute.lines)),
+            ",".join(str(day) for day in sorted(commute.weekdays)),
+            commute.window_start.strftime("%H:%M"),
+            commute.window_end.strftime("%H:%M"),
+            commute.delay_threshold_min,
+        ),
+    )
+    conn.commit()
+    return cur.lastrowid
+
+
+def list_commutes(conn: sqlite3.Connection, user_id: str) -> list[tuple[int, Commute]]:
+    """Return `(row id, Commute)` pairs for every commute saved by `user_id`."""
+    rows = conn.execute(
+        "SELECT id, origin_stop_id, destination_stop_id, lines, weekdays, window_start, "
+        "window_end, delay_threshold_min FROM commutes WHERE user_id = ? ORDER BY id",
+        (user_id,),
+    ).fetchall()
+    return [
+        (
+            row["id"],
+            Commute(
+                origin_stop_id=row["origin_stop_id"],
+                destination_stop_id=row["destination_stop_id"],
+                lines=frozenset(row["lines"].split(",")),
+                weekdays=frozenset(int(day) for day in row["weekdays"].split(",")),
+                window_start=dt.time.fromisoformat(row["window_start"]),
+                window_end=dt.time.fromisoformat(row["window_end"]),
+                delay_threshold_min=row["delay_threshold_min"],
+            ),
+        )
+        for row in rows
+    ]
