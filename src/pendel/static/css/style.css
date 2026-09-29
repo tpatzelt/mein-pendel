@@ -1,0 +1,24 @@
+/* Mobile-first: fluid layout, no fixed px widths above 360 (charter G2). */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: #1a1a1a;
+  background: #ffffff;
+}
+
+main,
+footer {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+footer {
+  font-size: 0.85rem;
+  color: #555555;
+}
