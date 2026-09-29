@@ -14,15 +14,18 @@ import urllib.parse
 from collections.abc import AsyncIterator
 from functools import lru_cache
 from pathlib import Path
+from typing import Any
 
 import httpx
 from fastapi import Depends, FastAPI, Request
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from starlette.concurrency import run_in_threadpool
 
 from pendel import db
-from pendel.commute import Commute
+from pendel.commute import BERLIN, Commute
+from pendel.engine import evaluate
 from pendel.hafas import HafasClient, HafasError
 from pendel.i18n import resolve_language, translate
 
@@ -52,6 +55,22 @@ def get_hafas_client() -> HafasClient:
     """One shared HafasClient per process, so its TTL cache is actually
     reused across requests instead of starting empty every time."""
     return HafasClient(httpx.Client(timeout=10.0))
+
+
+def get_now() -> dt.datetime:
+    """The current time, as its own dependency so tests can override it via
+    `app.dependency_overrides` instead of freezing the real clock."""
+    return dt.datetime.now(BERLIN)
+
+
+def _fetch_departures(
+    hafas_client: HafasClient, stop_id: str, when: dt.datetime, duration_minutes: int
+) -> Any:
+    """Sync HAFAS call, run off the event loop (see `today`) via
+    `run_in_threadpool`; takes `_hafas_lock` like the sync `/stops` route
+    does, since they share one HafasClient."""
+    with _hafas_lock:
+        return hafas_client.departures(stop_id, when, duration_minutes)
 
 
 async def get_db() -> AsyncIterator[sqlite3.Connection]:
@@ -233,6 +252,114 @@ async def commutes_create(
 
     response = RedirectResponse(url="/", status_code=303)
     response.set_cookie("uid", uid, httponly=True, samesite="lax", path="/")
+    return response
+
+
+@app.get("/today", response_class=HTMLResponse)
+async def today(
+    request: Request,
+    db_conn: sqlite3.Connection = Depends(get_db),
+    hafas_client: HafasClient = Depends(get_hafas_client),
+    now: dt.datetime = Depends(get_now),
+) -> HTMLResponse:
+    """'Today on my route' (charter G2): each active saved commute's engine
+    verdict for today, without ever fetching journeys.
+
+    sqlite access stays on the event-loop thread like the rest of this
+    module's async routes (sqlite3 connections reject cross-thread use).
+    The HAFAS call is the only blocking part -- it can wait on the public
+    instance's rate limit or on `_hafas_lock` -- so it alone is pushed to
+    the threadpool via `run_in_threadpool`.
+    """
+    language = _language_for(request)
+
+    def t(key: str) -> str:
+        return translate(language, key)
+
+    uid = request.cookies.get("uid")
+    has_user = uid is not None and db.user_exists(db_conn, uid)
+
+    items: list[dict[str, Any]] = []
+    if has_user:
+        commutes = db.list_commutes(db_conn, uid)
+        today_date = now.astimezone(BERLIN).date()
+
+        # One departures fetch per origin stop covers every active commute
+        # from that stop, widened to the earliest start / latest end among
+        # them so evaluate()'s per-commute window filtering still applies.
+        windows_by_stop: dict[str, tuple[dt.datetime, dt.datetime]] = {}
+        for _, commute in commutes:
+            if not commute.is_active_on(today_date):
+                continue
+            start, end = commute.window_bounds(today_date)
+            existing = windows_by_stop.get(commute.origin_stop_id)
+            windows_by_stop[commute.origin_stop_id] = (
+                (start, end)
+                if existing is None
+                else (min(existing[0], start), max(existing[1], end))
+            )
+
+        departures_by_stop: dict[str, dict[str, Any] | None] = {}
+        for stop_id, (start, end) in windows_by_stop.items():
+            duration_minutes = max(1, int((end - start).total_seconds() // 60) + 1)
+            try:
+                departures_by_stop[stop_id] = await run_in_threadpool(
+                    _fetch_departures, hafas_client, stop_id, start, duration_minutes
+                )
+            except HafasError:
+                departures_by_stop[stop_id] = None
+
+        for commute_id, commute in commutes:
+            if not commute.is_active_on(today_date):
+                items.append(
+                    {
+                        "commute_id": commute_id,
+                        "origin_stop_id": commute.origin_stop_id,
+                        "destination_stop_id": commute.destination_stop_id,
+                        "status": "inactive",
+                        "message": t("today_inactive"),
+                    }
+                )
+                continue
+
+            departures_json = departures_by_stop.get(commute.origin_stop_id)
+            if departures_json is None:
+                items.append(
+                    {
+                        "commute_id": commute_id,
+                        "origin_stop_id": commute.origin_stop_id,
+                        "destination_stop_id": commute.destination_stop_id,
+                        "status": "unavailable",
+                        "message": t("today_unavailable"),
+                    }
+                )
+                continue
+
+            verdict = evaluate(
+                commute, departures_json, now, delay_threshold_min=commute.delay_threshold_min
+            )
+            items.append(
+                {
+                    "commute_id": commute_id,
+                    "origin_stop_id": commute.origin_stop_id,
+                    "destination_stop_id": commute.destination_stop_id,
+                    "status": "affected" if verdict.affected else "unaffected",
+                    "message": verdict.reason_de if language == "de" else verdict.reason_en,
+                }
+            )
+
+    response = templates.TemplateResponse(
+        request,
+        "today.html",
+        {
+            "language": language,
+            "t": t,
+            "has_user": has_user,
+            "items": items,
+        },
+    )
+    if request.query_params.get("lang") in ("de", "en"):
+        response.set_cookie("lang", language, samesite="lax")
     return response
 
 
