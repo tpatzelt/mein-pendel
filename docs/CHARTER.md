@@ -47,7 +47,9 @@ Charter  (immutable — agents must not edit)
   record fixtures (Ersatzverkehr, cancellations, remarks, S-Bahn Ring works). Keep live
   calls small and never loop them; the public instance is rate-limited (~100 req/min),
   and the production code must cache and back off accordingly.
-- Telegram and ntfy are unreachable from the sandbox and must stay faked in tests.
+- Never contact Telegram, ntfy or any other messaging service, even though the sandbox
+  has open egress: no bot token is provided and none may be created, and no request
+  may be sent to api.telegram.org or any ntfy server. Both channels are faked in tests.
 - No secrets, tokens, real domains, LAN IPs or personal data in the repository;
   configuration comes from environment variables documented in `.pendel.env.example`.
 - Times are Europe/Berlin throughout; DST transitions are tested.
