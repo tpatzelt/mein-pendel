@@ -3,4 +3,10 @@
 {% block content %}
 <h1>{{ t("home_heading") }}</h1>
 <p>{{ t("home_intro") }}</p>
+{% if deleted %}
+<p>{{ t("delete_me_done") }}</p>
+{% endif %}
+<form method="post" action="/me/delete">
+  <button type="submit">{{ t("delete_me_button") }}</button>
+</form>
 {% endblock %}

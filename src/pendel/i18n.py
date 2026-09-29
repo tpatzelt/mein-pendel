@@ -42,6 +42,8 @@ STRINGS: dict[str, dict[str, str]] = {
         "commute_new_delay_label": "Verspätung ab (Minuten)",
         "commute_new_submit": "Speichern",
         "commute_new_error": "Bitte alle Felder korrekt ausfüllen: Haltestellen, mindestens eine Linie, mindestens ein Wochentag und gültige Uhrzeiten.",
+        "delete_me_button": "Meine Daten löschen",
+        "delete_me_done": "Deine Daten wurden gelöscht.",
     },
     "en": {
         "app_title": "Mein Pendel",
@@ -72,6 +74,8 @@ STRINGS: dict[str, dict[str, str]] = {
         "commute_new_delay_label": "Delay threshold (minutes)",
         "commute_new_submit": "Save",
         "commute_new_error": "Please fill in all fields correctly: stops, at least one line, at least one weekday and valid times.",
+        "delete_me_button": "Delete my data",
+        "delete_me_done": "Your data has been deleted.",
     },
 }
 
