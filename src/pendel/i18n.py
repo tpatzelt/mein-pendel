@@ -44,6 +44,11 @@ STRINGS: dict[str, dict[str, str]] = {
         "commute_new_error": "Bitte alle Felder korrekt ausfüllen: Haltestellen, mindestens eine Linie, mindestens ein Wochentag und gültige Uhrzeiten.",
         "delete_me_button": "Meine Daten löschen",
         "delete_me_done": "Deine Daten wurden gelöscht.",
+        "today_heading": "Heute auf meiner Strecke",
+        "today_empty": "Du hast noch keine Verbindung gespeichert.",
+        "today_empty_cta": "Haltestelle suchen",
+        "today_inactive": "Heute nicht aktiv.",
+        "today_unavailable": "Status gerade nicht verfügbar.",
     },
     "en": {
         "app_title": "Mein Pendel",
@@ -76,6 +81,11 @@ STRINGS: dict[str, dict[str, str]] = {
         "commute_new_error": "Please fill in all fields correctly: stops, at least one line, at least one weekday and valid times.",
         "delete_me_button": "Delete my data",
         "delete_me_done": "Your data has been deleted.",
+        "today_heading": "Today on my route",
+        "today_empty": "You have not saved a commute yet.",
+        "today_empty_cta": "Search for a stop",
+        "today_inactive": "Not active today.",
+        "today_unavailable": "Status is temporarily unavailable.",
     },
 }
 
