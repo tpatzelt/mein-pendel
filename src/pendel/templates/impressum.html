@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}{{ t("impressum_heading") }}{% endblock %}
+
+{% block content %}
+<h1>{{ t("impressum_heading") }}</h1>
+<p>{{ t("impressum_name_label") }}: [NAME]</p>
+<p>{{ t("impressum_address_label") }}: [ADRESSE]</p>
+<p>{{ t("impressum_email_label") }}: [E-MAIL]</p>
+{% endblock %}
