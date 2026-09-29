@@ -1,0 +1,26 @@
+{
+  "departures": [
+    {
+      "tripId": "1|2001|0|1|29032026",
+      "stop": {"id": "900000100001", "name": "S Test Ost"},
+      "when": "2026-03-29T03:35:00+02:00",
+      "plannedWhen": "2026-03-29T03:35:00+02:00",
+      "delay": 0,
+      "cancelled": false,
+      "line": {"id": "line:S41", "name": "S41", "product": "suburban"},
+      "remarks": [
+        {"type": "warning", "code": "text.realtime.journey.disruption", "summary": "Signalstörung", "text": "Signalstörung im Streckennetz."}
+      ]
+    },
+    {
+      "tripId": "1|2002|0|1|29032026",
+      "stop": {"id": "900000100001", "name": "S Test Ost"},
+      "when": "2026-03-29T03:50:00+02:00",
+      "plannedWhen": "2026-03-29T03:50:00+02:00",
+      "delay": null,
+      "cancelled": true,
+      "line": {"id": "line:S41", "name": "S41", "product": "suburban"},
+      "remarks": []
+    }
+  ]
+}
