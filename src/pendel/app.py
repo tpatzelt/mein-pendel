@@ -14,6 +14,7 @@ import sqlite3
 import threading
 import urllib.parse
 from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
 from functools import lru_cache
 from pathlib import Path
 from typing import Any
@@ -30,6 +31,7 @@ from pendel.commute import BERLIN, Commute
 from pendel.engine import evaluate
 from pendel.hafas import HafasClient, HafasError
 from pendel.i18n import resolve_language, translate
+from pendel.ratelimit import RateLimiter, rate_limit_per_min_from_env
 
 _BASE_DIR = Path(__file__).parent
 _MIN_QUERY_LENGTH = 2
@@ -42,8 +44,56 @@ _hafas_lock = threading.Lock()
 
 templates = Jinja2Templates(directory=str(_BASE_DIR / "templates"))
 
-app = FastAPI(title="Mein Pendel")
+_RATE_LIMIT_EXEMPT_PATH = "/healthz"
+_RATE_LIMIT_EXEMPT_STATIC_PREFIX = "/static/"
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI) -> AsyncIterator[None]:
+    """Build the process-wide `RateLimiter` from `PENDEL_RATE_LIMIT_PER_MIN`
+    (charter G5) and tear it down on exit.
+
+    Only this lifespan sets `app.state.rate_limiter`, and the try/finally
+    always resets it to None on exit -- so a bare `TestClient(app)` used
+    without `with` in other test modules never triggers it, and a `with
+    TestClient(app)` block never leaks a limiter onto the shared `app`
+    object past its own `with` block.
+    """
+    app.state.rate_limiter = RateLimiter(limit_per_min=rate_limit_per_min_from_env())
+    try:
+        yield
+    finally:
+        app.state.rate_limiter = None
+
+
+app = FastAPI(title="Mein Pendel", lifespan=lifespan)
+app.state.rate_limiter = None
 app.mount("/static", StaticFiles(directory=str(_BASE_DIR / "static")), name="static")
+
+
+@app.middleware("http")
+async def rate_limit_middleware(request: Request, call_next: Any) -> Any:
+    """Return 429 with Retry-After once `app.state.rate_limiter` (set only
+    by `lifespan`) reports the caller's key over PENDEL_RATE_LIMIT_PER_MIN
+    for the current window. See `pendel.ratelimit` for why the key is
+    `request.client.host` and not a proxy header."""
+    limiter: RateLimiter | None = request.app.state.rate_limiter
+    path = request.url.path
+    if (
+        limiter is not None
+        and path != _RATE_LIMIT_EXEMPT_PATH
+        and not path.startswith(_RATE_LIMIT_EXEMPT_STATIC_PREFIX)
+    ):
+        client = request.client
+        key = client.host if client is not None else "unknown"
+        result = limiter.check(key)
+        if not result.allowed:
+            return JSONResponse(
+                {"detail": "rate limit exceeded"},
+                status_code=429,
+                headers={"Retry-After": str(result.retry_after)},
+            )
+    return await call_next(request)
 
 
 def _language_for(request: Request) -> str:
