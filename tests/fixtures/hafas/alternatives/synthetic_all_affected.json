@@ -1,0 +1,41 @@
+{
+  "journeys": [
+    {
+      "legs": [
+        {
+          "origin": {"id": "900000100001", "name": "S Test Ost"},
+          "destination": {"id": "900000200002", "name": "S Test West"},
+          "departure": "2026-01-05T07:35:00+01:00",
+          "plannedDeparture": "2026-01-05T07:35:00+01:00",
+          "arrival": "2026-01-05T07:50:00+01:00",
+          "plannedArrival": "2026-01-05T07:50:00+01:00",
+          "line": {"id": "line:S41", "name": "S41", "product": "suburban"},
+          "cancelled": false
+        }
+      ]
+    },
+    {
+      "legs": [
+        {
+          "origin": {"id": "900000100001", "name": "S Test Ost"},
+          "destination": {"id": "900000600006", "name": "S Test Übergang"},
+          "departure": "2026-01-05T07:38:00+01:00",
+          "plannedDeparture": "2026-01-05T07:38:00+01:00",
+          "arrival": "2026-01-05T07:41:00+01:00",
+          "plannedArrival": "2026-01-05T07:41:00+01:00",
+          "cancelled": false
+        },
+        {
+          "origin": {"id": "900000600006", "name": "S Test Übergang"},
+          "destination": {"id": "900000200002", "name": "S Test West"},
+          "departure": "2026-01-05T07:56:00+01:00",
+          "plannedDeparture": "2026-01-05T07:56:00+01:00",
+          "arrival": "2026-01-05T08:05:00+01:00",
+          "plannedArrival": "2026-01-05T08:05:00+01:00",
+          "line": {"id": "line:S41", "name": "S41", "product": "suburban"},
+          "cancelled": false
+        }
+      ]
+    }
+  ]
+}
