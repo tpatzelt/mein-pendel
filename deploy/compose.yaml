@@ -23,6 +23,25 @@ services:
     healthcheck:
       disable: true
 
+  telegram:
+    image: ghcr.io/tpatzelt/mein-pendel:latest
+    # pendel.telegram_poll exits 0 (not an error) when
+    # PENDEL_TELEGRAM_BOT_TOKEN is unset, since Telegram linking is an
+    # optional channel (charter G3). `unless-stopped` would restart that
+    # exit-0 process in a loop forever; `on-failure` only restarts it for
+    # an actual non-zero exit, and simply stays stopped when the token is
+    # absent.
+    restart: on-failure
+    command: ["/app/.venv/bin/python", "-m", "pendel.telegram_poll"]
+    env_file:
+      - .pendel.env
+    volumes:
+      - /opt/dockerdata/pendel:/data
+    # pendel.telegram_poll serves no HTTP, so the image's HEALTHCHECK
+    # (which polls /healthz) does not apply to this service.
+    healthcheck:
+      disable: true
+
 networks:
   caddy_network:
     external: true
