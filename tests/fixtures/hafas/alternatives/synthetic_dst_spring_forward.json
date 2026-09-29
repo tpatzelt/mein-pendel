@@ -1,0 +1,18 @@
+{
+  "journeys": [
+    {
+      "legs": [
+        {
+          "origin": {"id": "900000100001", "name": "S Test Ost"},
+          "destination": {"id": "900000200002", "name": "S Test West"},
+          "departure": "2026-03-29T00:45:00Z",
+          "plannedDeparture": "2026-03-29T00:45:00Z",
+          "arrival": "2026-03-29T01:10:00Z",
+          "plannedArrival": "2026-03-29T01:10:00Z",
+          "line": {"id": "line:U2", "name": "U2", "product": "subway"},
+          "cancelled": false
+        }
+      ]
+    }
+  ]
+}
