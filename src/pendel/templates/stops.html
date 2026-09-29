@@ -17,7 +17,7 @@
   {% if results %}
   <ul>
     {% for stop in results %}
-    <li data-stop-id="{{ stop.id }}">{{ stop.name }}</li>
+    <li data-stop-id="{{ stop.id }}"><a href="/commutes/new?origin_stop_id={{ stop.id }}">{{ stop.name }}</a></li>
     {% endfor %}
   </ul>
   {% else %}

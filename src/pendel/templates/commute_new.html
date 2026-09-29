@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}{{ t("commute_new_heading") }}{% endblock %}
+
+{% block content %}
+<h1>{{ t("commute_new_heading") }}</h1>
+{% if error_message %}
+<p class="error">{{ error_message }}</p>
+{% endif %}
+<form action="/commutes" method="post">
+  <label for="origin_stop_id">{{ t("commute_new_origin_label") }}</label>
+  <input type="text" id="origin_stop_id" name="origin_stop_id" value="{{ origin_stop_id }}" required>
+
+  <label for="destination_stop_id">{{ t("commute_new_destination_label") }}</label>
+  <input type="text" id="destination_stop_id" name="destination_stop_id" value="{{ destination_stop_id }}" required>
+
+  <label for="lines">{{ t("commute_new_lines_label") }}</label>
+  <input type="text" id="lines" name="lines" value="{{ lines }}"
+         placeholder="{{ t('commute_new_lines_placeholder') }}" required>
+
+  <fieldset>
+    <legend>{{ t("commute_new_weekdays_label") }}</legend>
+    {% set weekday_keys = ["weekday_mon", "weekday_tue", "weekday_wed", "weekday_thu", "weekday_fri", "weekday_sat", "weekday_sun"] %}
+    {% for i in range(7) %}
+    <label>
+      <input type="checkbox" name="weekdays" value="{{ i }}" {% if i|string in selected_weekdays %}checked{% endif %}>
+      {{ t(weekday_keys[i]) }}
+    </label>
+    {% endfor %}
+  </fieldset>
+
+  <label for="window_start">{{ t("commute_new_window_start_label") }}</label>
+  <input type="time" id="window_start" name="window_start" value="{{ window_start }}" required>
+
+  <label for="window_end">{{ t("commute_new_window_end_label") }}</label>
+  <input type="time" id="window_end" name="window_end" value="{{ window_end }}" required>
+
+  <label for="delay_threshold_min">{{ t("commute_new_delay_label") }}</label>
+  <input type="number" id="delay_threshold_min" name="delay_threshold_min" value="{{ delay_threshold_min }}" min="0">
+
+  <button type="submit">{{ t("commute_new_submit") }}</button>
+</form>
+{% endblock %}
