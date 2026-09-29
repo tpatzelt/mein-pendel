@@ -1,0 +1,28 @@
+services:
+  web:
+    image: ghcr.io/tpatzelt/mein-pendel:latest
+    restart: unless-stopped
+    env_file:
+      - .pendel.env
+    volumes:
+      - /opt/dockerdata/pendel:/data
+    networks:
+      - caddy_network
+
+  scheduler:
+    image: ghcr.io/tpatzelt/mein-pendel:latest
+    restart: unless-stopped
+    # Runs the venv binary directly, per the Dockerfile CMD convention.
+    command: ["/app/.venv/bin/python", "-m", "pendel.runner"]
+    env_file:
+      - .pendel.env
+    volumes:
+      - /opt/dockerdata/pendel:/data
+    # pendel.runner serves no HTTP, so the image's HEALTHCHECK (which polls
+    # /healthz) does not apply to this service.
+    healthcheck:
+      disable: true
+
+networks:
+  caddy_network:
+    external: true
