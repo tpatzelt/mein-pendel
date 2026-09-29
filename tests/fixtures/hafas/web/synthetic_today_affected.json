@@ -1,0 +1,14 @@
+{
+  "departures": [
+    {
+      "tripId": "1|9999|0|1|5012026",
+      "stop": {"id": "900000100001", "name": "S Test Ost"},
+      "when": null,
+      "plannedWhen": "2026-01-05T07:45:00+01:00",
+      "delay": 0,
+      "cancelled": true,
+      "line": {"id": "line:S41", "name": "S41", "product": "suburban"},
+      "remarks": []
+    }
+  ]
+}
