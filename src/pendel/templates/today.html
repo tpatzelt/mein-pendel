@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}{{ t("today_heading") }}{% endblock %}
+
+{% block content %}
+<h1>{{ t("today_heading") }}</h1>
+{% if not has_user or not items %}
+<p>{{ t("today_empty") }}</p>
+<p><a href="/stops">{{ t("today_empty_cta") }}</a></p>
+{% else %}
+<ul>
+  {% for item in items %}
+  <li data-commute-id="{{ item.commute_id }}" data-status="{{ item.status }}">
+    <p>{{ item.origin_stop_id }} → {{ item.destination_stop_id }}</p>
+    <p>{{ item.message }}</p>
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}
