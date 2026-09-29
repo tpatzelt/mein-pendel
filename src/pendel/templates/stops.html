@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}{{ t("stops_heading") }}{% endblock %}
+
+{% block content %}
+<h1>{{ t("stops_heading") }}</h1>
+<form action="/stops" method="get">
+  <input type="hidden" name="lang" value="{{ language }}">
+  <label for="q">{{ t("stops_search_label") }}</label>
+  <input type="search" id="q" name="q" value="{{ query }}" minlength="2"
+         placeholder="{{ t('stops_placeholder') }}">
+  <button type="submit">{{ t("stops_submit") }}</button>
+</form>
+{% if error_message %}
+<p class="error">{{ error_message }}</p>
+{% elif query|length >= 2 %}
+  {% if results %}
+  <ul>
+    {% for stop in results %}
+    <li data-stop-id="{{ stop.id }}">{{ stop.name }}</li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>{{ t("stops_no_results") }}</p>
+  {% endif %}
+{% endif %}
+{% endblock %}

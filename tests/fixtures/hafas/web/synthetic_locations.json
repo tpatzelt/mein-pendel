@@ -1,0 +1,25 @@
+[
+  {
+    "type": "stop",
+    "id": "900000100001",
+    "name": "S+U Alexanderplatz",
+    "location": {"type": "location", "latitude": 52.521508, "longitude": 13.411267}
+  },
+  {
+    "type": "station",
+    "id": "900000100003",
+    "name": "S+U Alexanderplatz (Berlin)",
+    "location": {"type": "location", "latitude": 52.52189, "longitude": 13.41067}
+  },
+  {
+    "type": "address",
+    "id": "address-alexanderplatz-1",
+    "name": "Alexanderplatz 1, 10178 Berlin"
+  },
+  {
+    "type": "poi",
+    "id": "poi-alexanderplatz",
+    "name": "Alexanderplatz (POI)",
+    "location": {"type": "location", "latitude": 52.5219, "longitude": 13.4132}
+  }
+]
