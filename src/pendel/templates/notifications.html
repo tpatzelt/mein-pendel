@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}{{ t("notifications_heading") }}{% endblock %}
+
+{% block content %}
+<h1>{{ t("notifications_heading") }}</h1>
+{% if not has_user %}
+<p>{{ t("notifications_need_commute") }}</p>
+<p><a href="/stops">{{ t("today_empty_cta") }}</a></p>
+{% else %}
+<ul>
+  {% for channel in channels %}
+  <li data-channel-kind="{{ channel.kind }}">
+    {{ channel.kind }}:
+    {% if channel.linked %}{{ channel.masked_target }}{% else %}{{ t("notifications_status_pending") }}{% endif %}
+  </li>
+  {% endfor %}
+</ul>
+
+<section>
+  <h2>{{ t("notifications_telegram_heading") }}</h2>
+  {% if telegram_error %}
+  <p class="error">{{ telegram_error }}</p>
+  {% endif %}
+  {% if telegram_link_url %}
+  <p><a href="{{ telegram_link_url }}">{{ t("notifications_telegram_link_cta") }}</a></p>
+  {% else %}
+  <form method="post" action="/notifications/telegram">
+    <button type="submit">{{ t("notifications_telegram_button") }}</button>
+  </form>
+  {% endif %}
+</section>
+
+<section>
+  <h2>{{ t("notifications_ntfy_heading") }}</h2>
+  {% if ntfy_error %}
+  <p class="error">{{ ntfy_error }}</p>
+  {% endif %}
+  <form method="post" action="/notifications/ntfy">
+    <label for="topic">{{ t("notifications_ntfy_label") }}</label>
+    <input type="text" id="topic" name="topic" value="{{ ntfy_topic or '' }}"
+           pattern="[A-Za-z0-9_-]{1,64}" maxlength="64" required>
+    <button type="submit">{{ t("notifications_ntfy_submit") }}</button>
+  </form>
+</section>
+{% endif %}
+{% endblock %}

@@ -8,6 +8,8 @@ saved commutes, "today on my route") have a page to extend.
 from __future__ import annotations
 
 import datetime as dt
+import os
+import re
 import sqlite3
 import threading
 import urllib.parse
@@ -23,7 +25,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from starlette.concurrency import run_in_threadpool
 
-from pendel import db
+from pendel import db, telegram_link
 from pendel.commute import BERLIN, Commute
 from pendel.engine import evaluate
 from pendel.hafas import HafasClient, HafasError
@@ -31,6 +33,8 @@ from pendel.i18n import resolve_language, translate
 
 _BASE_DIR = Path(__file__).parent
 _MIN_QUERY_LENGTH = 2
+_TELEGRAM_BOT_USERNAME_ENV = "PENDEL_TELEGRAM_BOT_USERNAME"
+_NTFY_TOPIC_RE = re.compile(r"^[A-Za-z0-9_-]{1,64}$")
 
 # HafasClient's TTL cache is a plain OrderedDict, not thread-safe; sync
 # endpoints run in a threadpool, so serialize access to the shared client.
@@ -377,3 +381,110 @@ async def me_delete(
     response = RedirectResponse(url="/?deleted=1", status_code=303)
     response.delete_cookie("uid", path="/")
     return response
+
+
+def _mask_target(target: str) -> str:
+    """Mask a linked channel's target (chat id or ntfy topic) for display,
+    e.g. so a screen-shared page never shows the full value."""
+    if len(target) <= 4:
+        return "•" * len(target)
+    return "•" * (len(target) - 4) + target[-4:]
+
+
+def _notifications_context(
+    db_conn: sqlite3.Connection, uid: str | None, has_user: bool, t: Any
+) -> dict[str, Any]:
+    """Shared context for GET /notifications and the error/hint paths of its
+    POST routes: the user's linked channels and, if a telegram channel is
+    still pending, its deep link (rebuilt from the stored link_token)."""
+    channels = db.list_channels(db_conn, uid) if has_user else []
+    bot_username = os.environ.get(_TELEGRAM_BOT_USERNAME_ENV)
+    telegram_link_url = None
+    if bot_username:
+        for row in channels:
+            if row["kind"] == "telegram" and row["link_token"]:
+                telegram_link_url = f"https://t.me/{bot_username}?start={row['link_token']}"
+                break
+    return {
+        "t": t,
+        "has_user": has_user,
+        "channels": [
+            {
+                "kind": row["kind"],
+                "linked": row["linked_at"] is not None,
+                "masked_target": _mask_target(row["target"]) if row["target"] else "",
+            }
+            for row in channels
+        ],
+        "telegram_link_url": telegram_link_url,
+    }
+
+
+@app.get("/notifications", response_class=HTMLResponse)
+async def notifications_page(
+    request: Request, db_conn: sqlite3.Connection = Depends(get_db)
+) -> HTMLResponse:
+    language = _language_for(request)
+
+    def t(key: str) -> str:
+        return translate(language, key)
+
+    uid = request.cookies.get("uid")
+    has_user = uid is not None and db.user_exists(db_conn, uid)
+    context = {"language": language, **_notifications_context(db_conn, uid, has_user, t)}
+    response = templates.TemplateResponse(request, "notifications.html", context)
+    if request.query_params.get("lang") in ("de", "en"):
+        response.set_cookie("lang", language, samesite="lax")
+    return response
+
+
+@app.post("/notifications/telegram")
+async def notifications_telegram(request: Request, db_conn: sqlite3.Connection = Depends(get_db)):
+    language = _language_for(request)
+
+    def t(key: str) -> str:
+        return translate(language, key)
+
+    uid = request.cookies.get("uid")
+    has_user = uid is not None and db.user_exists(db_conn, uid)
+    if not has_user:
+        return RedirectResponse(url="/notifications", status_code=303)
+
+    try:
+        telegram_link.create_link(db_conn, uid)
+    except telegram_link.TelegramLinkConfigError:
+        context = {"language": language, **_notifications_context(db_conn, uid, has_user, t)}
+        context["telegram_error"] = t("notifications_telegram_unavailable")
+        return templates.TemplateResponse(
+            request, "notifications.html", context, status_code=503
+        )
+
+    return RedirectResponse(url="/notifications", status_code=303)
+
+
+@app.post("/notifications/ntfy")
+async def notifications_ntfy(request: Request, db_conn: sqlite3.Connection = Depends(get_db)):
+    language = _language_for(request)
+
+    def t(key: str) -> str:
+        return translate(language, key)
+
+    body = await request.body()
+    form = urllib.parse.parse_qs(body.decode("utf-8"), keep_blank_values=True)
+    topic = form.get("topic", [""])[0].strip()
+
+    uid = request.cookies.get("uid")
+    has_user = uid is not None and db.user_exists(db_conn, uid)
+    if not has_user:
+        return RedirectResponse(url="/notifications", status_code=303)
+
+    if not _NTFY_TOPIC_RE.match(topic):
+        context = {"language": language, **_notifications_context(db_conn, uid, has_user, t)}
+        context["ntfy_error"] = t("notifications_ntfy_error")
+        context["ntfy_topic"] = topic
+        return templates.TemplateResponse(
+            request, "notifications.html", context, status_code=400
+        )
+
+    db.add_ntfy_channel(db_conn, uid, topic)
+    return RedirectResponse(url="/notifications", status_code=303)
