@@ -1,0 +1,16 @@
+{
+  "departures": [
+    {
+      "tripId": "1|9001|0|1|5012026",
+      "stop": {"id": "900000100001", "name": "S Test Ost"},
+      "when": "2026-01-05T07:45:00+01:00",
+      "plannedWhen": "2026-01-05T07:45:00+01:00",
+      "delay": 0,
+      "cancelled": false,
+      "line": {"id": "line:S41", "name": "S41", "product": "suburban"},
+      "remarks": [
+        {"type": "warning", "code": "text.realtime.journey.disruption", "summary": "Ersatzverkehr", "text": "Ersatzverkehr mit Bus 41 zwischen S Test Ost und S Test West."}
+      ]
+    }
+  ]
+}
