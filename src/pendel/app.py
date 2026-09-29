@@ -85,7 +85,7 @@ def home(request: Request) -> HTMLResponse:
     response = templates.TemplateResponse(
         request,
         "index.html",
-        {"language": language, "t": t},
+        {"language": language, "t": t, "deleted": request.query_params.get("deleted") == "1"},
     )
     if request.query_params.get("lang") in ("de", "en"):
         response.set_cookie("lang", language, samesite="lax")
@@ -233,4 +233,20 @@ async def commutes_create(
 
     response = RedirectResponse(url="/", status_code=303)
     response.set_cookie("uid", uid, httponly=True, samesite="lax", path="/")
+    return response
+
+
+@app.post("/me/delete")
+async def me_delete(
+    request: Request,
+    db_conn: sqlite3.Connection = Depends(get_db),
+) -> RedirectResponse:
+    """Delete-my-data (charter G5): remove every row for the `uid` cookie's
+    user, via db.delete_user's ON DELETE CASCADE, and clear the cookie."""
+    uid = request.cookies.get("uid")
+    if uid is not None and db.user_exists(db_conn, uid):
+        db.delete_user(db_conn, uid)
+
+    response = RedirectResponse(url="/?deleted=1", status_code=303)
+    response.delete_cookie("uid", path="/")
     return response
