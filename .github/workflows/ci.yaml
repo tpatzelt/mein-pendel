@@ -18,8 +18,17 @@ jobs:
           enable-cache: true
       - run: uv run pytest -q
 
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+      - run: bash deploy/verify.sh
+
   build-and-push:
-    needs: test
+    needs: [test, verify]
     runs-on: ubuntu-latest
     permissions:
       contents: read
