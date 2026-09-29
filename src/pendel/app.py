@@ -165,6 +165,39 @@ def home(request: Request) -> HTMLResponse:
     return response
 
 
+def _render_static_page(request: Request, template_name: str) -> HTMLResponse:
+    """Shared handler for the legal/about pages (charter G5): same language
+    handling as '/', no other dynamic context."""
+    language = _language_for(request)
+
+    def t(key: str) -> str:
+        return translate(language, key)
+
+    response = templates.TemplateResponse(
+        request,
+        template_name,
+        {"language": language, "t": t},
+    )
+    if request.query_params.get("lang") in ("de", "en"):
+        response.set_cookie("lang", language, samesite="lax")
+    return response
+
+
+@app.get("/impressum", response_class=HTMLResponse)
+def impressum(request: Request) -> HTMLResponse:
+    return _render_static_page(request, "impressum.html")
+
+
+@app.get("/datenschutz", response_class=HTMLResponse)
+def datenschutz(request: Request) -> HTMLResponse:
+    return _render_static_page(request, "datenschutz.html")
+
+
+@app.get("/about", response_class=HTMLResponse)
+def about(request: Request) -> HTMLResponse:
+    return _render_static_page(request, "about.html")
+
+
 @app.get("/stops", response_class=HTMLResponse)
 def stops(
     request: Request,

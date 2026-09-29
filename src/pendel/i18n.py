@@ -60,6 +60,55 @@ STRINGS: dict[str, dict[str, str]] = {
         "notifications_ntfy_label": "ntfy-Topic",
         "notifications_ntfy_submit": "Speichern",
         "notifications_ntfy_error": "Bitte ein gültiges Topic angeben (Buchstaben, Ziffern, _ oder -, max. 64 Zeichen).",
+        "footer_impressum": "Impressum",
+        "footer_datenschutz": "Datenschutz",
+        "footer_about": "Über die App",
+        "impressum_heading": "Angaben gemäß § 5 DDG",
+        "impressum_name_label": "Name",
+        "impressum_address_label": "Adresse",
+        "impressum_email_label": "E-Mail",
+        "datenschutz_heading": "Datenschutzerklärung",
+        "datenschutz_cookie_text": (
+            "Beim ersten Speichern einer Verbindung setzt die App ein HttpOnly-Cookie "
+            "namens uid mit einer zufälligen, undurchsichtigen Kennung (uid). Damit "
+            "ordnen wir dir deine gespeicherten Daten zu."
+        ),
+        "datenschutz_data_text": (
+            "Zu deiner Kennung speichern wir: deine gespeicherten Verbindungen "
+            "(Start- und Ziel-Haltestelle, Linien, Wochentage, Abfahrtsfenster und "
+            "der Verspätungs-Schwellenwert in Minuten [delay_threshold_min]); falls "
+            "eingerichtet, die Telegram-Chat-ID oder das ntfy-Topic sowie ein "
+            "einmaliges Verknüpfungs-Token während der Einrichtung; und den "
+            "Benachrichtigungsstatus je Störung. Wir speichern keine E-Mail-Adresse, "
+            "keinen Namen und verwenden keine Tracker."
+        ),
+        "datenschutz_lang_cookie_text": (
+            "Ein weiteres Cookie namens lang speichert nur deine gewählte Sprache "
+            "(Deutsch oder Englisch)."
+        ),
+        "datenschutz_delete_text": (
+            "Über die Schaltfläche „Meine Daten löschen“ (POST /me/delete) entfernst "
+            "du mit einem Klick alle deine Daten – alle Zeilen zu deiner Kennung "
+            "sowie das uid-Cookie."
+        ),
+        "datenschutz_hafas_text": (
+            "Um Haltestellen zu suchen und Abfahrten abzurufen, sendet die App "
+            "Anfragen an die VBB/BVG-HAFAS-REST-API (v6.bvg.transport.rest)."
+        ),
+        "datenschutz_third_party_text": (
+            "Falls du Benachrichtigungen eingerichtet hast, werden diese über die "
+            "Drittanbieter Telegram und/oder den vom Betreiber konfigurierten "
+            "ntfy-Server (an das von dir gewählte Topic) zugestellt."
+        ),
+        "datenschutz_ip_text": (
+            "Zum Schutz vor Missbrauch verarbeitet die App deine IP-Adresse "
+            "ausschließlich im Arbeitsspeicher des Servers, zusammen mit einem "
+            "Anfragezähler; sie wird nicht in der Datenbank gespeichert und geht "
+            "spätestens bei einem Neustart des Servers verloren."
+        ),
+        "about_heading": "Über die App",
+        "about_free_text": "Mein Pendel ist kostenlos, ohne Werbung und ohne Tracking.",
+        "about_kofi_text": "Unterstütze das Projekt freiwillig auf Ko-fi",
     },
     "en": {
         "app_title": "Mein Pendel",
@@ -108,6 +157,54 @@ STRINGS: dict[str, dict[str, str]] = {
         "notifications_ntfy_label": "ntfy topic",
         "notifications_ntfy_submit": "Save",
         "notifications_ntfy_error": "Please enter a valid topic (letters, digits, _ or -, max 64 characters).",
+        "footer_impressum": "Impressum",
+        "footer_datenschutz": "Privacy Policy",
+        "footer_about": "About",
+        "impressum_heading": "Information according to § 5 DDG (German Digital Services Act)",
+        "impressum_name_label": "Name",
+        "impressum_address_label": "Address",
+        "impressum_email_label": "Email",
+        "datenschutz_heading": "Privacy Policy",
+        "datenschutz_cookie_text": (
+            "When you save your first commute, the app sets an HttpOnly cookie "
+            "named uid containing a random, opaque identifier (uid). It is used to "
+            "associate your saved data with you."
+        ),
+        "datenschutz_data_text": (
+            "Against your identifier we store: your saved commutes (origin and "
+            "destination stop, lines, weekdays, departure window and the delay "
+            "threshold in minutes [delay_threshold_min]); if set up, your Telegram "
+            "chat id or ntfy topic and a one-time linking token while linking is "
+            "pending; and the notification state per disruption. We store no email "
+            "address, no name, and use no trackers."
+        ),
+        "datenschutz_lang_cookie_text": (
+            "A separate cookie named lang stores only your chosen language "
+            "(German or English)."
+        ),
+        "datenschutz_delete_text": (
+            "The “Delete my data” button (POST /me/delete) removes all "
+            "your data with one click – every row tied to your identifier and "
+            "the uid cookie."
+        ),
+        "datenschutz_hafas_text": (
+            "To search stops and fetch departures, the app sends requests to the "
+            "VBB/BVG HAFAS REST API (v6.bvg.transport.rest)."
+        ),
+        "datenschutz_third_party_text": (
+            "If you have set up notifications, they are delivered through the "
+            "third-party services Telegram and/or the operator-configured ntfy "
+            "server (to the topic you chose)."
+        ),
+        "datenschutz_ip_text": (
+            "To protect against abuse, the app processes your IP address only in "
+            "memory on the server, together with a request counter; it is not "
+            "stored in the database and is lost at the latest when the server "
+            "restarts."
+        ),
+        "about_heading": "About",
+        "about_free_text": "Mein Pendel is free, with no ads and no tracking.",
+        "about_kofi_text": "Support the project voluntarily on Ko-fi",
     },
 }
 
