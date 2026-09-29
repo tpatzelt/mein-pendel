@@ -1,0 +1,13 @@
+.git
+.github
+.venv
+__pycache__
+*.pyc
+.pytest_cache
+.nightshift
+data
+*.db
+tests
+docs
+deploy
+DEPLOY.md
