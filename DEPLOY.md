@@ -5,9 +5,11 @@ cloudflared. The homelab repo itself is not edited by these steps -- this
 repo produces every file referenced below, and only the two snippets in
 steps 6 and 7 are added to the homelab repo by hand.
 
-`docker build .` and `docker compose -f deploy/compose.yaml config` could
-not be run in the NIGHTSHIFT sandbox, because its guard blocks every Docker
-call. Both must be run by a human before relying on this deployment.
+`docker build .` and `docker compose -f deploy/compose.yaml config` are
+checked by `deploy/verify.sh`, which CI runs on every push. The NIGHTSHIFT
+sandbox cannot run it itself, because its guard blocks every Docker call --
+a human can run `bash deploy/verify.sh` locally at any time to repeat the
+same checks CI does.
 
 ## Steps
 
