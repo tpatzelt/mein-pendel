@@ -124,3 +124,25 @@ def list_commutes(conn: sqlite3.Connection, user_id: str) -> list[tuple[int, Com
         )
         for row in rows
     ]
+
+
+def add_ntfy_channel(conn: sqlite3.Connection, user_id: str, topic: str) -> int:
+    """Save an already-validated ntfy topic as a linked channel row and
+    return its row id."""
+    cur = conn.execute(
+        "INSERT INTO channels (user_id, kind, target, linked_at) "
+        "VALUES (?, 'ntfy', ?, datetime('now'))",
+        (user_id, topic),
+    )
+    conn.commit()
+    return cur.lastrowid
+
+
+def list_channels(conn: sqlite3.Connection, user_id: str) -> list[sqlite3.Row]:
+    """Return `user_id`'s channel rows (kind, target, link_token, linked_at),
+    for display on the notifications page."""
+    return conn.execute(
+        "SELECT kind, target, link_token, linked_at FROM channels "
+        "WHERE user_id = ? ORDER BY id",
+        (user_id,),
+    ).fetchall()
