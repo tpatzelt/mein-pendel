@@ -1,0 +1,213 @@
+import datetime as dt
+import json
+from pathlib import Path
+
+import pytest
+
+from pendel.commute import Commute
+from pendel.engine import evaluate
+
+UTC = dt.timezone.utc
+FIXTURES = Path(__file__).parent / "fixtures" / "hafas" / "engine"
+ORIGIN_STOP_ID = "900000100001"
+
+
+def _commute(**overrides) -> Commute:
+    defaults = dict(
+        origin_stop_id=ORIGIN_STOP_ID,
+        destination_stop_id="900000200002",
+        lines=frozenset({"S41"}),
+        weekdays=frozenset({0, 1, 2, 3, 4}),
+        window_start=dt.time(7, 30),
+        window_end=dt.time(8, 0),
+    )
+    defaults.update(overrides)
+    return Commute(**defaults)
+
+
+def _load(name: str) -> dict:
+    return json.loads((FIXTURES / name).read_text())
+
+
+def _departures(**departure_overrides) -> dict:
+    departure = {
+        "tripId": "1|9999|0|1|5012026",
+        "stop": {"id": ORIGIN_STOP_ID, "name": "S Test Ost"},
+        "when": "2026-01-05T07:45:00+01:00",
+        "plannedWhen": "2026-01-05T07:45:00+01:00",
+        "delay": 0,
+        "cancelled": False,
+        "line": {"id": "line:S41", "name": "S41", "product": "suburban"},
+        "remarks": [],
+    }
+    departure.update(departure_overrides)
+    return {"departures": [departure]}
+
+
+NOW_WINTER = dt.datetime(2026, 1, 5, 6, 0, tzinfo=UTC)  # Monday, same Berlin date as the fixtures
+
+
+@pytest.mark.parametrize(
+    "fixture_name, expected_kinds, reason_de_substring, reason_en_substring",
+    [
+        ("synthetic_undisturbed.json", [], "Keine Störung", "No disruption"),
+        ("synthetic_cancellation.json", ["cancellation"], "fällt aus", "is cancelled"),
+        (
+            "synthetic_replacement_service.json",
+            ["replacement_service"],
+            "Ersatzverkehr",
+            "Replacement service",
+        ),
+        ("synthetic_delay.json", ["delay"], "Verspätung", "delayed by"),
+        ("synthetic_construction.json", ["construction"], "Bauarbeiten", "Construction"),
+        ("synthetic_warning.json", ["warning"], "Störung auf", "Disruption on"),
+    ],
+)
+def test_engine_over_synthetic_fixtures(
+    fixture_name, expected_kinds, reason_de_substring, reason_en_substring
+):
+    commute = _commute()
+    verdict = evaluate(commute, _load(fixture_name), NOW_WINTER)
+
+    assert verdict.affected == bool(expected_kinds)
+    assert verdict.kinds == expected_kinds
+    assert reason_de_substring in verdict.reason_de
+    assert reason_en_substring in verdict.reason_en
+    if expected_kinds:
+        assert verdict.disruption_key
+    else:
+        assert verdict.disruption_key == ""
+
+
+def test_disruption_on_line_not_ridden_is_not_a_false_positive():
+    commute = _commute()
+    verdict = evaluate(commute, _load("synthetic_unridden_line.json"), NOW_WINTER)
+
+    assert verdict.affected is False
+    assert verdict.kinds == []
+    assert verdict.disruption_key == ""
+
+
+def test_hint_and_additional_service_status_remarks_are_ignored_even_with_trigger_words():
+    commute = _commute()
+    verdict = evaluate(commute, _load("synthetic_hint_and_status_ignored.json"), NOW_WINTER)
+
+    assert verdict.affected is False
+    assert verdict.kinds == []
+
+
+def test_missing_remarks_key_is_tolerated():
+    commute = _commute()
+    verdict = evaluate(commute, _load("synthetic_no_remarks_key.json"), NOW_WINTER)
+
+    assert verdict.affected is False
+
+
+def test_delay_one_second_under_default_threshold_is_not_affected():
+    commute = _commute()
+    verdict = evaluate(commute, _departures(delay=599), NOW_WINTER)
+
+    assert verdict.affected is False
+
+
+def test_delay_exactly_at_default_threshold_is_not_affected():
+    commute = _commute()
+    verdict = evaluate(commute, _departures(delay=600), NOW_WINTER)
+
+    assert verdict.affected is False
+
+
+def test_delay_one_second_over_default_threshold_is_affected():
+    commute = _commute()
+    verdict = evaluate(commute, _departures(delay=601), NOW_WINTER)
+
+    assert verdict.affected is True
+    assert verdict.kinds == ["delay"]
+
+
+def test_delay_threshold_is_a_parameter_independent_of_commute_field():
+    # Commute.delay_threshold_min defaults to 5, but evaluate() must not
+    # use it: a 6-minute delay must not count against the (default 10 min)
+    # threshold passed to evaluate().
+    commute = _commute()
+    assert commute.delay_threshold_min == 5
+    verdict = evaluate(commute, _departures(delay=360), NOW_WINTER)  # 6 minutes
+
+    assert verdict.affected is False
+
+
+def test_delay_threshold_min_keyword_overrides_default():
+    commute = _commute()
+    verdict = evaluate(commute, _departures(delay=360), NOW_WINTER, delay_threshold_min=5)
+
+    assert verdict.affected is True
+    assert verdict.kinds == ["delay"]
+
+
+def test_now_must_be_timezone_aware():
+    commute = _commute()
+    with pytest.raises(ValueError):
+        evaluate(commute, _departures(), dt.datetime(2026, 1, 5, 6, 0))
+
+
+def test_dst_spring_forward_window_places_departures_correctly():
+    # 2026-03-29: wall-clock 02:00-03:00 does not exist, so the configured
+    # 02:30-02:45 window normalises to 03:30-03:45 CEST. The fixture has a
+    # warning inside that real window and a cancellation 5 min after it;
+    # a naive window would wrongly admit the cancellation (higher
+    # priority) or match neither departure.
+    commute = _commute(
+        weekdays=frozenset({6}), window_start=dt.time(2, 30), window_end=dt.time(2, 45)
+    )
+    now = dt.datetime(2026, 3, 29, 0, 0, tzinfo=UTC)
+
+    verdict = evaluate(commute, _load("synthetic_dst_spring_forward.json"), now)
+
+    assert verdict.affected is True
+    assert verdict.kinds == ["warning"]
+
+
+def test_kinds_are_ordered_deterministically_and_key_picks_highest_priority():
+    departures = _departures(cancelled=True, delay=900)
+
+    commute = _commute()
+    verdict = evaluate(commute, departures, NOW_WINTER)
+
+    assert verdict.kinds == ["cancellation", "delay"]
+    assert verdict.disruption_key.startswith("cancellation:")
+
+
+def test_disruption_key_distinguishes_different_warning_remarks():
+    commute = _commute()
+    first = evaluate(
+        commute,
+        _departures(
+            tripId="1|1|0|1|5012026",
+            remarks=[
+                {
+                    "type": "warning",
+                    "code": "text.realtime.journey.disruption",
+                    "summary": "Signalstörung",
+                    "text": "Signalstörung A.",
+                }
+            ],
+        ),
+        NOW_WINTER,
+    )
+    second = evaluate(
+        commute,
+        _departures(
+            tripId="1|2|0|1|5012026",
+            remarks=[
+                {
+                    "type": "warning",
+                    "code": "text.realtime.journey.disruption",
+                    "summary": "Signalstörung",
+                    "text": "Signalstörung B.",
+                }
+            ],
+        ),
+        NOW_WINTER,
+    )
+
+    assert first.disruption_key != second.disruption_key
