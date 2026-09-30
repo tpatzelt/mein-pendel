@@ -12,7 +12,7 @@ from pathlib import Path
 import pytest
 
 from pendel.commute import Commute
-from pendel.engine import evaluate
+from pendel.engine import evaluate, line_choices
 
 RECORDED = Path(__file__).parent / "fixtures" / "hafas" / "recorded"
 # Wednesday 2026-09-30, 07:00 Berlin: just before the recorded departures.
@@ -129,6 +129,18 @@ def test_remark_html_never_reaches_a_reason():
     assert verdict.kinds == ["warning"]
     assert "Ostkreuz <> Lichtenberg" in verdict.reason_de
     assert "&#" not in verdict.reason_de + verdict.reason_en
+
+
+def test_line_choices_from_recorded_departures():
+    # Alexanderplatz 900100003: every line actually departing there, for the
+    # setup checkboxes -- a visitor never types a line name (charter G1).
+    choices = line_choices(_load("undisturbed"))
+
+    assert choices == [
+        "100", "200", "248", "300", "M2", "M4", "M5", "M6",
+        "S3", "S5", "S7", "S9", "U2", "U5", "U8",
+    ]
+    assert len(choices) == len(set(choices))
 
 
 def test_every_recorded_fixture_is_documented():
