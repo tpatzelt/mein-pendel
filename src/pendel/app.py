@@ -28,7 +28,7 @@ from starlette.concurrency import run_in_threadpool
 
 from pendel import db, telegram_link
 from pendel.commute import BERLIN, Commute
-from pendel.engine import evaluate
+from pendel.engine import evaluate, line_choices
 from pendel.hafas import HafasClient, HafasError
 from pendel.i18n import resolve_language, translate
 from pendel.ratelimit import RateLimiter, rate_limit_per_min_from_env
@@ -37,6 +37,13 @@ _BASE_DIR = Path(__file__).parent
 _MIN_QUERY_LENGTH = 2
 _TELEGRAM_BOT_USERNAME_ENV = "PENDEL_TELEGRAM_BOT_USERNAME"
 _NTFY_TOPIC_RE = re.compile(r"^[A-Za-z0-9_-]{1,64}$")
+
+# How far ahead to look for the origin's departing lines on /commutes/new
+# (charter G1): long enough to see a representative set of lines, short
+# enough to stay a single cheap HAFAS call.
+_LINE_CHOICES_DURATION_MINUTES = 60
+_DEFAULT_WEEKDAYS = frozenset({"0", "1", "2", "3", "4"})  # Mon-Fri
+_DEFAULT_DELAY_THRESHOLD_MIN = "5"
 
 # HafasClient's TTL cache is a plain OrderedDict, not thread-safe; sync
 # endpoints run in a threadpool, so serialize access to the shared client.
@@ -125,6 +132,46 @@ def _fetch_departures(
     does, since they share one HafasClient."""
     with _hafas_lock:
         return hafas_client.departures(stop_id, when, duration_minutes)
+
+
+def _default_window(now: dt.datetime) -> tuple[dt.time, dt.time]:
+    """Default departure window (charter G1): starts at the next full half
+    hour after `now`, wrapping past midnight (e.g. 23:45 gives 00:00, not
+    23:30); window_end is start + 30 min, clamped to 23:59 when the start
+    itself is 23:30 so the window never crosses midnight. Full
+    midnight-crossing windows land in T-0016.
+    """
+    local = now.astimezone(BERLIN)
+    total_minutes = local.hour * 60 + local.minute
+    remainder = total_minutes % 30
+    if remainder == 0 and local.second == 0 and local.microsecond == 0:
+        start_minutes = total_minutes
+    else:
+        start_minutes = total_minutes - remainder + 30
+    start_minutes %= 24 * 60
+    window_start = dt.time(start_minutes // 60, start_minutes % 60)
+    if start_minutes == 23 * 60 + 30:
+        window_end = dt.time(23, 59)
+    else:
+        end_minutes = start_minutes + 30
+        window_end = dt.time(end_minutes // 60, end_minutes % 60)
+    return window_start, window_end
+
+
+async def _line_choices_for_origin(
+    hafas_client: HafasClient, origin_stop_id: str, now: dt.datetime
+) -> tuple[list[str], bool]:
+    """The origin's line choices for the setup checkboxes (charter G1), and
+    whether they are unavailable (HafasError, or HAFAS returned no lines).
+    Never falls back to a text field -- callers show a retry link instead."""
+    try:
+        departures_json = await run_in_threadpool(
+            _fetch_departures, hafas_client, origin_stop_id, now, _LINE_CHOICES_DURATION_MINUTES
+        )
+    except HafasError:
+        return [], True
+    choices = line_choices(departures_json)
+    return choices, not choices
 
 
 async def get_db() -> AsyncIterator[sqlite3.Connection]:
@@ -250,27 +297,51 @@ def stops(
 
 
 @app.get("/commutes/new", response_class=HTMLResponse)
-def commutes_new_form(request: Request) -> HTMLResponse:
+async def commutes_new_form(
+    request: Request,
+    hafas_client: HafasClient = Depends(get_hafas_client),
+    now: dt.datetime = Depends(get_now),
+) -> HTMLResponse:
+    """Setup screen 3 (charter G1): line checkboxes from the origin's own
+    departures, never a typed stop id or line name. Requires all four of
+    origin/destination stop id and name (carried as query params from the
+    /stops flow); without them this links back to /stops without calling
+    HAFAS."""
     language = _language_for(request)
 
     def t(key: str) -> str:
         return translate(language, key)
 
-    response = templates.TemplateResponse(
-        request,
-        "commute_new.html",
-        {
-            "language": language,
-            "t": t,
-            "origin_stop_id": request.query_params.get("origin_stop_id", ""),
-            "destination_stop_id": request.query_params.get("destination_stop_id", ""),
-            "lines": "",
-            "selected_weekdays": frozenset(),
-            "window_start": "",
-            "window_end": "",
-            "delay_threshold_min": "5",
+    origin_stop_id = request.query_params.get("origin_stop_id", "")
+    origin_name = request.query_params.get("origin_name", "")
+    destination_stop_id = request.query_params.get("destination_stop_id", "")
+    destination_name = request.query_params.get("destination_name", "")
+    ready = bool(origin_stop_id and origin_name and destination_stop_id and destination_name)
+
+    context: dict[str, Any] = {"language": language, "t": t, "ready": ready}
+    status_code = 200
+
+    if ready:
+        choices, unavailable = await _line_choices_for_origin(hafas_client, origin_stop_id, now)
+        window_start, window_end = _default_window(now)
+        status_code = 503 if unavailable else 200
+        context |= {
+            "origin_stop_id": origin_stop_id,
+            "origin_name": origin_name,
+            "destination_stop_id": destination_stop_id,
+            "destination_name": destination_name,
+            "line_choices": choices,
+            "selected_lines": frozenset(),
+            "lines_unavailable": unavailable,
+            "selected_weekdays": _DEFAULT_WEEKDAYS,
+            "window_start": window_start.strftime("%H:%M"),
+            "window_end": window_end.strftime("%H:%M"),
+            "delay_threshold_min": _DEFAULT_DELAY_THRESHOLD_MIN,
             "error_message": None,
-        },
+        }
+
+    response = templates.TemplateResponse(
+        request, "commute_new.html", context, status_code=status_code
     )
     if request.query_params.get("lang") in ("de", "en"):
         response.set_cookie("lang", language, samesite="lax")
@@ -281,6 +352,8 @@ def commutes_new_form(request: Request) -> HTMLResponse:
 async def commutes_create(
     request: Request,
     db_conn: sqlite3.Connection = Depends(get_db),
+    hafas_client: HafasClient = Depends(get_hafas_client),
+    now: dt.datetime = Depends(get_now),
 ) -> HTMLResponse:
     language = _language_for(request)
 
@@ -293,8 +366,10 @@ async def commutes_create(
     body = await request.body()
     form = urllib.parse.parse_qs(body.decode("utf-8"), keep_blank_values=True)
     origin_stop_id = form.get("origin_stop_id", [""])[0].strip()
+    origin_name = form.get("origin_name", [""])[0].strip()
     destination_stop_id = form.get("destination_stop_id", [""])[0].strip()
-    lines_raw = form.get("lines", [""])[0].strip()
+    destination_name = form.get("destination_name", [""])[0].strip()
+    selected_lines = [line.strip() for line in form.get("lines", []) if line.strip()]
     weekdays_raw = form.get("weekdays", [])
     window_start_raw = form.get("window_start", [""])[0].strip()
     window_end_raw = form.get("window_end", [""])[0].strip()
@@ -302,12 +377,14 @@ async def commutes_create(
 
     commute: Commute | None = None
     try:
-        if not origin_stop_id or not destination_stop_id:
-            raise ValueError("origin and destination stop ids are required")
+        if not (origin_stop_id and origin_name and destination_stop_id and destination_name):
+            raise ValueError("origin and destination stop id and name are required")
         commute = Commute(
             origin_stop_id=origin_stop_id,
             destination_stop_id=destination_stop_id,
-            lines=frozenset(part.strip() for part in lines_raw.split(",") if part.strip()),
+            origin_name=origin_name,
+            destination_name=destination_name,
+            lines=frozenset(selected_lines),
             weekdays=frozenset(int(day) for day in weekdays_raw),
             window_start=dt.time.fromisoformat(window_start_raw),
             window_end=dt.time.fromisoformat(window_end_raw),
@@ -317,22 +394,26 @@ async def commutes_create(
         commute = None
 
     if commute is None:
-        return templates.TemplateResponse(
-            request,
-            "commute_new.html",
-            {
-                "language": language,
-                "t": t,
+        ready = bool(origin_stop_id and origin_name and destination_stop_id and destination_name)
+        context: dict[str, Any] = {"language": language, "t": t, "ready": ready}
+        if ready:
+            choices, unavailable = await _line_choices_for_origin(hafas_client, origin_stop_id, now)
+            context |= {
                 "origin_stop_id": origin_stop_id,
+                "origin_name": origin_name,
                 "destination_stop_id": destination_stop_id,
-                "lines": lines_raw,
+                "destination_name": destination_name,
+                "line_choices": choices,
+                "selected_lines": frozenset(selected_lines),
+                "lines_unavailable": unavailable,
                 "selected_weekdays": frozenset(weekdays_raw),
                 "window_start": window_start_raw,
                 "window_end": window_end_raw,
-                "delay_threshold_min": delay_raw or "5",
+                "delay_threshold_min": delay_raw or _DEFAULT_DELAY_THRESHOLD_MIN,
                 "error_message": t("commute_new_error"),
-            },
-            status_code=400,
+            }
+        return templates.TemplateResponse(
+            request, "commute_new.html", context, status_code=400
         )
 
     uid = request.cookies.get("uid")
