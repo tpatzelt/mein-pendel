@@ -131,6 +131,18 @@ def test_remark_html_never_reaches_a_reason():
     assert "&#" not in verdict.reason_de + verdict.reason_en
 
 
+def test_generic_remark_summary_falls_back_to_the_remark_text():
+    # RB32's remark summary is the generic "Störung.", which by itself
+    # tells a rider nothing; the reason must carry words from the
+    # remark's own text ("Ausfall", "Oranienburg"), not just the label.
+    verdict = evaluate(_commute(OSTKREUZ, {"RB32"}, (7, 40), (7, 50)), _load("warning"), NOW)
+
+    assert verdict.kinds == ["warning"]
+    assert "Ausfall" in verdict.reason_de
+    assert "Oranienburg" in verdict.reason_de
+    assert verdict.reason_de != "Störung auf RB32: Störung."
+
+
 def test_line_choices_from_recorded_departures():
     # Alexanderplatz 900100003: every line actually departing there, for the
     # setup checkboxes -- a visitor never types a line name (charter G1).
