@@ -437,6 +437,110 @@ def test_dst_fall_back_sunday_lead_boundary_holds_when_now_is_utc_aware(conn):
     assert len(calls) == 1
 
 
+def test_crossing_midnight_window_active_yesterday_is_fetched_after_midnight(conn):
+    # 2026-01-03 is a Saturday, 2026-01-04 a Sunday. A 23:30-00:30 commute
+    # active on Saturdays starts before midnight and is still open at
+    # 00:10 on Sunday, even though "today" (Sunday) is not itself in its
+    # weekdays -- the scheduler must also consider the window that started
+    # yesterday (charter G2).
+    user_id = db.create_user(conn)
+    crossing_id = _insert_commute(
+        conn, user_id, weekdays="5", window_start="23:30", window_end="00:30"
+    )
+    _insert_channel(conn, user_id, "ntfy", "topic-abc")
+    fake = FakeChannel()
+
+    calls: list[httpx.Request] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        calls.append(request)
+        return httpx.Response(200, json=_load("synthetic_undisturbed.json"))
+
+    sched = Scheduler(conn, _hafas(handler), {"ntfy": fake}, clock=lambda: None)
+    sched.tick(dt.datetime(2026, 1, 4, 0, 10, tzinfo=BERLIN))
+
+    assert len(calls) == 1
+    assert _notification_count(conn, crossing_id) == 0
+
+
+def test_crossing_midnight_window_not_active_yesterday_is_not_fetched(conn):
+    # Same 00:10 Sunday check as above, but the commute only runs Mon-Fri,
+    # so neither yesterday (Saturday) nor today (Sunday) is active.
+    user_id = db.create_user(conn)
+    _insert_commute(
+        conn,
+        user_id,
+        weekdays="0,1,2,3,4",
+        window_start="23:30",
+        window_end="00:30",
+    )
+    _insert_channel(conn, user_id, "ntfy", "topic-abc")
+    fake = FakeChannel()
+
+    calls: list[httpx.Request] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        calls.append(request)
+        return httpx.Response(200, json=_load("synthetic_undisturbed.json"))
+
+    sched = Scheduler(conn, _hafas(handler), {"ntfy": fake}, clock=lambda: None)
+    sched.tick(dt.datetime(2026, 1, 4, 0, 10, tzinfo=BERLIN))
+
+    assert calls == []
+
+
+def test_paused_crossing_midnight_commute_is_never_fetched(conn):
+    user_id = db.create_user(conn)
+    paused_id = _insert_commute(
+        conn, user_id, weekdays="5", window_start="23:30", window_end="00:30"
+    )
+    conn.execute("UPDATE commutes SET paused = 1 WHERE id = ?", (paused_id,))
+    conn.commit()
+    _insert_channel(conn, user_id, "ntfy", "topic-abc")
+    fake = FakeChannel()
+
+    calls: list[httpx.Request] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        calls.append(request)
+        return httpx.Response(200, json=_load("synthetic_undisturbed.json"))
+
+    sched = Scheduler(conn, _hafas(handler), {"ntfy": fake}, clock=lambda: None)
+    sched.tick(dt.datetime(2026, 1, 4, 0, 10, tzinfo=BERLIN))
+
+    assert calls == []
+    assert _notification_count(conn, paused_id) == 0
+
+
+def test_dst_fall_back_crossing_window_is_fetched_at_the_ambiguous_time_in_both_folds(conn):
+    # 2026-10-24 is a Saturday; a 23:30-02:30 window starting that evening
+    # crosses the fall-back at 2026-10-25 03:00 CEST -> 02:00 CET, so
+    # 02:30 on the 25th occurs twice (fold=0 CEST, fold=1 CET).
+    # Commute.window_bounds resolves window_end to the later (fold=1) UTC
+    # instant so the window covers the full elapsed time; the scheduler
+    # must find the commute due at 02:30 in both folds.
+    user_id = db.create_user(conn)
+    _insert_commute(
+        conn, user_id, weekdays="5", window_start="23:30", window_end="02:30"
+    )
+    _insert_channel(conn, user_id, "ntfy", "topic-abc")
+    fake = FakeChannel()
+
+    calls: list[httpx.Request] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        calls.append(request)
+        return httpx.Response(200, json=_load("synthetic_undisturbed.json"))
+
+    sched = Scheduler(conn, _hafas(handler), {"ntfy": fake}, clock=lambda: None)
+
+    sched.tick(dt.datetime(2026, 10, 25, 2, 30, fold=0, tzinfo=BERLIN))
+    assert len(calls) == 1
+
+    sched.tick(dt.datetime(2026, 10, 25, 2, 30, fold=1, tzinfo=BERLIN))
+    assert len(calls) == 2
+
+
 def test_dst_spring_forward_window_starting_in_nonexistent_hour_does_not_crash(conn):
     # window_start=02:30 falls in the nonexistent hour on 2026-03-29; per
     # Commute.window_bounds/_normalise this is rewritten to 03:30+02:00,
