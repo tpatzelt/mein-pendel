@@ -27,8 +27,9 @@ from fastapi.templating import Jinja2Templates
 from starlette.concurrency import run_in_threadpool
 
 from pendel import db, telegram_link
+from pendel.alternatives import Alternative, suggest_alternative
 from pendel.commute import BERLIN, Commute
-from pendel.engine import NextDeparture, evaluate, line_choices, next_departures
+from pendel.engine import NextDeparture, Verdict, evaluate, line_choices, next_departures
 from pendel.hafas import HafasClient, HafasError
 from pendel.i18n import resolve_language, translate
 from pendel.ratelimit import RateLimiter, rate_limit_per_min_from_env
@@ -143,6 +144,16 @@ def _fetch_departures(
     does, since they share one HafasClient."""
     with _hafas_lock:
         return hafas_client.departures(stop_id, when, duration_minutes)
+
+
+def _fetch_journeys(
+    hafas_client: HafasClient, origin_stop_id: str, destination_stop_id: str, when: dt.datetime
+) -> Any:
+    """Sync HAFAS call for a disrupted commute's suggested alternative (see
+    `today`), run off the event loop via `run_in_threadpool` under the same
+    `_hafas_lock` as `_fetch_departures` since both share one HafasClient."""
+    with _hafas_lock:
+        return hafas_client.journeys(origin_stop_id, destination_stop_id, when)
 
 
 def _default_window(now: dt.datetime) -> tuple[dt.time, dt.time]:
@@ -493,6 +504,7 @@ def _status_item(
     status: str,
     message: str | None,
     departures: list[dict[str, Any]] | None = None,
+    alternative: str | None = None,
 ) -> dict[str, Any]:
     return {
         "commute_id": commute_id,
@@ -502,7 +514,36 @@ def _status_item(
         "status_icon": _STATUS_ICONS[status],
         "message": message,
         "departures": departures,
+        "alternative": alternative,
     }
+
+
+async def _alternative_text(
+    hafas_client: HafasClient,
+    commute: Commute,
+    verdict: Verdict,
+    now: dt.datetime,
+    language: str,
+) -> str | None:
+    """The suggested alternative's localized summary for a disrupted card
+    (charter G3), or None when HAFAS errors or no alternative qualifies --
+    either way the card stays disrupted, never an error page. One
+    `/journeys` call, only for a commute the engine already found affected.
+    """
+    try:
+        journeys_json = await run_in_threadpool(
+            _fetch_journeys,
+            hafas_client,
+            commute.origin_stop_id,
+            commute.destination_stop_id,
+            now,
+        )
+    except HafasError:
+        return None
+    alternative: Alternative | None = suggest_alternative(commute, verdict, journeys_json)
+    if alternative is None:
+        return None
+    return alternative.summary_de if language == "de" else alternative.summary_en
 
 
 @app.get("/today", response_class=HTMLResponse)
@@ -587,6 +628,11 @@ async def today(
                 _departure_item(departure, t)
                 for departure in next_departures(commute, departures_json, now)
             ]
+            alternative = (
+                await _alternative_text(hafas_client, commute, verdict, now, language)
+                if verdict.affected
+                else None
+            )
             items.append(
                 _status_item(
                     commute_id,
@@ -595,6 +641,7 @@ async def today(
                     "disrupted" if verdict.affected else "ok",
                     message,
                     departures,
+                    alternative,
                 )
             )
 

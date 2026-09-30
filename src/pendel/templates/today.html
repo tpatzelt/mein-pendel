@@ -16,6 +16,7 @@
       <span aria-hidden="true">{{ item.status_icon }}</span> {{ item.status_label }}
     </p>
     {% if item.message %}<p>{{ item.message }}</p>{% endif %}
+    {% if item.alternative %}<p>{{ t("today_alternative_label") }} {{ item.alternative }}</p>{% endif %}
     {% if item.departures is not none %}
       {% if item.departures %}
       <ul class="departures">

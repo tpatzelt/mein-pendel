@@ -335,6 +335,132 @@ def test_today_hafas_error_shows_unavailable_message_with_status_200(client, tmp
     assert "Status gerade nicht verfügbar." in response.text
 
 
+_WESTKREUZ_STOP_ID = "900024102"
+_HAUPTBAHNHOF_PARENT_STOP_ID = "900003201"
+_ALTERNATIVES_FIXTURES_DIR = Path(__file__).parent / "fixtures" / "hafas" / "alternatives"
+
+
+class _DeparturesOnlyHafasClient:
+    """A HafasClient stand-in that only answers `/stops/.../departures`;
+    used to prove a `/journeys` failure never turns into an error page."""
+
+    def __init__(self, departures_payload: dict) -> None:
+        self._payload = departures_payload
+
+    def departures(self, stop_id: str, when: dt.datetime, duration: int) -> dict:
+        return self._payload
+
+    def journeys(self, from_id: str, to_id: str, departure: dt.datetime):
+        raise HafasError("boom")
+
+
+def _child_stop_alternative_hafas_client() -> HafasClient:
+    disrupted = json.loads((_RECORDED_FIXTURES_DIR / "departures_cancellation.json").read_text())
+    alternative = json.loads(
+        (_ALTERNATIVES_FIXTURES_DIR / "synthetic_child_stop_arrival.json").read_text()
+    )
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        if request.url.path == f"/stops/{_WESTKREUZ_STOP_ID}/departures":
+            return httpx.Response(200, json=disrupted)
+        if request.url.path == "/journeys":
+            return httpx.Response(200, json=alternative)
+        raise AssertionError(f"unexpected HAFAS request: {request.url.path}")
+
+    return HafasClient(httpx.Client(transport=httpx.MockTransport(handler)))
+
+
+def _disrupted_child_stop_commute(**overrides) -> Commute:
+    defaults = dict(
+        origin_stop_id=_WESTKREUZ_STOP_ID,  # recorded cancellation fixture (S46 07:20)
+        destination_stop_id=_HAUPTBAHNHOF_PARENT_STOP_ID,  # parent of the fixture's arrival stop
+        lines=frozenset({"S46"}),
+        weekdays=frozenset({2}),  # Wednesday, matching _RECORDED_NOW
+        window_start=dt.time(7, 0),
+        window_end=dt.time(7, 30),
+    )
+    defaults.update(overrides)
+    return Commute(**defaults)
+
+
+def test_today_disrupted_commute_shows_suggested_alternative(client, tmp_path) -> None:
+    """Charter G3: a disrupted card shows the suggested alternative, proven
+    end to end for the case where HAFAS reports the journey's arrival at a
+    child stop of the saved destination -- the saved destination here is the
+    parent station 900003201 (S+U Berlin Hauptbahnhof), while the only
+    qualifying journey in the fixture arrives at its child stop 900003200."""
+    commute = _disrupted_child_stop_commute()
+    uid = _seed_commute(tmp_path, commute)
+
+    app.dependency_overrides[get_now] = lambda: _RECORDED_NOW
+    app.dependency_overrides[get_hafas_client] = _child_stop_alternative_hafas_client
+    client.cookies.set("uid", uid)
+
+    response_de = client.get("/today", params={"lang": "de"})
+    assert response_de.status_code == 200
+    card_de = _card_block(response_de.text, "disrupted")
+    assert "Alternative:" in card_de
+    assert "U2 07:41 → S+U Berlin Hauptbahnhof [Gleis 1-8] an 07:58" in card_de
+
+    response_en = client.get("/today", params={"lang": "en"})
+    assert response_en.status_code == 200
+    card_en = _card_block(response_en.text, "disrupted")
+    assert "Alternative:" in card_en
+    assert "U2 07:41 → S+U Berlin Hauptbahnhof [Gleis 1-8] arr 07:58" in card_en
+
+
+def test_today_ok_commute_does_not_call_journeys(client, tmp_path) -> None:
+    """The alternative lookup is a per-disrupted-commute call (charter G3):
+    an unaffected commute must never trigger a `/journeys` request."""
+    commute = _commute(
+        origin_stop_id=_ALEXANDERPLATZ_STOP_ID,
+        destination_stop_id=_OSTKREUZ_STOP_ID,
+        lines=frozenset({"S3"}),
+        weekdays=frozenset({2}),
+        window_start=dt.time(7, 0),
+        window_end=dt.time(7, 30),
+    )
+    uid = _seed_commute(tmp_path, commute)
+    undisturbed = json.loads((_RECORDED_FIXTURES_DIR / "departures_undisturbed.json").read_text())
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        if request.url.path == f"/stops/{_ALEXANDERPLATZ_STOP_ID}/departures":
+            return httpx.Response(200, json=undisturbed)
+        raise AssertionError(f"unexpected HAFAS request: {request.url.path}")
+
+    app.dependency_overrides[get_now] = lambda: _RECORDED_NOW
+    app.dependency_overrides[get_hafas_client] = lambda: HafasClient(
+        httpx.Client(transport=httpx.MockTransport(handler))
+    )
+    client.cookies.set("uid", uid)
+
+    response = client.get("/today")
+
+    assert response.status_code == 200
+    assert 'data-status="ok"' in response.text
+
+
+def test_today_disrupted_commute_with_journeys_error_stays_disrupted_without_error_page(
+    client, tmp_path
+) -> None:
+    """Notes from earlier attempts (T-0014): a HafasError from `/journeys`
+    leaves the card disrupted, with no alternative shown and no error page."""
+    commute = _disrupted_child_stop_commute()
+    uid = _seed_commute(tmp_path, commute)
+    disrupted = json.loads((_RECORDED_FIXTURES_DIR / "departures_cancellation.json").read_text())
+
+    app.dependency_overrides[get_now] = lambda: _RECORDED_NOW
+    app.dependency_overrides[get_hafas_client] = lambda: _DeparturesOnlyHafasClient(disrupted)
+    client.cookies.set("uid", uid)
+
+    response = client.get("/today")
+
+    assert response.status_code == 200
+    assert "Traceback" not in response.text
+    card = _card_block(response.text, "disrupted")
+    assert "Alternative:" not in card
+
+
 def test_today_page_has_viewport_meta_and_no_wide_fixed_widths(client, tmp_path) -> None:
     commute = _commute()
     uid = _seed_commute(tmp_path, commute)
@@ -368,6 +494,11 @@ def _recorded_multi_status_hafas_client() -> HafasClient:
             return httpx.Response(404)
         if request.url.path == f"/stops/{_PAUSED_STOP_ID}/departures":
             raise AssertionError("a paused commute's origin must never be fetched")
+        if request.url.path == "/journeys":
+            # The disrupted commute (Ostkreuz -> Hauptbahnhof) triggers one
+            # alternative lookup; no qualifying journey here, this test only
+            # cares about the per-status card rendering.
+            return httpx.Response(200, json={"journeys": []})
         raise AssertionError(f"unexpected HAFAS request: {request.url.path}")
 
     return HafasClient(httpx.Client(transport=httpx.MockTransport(handler)))
