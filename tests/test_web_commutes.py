@@ -965,6 +965,294 @@ def test_commutes_page_pause_and_delete_buttons_have_named_aria_labels_de_and_en
     assert f'aria-label="Delete {_ORIGIN_NAME} → {_DESTINATION_NAME}"' in response_en.text
 
 
+# GET/POST /commutes/{id}/edit and /commutes/{id} (charter G2, T-0050): a
+# saved commute's lines, weekdays, window and delay threshold can be edited
+# on its own; the saved origin/destination (ids, names) and the paused flag
+# are kept as they are.
+
+
+def test_edit_form_prefills_saved_lines_weekdays_window_and_delay_de_and_en(client, tmp_path) -> None:
+    _override_undisturbed()
+    commute = Commute(
+        origin_stop_id=_ORIGIN_STOP_ID,
+        destination_stop_id=_DESTINATION_STOP_ID,
+        lines=frozenset({"S3"}),
+        weekdays=frozenset({1, 3}),
+        window_start=dt.time(8, 15),
+        window_end=dt.time(8, 45),
+        delay_threshold_min=7,
+        origin_name=_ORIGIN_NAME,
+        destination_name=_DESTINATION_NAME,
+    )
+    uid = _seed_commutes(tmp_path, [commute])
+    client.cookies.set("uid", uid)
+    commute_id = _commute_id_for(tmp_path, uid)
+
+    response_de = client.get(f"/commutes/{commute_id}/edit")
+    assert response_de.status_code == 200
+    assert '<input type="checkbox" name="lines" value="S3" checked' in response_de.text
+    assert '<input type="checkbox" name="weekdays" value="1" checked' in response_de.text
+    assert '<input type="checkbox" name="weekdays" value="3" checked' in response_de.text
+    assert '<input type="checkbox" name="weekdays" value="0" checked' not in response_de.text
+    assert 'id="window_start" name="window_start" value="08:15"' in response_de.text
+    assert 'id="window_end" name="window_end" value="08:45"' in response_de.text
+    assert 'name="delay_threshold_min" value="7"' in response_de.text
+    assert f'action="/commutes/{commute_id}"' in response_de.text
+    assert _NINE_DIGIT_RE.search(response_de.text) is None
+
+    response_en = client.get(f"/commutes/{commute_id}/edit?lang=en")
+    assert response_en.status_code == 200
+    assert '<input type="checkbox" name="lines" value="S3" checked' in response_en.text
+    assert response_de.text != response_en.text
+    assert _NINE_DIGIT_RE.search(response_en.text) is None
+
+
+def test_edit_form_shows_saved_line_missing_from_todays_departures_as_checked(client, tmp_path) -> None:
+    _override_undisturbed()
+    commute = Commute(
+        origin_stop_id=_ORIGIN_STOP_ID,
+        destination_stop_id=_DESTINATION_STOP_ID,
+        lines=frozenset({"S99"}),
+        weekdays=frozenset({0}),
+        window_start=dt.time(7, 30),
+        window_end=dt.time(8, 0),
+        origin_name=_ORIGIN_NAME,
+        destination_name=_DESTINATION_NAME,
+    )
+    uid = _seed_commutes(tmp_path, [commute])
+    client.cookies.set("uid", uid)
+    commute_id = _commute_id_for(tmp_path, uid)
+
+    response = client.get(f"/commutes/{commute_id}/edit")
+
+    assert response.status_code == 200
+    assert '<input type="checkbox" name="lines" value="S99" checked' in response.text
+
+
+def test_valid_edit_changes_only_that_commute_and_keeps_paused_flag_and_stop_names(client, tmp_path) -> None:
+    _override_undisturbed()
+    target = Commute(
+        origin_stop_id=_ORIGIN_STOP_ID,
+        destination_stop_id=_DESTINATION_STOP_ID,
+        lines=frozenset({"S3"}),
+        weekdays=frozenset({0}),
+        window_start=dt.time(7, 30),
+        window_end=dt.time(8, 0),
+        delay_threshold_min=5,
+        origin_name=_ORIGIN_NAME,
+        destination_name=_DESTINATION_NAME,
+        paused=True,
+    )
+    other = Commute(
+        origin_stop_id="900000001",
+        destination_stop_id="900000002",
+        lines=frozenset({"S7"}),
+        weekdays=frozenset({1}),
+        window_start=dt.time(9, 0),
+        window_end=dt.time(9, 30),
+        origin_name="Origin Two",
+        destination_name="Destination Two",
+    )
+    uid = _seed_commutes(tmp_path, [target, other])
+    client.cookies.set("uid", uid)
+    target_id = _commute_id_for(tmp_path, uid, index=0)
+    other_id = _commute_id_for(tmp_path, uid, index=1)
+
+    response = client.post(
+        f"/commutes/{target_id}",
+        data={
+            "lines": ["S5"],
+            "weekdays": ["1", "2"],
+            "window_start": "18:00",
+            "window_end": "18:30",
+            "delay_threshold_min": "10",
+        },
+        follow_redirects=False,
+    )
+
+    assert response.status_code == 303
+    assert response.headers["location"] == "/commutes"
+
+    conn = db.connect(tmp_path / "pendel.db")
+    try:
+        rows = dict(db.list_commutes(conn, uid))
+    finally:
+        conn.close()
+
+    updated = rows[target_id]
+    assert updated.lines == frozenset({"S5"})
+    assert updated.weekdays == frozenset({1, 2})
+    assert updated.window_start == dt.time(18, 0)
+    assert updated.window_end == dt.time(18, 30)
+    assert updated.delay_threshold_min == 10
+    assert updated.paused is True
+    assert updated.origin_stop_id == _ORIGIN_STOP_ID
+    assert updated.destination_stop_id == _DESTINATION_STOP_ID
+    assert updated.origin_name == _ORIGIN_NAME
+    assert updated.destination_name == _DESTINATION_NAME
+
+    unchanged = rows[other_id]
+    assert unchanged.lines == frozenset({"S7"})
+    assert unchanged.weekdays == frozenset({1})
+    assert unchanged.window_start == dt.time(9, 0)
+
+
+@pytest.mark.parametrize(
+    "invalid_fields",
+    [
+        {"weekdays": ["9"]},
+        {"lines": []},
+        {"window_start": "25:00"},
+    ],
+)
+def test_invalid_edit_returns_400_with_alert_and_changes_nothing(client, tmp_path, invalid_fields) -> None:
+    _override_undisturbed()
+    commute = Commute(
+        origin_stop_id=_ORIGIN_STOP_ID,
+        destination_stop_id=_DESTINATION_STOP_ID,
+        lines=frozenset({"S3"}),
+        weekdays=frozenset({0}),
+        window_start=dt.time(7, 30),
+        window_end=dt.time(8, 0),
+        delay_threshold_min=5,
+        origin_name=_ORIGIN_NAME,
+        destination_name=_DESTINATION_NAME,
+    )
+    uid = _seed_commutes(tmp_path, [commute])
+    client.cookies.set("uid", uid)
+    commute_id = _commute_id_for(tmp_path, uid)
+
+    form = {
+        "lines": ["S3"],
+        "weekdays": ["0"],
+        "window_start": "07:30",
+        "window_end": "08:00",
+        "delay_threshold_min": "5",
+    } | invalid_fields
+
+    response = client.post(f"/commutes/{commute_id}", data=form, follow_redirects=False)
+
+    assert response.status_code == 400
+    assert 'role="alert"' in response.text
+    assert _NINE_DIGIT_RE.search(response.text) is None
+
+    conn = db.connect(tmp_path / "pendel.db")
+    try:
+        (_id, unchanged) = db.list_commutes(conn, uid)[0]
+    finally:
+        conn.close()
+    assert unchanged.lines == frozenset({"S3"})
+    assert unchanged.weekdays == frozenset({0})
+    assert unchanged.window_start == dt.time(7, 30)
+    assert unchanged.window_end == dt.time(8, 0)
+
+
+def test_edit_another_users_commute_unknown_id_and_missing_cookie_get_404(client, tmp_path) -> None:
+    _override_undisturbed()
+    mine = Commute(
+        origin_stop_id=_ORIGIN_STOP_ID,
+        destination_stop_id=_DESTINATION_STOP_ID,
+        lines=frozenset({"S3"}),
+        weekdays=frozenset({0}),
+        window_start=dt.time(7, 30),
+        window_end=dt.time(8, 0),
+        origin_name=_ORIGIN_NAME,
+        destination_name=_DESTINATION_NAME,
+    )
+    theirs = Commute(
+        origin_stop_id="900000001",
+        destination_stop_id="900000002",
+        lines=frozenset({"U1"}),
+        weekdays=frozenset({1}),
+        window_start=dt.time(9, 0),
+        window_end=dt.time(9, 30),
+        origin_name="Other Origin",
+        destination_name="Other Destination",
+    )
+    my_uid = _seed_commutes(tmp_path, [mine])
+    their_uid = _seed_commutes(tmp_path, [theirs])
+    their_commute_id = _commute_id_for(tmp_path, their_uid)
+
+    edit_form = {
+        "lines": ["U1"],
+        "weekdays": ["1"],
+        "window_start": "09:00",
+        "window_end": "09:30",
+        "delay_threshold_min": "5",
+    }
+
+    # Another user's commute.
+    client.cookies.set("uid", my_uid)
+    assert client.get(f"/commutes/{their_commute_id}/edit").status_code == 404
+    assert client.post(f"/commutes/{their_commute_id}", data=edit_form, follow_redirects=False).status_code == 404
+
+    # Unknown id.
+    assert client.get("/commutes/999999/edit").status_code == 404
+    assert client.post("/commutes/999999", data=edit_form, follow_redirects=False).status_code == 404
+
+    # Missing cookie.
+    client.cookies.clear()
+    assert client.get(f"/commutes/{their_commute_id}/edit").status_code == 404
+    assert client.post(f"/commutes/{their_commute_id}", data=edit_form, follow_redirects=False).status_code == 404
+
+    conn = db.connect(tmp_path / "pendel.db")
+    try:
+        their_rows = db.list_commutes(conn, their_uid)
+        my_rows = db.list_commutes(conn, my_uid)
+    finally:
+        conn.close()
+    assert their_rows[0][1].lines == frozenset({"U1"})
+    assert my_rows[0][1].lines == frozenset({"S3"})
+
+
+def test_commutes_page_shows_edit_link(client, tmp_path) -> None:
+    commute = Commute(
+        origin_stop_id=_ORIGIN_STOP_ID,
+        destination_stop_id=_DESTINATION_STOP_ID,
+        lines=frozenset({"S3"}),
+        weekdays=frozenset({0}),
+        window_start=dt.time(7, 30),
+        window_end=dt.time(8, 0),
+        origin_name=_ORIGIN_NAME,
+        destination_name=_DESTINATION_NAME,
+    )
+    uid = _seed_commutes(tmp_path, [commute])
+    client.cookies.set("uid", uid)
+    commute_id = _commute_id_for(tmp_path, uid)
+
+    response_de = client.get("/commutes")
+    assert response_de.status_code == 200
+    assert f'href="/commutes/{commute_id}/edit"' in response_de.text
+    assert "Bearbeiten" in response_de.text
+
+    response_en = client.get("/commutes?lang=en")
+    assert response_en.status_code == 200
+    assert f'href="/commutes/{commute_id}/edit"' in response_en.text
+    assert "Edit" in response_en.text
+
+
+def test_edit_form_has_viewport_meta_and_no_wide_fixed_widths(client, tmp_path) -> None:
+    _override_undisturbed()
+    commute = Commute(
+        origin_stop_id=_ORIGIN_STOP_ID,
+        destination_stop_id=_DESTINATION_STOP_ID,
+        lines=frozenset({"S3"}),
+        weekdays=frozenset({0}),
+        window_start=dt.time(7, 30),
+        window_end=dt.time(8, 0),
+        origin_name=_ORIGIN_NAME,
+        destination_name=_DESTINATION_NAME,
+    )
+    uid = _seed_commutes(tmp_path, [commute])
+    client.cookies.set("uid", uid)
+    commute_id = _commute_id_for(tmp_path, uid)
+
+    response = client.get(f"/commutes/{commute_id}/edit")
+
+    assert 'name="viewport" content="width=device-width, initial-scale=1"' in response.text
+    _assert_no_wide_fixed_widths(response.text)
+
+
 def test_commutes_page_has_viewport_meta_and_no_wide_fixed_widths(client, tmp_path) -> None:
     seeded = Commute(
         origin_stop_id=_ORIGIN_STOP_ID,
