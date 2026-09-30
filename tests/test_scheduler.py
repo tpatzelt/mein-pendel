@@ -282,6 +282,37 @@ def test_invalid_lead_minutes_env_var_raises_at_construction(conn, monkeypatch):
         Scheduler(conn, hafas, {}, clock=lambda: None)
 
 
+@pytest.mark.parametrize("value", ["0", "-5"])
+def test_non_positive_lead_minutes_env_var_raises_at_construction(conn, monkeypatch, value):
+    monkeypatch.setenv("PENDEL_CHECK_LEAD_MIN", value)
+    hafas = _hafas(lambda request: httpx.Response(200, json={"departures": []}))
+
+    with pytest.raises(ValueError):
+        Scheduler(conn, hafas, {}, clock=lambda: None)
+
+
+def test_positive_lead_minutes_env_var_is_accepted_and_used(conn, monkeypatch):
+    monkeypatch.setenv("PENDEL_CHECK_LEAD_MIN", "45")
+    user_id = db.create_user(conn)
+    _insert_commute(conn, user_id, window_start="08:00", window_end="08:30")
+    _insert_channel(conn, user_id, "ntfy", "topic-abc")
+    fake = FakeChannel()
+
+    calls: list[httpx.Request] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        calls.append(request)
+        return httpx.Response(200, json=_load("synthetic_undisturbed.json"))
+
+    sched = Scheduler(conn, _hafas(handler), {"ntfy": fake}, clock=lambda: None)
+
+    sched.tick(_berlin(7, 14))  # 46 min before window_start: outside the 45 min lead
+    assert calls == []
+
+    sched.tick(_berlin(7, 15))  # exactly 45 min before window_start: at the lead boundary
+    assert len(calls) == 1
+
+
 def test_commute_due_at_lead_boundary_but_not_one_minute_earlier(conn):
     user_id = db.create_user(conn)
     _insert_commute(conn, user_id, window_start="08:00", window_end="08:30")

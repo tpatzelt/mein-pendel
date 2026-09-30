@@ -42,9 +42,12 @@ def _lead_minutes_from_env() -> int:
     if raw is None:
         return _DEFAULT_LEAD_MIN
     try:
-        return int(raw)
+        value = int(raw)
     except ValueError as exc:
-        raise ValueError(f"{_LEAD_ENV_VAR} must be an integer, got {raw!r}") from exc
+        raise ValueError(f"{_LEAD_ENV_VAR} must be a positive integer, got {raw!r}") from exc
+    if value <= 0:
+        raise ValueError(f"{_LEAD_ENV_VAR} must be a positive integer, got {raw!r}")
+    return value
 
 
 def _commute_from_row(row: sqlite3.Row) -> Commute:
