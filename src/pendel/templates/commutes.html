@@ -16,6 +16,12 @@
     <p>{{ item.weekdays_text }}</p>
     <p>{{ item.window_text }}</p>
     {% if item.paused %}<p>{{ t("today_status_paused") }}</p>{% endif %}
+    <form method="post" action="/commutes/{{ item.commute_id }}/{{ 'resume' if item.paused else 'pause' }}">
+      <button type="submit" aria-label="{{ item.resume_aria if item.paused else item.pause_aria }}">{{ t("commutes_resume_button") if item.paused else t("commutes_pause_button") }}</button>
+    </form>
+    <form method="post" action="/commutes/{{ item.commute_id }}/delete">
+      <button type="submit" aria-label="{{ item.delete_aria }}">{{ t("commutes_delete_button") }}</button>
+    </form>
   </li>
   {% endfor %}
 </ul>
