@@ -20,7 +20,7 @@
 <section>
   <h2>{{ t("notifications_telegram_heading") }}</h2>
   {% if telegram_error %}
-  <p class="error">{{ telegram_error }}</p>
+  <p class="error" role="alert">{{ telegram_error }}</p>
   {% endif %}
   {% if telegram_link_url %}
   <p><a href="{{ telegram_link_url }}">{{ t("notifications_telegram_link_cta") }}</a></p>
@@ -34,7 +34,7 @@
 <section>
   <h2>{{ t("notifications_ntfy_heading") }}</h2>
   {% if ntfy_error %}
-  <p class="error">{{ ntfy_error }}</p>
+  <p class="error" role="alert">{{ ntfy_error }}</p>
   {% endif %}
   <form method="post" action="/notifications/ntfy">
     <label for="topic">{{ t("notifications_ntfy_label") }}</label>

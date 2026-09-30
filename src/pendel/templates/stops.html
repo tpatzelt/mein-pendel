@@ -18,7 +18,7 @@
 <p>{{ t("stops_destination_hint") }}</p>
 {% endif %}
 {% if error_message %}
-<p class="error">{{ error_message }}</p>
+<p class="error" role="alert">{{ error_message }}</p>
 {% elif query|length >= 2 %}
   {% if results %}
   <ul>
