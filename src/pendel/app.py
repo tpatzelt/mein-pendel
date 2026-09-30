@@ -580,15 +580,25 @@ def _weekdays_text(weekdays: frozenset[int], t: Any) -> str:
     return ", ".join(t(_WEEKDAY_KEYS[day]) for day in sorted(weekdays))
 
 
-def _commute_list_item(commute: Commute, t: Any) -> dict[str, Any]:
+def _commute_list_item(commute_id: int, commute: Commute, t: Any) -> dict[str, Any]:
     """One row for the 'my commutes' list (charter G2): name, sorted lines,
-    localized weekdays and the window as HH:MM-HH:MM, never a stop id."""
+    localized weekdays and the window as HH:MM-HH:MM, never a stop id.
+
+    Also carries the commute id and per-commute pause/resume/delete
+    aria-labels naming the commute, so the page's plain POST-form buttons
+    (charter G2) stay distinguishable to screen readers without JS.
+    """
+    title = _commute_title(commute, t)
     return {
-        "title": _commute_title(commute, t),
+        "commute_id": commute_id,
+        "title": title,
         "lines_text": ", ".join(sorted(commute.lines)),
         "weekdays_text": _weekdays_text(commute.weekdays, t),
         "window_text": f"{commute.window_start:%H:%M}–{commute.window_end:%H:%M}",
         "paused": commute.paused,
+        "pause_aria": t("commutes_pause_aria").format(title=title),
+        "resume_aria": t("commutes_resume_aria").format(title=title),
+        "delete_aria": t("commutes_delete_aria").format(title=title),
     }
 
 
@@ -609,7 +619,10 @@ async def commutes_list(
     uid = request.cookies.get("uid")
     has_user = uid is not None and db.user_exists(db_conn, uid)
     items = (
-        [_commute_list_item(commute, t) for _commute_id, commute in db.list_commutes(db_conn, uid)]
+        [
+            _commute_list_item(commute_id, commute, t)
+            for commute_id, commute in db.list_commutes(db_conn, uid)
+        ]
         if has_user
         else []
     )
@@ -622,6 +635,54 @@ async def commutes_list(
     if request.query_params.get("lang") in ("de", "en"):
         response.set_cookie("lang", language, samesite="lax")
     return response
+
+
+def _require_owned_commute_redirect(
+    request: Request, db_conn: sqlite3.Connection
+) -> str | None:
+    """The uid cookie's user id if it owns a user row, else None (charter
+    G2: pause/resume/delete never touch another user's rows, and a missing
+    or unknown uid cookie changes nothing)."""
+    uid = request.cookies.get("uid")
+    if uid is None or not db.user_exists(db_conn, uid):
+        return None
+    return uid
+
+
+@app.post("/commutes/{commute_id}/pause")
+async def commute_pause(
+    commute_id: int,
+    request: Request,
+    db_conn: sqlite3.Connection = Depends(get_db),
+) -> RedirectResponse:
+    uid = _require_owned_commute_redirect(request, db_conn)
+    if uid is not None:
+        db.set_paused(db_conn, uid, commute_id, True)
+    return RedirectResponse(url="/commutes", status_code=303)
+
+
+@app.post("/commutes/{commute_id}/resume")
+async def commute_resume(
+    commute_id: int,
+    request: Request,
+    db_conn: sqlite3.Connection = Depends(get_db),
+) -> RedirectResponse:
+    uid = _require_owned_commute_redirect(request, db_conn)
+    if uid is not None:
+        db.set_paused(db_conn, uid, commute_id, False)
+    return RedirectResponse(url="/commutes", status_code=303)
+
+
+@app.post("/commutes/{commute_id}/delete")
+async def commute_delete(
+    commute_id: int,
+    request: Request,
+    db_conn: sqlite3.Connection = Depends(get_db),
+) -> RedirectResponse:
+    uid = _require_owned_commute_redirect(request, db_conn)
+    if uid is not None:
+        db.delete_commute(db_conn, uid, commute_id)
+    return RedirectResponse(url="/commutes", status_code=303)
 
 
 @app.get("/today", response_class=HTMLResponse)

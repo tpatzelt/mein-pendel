@@ -723,6 +723,248 @@ def test_commutes_page_shows_paused_label(client, tmp_path) -> None:
     assert response_en.text.count("Paused") == 1
 
 
+# POST /commutes/{id}/pause, /resume and /delete (charter G2): each saved
+# commute can be paused/resumed or deleted individually via plain POST
+# forms, scoped to the uid cookie's user, never another user's rows.
+
+
+def _commute_id_for(tmp_path: Path, uid: str, index: int = 0) -> int:
+    conn = db.connect(tmp_path / "pendel.db")
+    try:
+        rows = db.list_commutes(conn, uid)
+    finally:
+        conn.close()
+    return rows[index][0]
+
+
+def test_pause_then_resume_flips_paused_flag_and_page_label(client, tmp_path) -> None:
+    commute = Commute(
+        origin_stop_id=_ORIGIN_STOP_ID,
+        destination_stop_id=_DESTINATION_STOP_ID,
+        lines=frozenset({"S3"}),
+        weekdays=frozenset({0}),
+        window_start=dt.time(7, 30),
+        window_end=dt.time(8, 0),
+        origin_name=_ORIGIN_NAME,
+        destination_name=_DESTINATION_NAME,
+    )
+    uid = _seed_commutes(tmp_path, [commute])
+    client.cookies.set("uid", uid)
+    commute_id = _commute_id_for(tmp_path, uid)
+
+    pause_response = client.post(f"/commutes/{commute_id}/pause", follow_redirects=False)
+    assert pause_response.status_code == 303
+    assert pause_response.headers["location"] == "/commutes"
+
+    conn = db.connect(tmp_path / "pendel.db")
+    try:
+        (_id, paused_commute) = db.list_commutes(conn, uid)[0]
+    finally:
+        conn.close()
+    assert paused_commute.paused is True
+
+    page = client.get("/commutes")
+    assert page.text.count("Pausiert") == 1
+    assert "Fortsetzen" in page.text
+
+    resume_response = client.post(f"/commutes/{commute_id}/resume", follow_redirects=False)
+    assert resume_response.status_code == 303
+    assert resume_response.headers["location"] == "/commutes"
+
+    conn = db.connect(tmp_path / "pendel.db")
+    try:
+        (_id, resumed_commute) = db.list_commutes(conn, uid)[0]
+    finally:
+        conn.close()
+    assert resumed_commute.paused is False
+
+    page_after_resume = client.get("/commutes")
+    assert "Pausiert" not in page_after_resume.text
+    assert "Pausieren" in page_after_resume.text
+
+
+def test_delete_one_commute_leaves_the_other_two(client, tmp_path) -> None:
+    first = Commute(
+        origin_stop_id=_ORIGIN_STOP_ID,
+        destination_stop_id=_DESTINATION_STOP_ID,
+        lines=frozenset({"S3"}),
+        weekdays=frozenset({0}),
+        window_start=dt.time(7, 30),
+        window_end=dt.time(8, 0),
+        origin_name="Origin One",
+        destination_name="Destination One",
+    )
+    second = Commute(
+        origin_stop_id="900000001",
+        destination_stop_id="900000002",
+        lines=frozenset({"S5"}),
+        weekdays=frozenset({1}),
+        window_start=dt.time(8, 0),
+        window_end=dt.time(8, 30),
+        origin_name="Origin Two",
+        destination_name="Destination Two",
+    )
+    third = Commute(
+        origin_stop_id="900000003",
+        destination_stop_id="900000004",
+        lines=frozenset({"S7"}),
+        weekdays=frozenset({2}),
+        window_start=dt.time(9, 0),
+        window_end=dt.time(9, 30),
+        origin_name="Origin Three",
+        destination_name="Destination Three",
+    )
+    uid = _seed_commutes(tmp_path, [first, second, third])
+    client.cookies.set("uid", uid)
+    target_id = _commute_id_for(tmp_path, uid, index=1)
+
+    response = client.post(f"/commutes/{target_id}/delete", follow_redirects=False)
+    assert response.status_code == 303
+    assert response.headers["location"] == "/commutes"
+
+    conn = db.connect(tmp_path / "pendel.db")
+    try:
+        remaining = db.list_commutes(conn, uid)
+    finally:
+        conn.close()
+    assert len(remaining) == 2
+    assert target_id not in {row_id for row_id, _commute in remaining}
+
+    page = client.get("/commutes")
+    assert "Origin One → Destination One" in page.text
+    assert "Origin Three → Destination Three" in page.text
+    assert "Origin Two → Destination Two" not in page.text
+
+
+def test_pause_and_delete_another_users_commute_does_nothing(client, tmp_path) -> None:
+    mine = Commute(
+        origin_stop_id=_ORIGIN_STOP_ID,
+        destination_stop_id=_DESTINATION_STOP_ID,
+        lines=frozenset({"S3"}),
+        weekdays=frozenset({0}),
+        window_start=dt.time(7, 30),
+        window_end=dt.time(8, 0),
+        origin_name=_ORIGIN_NAME,
+        destination_name=_DESTINATION_NAME,
+    )
+    theirs = Commute(
+        origin_stop_id="900000001",
+        destination_stop_id="900000002",
+        lines=frozenset({"U1"}),
+        weekdays=frozenset({1}),
+        window_start=dt.time(9, 0),
+        window_end=dt.time(9, 30),
+        origin_name="Other Origin",
+        destination_name="Other Destination",
+    )
+    my_uid = _seed_commutes(tmp_path, [mine])
+    their_uid = _seed_commutes(tmp_path, [theirs])
+    client.cookies.set("uid", my_uid)
+    their_commute_id = _commute_id_for(tmp_path, their_uid)
+
+    pause_response = client.post(f"/commutes/{their_commute_id}/pause", follow_redirects=False)
+    assert pause_response.status_code == 303
+
+    delete_response = client.post(f"/commutes/{their_commute_id}/delete", follow_redirects=False)
+    assert delete_response.status_code == 303
+
+    conn = db.connect(tmp_path / "pendel.db")
+    try:
+        their_rows = db.list_commutes(conn, their_uid)
+    finally:
+        conn.close()
+    assert len(their_rows) == 1
+    assert their_rows[0][1].paused is False
+
+
+def test_pause_and_delete_without_uid_cookie_touches_nothing(client, tmp_path) -> None:
+    commute = Commute(
+        origin_stop_id=_ORIGIN_STOP_ID,
+        destination_stop_id=_DESTINATION_STOP_ID,
+        lines=frozenset({"S3"}),
+        weekdays=frozenset({0}),
+        window_start=dt.time(7, 30),
+        window_end=dt.time(8, 0),
+        origin_name=_ORIGIN_NAME,
+        destination_name=_DESTINATION_NAME,
+    )
+    uid = _seed_commutes(tmp_path, [commute])
+    commute_id = _commute_id_for(tmp_path, uid)
+
+    pause_response = client.post(f"/commutes/{commute_id}/pause", follow_redirects=False)
+    assert pause_response.status_code == 303
+
+    delete_response = client.post(f"/commutes/{commute_id}/delete", follow_redirects=False)
+    assert delete_response.status_code == 303
+
+    conn = db.connect(tmp_path / "pendel.db")
+    try:
+        rows = db.list_commutes(conn, uid)
+    finally:
+        conn.close()
+    assert len(rows) == 1
+    assert rows[0][1].paused is False
+
+
+def test_pause_resume_delete_unknown_commute_id_redirects_without_error(client, tmp_path) -> None:
+    commute = Commute(
+        origin_stop_id=_ORIGIN_STOP_ID,
+        destination_stop_id=_DESTINATION_STOP_ID,
+        lines=frozenset({"S3"}),
+        weekdays=frozenset({0}),
+        window_start=dt.time(7, 30),
+        window_end=dt.time(8, 0),
+        origin_name=_ORIGIN_NAME,
+        destination_name=_DESTINATION_NAME,
+    )
+    uid = _seed_commutes(tmp_path, [commute])
+    client.cookies.set("uid", uid)
+
+    for action in ("pause", "resume", "delete"):
+        response = client.post(f"/commutes/999999/{action}", follow_redirects=False)
+        assert response.status_code == 303
+        assert response.headers["location"] == "/commutes"
+
+    conn = db.connect(tmp_path / "pendel.db")
+    try:
+        rows = db.list_commutes(conn, uid)
+    finally:
+        conn.close()
+    assert len(rows) == 1
+
+
+def test_commutes_page_pause_and_delete_buttons_have_named_aria_labels_de_and_en(
+    client, tmp_path
+) -> None:
+    commute = Commute(
+        origin_stop_id=_ORIGIN_STOP_ID,
+        destination_stop_id=_DESTINATION_STOP_ID,
+        lines=frozenset({"S3"}),
+        weekdays=frozenset({0}),
+        window_start=dt.time(7, 30),
+        window_end=dt.time(8, 0),
+        origin_name=_ORIGIN_NAME,
+        destination_name=_DESTINATION_NAME,
+    )
+    uid = _seed_commutes(tmp_path, [commute])
+    client.cookies.set("uid", uid)
+    commute_id = _commute_id_for(tmp_path, uid)
+
+    response_de = client.get("/commutes")
+    assert response_de.status_code == 200
+    assert f'action="/commutes/{commute_id}/pause"' in response_de.text
+    assert f'action="/commutes/{commute_id}/delete"' in response_de.text
+    assert f'aria-label="{_ORIGIN_NAME} → {_DESTINATION_NAME} pausieren"' in response_de.text
+    assert f'aria-label="{_ORIGIN_NAME} → {_DESTINATION_NAME} löschen"' in response_de.text
+    assert "<form" in response_de.text
+    assert "<script" not in response_de.text
+
+    response_en = client.get("/commutes?lang=en")
+    assert response_en.status_code == 200
+    assert f'aria-label="Pause {_ORIGIN_NAME} → {_DESTINATION_NAME}"' in response_en.text
+    assert f'aria-label="Delete {_ORIGIN_NAME} → {_DESTINATION_NAME}"' in response_en.text
+
+
 def test_commutes_page_has_viewport_meta_and_no_wide_fixed_widths(client, tmp_path) -> None:
     seeded = Commute(
         origin_stop_id=_ORIGIN_STOP_ID,
