@@ -1,5 +1,8 @@
 services:
   web:
+    # Caddy reaches it by this name; a bare `web` would be ambiguous on
+    # caddy_network, where every homelab service sets container_name.
+    container_name: pendel-web
     image: ghcr.io/tpatzelt/mein-pendel:latest
     restart: unless-stopped
     env_file:
@@ -10,6 +13,7 @@ services:
       - caddy_network
 
   scheduler:
+    container_name: pendel-scheduler
     image: ghcr.io/tpatzelt/mein-pendel:latest
     restart: unless-stopped
     # Runs the venv binary directly, per the Dockerfile CMD convention.
@@ -24,6 +28,7 @@ services:
       disable: true
 
   telegram:
+    container_name: pendel-telegram
     image: ghcr.io/tpatzelt/mein-pendel:latest
     # pendel.telegram_poll exits 0 (not an error) when
     # PENDEL_TELEGRAM_BOT_TOKEN is unset, since Telegram linking is an
