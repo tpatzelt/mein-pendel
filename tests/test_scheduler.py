@@ -157,6 +157,32 @@ def test_two_commutes_same_stop_different_windows_cause_a_single_departures_requ
     assert calls[0].url.params["duration"] == "45"
 
 
+def test_paused_commute_is_skipped_while_active_commute_due_at_the_same_time_is_fetched(conn):
+    user_id = db.create_user(conn)
+    paused_id = _insert_commute(conn, user_id, origin_stop_id="900000900009", lines="S41")
+    conn.execute("UPDATE commutes SET paused = 1 WHERE id = ?", (paused_id,))
+    conn.commit()
+    active_id = _insert_commute(conn, user_id, origin_stop_id="900000100001", lines="S41")
+    _insert_channel(conn, user_id, "ntfy", "topic-abc")
+    fake = FakeChannel()
+
+    calls: list[httpx.Request] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        if request.url.path == "/journeys":
+            return httpx.Response(200, json={"journeys": []})
+        calls.append(request)
+        return httpx.Response(200, json=_load("synthetic_ersatzverkehr.json"))
+
+    sched = Scheduler(conn, _hafas(handler), {"ntfy": fake}, clock=lambda: None)
+    sched.tick(_berlin(6, 30))
+
+    assert len(calls) == 1
+    assert all("900000900009" not in call.url.path for call in calls)
+    assert _notification_count(conn, paused_id) == 0
+    assert _notification_count(conn, active_id) == 1
+
+
 def test_hafas_error_on_one_stop_does_not_block_the_other_stop(conn):
     user_id = db.create_user(conn)
     broken_id = _insert_commute(conn, user_id, origin_stop_id="900000900009")
