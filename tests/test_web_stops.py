@@ -150,7 +150,7 @@ def test_stops_page_has_viewport_meta_and_no_wide_fixed_widths() -> None:
         _assert_no_wide_fixed_widths(response.text)
 
 
-def test_stops_page_without_origin_links_to_commutes_new_with_origin_only() -> None:
+def test_stops_page_without_origin_links_to_stops_with_origin_id_and_name() -> None:
     app.dependency_overrides[get_hafas_client] = lambda: _locations_client(
         "synthetic_locations.json"
     )
@@ -158,22 +158,32 @@ def test_stops_page_without_origin_links_to_commutes_new_with_origin_only() -> N
     response = client.get("/stops", params={"q": "Alexanderplatz"})
 
     assert response.status_code == 200
-    assert 'href="/commutes/new?origin_stop_id=900000100001"' in response.text
+    assert (
+        'href="/stops?origin_stop_id=900000100001&amp;origin_name=S%2BU+Alexanderplatz"'
+        in response.text
+    )
     assert "destination_stop_id" not in response.text
+    assert "/commutes/new" not in response.text
 
 
-def test_stops_page_with_origin_stop_id_links_to_commutes_new_with_both_ids() -> None:
+def test_stops_page_with_origin_stop_id_links_to_commutes_new_with_both_ids_and_names() -> None:
     app.dependency_overrides[get_hafas_client] = lambda: _locations_client(
         "synthetic_locations.json"
     )
 
     response = client.get(
-        "/stops", params={"q": "Alexanderplatz", "origin_stop_id": "900000999999"}
+        "/stops",
+        params={
+            "q": "Alexanderplatz",
+            "origin_stop_id": "900000999999",
+            "origin_name": "Ostkreuz",
+        },
     )
 
     assert response.status_code == 200
     assert (
-        'href="/commutes/new?origin_stop_id=900000999999&amp;destination_stop_id=900000100001"'
+        'href="/commutes/new?origin_stop_id=900000999999&amp;origin_name=Ostkreuz'
+        "&amp;destination_stop_id=900000100001&amp;destination_name=S%2BU+Alexanderplatz\""
         in response.text
     )
 
@@ -219,6 +229,60 @@ def test_stops_page_keeps_origin_stop_id_as_hidden_input_for_repeated_search() -
 
     assert response.status_code == 200
     assert '<input type="hidden" name="origin_stop_id" value="900000999999">' in response.text
+
+
+def test_stops_page_with_origin_name_shows_origin_name_and_hidden_input() -> None:
+    app.dependency_overrides[get_hafas_client] = lambda: _locations_client(
+        "synthetic_locations.json"
+    )
+
+    response = client.get(
+        "/stops",
+        params={
+            "q": "Alexanderplatz",
+            "origin_stop_id": "900000999999",
+            "origin_name": "Ostkreuz",
+        },
+    )
+
+    assert response.status_code == 200
+    assert "Ostkreuz" in response.text
+    assert '<input type="hidden" name="origin_name" value="Ostkreuz">' in response.text
+
+
+def test_stops_page_without_origin_name_shows_no_hidden_origin_name_input() -> None:
+    app.dependency_overrides[get_hafas_client] = lambda: _locations_client(
+        "synthetic_locations.json"
+    )
+
+    response = client.get("/stops", params={"q": "Alexanderplatz"})
+
+    assert response.status_code == 200
+    assert '<input type="hidden" name="origin_name"' not in response.text
+
+
+def test_stops_page_origin_name_cannot_inject_attribute_or_tag() -> None:
+    app.dependency_overrides[get_hafas_client] = lambda: _locations_client(
+        "synthetic_locations.json"
+    )
+    malicious = 'Ostkreuz"><script>alert(1)</script>&x=1'
+
+    response = client.get(
+        "/stops",
+        params={
+            "q": "Alexanderplatz",
+            "origin_stop_id": "900000999999",
+            "origin_name": malicious,
+        },
+    )
+
+    assert response.status_code == 200
+    assert "<script>" not in response.text
+    assert '"><script>' not in response.text
+    # The hidden input's value attribute must stay a single, well-formed attribute.
+    assert '<input type="hidden" name="origin_name" value="Ostkreuz&#34;' in response.text
+    # The destination link must percent-encode the payload instead of splicing it in raw.
+    assert "origin_name=Ostkreuz%22%3E%3Cscript%3E" in response.text
 
 
 def test_stops_page_origin_stop_id_cannot_inject_attribute_or_tag() -> None:
