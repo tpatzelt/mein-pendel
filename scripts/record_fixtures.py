@@ -12,9 +12,11 @@ apart, and never loops or retries -- the public instance is rate-limited.
         -o tests/fixtures/hafas/recorded/
 
 Trimming keeps every departure in response order and only drops fields the
-engine does not read; it never rewrites a value or drops a departure. The
-same holds for --locations: each entry keeps only type, id and name (plus
-station id/name when present), in response order, values unedited.
+engine and the "today" page do not read (this keeps platform and
+plannedPlatform, charter G3); it never rewrites a value or drops a
+departure. The same holds for --locations: each entry keeps only type, id
+and name (plus station id/name when present), in response order, values
+unedited.
 """
 
 from __future__ import annotations
@@ -29,7 +31,7 @@ from pathlib import Path
 from typing import Any
 
 BASE_URL = "https://v6.bvg.transport.rest"
-_DEPARTURE_KEYS = ("tripId", "when", "plannedWhen", "delay", "cancelled")
+_DEPARTURE_KEYS = ("tripId", "when", "plannedWhen", "delay", "cancelled", "platform", "plannedPlatform")
 _LINE_KEYS = ("id", "name", "product")
 _STOP_KEYS = ("id", "name")
 _REMARK_KEYS = ("id", "type", "code", "summary", "text")
@@ -86,7 +88,7 @@ def record_locations(queries: list[str], out_dir: Path, results: int) -> None:
             print(f"{query}: {len(entries)} entries recorded at {recorded_at} -> {out_path}")
 
 
-def record(stop_ids: list[str], out_dir: Path, duration: int) -> None:
+def record(stop_ids: list[str], out_dir: Path, duration: int, results: int) -> None:
     import httpx
 
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -97,7 +99,7 @@ def record(stop_ids: list[str], out_dir: Path, duration: int) -> None:
             recorded_at = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
             response = client.get(
                 f"/stops/{stop_id}/departures",
-                params={"duration": duration, "results": 200, "remarks": "true"},
+                params={"duration": duration, "results": results, "remarks": "true"},
             )
             response.raise_for_status()
             payload = {"_recorded_at": recorded_at, **response.json()}
@@ -115,13 +117,15 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument("-o", "--out", type=Path, required=True)
     parser.add_argument("--duration", type=int, default=60)
-    parser.add_argument("--results", type=int, default=5)
+    parser.add_argument(
+        "--results", type=int, default=None, help="default 200 for --record, 5 for --locations"
+    )
     args = parser.parse_args(argv)
 
     if args.record:
-        record(args.record, args.out, args.duration)
+        record(args.record, args.out, args.duration, args.results or 200)
     elif args.locations:
-        record_locations(args.locations, args.out, args.results)
+        record_locations(args.locations, args.out, args.results or 5)
     else:
         raw = json.loads(args.trim.read_text())
         args.out.write_text(json.dumps(trim(raw), ensure_ascii=False, indent=1) + "\n")

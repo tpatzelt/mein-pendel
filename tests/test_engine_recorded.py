@@ -155,6 +155,16 @@ def test_line_choices_from_recorded_departures():
     assert len(choices) == len(set(choices))
 
 
+def test_engine_evaluates_recorded_platform_fixture():
+    # platforms_ostkreuz.json is trimmed to also keep platform/plannedPlatform
+    # (charter G3); the engine ignores those fields but must not choke on them.
+    departures = json.loads((RECORDED / "platforms_ostkreuz.json").read_text())
+
+    verdict = evaluate(_commute(OSTKREUZ, {"RB32", "S41", "S7"}, (17, 15), (17, 25)), departures, NOW)
+
+    assert verdict is not None
+
+
 def test_every_recorded_fixture_is_documented():
     readme = (RECORDED / "README.md").read_text()
     for path in RECORDED.glob("*.json"):
