@@ -361,12 +361,12 @@ def test_post_with_negative_delay_threshold_returns_400_and_inserts_no_row(clien
     assert count == 0
 
 
-def test_post_with_window_end_before_window_start_returns_400_and_inserts_no_row(client, tmp_path) -> None:
+def test_post_with_malformed_window_start_returns_400_and_inserts_no_row(client, tmp_path) -> None:
     _override_undisturbed()
     form = _valid_form() | {
         "weekdays": "0",
         "lines": ["S3"],
-        "window_start": "08:00",
+        "window_start": "25:00",
         "window_end": "07:30",
     }
 

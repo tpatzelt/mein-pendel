@@ -77,7 +77,7 @@ def test_commutes_new_invalid_window_has_role_alert(tmp_path) -> None:
         "destination_name": "S Ostkreuz Bhf (Berlin)",
         "lines": "S3",
         "weekdays": "0",
-        "window_start": "08:00",
+        "window_start": "25:00",
         "window_end": "07:30",
         "delay_threshold_min": "5",
     }
