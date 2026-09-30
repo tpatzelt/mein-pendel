@@ -5,7 +5,7 @@ from pathlib import Path
 import pytest
 
 from pendel.commute import Commute
-from pendel.engine import evaluate
+from pendel.engine import evaluate, line_choices
 
 UTC = dt.timezone.utc
 FIXTURES = Path(__file__).parent / "fixtures" / "hafas" / "engine"
@@ -211,3 +211,32 @@ def test_disruption_key_distinguishes_different_warning_remarks():
     )
 
     assert first.disruption_key != second.disruption_key
+
+
+def test_line_choices_is_empty_for_no_departures():
+    assert line_choices({"departures": []}) == []
+    assert line_choices({}) == []
+
+
+def test_line_choices_skips_a_departure_without_a_line_name():
+    departures = {
+        "departures": [
+            {"line": {"product": "bus"}},
+            {"line": {"name": "S41", "product": "suburban"}},
+            {},
+        ]
+    }
+
+    assert line_choices(departures) == ["S41"]
+
+
+def test_line_choices_deduplicates_by_normalised_line_name():
+    departures = {
+        "departures": [
+            {"line": {"name": "S41"}},
+            {"line": {"name": " s 41 "}},
+            {"line": {"name": "S9"}},
+        ]
+    }
+
+    assert line_choices(departures) == ["S41", "S9"]

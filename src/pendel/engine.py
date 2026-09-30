@@ -145,6 +145,26 @@ def _format_reason(event: _Event) -> tuple[str, str]:
     )
 
 
+def line_choices(departures_json: dict[str, Any]) -> list[str]:
+    """Unique line names departing from a stop, for the setup checkboxes
+    (charter G1): a visitor picks from these instead of typing a line name.
+
+    Deduplicated with the same normalisation `evaluate` uses to match a
+    visitor-typed line against HAFAS's own spelling (`_line_key`), keeping
+    the first-seen spelling. Sorted so the list reads the same on every
+    visit regardless of departure order. Entries without a line name are
+    skipped -- HAFAS omits it for some replacement-service departures.
+    """
+    seen: dict[str, str] = {}
+    for departure in departures_json.get("departures") or []:
+        line = departure.get("line") or {}
+        name = line.get("name")
+        if not name:
+            continue
+        seen.setdefault(_line_key(name), name)
+    return sorted(seen.values())
+
+
 def evaluate(
     commute: Commute,
     departures_json: dict[str, Any],
