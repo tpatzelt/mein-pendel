@@ -10,6 +10,7 @@ migrated SQLite file under `tmp_path` via PENDEL_DATA_DIR.
 from __future__ import annotations
 
 import datetime as dt
+import html
 import json
 import re
 from pathlib import Path
@@ -24,6 +25,10 @@ from pendel.hafas import HafasClient, HafasError
 
 _RECORDED_FIXTURES_DIR = Path(__file__).parent / "fixtures" / "hafas" / "recorded"
 _UNDISTURBED = json.loads((_RECORDED_FIXTURES_DIR / "departures_undisturbed.json").read_text())
+_LOCATIONS_ALEXANDERPLATZ = json.loads(
+    (_RECORDED_FIXTURES_DIR / "locations_alexanderplatz.json").read_text()
+)
+_LOCATIONS_OSTKREUZ = json.loads((_RECORDED_FIXTURES_DIR / "locations_ostkreuz.json").read_text())
 
 # Matches the fixture's recording instant (2026-09-30, a Wednesday, no DST edge nearby).
 _NOW = dt.datetime(2026, 9, 30, 6, 50, tzinfo=dt.timezone.utc)
@@ -406,3 +411,119 @@ def test_post_re_renders_checked_lines_and_re_fetches_choices_on_validation_erro
     assert response.status_code == 400
     assert '<input type="checkbox" name="lines" value="S3" checked' in response.text
     assert '<input type="checkbox" name="lines" value="S5"' in response.text
+
+
+def _walk_hafas_client() -> HafasClient:
+    """Replays /locations by the `query` param (Alexanderplatz/Ostkreuz) and
+    /stops/<origin>/departures, for test_setup_flow_* below: the full G1
+    walk over recorded fixtures, never a stop id or line name typed."""
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        path = request.url.path
+        if path == "/locations":
+            query = request.url.params.get("query", "")
+            if query == "Alexanderplatz":
+                return httpx.Response(200, json=_LOCATIONS_ALEXANDERPLATZ)
+            if query == "Ostkreuz":
+                return httpx.Response(200, json=_LOCATIONS_OSTKREUZ)
+            raise AssertionError(f"unexpected /locations query {query!r}")
+        if path == f"/stops/{_ORIGIN_STOP_ID}/departures":
+            return httpx.Response(200, json=_UNDISTURBED)
+        raise AssertionError(f"unexpected request path {path!r}")
+
+    return HafasClient(httpx.Client(transport=httpx.MockTransport(handler)))
+
+
+def _href_for_stop(page_html: str, stop_id: str) -> str:
+    match = re.search(rf'<li data-stop-id="{re.escape(stop_id)}"><a href="([^"]+)"', page_html)
+    assert match, f"no result link for stop {stop_id} in:\n{page_html}"
+    return html.unescape(match.group(1))
+
+
+def test_setup_flow_walks_search_origin_search_destination_pick_lines_and_save(
+    client, tmp_path
+) -> None:
+    """G1's definition of done, end to end: the test types only the two
+    search strings, follows result hrefs parsed from the HTML, and submits
+    screen 3's own hidden/default inputs plus ticked checkboxes -- never a
+    typed stop id or line name."""
+    app.dependency_overrides[get_hafas_client] = _walk_hafas_client
+    app.dependency_overrides[get_now] = lambda: _NOW
+
+    # Screen 1: search origin by name.
+    screen1 = client.get("/stops", params={"q": "Alexanderplatz"})
+    assert screen1.status_code == 200
+    assert "<script" not in screen1.text
+    origin_href = _href_for_stop(screen1.text, _ORIGIN_STOP_ID)
+
+    # Screen 2: search destination by name, carrying the origin along.
+    screen2 = client.get(f"{origin_href}&q=Ostkreuz")
+    assert screen2.status_code == 200
+    assert "<script" not in screen2.text
+    destination_href = _href_for_stop(screen2.text, _DESTINATION_STOP_ID)
+
+    # Screen 3: pick lines from checkboxes built from the origin's departures.
+    screen3 = client.get(destination_href)
+    assert screen3.status_code == 200
+    assert "<script" not in screen3.text
+    assert "<form" in screen3.text
+    assert _ORIGIN_NAME in screen3.text
+    assert _DESTINATION_NAME in screen3.text
+
+    checkbox_values = set(
+        re.findall(r'<input type="checkbox" name="lines" value="([^"]+)"', screen3.text)
+    )
+    expected_lines = {
+        departure["line"]["name"]
+        for departure in _UNDISTURBED["departures"]
+        if departure.get("line", {}).get("name")
+    }
+    assert checkbox_values == expected_lines
+    assert {"S3", "S5"} <= checkbox_values
+
+    hidden_inputs = dict(
+        re.findall(r'<input type="hidden" name="([^"]+)" value="([^"]*)">', screen3.text)
+    )
+    assert hidden_inputs["origin_stop_id"] == _ORIGIN_STOP_ID
+    assert hidden_inputs["destination_stop_id"] == _DESTINATION_STOP_ID
+
+    default_weekdays = set(
+        re.findall(r'<input type="checkbox" name="weekdays" value="([^"]+)" checked', screen3.text)
+    )
+    assert default_weekdays == {"0", "1", "2", "3", "4"}
+
+    window_start = re.search(
+        r'id="window_start" name="window_start" value="([^"]+)"', screen3.text
+    ).group(1)
+    window_end = re.search(
+        r'id="window_end" name="window_end" value="([^"]+)"', screen3.text
+    ).group(1)
+    delay_threshold_min = re.search(
+        r'id="delay_threshold_min" name="delay_threshold_min" value="([^"]+)"', screen3.text
+    ).group(1)
+
+    # The form the test submits is built only from the page's hidden and
+    # default inputs plus two ticked checkboxes -- no stop id or line name
+    # is typed anywhere in this test.
+    form_data = dict(hidden_inputs)
+    form_data["weekdays"] = sorted(default_weekdays)
+    form_data["lines"] = ["S3", "S5"]
+    form_data["window_start"] = window_start
+    form_data["window_end"] = window_end
+    form_data["delay_threshold_min"] = delay_threshold_min
+
+    response = client.post("/commutes", data=form_data, follow_redirects=False)
+
+    assert response.status_code == 303
+    assert response.headers["location"] == "/"
+
+    rows = _rows_for_only_user(tmp_path)
+    assert len(rows) == 1
+    _, commute = rows[0]
+    assert commute.origin_stop_id == _ORIGIN_STOP_ID
+    assert commute.destination_stop_id == _DESTINATION_STOP_ID
+    assert commute.origin_name == _ORIGIN_NAME
+    assert commute.destination_name == _DESTINATION_NAME
+    assert commute.lines == frozenset({"S3", "S5"})
+    assert commute.weekdays == frozenset({0, 1, 2, 3, 4})
+    assert commute.delay_threshold_min == 5
