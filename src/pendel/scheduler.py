@@ -145,17 +145,25 @@ class Scheduler:
         ).fetchall()
 
     def _due_commute(self, row: sqlite3.Row, now: dt.datetime) -> _DueCommute | None:
+        """Due if `now` is inside the lead-plus-window span of the window
+        starting today, or -- since a crossing window (e.g. 23:30-00:30)
+        can still be open after midnight -- the one starting yesterday, but
+        only if yesterday was itself an active weekday (mirrors
+        `Commute.window_containing`, plus the lead time before the start).
+        """
         commute = _commute_from_row(row)
-        today = now.astimezone(BERLIN).date()
-        if not commute.is_active_on(today):
-            return None
-        start, end = commute.window_bounds(today)
-        start_utc = start.astimezone(_UTC)
-        end_utc = end.astimezone(_UTC)
         now_utc = now.astimezone(_UTC)
+        today = now.astimezone(BERLIN).date()
+        yesterday = today - dt.timedelta(days=1)
         lead = dt.timedelta(minutes=self._lead_minutes)
-        if start_utc - lead <= now_utc <= end_utc:
-            return _DueCommute(commute_id=row["id"], commute=commute, window_end_utc=end_utc)
+        for candidate_date in (today, yesterday):
+            if not commute.is_active_on(candidate_date):
+                continue
+            start, end = commute.window_bounds(candidate_date)
+            start_utc = start.astimezone(_UTC)
+            end_utc = end.astimezone(_UTC)
+            if start_utc - lead <= now_utc <= end_utc:
+                return _DueCommute(commute_id=row["id"], commute=commute, window_end_utc=end_utc)
         return None
 
     def _process_commute(self, due: _DueCommute, departures_json, now: dt.datetime) -> None:
