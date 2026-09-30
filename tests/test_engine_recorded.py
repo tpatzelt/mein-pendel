@@ -108,6 +108,14 @@ def test_disruption_on_a_line_not_ridden_is_ignored(fixture, origin, lines, wind
     assert verdict.kinds == []
 
 
+@pytest.mark.parametrize("typed", ["s5", " S 5 "])
+def test_lines_typed_by_hand_still_match(typed):
+    # The first real commute on the deployed app was saved as "s5".
+    verdict = evaluate(_commute(ZOO, {typed}, (7, 10), (7, 20)), _load("construction"), NOW)
+
+    assert verdict.kinds == ["construction"]
+
+
 def test_remark_html_never_reaches_a_reason():
     # Ostkreuz's RB26 remark summary is "Teilausfall Ostkreuz &#60;&#62; Lichtenberg".
     departures = _load("warning")

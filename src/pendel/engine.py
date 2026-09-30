@@ -109,6 +109,12 @@ def _clean(value: str) -> str:
     return " ".join(html.unescape(_TAG.sub(" ", value)).split())
 
 
+def _line_key(name: str) -> str:
+    """Visitors type lines by hand ("s5", "ice 644"); HAFAS names them "S5",
+    "ICE 644". Compare without case or spaces."""
+    return "".join(name.split()).casefold()
+
+
 def _remark_key(remark: dict[str, Any], trip_id: str) -> str:
     """HAFAS remark codes are generic and shared across unrelated
     disruptions, so prefer the remark's own id, then the trip id, then a
@@ -152,11 +158,12 @@ def evaluate(
     date = now.astimezone(BERLIN).date()
     window_start, window_end = commute.window_bounds(date)
 
+    ridden = {_line_key(name) for name in commute.lines}
     events: list[_Event] = []
     for departure in departures_json.get("departures") or []:
         line = departure.get("line") or {}
         line_name = line.get("name")
-        if line_name not in commute.lines:
+        if not line_name or _line_key(line_name) not in ridden:
             continue
         planned_when = departure.get("plannedWhen")
         if not planned_when:
