@@ -687,6 +687,100 @@ def test_today_card_with_empty_stored_names_shows_generic_label(client, tmp_path
     assert "Saved commute" in response_en.text
 
 
+def test_today_g3_definition_of_done(client, tmp_path) -> None:
+    """Charter G3 definition of done, all in one render: an OK, a disrupted,
+    a paused and a failed-check commute each show their stop names (never
+    raw ids), their status label, and -- for OK/disrupted -- planned vs
+    real-time departure times; the disrupted card's generic remark summary
+    ("Störung.") falls back to cleaned remark text instead of that label.
+
+    Unlike the other tests in this file, `now` here is 07:00 Europe/Berlin
+    (not the file's `_RECORDED_NOW`, 08:00) so that the OK commute's window
+    (07:15-07:25) and the disrupted commute's window (07:40-07:50) both
+    still lie ahead of `now`: `next_departures` only shows departures at or
+    after `now`, so at 08:00 U8's 07:18/07:19 departure would already have
+    scrolled off the OK card, defeating the "planned vs real-time" check.
+    """
+    now = dt.datetime(2026, 9, 30, 5, 0, tzinfo=dt.timezone.utc)  # 07:00 Europe/Berlin
+
+    ok_commute = Commute(
+        origin_stop_id=_ALEXANDERPLATZ_STOP_ID,
+        destination_stop_id=_OSTKREUZ_STOP_ID,
+        origin_name="S+U Alexanderplatz Bhf (Berlin)",
+        destination_name="S Ostkreuz Bhf (Berlin)",
+        lines=frozenset({"U8"}),
+        weekdays=frozenset({2}),
+        window_start=dt.time(7, 15),
+        window_end=dt.time(7, 25),
+    )
+    disrupted_commute = Commute(
+        origin_stop_id=_OSTKREUZ_STOP_ID,
+        destination_stop_id=_ALEXANDERPLATZ_STOP_ID,
+        origin_name="S Ostkreuz Bhf (Berlin)",
+        destination_name="S+U Hauptbahnhof (Berlin)",
+        lines=frozenset({"RB32"}),
+        weekdays=frozenset({2}),
+        window_start=dt.time(7, 40),
+        window_end=dt.time(7, 50),
+    )
+    paused_commute = Commute(
+        origin_stop_id=_PAUSED_STOP_ID,
+        destination_stop_id=_ALEXANDERPLATZ_STOP_ID,
+        origin_name="S Görlitzer Bahnhof (Berlin)",
+        destination_name="S+U Alexanderplatz Bhf (Berlin)",
+        lines=frozenset({"U1"}),
+        weekdays=frozenset({2}),
+        window_start=dt.time(7, 0),
+        window_end=dt.time(7, 30),
+        paused=True,
+    )
+    failed_commute = Commute(
+        origin_stop_id=_FAILED_STOP_ID,
+        destination_stop_id=_ALEXANDERPLATZ_STOP_ID,
+        origin_name="S Warschauer Str. (Berlin)",
+        destination_name="S+U Alexanderplatz Bhf (Berlin)",
+        lines=frozenset({"S3"}),
+        weekdays=frozenset({2}),
+        window_start=dt.time(7, 0),
+        window_end=dt.time(7, 30),
+    )
+    uid = _seed_commutes(
+        tmp_path, [ok_commute, disrupted_commute, paused_commute, failed_commute]
+    )
+
+    app.dependency_overrides[get_now] = lambda: now
+    app.dependency_overrides[get_hafas_client] = _recorded_multi_status_hafas_client
+    client.cookies.set("uid", uid)
+
+    response = client.get("/today", params={"lang": "de"})
+    assert response.status_code == 200
+    text = response.text
+
+    assert "S+U Alexanderplatz Bhf (Berlin) → S Ostkreuz Bhf (Berlin)" in text
+    assert "S Ostkreuz Bhf (Berlin) → S+U Hauptbahnhof (Berlin)" in text
+    assert "S Görlitzer Bahnhof (Berlin) → S+U Alexanderplatz Bhf (Berlin)" in text
+    assert "S Warschauer Str. (Berlin) → S+U Alexanderplatz Bhf (Berlin)" in text
+
+    assert "OK" in text
+    assert "Gestört" in text
+    assert "Pausiert" in text
+    assert "Prüfung fehlgeschlagen" in text
+
+    assert re.search(r"(?<!\d)9\d{8}(?!\d)", text) is None
+
+    cards = text.split('<li data-commute-id=')
+    ok_card = next(c for c in cards if 'data-status="ok"' in c)
+    disrupted_card = next(c for c in cards if 'data-status="disrupted"' in c)
+
+    assert '<time datetime="2026-09-30T07:18:00+02:00">07:18</time>' in ok_card
+    assert '<time datetime="2026-09-30T07:19:00+02:00">07:19</time>' in ok_card
+
+    assert "Ausfall" in disrupted_card
+    assert "Oranienburg" in disrupted_card
+    assert "<a href" not in disrupted_card
+    assert "Störung auf RB32: Störung." not in disrupted_card
+
+
 def test_home_links_to_today() -> None:
     client = TestClient(app)
     response = client.get("/")
