@@ -1,3 +1,4 @@
+import dataclasses
 import datetime as dt
 import json
 from pathlib import Path
@@ -77,6 +78,54 @@ def test_engine_over_synthetic_fixtures(
         assert verdict.disruption_key
     else:
         assert verdict.disruption_key == ""
+
+
+EXPECTED_PLANNED_WINTER = dt.datetime.fromisoformat("2026-01-05T07:45:00+01:00")
+
+
+@pytest.mark.parametrize(
+    "fixture_name",
+    ["synthetic_cancellation.json", "synthetic_delay.json"],
+)
+def test_verdict_carries_the_disrupted_line_and_its_planned_time(fixture_name):
+    commute = _commute()
+    verdict = evaluate(commute, _load(fixture_name), NOW_WINTER)
+
+    assert verdict.line == "S41"
+    assert verdict.planned == EXPECTED_PLANNED_WINTER
+
+
+def test_a_remark_only_verdict_also_carries_line_and_planned_time():
+    # synthetic_warning.json has no cancellation or delay, only a
+    # disruptive remark -- G5 still needs the line and planned time.
+    commute = _commute()
+    verdict = evaluate(commute, _load("synthetic_warning.json"), NOW_WINTER)
+
+    assert verdict.kinds == ["warning"]
+    assert verdict.line == "S41"
+    assert verdict.planned == EXPECTED_PLANNED_WINTER
+
+
+def test_unaffected_verdict_has_no_line_or_planned_time():
+    commute = _commute()
+    verdict = evaluate(commute, _load("synthetic_undisturbed.json"), NOW_WINTER)
+
+    assert verdict.affected is False
+    assert verdict.line == ""
+    assert verdict.planned is None
+
+
+def test_replace_for_the_alternative_suffix_keeps_line_and_planned():
+    # scheduler.py appends the alternative summary via
+    # dataclasses.replace(verdict, reason_de=..., reason_en=...); that must
+    # not lose the line/planned fields a notifier needs (charter G5).
+    commute = _commute()
+    verdict = evaluate(commute, _load("synthetic_cancellation.json"), NOW_WINTER)
+
+    replaced = dataclasses.replace(verdict, reason_de="x")
+
+    assert replaced.line == verdict.line == "S41"
+    assert replaced.planned == verdict.planned == EXPECTED_PLANNED_WINTER
 
 
 def test_disruption_on_line_not_ridden_is_not_a_false_positive():
