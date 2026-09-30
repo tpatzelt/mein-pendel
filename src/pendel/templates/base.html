@@ -13,7 +13,7 @@
   <footer>
     {% block footer %}
     <p>{{ t("footer_text") }}</p>
-    <nav>
+    <nav aria-label="{{ t('footer_nav_label') }}">
       <a href="/impressum">{{ t("footer_impressum") }}</a>
       <a href="/datenschutz">{{ t("footer_datenschutz") }}</a>
       <a href="/about">{{ t("footer_about") }}</a>
