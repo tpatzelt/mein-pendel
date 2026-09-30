@@ -5,7 +5,7 @@
 {% block content %}
 <h1>{{ t("commute_new_heading") }}</h1>
 {% if error_message %}
-<p class="error">{{ error_message }}</p>
+<p class="error" role="alert">{{ error_message }}</p>
 {% endif %}
 <form action="/commutes" method="post">
   <label for="origin_stop_id">{{ t("commute_new_origin_label") }}</label>
