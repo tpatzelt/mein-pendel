@@ -21,6 +21,7 @@ from fastapi.testclient import TestClient
 
 from pendel import db
 from pendel.app import app, get_hafas_client, get_now
+from pendel.commute import Commute
 from pendel.hafas import HafasClient, HafasError
 
 _RECORDED_FIXTURES_DIR = Path(__file__).parent / "fixtures" / "hafas" / "recorded"
@@ -39,6 +40,7 @@ _DESTINATION_STOP_ID = "900120003"
 _DESTINATION_NAME = "S Ostkreuz Bhf (Berlin)"
 
 _FIXED_WIDTH_RE = re.compile(r"(?<!-)width\s*:\s*(\d+)px")
+_NINE_DIGIT_RE = re.compile(r"\b\d{9}\b")
 
 
 def _assert_no_wide_fixed_widths(text: str) -> None:
@@ -545,3 +547,197 @@ def test_setup_flow_walks_search_origin_search_destination_pick_lines_and_save(
     assert commute.lines == frozenset({"S3", "S5"})
     assert commute.weekdays == frozenset({0, 1, 2, 3, 4})
     assert commute.delay_threshold_min == 5
+
+
+# GET /commutes (charter G2): "my commutes" lists every saved commute by
+# name, lines, days and window. Seeding goes straight through db.add_commute
+# against the same PENDEL_DATA_DIR-backed file the app uses, so these tests
+# never depend on HAFAS or on the /commutes/new flow above.
+
+
+def _seed_commutes(tmp_path: Path, commutes: list[Commute]) -> str:
+    """Create one fresh user, save `commutes` for it and return its uid."""
+    conn = db.connect(tmp_path / "pendel.db")
+    try:
+        uid = db.create_user(conn)
+        for commute in commutes:
+            db.add_commute(conn, uid, commute)
+        return uid
+    finally:
+        conn.close()
+
+
+def test_commutes_page_lists_two_commutes_by_name_lines_days_and_window(client, tmp_path) -> None:
+    first = Commute(
+        origin_stop_id=_ORIGIN_STOP_ID,
+        destination_stop_id=_DESTINATION_STOP_ID,
+        lines=frozenset({"S5", "S3"}),
+        weekdays=frozenset({0, 2, 4}),
+        window_start=dt.time(7, 30),
+        window_end=dt.time(8, 0),
+        origin_name=_ORIGIN_NAME,
+        destination_name=_DESTINATION_NAME,
+    )
+    second = Commute(
+        origin_stop_id="900000001",
+        destination_stop_id="900000002",
+        lines=frozenset({"S7"}),
+        weekdays=frozenset({5, 6}),
+        window_start=dt.time(9, 0),
+        window_end=dt.time(9, 30),
+        origin_name="Origin Two",
+        destination_name="Destination Two",
+    )
+    uid = _seed_commutes(tmp_path, [first, second])
+    client.cookies.set("uid", uid)
+
+    response_de = client.get("/commutes")
+    assert response_de.status_code == 200
+    assert "Meine Verbindungen" in response_de.text
+    assert f"{_ORIGIN_NAME} → {_DESTINATION_NAME}" in response_de.text
+    assert "S3, S5" in response_de.text
+    assert "Mo, Mi, Fr" in response_de.text
+    assert "07:30–08:00" in response_de.text
+    assert "Origin Two → Destination Two" in response_de.text
+    assert "S7" in response_de.text
+    assert "Sa, So" in response_de.text
+    assert "09:00–09:30" in response_de.text
+
+    response_en = client.get("/commutes?lang=en")
+    assert response_en.status_code == 200
+    assert "My commutes" in response_en.text
+    assert "Mon, Wed, Fri" in response_en.text
+    assert "Sat, Sun" in response_en.text
+
+
+def test_commutes_page_hides_other_users_commute(client, tmp_path) -> None:
+    mine = Commute(
+        origin_stop_id=_ORIGIN_STOP_ID,
+        destination_stop_id=_DESTINATION_STOP_ID,
+        lines=frozenset({"S3"}),
+        weekdays=frozenset({0}),
+        window_start=dt.time(7, 30),
+        window_end=dt.time(8, 0),
+        origin_name=_ORIGIN_NAME,
+        destination_name=_DESTINATION_NAME,
+    )
+    theirs = Commute(
+        origin_stop_id="900000001",
+        destination_stop_id="900000002",
+        lines=frozenset({"U1"}),
+        weekdays=frozenset({1}),
+        window_start=dt.time(9, 0),
+        window_end=dt.time(9, 30),
+        origin_name="Other Origin",
+        destination_name="Other Destination",
+    )
+    my_uid = _seed_commutes(tmp_path, [mine])
+    _seed_commutes(tmp_path, [theirs])
+    client.cookies.set("uid", my_uid)
+
+    response = client.get("/commutes")
+
+    assert response.status_code == 200
+    assert f"{_ORIGIN_NAME} → {_DESTINATION_NAME}" in response.text
+    assert "Other Origin → Other Destination" not in response.text
+    assert "U1" not in response.text
+
+
+def test_commutes_page_without_user_shows_empty_state_de_and_en(client) -> None:
+    response_de = client.get("/commutes")
+    assert response_de.status_code == 200
+    assert "Meine Verbindungen" in response_de.text
+    assert "Du hast noch keine Verbindung gespeichert." in response_de.text
+    assert 'href="/stops"' in response_de.text
+
+    response_en = client.get("/commutes?lang=en")
+    assert response_en.status_code == 200
+    assert "My commutes" in response_en.text
+    assert "You have not saved a commute yet." in response_en.text
+    assert 'href="/stops"' in response_en.text
+
+
+def test_commutes_page_with_user_but_no_commutes_shows_empty_state(client, tmp_path) -> None:
+    uid = _seed_commutes(tmp_path, [])
+    client.cookies.set("uid", uid)
+
+    response = client.get("/commutes")
+
+    assert response.status_code == 200
+    assert "Du hast noch keine Verbindung gespeichert." in response.text
+    assert 'href="/stops"' in response.text
+
+
+def test_commutes_page_shows_generic_label_for_empty_names_never_a_stop_id(client, tmp_path) -> None:
+    nameless = Commute(
+        origin_stop_id=_ORIGIN_STOP_ID,
+        destination_stop_id=_DESTINATION_STOP_ID,
+        lines=frozenset({"S3"}),
+        weekdays=frozenset({0}),
+        window_start=dt.time(7, 30),
+        window_end=dt.time(8, 0),
+    )
+    uid = _seed_commutes(tmp_path, [nameless])
+    client.cookies.set("uid", uid)
+
+    response = client.get("/commutes")
+
+    assert response.status_code == 200
+    assert "Gespeicherte Verbindung" in response.text
+    assert _ORIGIN_STOP_ID not in response.text
+    assert _DESTINATION_STOP_ID not in response.text
+    assert _NINE_DIGIT_RE.search(response.text) is None
+
+
+def test_commutes_page_shows_paused_label(client, tmp_path) -> None:
+    active = Commute(
+        origin_stop_id=_ORIGIN_STOP_ID,
+        destination_stop_id=_DESTINATION_STOP_ID,
+        lines=frozenset({"S3"}),
+        weekdays=frozenset({0}),
+        window_start=dt.time(7, 30),
+        window_end=dt.time(8, 0),
+        origin_name=_ORIGIN_NAME,
+        destination_name=_DESTINATION_NAME,
+    )
+    paused = Commute(
+        origin_stop_id="900000001",
+        destination_stop_id="900000002",
+        lines=frozenset({"S7"}),
+        weekdays=frozenset({1}),
+        window_start=dt.time(9, 0),
+        window_end=dt.time(9, 30),
+        origin_name="Origin Two",
+        destination_name="Destination Two",
+        paused=True,
+    )
+    uid = _seed_commutes(tmp_path, [active, paused])
+    client.cookies.set("uid", uid)
+
+    response_de = client.get("/commutes")
+    assert response_de.status_code == 200
+    assert response_de.text.count("Pausiert") == 1
+
+    response_en = client.get("/commutes?lang=en")
+    assert response_en.status_code == 200
+    assert response_en.text.count("Paused") == 1
+
+
+def test_commutes_page_has_viewport_meta_and_no_wide_fixed_widths(client, tmp_path) -> None:
+    seeded = Commute(
+        origin_stop_id=_ORIGIN_STOP_ID,
+        destination_stop_id=_DESTINATION_STOP_ID,
+        lines=frozenset({"S3"}),
+        weekdays=frozenset({0}),
+        window_start=dt.time(7, 30),
+        window_end=dt.time(8, 0),
+        origin_name=_ORIGIN_NAME,
+        destination_name=_DESTINATION_NAME,
+    )
+    uid = _seed_commutes(tmp_path, [seeded])
+    client.cookies.set("uid", uid)
+
+    response = client.get("/commutes")
+
+    assert 'name="viewport" content="width=device-width, initial-scale=1"' in response.text
+    _assert_no_wide_fixed_widths(response.text)
