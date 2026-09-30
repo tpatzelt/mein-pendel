@@ -13,6 +13,9 @@
 
   <label for="destination_stop_id">{{ t("commute_new_destination_label") }}</label>
   <input type="text" id="destination_stop_id" name="destination_stop_id" value="{{ destination_stop_id }}" required>
+  {% if origin_stop_id and not destination_stop_id %}
+  <p><a href="/stops?{{ {"origin_stop_id": origin_stop_id} | urlencode }}">{{ t("commute_new_search_destination_cta") }}</a></p>
+  {% endif %}
 
   <label for="lines">{{ t("commute_new_lines_label") }}</label>
   <input type="text" id="lines" name="lines" value="{{ lines }}"

@@ -202,6 +202,7 @@ def about(request: Request) -> HTMLResponse:
 def stops(
     request: Request,
     q: str = "",
+    origin_stop_id: str = "",
     hafas_client: HafasClient = Depends(get_hafas_client),
 ) -> HTMLResponse:
     language = _language_for(request)
@@ -235,6 +236,7 @@ def stops(
             "language": language,
             "t": t,
             "query": query,
+            "origin_stop_id": origin_stop_id,
             "results": results,
             "error_message": error_message,
         },
