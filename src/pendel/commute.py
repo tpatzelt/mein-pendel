@@ -76,6 +76,10 @@ class Commute:
             raise ValueError("weekdays must not be empty")
         if any(day < 0 or day > 6 for day in self.weekdays):
             raise ValueError("weekdays must be within 0 (Monday) .. 6 (Sunday)")
+        if self.delay_threshold_min < 0:
+            raise ValueError("delay_threshold_min must not be negative")
+        if self.window_end < self.window_start:
+            raise ValueError("window_end must not be before window_start")
 
     def is_active_on(self, date: dt.date) -> bool:
         """Whether this commute is ridden on the given calendar date."""
