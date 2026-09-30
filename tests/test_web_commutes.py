@@ -197,7 +197,7 @@ def test_commutes_new_form_default_window_starts_at_next_half_hour(client) -> No
     assert 'id="window_end" name="window_end" value="08:00"' in response.text
 
 
-def test_commutes_new_form_default_window_clamps_end_before_midnight(client) -> None:
+def test_commutes_new_form_default_window_crosses_midnight_when_start_is_23_30(client) -> None:
     app.dependency_overrides[get_hafas_client] = _undisturbed_hafas_client
     app.dependency_overrides[get_now] = lambda: dt.datetime(
         2026, 9, 30, 21, 10, tzinfo=dt.timezone.utc
@@ -207,7 +207,7 @@ def test_commutes_new_form_default_window_clamps_end_before_midnight(client) -> 
 
     assert response.status_code == 200
     assert 'id="window_start" name="window_start" value="23:30"' in response.text
-    assert 'id="window_end" name="window_end" value="23:59"' in response.text
+    assert 'id="window_end" name="window_end" value="00:00"' in response.text
 
 
 def test_commutes_new_form_default_window_wraps_past_midnight(client) -> None:
@@ -278,6 +278,24 @@ def test_valid_post_redirects_sets_cookie_and_inserts_one_row(client, tmp_path) 
     assert commute.destination_name == _DESTINATION_NAME
     assert commute.lines == frozenset({"S3", "S5"})
     assert commute.weekdays == frozenset({0})
+
+
+def test_valid_post_with_window_crossing_midnight_saves_the_commute(client, tmp_path) -> None:
+    _override_undisturbed()
+
+    response = client.post(
+        "/commutes",
+        data=_valid_form()
+        | {"weekdays": "5", "lines": ["S3"], "window_start": "23:30", "window_end": "00:30"},
+        follow_redirects=False,
+    )
+
+    assert response.status_code == 303
+    rows = _rows_for_only_user(tmp_path)
+    assert len(rows) == 1
+    _, commute = rows[0]
+    assert commute.window_start == dt.time(23, 30)
+    assert commute.window_end == dt.time(0, 30)
 
 
 def test_second_post_with_same_cookie_adds_second_commute_to_same_user(client, tmp_path) -> None:

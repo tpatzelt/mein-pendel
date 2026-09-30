@@ -187,6 +187,66 @@ def test_today_inactive_commute_shows_inactive_status_without_calling_hafas(
     assert "Heute nicht aktiv" in response.text
 
 
+def test_today_commute_with_window_crossing_midnight_is_active_and_fetched_with_that_window(
+    client, tmp_path
+) -> None:
+    """Charter G2: a departure window crossing midnight (e.g. 23:30-00:30)
+    that started yesterday and is still open now must still count as active
+    -- not "Heute nicht aktiv" -- and the HAFAS departures call must use that
+    crossing window (Saturday 23:30 through Sunday 00:30), not today's
+    (Sunday's) window, so the check actually covers the ridden departure."""
+    commute = _commute(
+        weekdays=frozenset({5}),  # Saturday only
+        window_start=dt.time(23, 30),
+        window_end=dt.time(0, 30),
+    )
+    uid = _seed_commute(tmp_path, commute)
+
+    now = dt.datetime(2026, 1, 3, 23, 10, tzinfo=dt.timezone.utc)  # 00:10 CET, Sunday 2026-01-04
+    payload = {
+        "departures": [
+            {
+                "tripId": "1",
+                "stop": {"id": _ORIGIN_STOP_ID, "name": "Origin"},
+                "when": "2026-01-04T00:20:00+01:00",
+                "plannedWhen": "2026-01-04T00:20:00+01:00",
+                "delay": 0,
+                "cancelled": False,
+                "line": {"id": "line:S41", "name": "S41", "product": "suburban"},
+                "remarks": [],
+            }
+        ]
+    }
+
+    requests: list[httpx.Request] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        requests.append(request)
+        return httpx.Response(200, json=payload)
+
+    app.dependency_overrides[get_now] = lambda: now
+    app.dependency_overrides[get_hafas_client] = lambda: HafasClient(
+        httpx.Client(transport=httpx.MockTransport(handler))
+    )
+    client.cookies.set("uid", uid)
+
+    response = client.get("/today", params={"lang": "de"})
+
+    assert response.status_code == 200
+    assert "Heute nicht aktiv" not in response.text
+    assert 'data-status="ok"' in response.text
+
+    assert len(requests) == 1
+    params = requests[0].url.params
+    expected_start, expected_end = commute.window_bounds(dt.date(2026, 1, 3))
+    assert dt.datetime.fromisoformat(params["when"]) == expected_start
+    expected_duration = max(1, int((expected_end - expected_start).total_seconds() // 60) + 1)
+    assert int(params["duration"]) == expected_duration
+
+    block = _departures_block(response.text)
+    assert '<time datetime="2026-01-04T00:20:00+01:00">00:20</time>' in block
+
+
 def test_today_affected_commute_shows_reason_in_german_and_english(client, tmp_path) -> None:
     commute = _commute()
     uid = _seed_commute(tmp_path, commute)
