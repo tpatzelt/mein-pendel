@@ -1,0 +1,3609 @@
+{
+ "departures": [
+  {
+   "tripId": "1|1716|0|86|30092026",
+   "when": "2026-09-30T07:12:00+02:00",
+   "plannedWhen": "2026-09-30T07:12:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-e",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55282|0|86|30092026",
+   "when": "2026-09-30T07:12:00+02:00",
+   "plannedWhen": "2026-09-30T07:12:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u6",
+    "name": "U6",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55322|0|86|30092026",
+   "when": "2026-09-30T07:12:00+02:00",
+   "plannedWhen": "2026-09-30T07:12:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u6",
+    "name": "U6",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|796|1|86|30092026",
+   "when": "2026-09-30T07:13:00+02:00",
+   "plannedWhen": "2026-09-30T07:13:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s25-s25-v",
+    "name": "S25",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2080|5|86|30092026",
+   "when": "2026-09-30T07:13:00+02:00",
+   "plannedWhen": "2026-09-30T07:13:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-ei",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|4469|4|86|30092026",
+   "when": "2026-09-30T07:13:00+02:00",
+   "plannedWhen": "2026-09-30T07:13:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s26-s26-vi",
+    "name": "S26",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2615|5|86|30092026",
+   "when": "2026-09-30T07:14:00+02:00",
+   "plannedWhen": "2026-09-30T07:14:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-oi",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53581|8|86|30092026",
+   "when": "2026-09-30T07:15:00+02:00",
+   "plannedWhen": "2026-09-30T07:15:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m6",
+    "name": "M6",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "358224",
+     "type": "warning",
+     "code": null,
+     "summary": "Interruption",
+     "text": "Tram M1: No service due to construction works between Schönhauser Allee/Bornholmer Straße and Am Kupfergraben. Please use the extended M6 line between S Hackescher Markt and Am Kupfergraben.\n<a href=\"https://www.bvg.de/de/verbindungen/stoerungsmeldungen?modalDisruptionId=b11ea83f-dc33-4795-a5e0-c8358317cc27\" target=\"_blank\" rel=\"noopener\">[MEHR/MORE]</a>"
+    }
+   ]
+  },
+  {
+   "tripId": "1|24964|2|86|30092026",
+   "when": "2026-09-30T07:15:00+02:00",
+   "plannedWhen": "2026-09-30T07:16:00+02:00",
+   "delay": -60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-147",
+    "name": "147",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|1248|3|86|30092026",
+   "when": "2026-09-30T07:16:00+02:00",
+   "plannedWhen": "2026-09-30T07:16:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-bi",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|32300|0|86|30092026",
+   "when": "2026-09-30T07:16:00+02:00",
+   "plannedWhen": "2026-09-30T07:16:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-245",
+    "name": "245",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|55283|0|86|30092026",
+   "when": "2026-09-30T07:17:00+02:00",
+   "plannedWhen": "2026-09-30T07:16:00+02:00",
+   "delay": 60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u6",
+    "name": "U6",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|940|1|86|30092026",
+   "when": "2026-09-30T07:17:00+02:00",
+   "plannedWhen": "2026-09-30T07:17:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-b",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|76324|4|86|30092026",
+   "when": "2026-09-30T07:17:00+02:00",
+   "plannedWhen": "2026-09-30T07:17:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-12-bus-12-ev1",
+    "name": "12",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": "358223",
+     "type": "warning",
+     "code": null,
+     "summary": "Replacement Service",
+     "text": "Tram 12: Replacement service due to construction works between Am Kupdergraben and U Eberswalder Straße.\n<a href=\"https://www.bvg.de/de/verbindungen/stoerungsmeldungen?modalDisruptionId=b11ea83f-dc33-4795-a5e0-c8358317cc27\" target=\"_blank\" rel=\"noopener\">[MEHR/MORE]</a>"
+    }
+   ]
+  },
+  {
+   "tripId": "1|86|1|86|30092026",
+   "when": "2026-09-30T07:18:00+02:00",
+   "plannedWhen": "2026-09-30T07:16:00+02:00",
+   "delay": 120,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s1-s1-p",
+    "name": "S1",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55320|1|86|30092026",
+   "when": "2026-09-30T07:18:00+02:00",
+   "plannedWhen": "2026-09-30T07:16:00+02:00",
+   "delay": 120,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u6",
+    "name": "U6",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|397|8|86|30092026",
+   "when": "2026-09-30T07:18:00+02:00",
+   "plannedWhen": "2026-09-30T07:18:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s2-s2-w",
+    "name": "S2",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|488|2|86|30092026",
+   "when": "2026-09-30T07:18:00+02:00",
+   "plannedWhen": "2026-09-30T07:18:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s2-s2-w",
+    "name": "S2",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|3441|5|86|30092026",
+   "when": "2026-09-30T07:18:00+02:00",
+   "plannedWhen": "2026-09-30T07:18:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s9-s9-c",
+    "name": "S9",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53524|1|86|30092026",
+   "when": "2026-09-30T07:20:00+02:00",
+   "plannedWhen": "2026-09-30T07:18:00+02:00",
+   "delay": 120,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m6",
+    "name": "M6",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "358224",
+     "type": "warning",
+     "code": null,
+     "summary": "Interruption",
+     "text": "Tram M1: No service due to construction works between Schönhauser Allee/Bornholmer Straße and Am Kupfergraben. Please use the extended M6 line between S Hackescher Markt and Am Kupfergraben.\n<a href=\"https://www.bvg.de/de/verbindungen/stoerungsmeldungen?modalDisruptionId=b11ea83f-dc33-4795-a5e0-c8358317cc27\" target=\"_blank\" rel=\"noopener\">[MEHR/MORE]</a>"
+    }
+   ]
+  },
+  {
+   "tripId": "1|250|4|86|30092026",
+   "when": "2026-09-30T07:20:00+02:00",
+   "plannedWhen": "2026-09-30T07:20:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s1-s1-pi",
+    "name": "S1",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|32300|0|86|30092026",
+   "when": "2026-09-30T07:20:00+02:00",
+   "plannedWhen": "2026-09-30T07:20:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-245",
+    "name": "245",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|2422|4|86|30092026",
+   "when": "2026-09-30T07:21:00+02:00",
+   "plannedWhen": "2026-09-30T07:21:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-o",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55321|1|86|30092026",
+   "when": "2026-09-30T07:21:00+02:00",
+   "plannedWhen": "2026-09-30T07:21:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u6",
+    "name": "U6",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55281|1|86|30092026",
+   "when": "2026-09-30T07:22:00+02:00",
+   "plannedWhen": "2026-09-30T07:21:00+02:00",
+   "delay": 60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u6",
+    "name": "U6",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2033|4|86|30092026",
+   "when": "2026-09-30T07:22:00+02:00",
+   "plannedWhen": "2026-09-30T07:22:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-ei",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|827|5|86|30092026",
+   "when": "2026-09-30T07:23:00+02:00",
+   "plannedWhen": "2026-09-30T07:23:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s25-s25-v",
+    "name": "S25",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1783|0|86|30092026",
+   "when": "2026-09-30T07:23:00+02:00",
+   "plannedWhen": "2026-09-30T07:23:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-e",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|4443|4|86|30092026",
+   "when": "2026-09-30T07:23:00+02:00",
+   "plannedWhen": "2026-09-30T07:23:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s26-s26-vi",
+    "name": "S26",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|18658|3|86|30092026",
+   "when": "2026-09-30T07:24:00+02:00",
+   "plannedWhen": "2026-09-30T07:21:00+02:00",
+   "delay": 180,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-12-bus-12-ev1",
+    "name": "12",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": "358223",
+     "type": "warning",
+     "code": null,
+     "summary": "Replacement Service",
+     "text": "Tram 12: Replacement service due to construction works between Am Kupdergraben and U Eberswalder Straße.\n<a href=\"https://www.bvg.de/de/verbindungen/stoerungsmeldungen?modalDisruptionId=b11ea83f-dc33-4795-a5e0-c8358317cc27\" target=\"_blank\" rel=\"noopener\">[MEHR/MORE]</a>"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2387|4|86|30092026",
+   "when": "2026-09-30T07:24:00+02:00",
+   "plannedWhen": "2026-09-30T07:24:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-o",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55322|1|86|30092026",
+   "when": "2026-09-30T07:25:00+02:00",
+   "plannedWhen": "2026-09-30T07:24:00+02:00",
+   "delay": 60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u6",
+    "name": "U6",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53581|9|86|30092026",
+   "when": "2026-09-30T07:25:00+02:00",
+   "plannedWhen": "2026-09-30T07:25:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m6",
+    "name": "M6",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "358224",
+     "type": "warning",
+     "code": null,
+     "summary": "Interruption",
+     "text": "Tram M1: No service due to construction works between Schönhauser Allee/Bornholmer Straße and Am Kupfergraben. Please use the extended M6 line between S Hackescher Markt and Am Kupfergraben.\n<a href=\"https://www.bvg.de/de/verbindungen/stoerungsmeldungen?modalDisruptionId=b11ea83f-dc33-4795-a5e0-c8358317cc27\" target=\"_blank\" rel=\"noopener\">[MEHR/MORE]</a>"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55282|1|86|30092026",
+   "when": "2026-09-30T07:25:00+02:00",
+   "plannedWhen": "2026-09-30T07:25:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u6",
+    "name": "U6",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|304|4|86|30092026",
+   "when": "2026-09-30T07:26:00+02:00",
+   "plannedWhen": "2026-09-30T07:26:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s1-s1-pi",
+    "name": "S1",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|3388|8|86|30092026",
+   "when": "2026-09-30T07:27:00+02:00",
+   "plannedWhen": "2026-09-30T07:27:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s9-s9-c",
+    "name": "S9",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|18662|2|86|30092026",
+   "when": "2026-09-30T07:27:00+02:00",
+   "plannedWhen": "2026-09-30T07:27:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-12-bus-12-ev1",
+    "name": "12",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": "358223",
+     "type": "warning",
+     "code": null,
+     "summary": "Replacement Service",
+     "text": "Tram 12: Replacement service due to construction works between Am Kupdergraben and U Eberswalder Straße.\n<a href=\"https://www.bvg.de/de/verbindungen/stoerungsmeldungen?modalDisruptionId=b11ea83f-dc33-4795-a5e0-c8358317cc27\" target=\"_blank\" rel=\"noopener\">[MEHR/MORE]</a>"
+    }
+   ]
+  },
+  {
+   "tripId": "1|676|5|86|30092026",
+   "when": "2026-09-30T07:28:00+02:00",
+   "plannedWhen": "2026-09-30T07:28:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s2-s2-wi",
+    "name": "S2",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|702|6|86|30092026",
+   "when": "2026-09-30T07:28:00+02:00",
+   "plannedWhen": "2026-09-30T07:28:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s2-s2-wi",
+    "name": "S2",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|985|2|86|30092026",
+   "when": "2026-09-30T07:28:00+02:00",
+   "plannedWhen": "2026-09-30T07:28:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-b",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1195|3|86|30092026",
+   "when": "2026-09-30T07:29:00+02:00",
+   "plannedWhen": "2026-09-30T07:29:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-bi",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55283|1|86|30092026",
+   "when": "2026-09-30T07:29:00+02:00",
+   "plannedWhen": "2026-09-30T07:29:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u6",
+    "name": "U6",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55320|2|86|30092026",
+   "when": "2026-09-30T07:29:00+02:00",
+   "plannedWhen": "2026-09-30T07:29:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u6",
+    "name": "U6",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|9|3|86|30092026",
+   "when": "2026-09-30T07:30:00+02:00",
+   "plannedWhen": "2026-09-30T07:30:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s1-s1-p",
+    "name": "S1",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53524|2|86|30092026",
+   "when": "2026-09-30T07:31:00+02:00",
+   "plannedWhen": "2026-09-30T07:28:00+02:00",
+   "delay": 180,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m6",
+    "name": "M6",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "358224",
+     "type": "warning",
+     "code": null,
+     "summary": "Interruption",
+     "text": "Tram M1: No service due to construction works between Schönhauser Allee/Bornholmer Straße and Am Kupfergraben. Please use the extended M6 line between S Hackescher Markt and Am Kupfergraben.\n<a href=\"https://www.bvg.de/de/verbindungen/stoerungsmeldungen?modalDisruptionId=b11ea83f-dc33-4795-a5e0-c8358317cc27\" target=\"_blank\" rel=\"noopener\">[MEHR/MORE]</a>"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2664|5|86|30092026",
+   "when": "2026-09-30T07:31:00+02:00",
+   "plannedWhen": "2026-09-30T07:31:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-oi",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|18658|4|86|30092026",
+   "when": "2026-09-30T07:31:00+02:00",
+   "plannedWhen": "2026-09-30T07:31:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-12-bus-12-ev1",
+    "name": "12",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": "358223",
+     "type": "warning",
+     "code": null,
+     "summary": "Replacement Service",
+     "text": "Tram 12: Replacement service due to construction works between Am Kupdergraben and U Eberswalder Straße.\n<a href=\"https://www.bvg.de/de/verbindungen/stoerungsmeldungen?modalDisruptionId=b11ea83f-dc33-4795-a5e0-c8358317cc27\" target=\"_blank\" rel=\"noopener\">[MEHR/MORE]</a>"
+    }
+   ]
+  },
+  {
+   "tripId": "1|24900|1|86|30092026",
+   "when": "2026-09-30T07:31:00+02:00",
+   "plannedWhen": "2026-09-30T07:31:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-147",
+    "name": "147",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|1720|1|86|30092026",
+   "when": "2026-09-30T07:32:00+02:00",
+   "plannedWhen": "2026-09-30T07:32:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-e",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|804|1|86|30092026",
+   "when": "2026-09-30T07:33:00+02:00",
+   "plannedWhen": "2026-09-30T07:33:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s25-s25-v",
+    "name": "S25",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2080|6|86|30092026",
+   "when": "2026-09-30T07:33:00+02:00",
+   "plannedWhen": "2026-09-30T07:33:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-ei",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|4469|5|86|30092026",
+   "when": "2026-09-30T07:33:00+02:00",
+   "plannedWhen": "2026-09-30T07:33:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s26-s26-vi",
+    "name": "S26",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2617|0|86|30092026",
+   "when": "2026-09-30T07:34:00+02:00",
+   "plannedWhen": "2026-09-30T07:34:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-oi",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55281|2|86|30092026",
+   "when": "2026-09-30T07:34:00+02:00",
+   "plannedWhen": "2026-09-30T07:34:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u6",
+    "name": "U6",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55321|2|86|30092026",
+   "when": "2026-09-30T07:34:00+02:00",
+   "plannedWhen": "2026-09-30T07:34:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u6",
+    "name": "U6",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53581|10|86|30092026",
+   "when": "2026-09-30T07:35:00+02:00",
+   "plannedWhen": "2026-09-30T07:35:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m6",
+    "name": "M6",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "358224",
+     "type": "warning",
+     "code": null,
+     "summary": "Interruption",
+     "text": "Tram M1: No service due to construction works between Schönhauser Allee/Bornholmer Straße and Am Kupfergraben. Please use the extended M6 line between S Hackescher Markt and Am Kupfergraben.\n<a href=\"https://www.bvg.de/de/verbindungen/stoerungsmeldungen?modalDisruptionId=b11ea83f-dc33-4795-a5e0-c8358317cc27\" target=\"_blank\" rel=\"noopener\">[MEHR/MORE]</a>"
+    }
+   ]
+  },
+  {
+   "tripId": "1|86|2|86|30092026",
+   "when": "2026-09-30T07:36:00+02:00",
+   "plannedWhen": "2026-09-30T07:36:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s1-s1-p",
+    "name": "S1",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1248|4|86|30092026",
+   "when": "2026-09-30T07:36:00+02:00",
+   "plannedWhen": "2026-09-30T07:36:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-bi",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|24964|3|86|30092026",
+   "when": "2026-09-30T07:36:00+02:00",
+   "plannedWhen": "2026-09-30T07:36:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-147",
+    "name": "147",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|32301|0|86|30092026",
+   "when": "2026-09-30T07:36:00+02:00",
+   "plannedWhen": "2026-09-30T07:36:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-245",
+    "name": "245",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|939|1|86|30092026",
+   "when": "2026-09-30T07:37:00+02:00",
+   "plannedWhen": "2026-09-30T07:37:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-b",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|76324|5|86|30092026",
+   "when": "2026-09-30T07:37:00+02:00",
+   "plannedWhen": "2026-09-30T07:37:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-12-bus-12-ev1",
+    "name": "12",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": "358223",
+     "type": "warning",
+     "code": null,
+     "summary": "Replacement Service",
+     "text": "Tram 12: Replacement service due to construction works between Am Kupdergraben and U Eberswalder Straße.\n<a href=\"https://www.bvg.de/de/verbindungen/stoerungsmeldungen?modalDisruptionId=b11ea83f-dc33-4795-a5e0-c8358317cc27\" target=\"_blank\" rel=\"noopener\">[MEHR/MORE]</a>"
+    }
+   ]
+  },
+  {
+   "tripId": "1|397|9|86|30092026",
+   "when": "2026-09-30T07:38:00+02:00",
+   "plannedWhen": "2026-09-30T07:38:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s2-s2-w",
+    "name": "S2",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|488|3|86|30092026",
+   "when": "2026-09-30T07:38:00+02:00",
+   "plannedWhen": "2026-09-30T07:38:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s2-s2-w",
+    "name": "S2",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|3441|6|86|30092026",
+   "when": "2026-09-30T07:38:00+02:00",
+   "plannedWhen": "2026-09-30T07:38:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s9-s9-c",
+    "name": "S9",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53524|3|86|30092026",
+   "when": "2026-09-30T07:38:00+02:00",
+   "plannedWhen": "2026-09-30T07:38:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m6",
+    "name": "M6",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "358224",
+     "type": "warning",
+     "code": null,
+     "summary": "Interruption",
+     "text": "Tram M1: No service due to construction works between Schönhauser Allee/Bornholmer Straße and Am Kupfergraben. Please use the extended M6 line between S Hackescher Markt and Am Kupfergraben.\n<a href=\"https://www.bvg.de/de/verbindungen/stoerungsmeldungen?modalDisruptionId=b11ea83f-dc33-4795-a5e0-c8358317cc27\" target=\"_blank\" rel=\"noopener\">[MEHR/MORE]</a>"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55282|2|86|30092026",
+   "when": "2026-09-30T07:38:00+02:00",
+   "plannedWhen": "2026-09-30T07:38:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u6",
+    "name": "U6",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55323|0|86|30092026",
+   "when": "2026-09-30T07:38:00+02:00",
+   "plannedWhen": "2026-09-30T07:38:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u6",
+    "name": "U6",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|249|0|86|30092026",
+   "when": "2026-09-30T07:40:00+02:00",
+   "plannedWhen": "2026-09-30T07:40:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s1-s1-pi",
+    "name": "S1",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|32301|0|86|30092026",
+   "when": "2026-09-30T07:40:00+02:00",
+   "plannedWhen": "2026-09-30T07:40:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-245",
+    "name": "245",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|2426|0|86|30092026",
+   "when": "2026-09-30T07:41:00+02:00",
+   "plannedWhen": "2026-09-30T07:41:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-o",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|18658|5|86|30092026",
+   "when": "2026-09-30T07:41:00+02:00",
+   "plannedWhen": "2026-09-30T07:41:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-12-bus-12-ev1",
+    "name": "12",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": "358223",
+     "type": "warning",
+     "code": null,
+     "summary": "Replacement Service",
+     "text": "Tram 12: Replacement service due to construction works between Am Kupdergraben and U Eberswalder Straße.\n<a href=\"https://www.bvg.de/de/verbindungen/stoerungsmeldungen?modalDisruptionId=b11ea83f-dc33-4795-a5e0-c8358317cc27\" target=\"_blank\" rel=\"noopener\">[MEHR/MORE]</a>"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2033|5|86|30092026",
+   "when": "2026-09-30T07:42:00+02:00",
+   "plannedWhen": "2026-09-30T07:42:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-ei",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55283|2|86|30092026",
+   "when": "2026-09-30T07:42:00+02:00",
+   "plannedWhen": "2026-09-30T07:42:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u6",
+    "name": "U6",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55320|3|86|30092026",
+   "when": "2026-09-30T07:42:00+02:00",
+   "plannedWhen": "2026-09-30T07:42:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u6",
+    "name": "U6",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|824|0|86|30092026",
+   "when": "2026-09-30T07:43:00+02:00",
+   "plannedWhen": "2026-09-30T07:43:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s25-s25-v",
+    "name": "S25",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1781|0|86|30092026",
+   "when": "2026-09-30T07:43:00+02:00",
+   "plannedWhen": "2026-09-30T07:43:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-e",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|4445|0|86|30092026",
+   "when": "2026-09-30T07:43:00+02:00",
+   "plannedWhen": "2026-09-30T07:43:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s26-s26-vi",
+    "name": "S26",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2361|0|86|30092026",
+   "when": "2026-09-30T07:44:00+02:00",
+   "plannedWhen": "2026-09-30T07:44:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-o",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53581|11|86|30092026",
+   "when": "2026-09-30T07:45:00+02:00",
+   "plannedWhen": "2026-09-30T07:45:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m6",
+    "name": "M6",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "358224",
+     "type": "warning",
+     "code": null,
+     "summary": "Interruption",
+     "text": "Tram M1: No service due to construction works between Schönhauser Allee/Bornholmer Straße and Am Kupfergraben. Please use the extended M6 line between S Hackescher Markt and Am Kupfergraben.\n<a href=\"https://www.bvg.de/de/verbindungen/stoerungsmeldungen?modalDisruptionId=b11ea83f-dc33-4795-a5e0-c8358317cc27\" target=\"_blank\" rel=\"noopener\">[MEHR/MORE]</a>"
+    }
+   ]
+  },
+  {
+   "tripId": "1|304|5|86|30092026",
+   "when": "2026-09-30T07:46:00+02:00",
+   "plannedWhen": "2026-09-30T07:46:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s1-s1-pi",
+    "name": "S1",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55355|0|86|30092026",
+   "when": "2026-09-30T07:46:00+02:00",
+   "plannedWhen": "2026-09-30T07:46:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u6",
+    "name": "U6",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|3388|9|86|30092026",
+   "when": "2026-09-30T07:47:00+02:00",
+   "plannedWhen": "2026-09-30T07:47:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s9-s9-c",
+    "name": "S9",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|18662|3|86|30092026",
+   "when": "2026-09-30T07:47:00+02:00",
+   "plannedWhen": "2026-09-30T07:47:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-12-bus-12-ev1",
+    "name": "12",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": "358223",
+     "type": "warning",
+     "code": null,
+     "summary": "Replacement Service",
+     "text": "Tram 12: Replacement service due to construction works between Am Kupdergraben and U Eberswalder Straße.\n<a href=\"https://www.bvg.de/de/verbindungen/stoerungsmeldungen?modalDisruptionId=b11ea83f-dc33-4795-a5e0-c8358317cc27\" target=\"_blank\" rel=\"noopener\">[MEHR/MORE]</a>"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55281|3|86|30092026",
+   "when": "2026-09-30T07:47:00+02:00",
+   "plannedWhen": "2026-09-30T07:47:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u6",
+    "name": "U6",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|676|6|86|30092026",
+   "when": "2026-09-30T07:48:00+02:00",
+   "plannedWhen": "2026-09-30T07:48:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s2-s2-wi",
+    "name": "S2",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|702|7|86|30092026",
+   "when": "2026-09-30T07:48:00+02:00",
+   "plannedWhen": "2026-09-30T07:48:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s2-s2-wi",
+    "name": "S2",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|984|3|86|30092026",
+   "when": "2026-09-30T07:48:00+02:00",
+   "plannedWhen": "2026-09-30T07:48:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-b",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53524|4|86|30092026",
+   "when": "2026-09-30T07:49:00+02:00",
+   "plannedWhen": "2026-09-30T07:48:00+02:00",
+   "delay": 60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m6",
+    "name": "M6",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "358224",
+     "type": "warning",
+     "code": null,
+     "summary": "Interruption",
+     "text": "Tram M1: No service due to construction works between Schönhauser Allee/Bornholmer Straße and Am Kupfergraben. Please use the extended M6 line between S Hackescher Markt and Am Kupfergraben.\n<a href=\"https://www.bvg.de/de/verbindungen/stoerungsmeldungen?modalDisruptionId=b11ea83f-dc33-4795-a5e0-c8358317cc27\" target=\"_blank\" rel=\"noopener\">[MEHR/MORE]</a>"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1195|4|86|30092026",
+   "when": "2026-09-30T07:49:00+02:00",
+   "plannedWhen": "2026-09-30T07:49:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-bi",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|24965|0|86|30092026",
+   "when": "2026-09-30T07:49:00+02:00",
+   "plannedWhen": "2026-09-30T07:49:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-147",
+    "name": "147",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|13|0|86|30092026",
+   "when": "2026-09-30T07:50:00+02:00",
+   "plannedWhen": "2026-09-30T07:50:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s1-s1-p",
+    "name": "S1",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2666|0|86|30092026",
+   "when": "2026-09-30T07:51:00+02:00",
+   "plannedWhen": "2026-09-30T07:51:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-oi",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|18658|6|86|30092026",
+   "when": "2026-09-30T07:51:00+02:00",
+   "plannedWhen": "2026-09-30T07:51:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-12-bus-12-ev1",
+    "name": "12",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": "358223",
+     "type": "warning",
+     "code": null,
+     "summary": "Replacement Service",
+     "text": "Tram 12: Replacement service due to construction works between Am Kupdergraben and U Eberswalder Straße.\n<a href=\"https://www.bvg.de/de/verbindungen/stoerungsmeldungen?modalDisruptionId=b11ea83f-dc33-4795-a5e0-c8358317cc27\" target=\"_blank\" rel=\"noopener\">[MEHR/MORE]</a>"
+    }
+   ]
+  },
+  {
+   "tripId": "1|24901|0|86|30092026",
+   "when": "2026-09-30T07:51:00+02:00",
+   "plannedWhen": "2026-09-30T07:51:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-147",
+    "name": "147",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|55282|3|86|30092026",
+   "when": "2026-09-30T07:51:00+02:00",
+   "plannedWhen": "2026-09-30T07:51:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u6",
+    "name": "U6",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55356|0|86|30092026",
+   "when": "2026-09-30T07:51:00+02:00",
+   "plannedWhen": "2026-09-30T07:51:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u6",
+    "name": "U6",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1716|1|86|30092026",
+   "when": "2026-09-30T07:52:00+02:00",
+   "plannedWhen": "2026-09-30T07:52:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-e",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|789|0|86|30092026",
+   "when": "2026-09-30T07:53:00+02:00",
+   "plannedWhen": "2026-09-30T07:53:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s25-s25-v",
+    "name": "S25",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2080|7|86|30092026",
+   "when": "2026-09-30T07:53:00+02:00",
+   "plannedWhen": "2026-09-30T07:53:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-ei",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|4469|6|86|30092026",
+   "when": "2026-09-30T07:53:00+02:00",
+   "plannedWhen": "2026-09-30T07:53:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s26-s26-vi",
+    "name": "S26",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2617|1|86|30092026",
+   "when": "2026-09-30T07:54:00+02:00",
+   "plannedWhen": "2026-09-30T07:54:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-oi",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53581|12|86|30092026",
+   "when": "2026-09-30T07:55:00+02:00",
+   "plannedWhen": "2026-09-30T07:55:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m6",
+    "name": "M6",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "358224",
+     "type": "warning",
+     "code": null,
+     "summary": "Interruption",
+     "text": "Tram M1: No service due to construction works between Schönhauser Allee/Bornholmer Straße and Am Kupfergraben. Please use the extended M6 line between S Hackescher Markt and Am Kupfergraben.\n<a href=\"https://www.bvg.de/de/verbindungen/stoerungsmeldungen?modalDisruptionId=b11ea83f-dc33-4795-a5e0-c8358317cc27\" target=\"_blank\" rel=\"noopener\">[MEHR/MORE]</a>"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55283|3|86|30092026",
+   "when": "2026-09-30T07:55:00+02:00",
+   "plannedWhen": "2026-09-30T07:55:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u6",
+    "name": "U6",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55357|0|86|30092026",
+   "when": "2026-09-30T07:55:00+02:00",
+   "plannedWhen": "2026-09-30T07:55:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u6",
+    "name": "U6",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|86|3|86|30092026",
+   "when": "2026-09-30T07:56:00+02:00",
+   "plannedWhen": "2026-09-30T07:56:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s1-s1-p",
+    "name": "S1",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1248|5|86|30092026",
+   "when": "2026-09-30T07:56:00+02:00",
+   "plannedWhen": "2026-09-30T07:56:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-bi",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|32302|0|86|30092026",
+   "when": "2026-09-30T07:56:00+02:00",
+   "plannedWhen": "2026-09-30T07:56:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-245",
+    "name": "245",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|940|2|86|30092026",
+   "when": "2026-09-30T07:57:00+02:00",
+   "plannedWhen": "2026-09-30T07:57:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-b",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|76324|6|86|30092026",
+   "when": "2026-09-30T07:57:00+02:00",
+   "plannedWhen": "2026-09-30T07:57:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-12-bus-12-ev1",
+    "name": "12",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": "358223",
+     "type": "warning",
+     "code": null,
+     "summary": "Replacement Service",
+     "text": "Tram 12: Replacement service due to construction works between Am Kupdergraben and U Eberswalder Straße.\n<a href=\"https://www.bvg.de/de/verbindungen/stoerungsmeldungen?modalDisruptionId=b11ea83f-dc33-4795-a5e0-c8358317cc27\" target=\"_blank\" rel=\"noopener\">[MEHR/MORE]</a>"
+    }
+   ]
+  },
+  {
+   "tripId": "1|398|0|86|30092026",
+   "when": "2026-09-30T07:58:00+02:00",
+   "plannedWhen": "2026-09-30T07:58:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s2-s2-w",
+    "name": "S2",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|488|4|86|30092026",
+   "when": "2026-09-30T07:58:00+02:00",
+   "plannedWhen": "2026-09-30T07:58:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s2-s2-w",
+    "name": "S2",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|3441|7|86|30092026",
+   "when": "2026-09-30T07:58:00+02:00",
+   "plannedWhen": "2026-09-30T07:58:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s9-s9-c",
+    "name": "S9",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53524|5|86|30092026",
+   "when": "2026-09-30T07:59:00+02:00",
+   "plannedWhen": "2026-09-30T07:58:00+02:00",
+   "delay": 60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m6",
+    "name": "M6",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "358224",
+     "type": "warning",
+     "code": null,
+     "summary": "Interruption",
+     "text": "Tram M1: No service due to construction works between Schönhauser Allee/Bornholmer Straße and Am Kupfergraben. Please use the extended M6 line between S Hackescher Markt and Am Kupfergraben.\n<a href=\"https://www.bvg.de/de/verbindungen/stoerungsmeldungen?modalDisruptionId=b11ea83f-dc33-4795-a5e0-c8358317cc27\" target=\"_blank\" rel=\"noopener\">[MEHR/MORE]</a>"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55355|1|86|30092026",
+   "when": "2026-09-30T07:59:00+02:00",
+   "plannedWhen": "2026-09-30T07:59:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u6",
+    "name": "U6",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|249|1|86|30092026",
+   "when": "2026-09-30T08:00:00+02:00",
+   "plannedWhen": "2026-09-30T08:00:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s1-s1-pi",
+    "name": "S1",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|32302|0|86|30092026",
+   "when": "2026-09-30T08:00:00+02:00",
+   "plannedWhen": "2026-09-30T08:00:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-245",
+    "name": "245",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|55281|4|86|30092026",
+   "when": "2026-09-30T08:00:00+02:00",
+   "plannedWhen": "2026-09-30T08:00:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u6",
+    "name": "U6",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2426|1|86|30092026",
+   "when": "2026-09-30T08:01:00+02:00",
+   "plannedWhen": "2026-09-30T08:01:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-o",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|18658|7|86|30092026",
+   "when": "2026-09-30T08:01:00+02:00",
+   "plannedWhen": "2026-09-30T08:01:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-12-bus-12-ev1",
+    "name": "12",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": "358223",
+     "type": "warning",
+     "code": null,
+     "summary": "Replacement Service",
+     "text": "Tram 12: Replacement service due to construction works between Am Kupdergraben and U Eberswalder Straße.\n<a href=\"https://www.bvg.de/de/verbindungen/stoerungsmeldungen?modalDisruptionId=b11ea83f-dc33-4795-a5e0-c8358317cc27\" target=\"_blank\" rel=\"noopener\">[MEHR/MORE]</a>"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2033|6|86|30092026",
+   "when": "2026-09-30T08:02:00+02:00",
+   "plannedWhen": "2026-09-30T08:02:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-ei",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|824|1|86|30092026",
+   "when": "2026-09-30T08:03:00+02:00",
+   "plannedWhen": "2026-09-30T08:03:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s25-s25-v",
+    "name": "S25",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1783|1|86|30092026",
+   "when": "2026-09-30T08:03:00+02:00",
+   "plannedWhen": "2026-09-30T08:03:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-e",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|4442|0|86|30092026",
+   "when": "2026-09-30T08:03:00+02:00",
+   "plannedWhen": "2026-09-30T08:03:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s26-s26-vi",
+    "name": "S26",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2360|0|86|30092026",
+   "when": "2026-09-30T08:04:00+02:00",
+   "plannedWhen": "2026-09-30T08:04:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-o",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|24965|1|86|30092026",
+   "when": "2026-09-30T08:04:00+02:00",
+   "plannedWhen": "2026-09-30T08:04:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-147",
+    "name": "147",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|55282|4|86|30092026",
+   "when": "2026-09-30T08:04:00+02:00",
+   "plannedWhen": "2026-09-30T08:04:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u6",
+    "name": "U6",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55356|1|86|30092026",
+   "when": "2026-09-30T08:04:00+02:00",
+   "plannedWhen": "2026-09-30T08:04:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u6",
+    "name": "U6",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53581|13|86|30092026",
+   "when": "2026-09-30T08:05:00+02:00",
+   "plannedWhen": "2026-09-30T08:05:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m6",
+    "name": "M6",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "358224",
+     "type": "warning",
+     "code": null,
+     "summary": "Interruption",
+     "text": "Tram M1: No service due to construction works between Schönhauser Allee/Bornholmer Straße and Am Kupfergraben. Please use the extended M6 line between S Hackescher Markt and Am Kupfergraben.\n<a href=\"https://www.bvg.de/de/verbindungen/stoerungsmeldungen?modalDisruptionId=b11ea83f-dc33-4795-a5e0-c8358317cc27\" target=\"_blank\" rel=\"noopener\">[MEHR/MORE]</a>"
+    }
+   ]
+  },
+  {
+   "tripId": "1|304|6|86|30092026",
+   "when": "2026-09-30T08:06:00+02:00",
+   "plannedWhen": "2026-09-30T08:06:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s1-s1-pi",
+    "name": "S1",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|24901|1|86|30092026",
+   "when": "2026-09-30T08:06:00+02:00",
+   "plannedWhen": "2026-09-30T08:06:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-147",
+    "name": "147",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|53524|6|86|30092026",
+   "when": "2026-09-30T08:06:00+02:00",
+   "plannedWhen": "2026-09-30T08:08:00+02:00",
+   "delay": -120,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m6",
+    "name": "M6",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "358224",
+     "type": "warning",
+     "code": null,
+     "summary": "Interruption",
+     "text": "Tram M1: No service due to construction works between Schönhauser Allee/Bornholmer Straße and Am Kupfergraben. Please use the extended M6 line between S Hackescher Markt and Am Kupfergraben.\n<a href=\"https://www.bvg.de/de/verbindungen/stoerungsmeldungen?modalDisruptionId=b11ea83f-dc33-4795-a5e0-c8358317cc27\" target=\"_blank\" rel=\"noopener\">[MEHR/MORE]</a>"
+    }
+   ]
+  },
+  {
+   "tripId": "1|3388|10|86|30092026",
+   "when": "2026-09-30T08:07:00+02:00",
+   "plannedWhen": "2026-09-30T08:07:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s9-s9-c",
+    "name": "S9",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|18662|4|86|30092026",
+   "when": "2026-09-30T08:07:00+02:00",
+   "plannedWhen": "2026-09-30T08:07:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-12-bus-12-ev1",
+    "name": "12",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": "358223",
+     "type": "warning",
+     "code": null,
+     "summary": "Replacement Service",
+     "text": "Tram 12: Replacement service due to construction works between Am Kupdergraben and U Eberswalder Straße.\n<a href=\"https://www.bvg.de/de/verbindungen/stoerungsmeldungen?modalDisruptionId=b11ea83f-dc33-4795-a5e0-c8358317cc27\" target=\"_blank\" rel=\"noopener\">[MEHR/MORE]</a>"
+    }
+   ]
+  },
+  {
+   "tripId": "1|676|7|86|30092026",
+   "when": "2026-09-30T08:08:00+02:00",
+   "plannedWhen": "2026-09-30T08:08:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s2-s2-wi",
+    "name": "S2",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|702|8|86|30092026",
+   "when": "2026-09-30T08:08:00+02:00",
+   "plannedWhen": "2026-09-30T08:08:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s2-s2-wi",
+    "name": "S2",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|985|3|86|30092026",
+   "when": "2026-09-30T08:08:00+02:00",
+   "plannedWhen": "2026-09-30T08:08:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-b",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55283|4|86|30092026",
+   "when": "2026-09-30T08:08:00+02:00",
+   "plannedWhen": "2026-09-30T08:08:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u6",
+    "name": "U6",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55357|1|86|30092026",
+   "when": "2026-09-30T08:08:00+02:00",
+   "plannedWhen": "2026-09-30T08:08:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u6",
+    "name": "U6",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1195|5|86|30092026",
+   "when": "2026-09-30T08:09:00+02:00",
+   "plannedWhen": "2026-09-30T08:09:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-bi",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|5|0|86|30092026",
+   "when": "2026-09-30T08:10:00+02:00",
+   "plannedWhen": "2026-09-30T08:10:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s1-s1-p",
+    "name": "S1",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2666|1|86|30092026",
+   "when": "2026-09-30T08:11:00+02:00",
+   "plannedWhen": "2026-09-30T08:11:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-oi",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|18658|8|86|30092026",
+   "when": "2026-09-30T08:11:00+02:00",
+   "plannedWhen": "2026-09-30T08:11:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-12-bus-12-ev1",
+    "name": "12",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": "358223",
+     "type": "warning",
+     "code": null,
+     "summary": "Replacement Service",
+     "text": "Tram 12: Replacement service due to construction works between Am Kupdergraben and U Eberswalder Straße.\n<a href=\"https://www.bvg.de/de/verbindungen/stoerungsmeldungen?modalDisruptionId=b11ea83f-dc33-4795-a5e0-c8358317cc27\" target=\"_blank\" rel=\"noopener\">[MEHR/MORE]</a>"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1720|2|86|30092026",
+   "when": "2026-09-30T08:12:00+02:00",
+   "plannedWhen": "2026-09-30T08:12:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-e",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55355|2|86|30092026",
+   "when": "2026-09-30T08:12:00+02:00",
+   "plannedWhen": "2026-09-30T08:12:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u6",
+    "name": "U6",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100001",
+    "name": "S+U Friedrichstr. Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  }
+ ]
+}

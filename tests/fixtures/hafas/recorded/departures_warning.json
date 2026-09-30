@@ -1,0 +1,3704 @@
+{
+ "departures": [
+  {
+   "tripId": "1|72888|2|86|30092026",
+   "when": null,
+   "plannedWhen": "2026-09-30T08:06:00+02:00",
+   "delay": null,
+   "cancelled": true,
+   "line": {
+    "id": "de-vbb-11000000-r-bahn-rb26-neb",
+    "name": "RB26",
+    "product": "regional"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "364965",
+     "type": "warning",
+     "code": null,
+     "summary": "Teilausfall Ostkreuz &#60;&#62; Lichtenberg",
+     "text": "Aufgrund einer Fahrzeugstörung verkehrt die Fahrt nicht zwischen Lichtenberg &#60;&#62; Ostkreuz. Nutzen Sie zwischen Ostkreuz &#60;&#62; Lichtenberg alternative Verkehrsmittel (S5, S7, S75, RB25)."
+    },
+    {
+     "id": null,
+     "type": "status",
+     "code": "text.realtime.journey.cancelled",
+     "summary": null,
+     "text": "RB26 has been cancelled"
+    },
+    {
+     "id": null,
+     "type": "status",
+     "code": "text.realtime.journey.partially.cancelled.between",
+     "summary": null,
+     "text": "RB26: Journey is cancelled between S Ostkreuz Bhf (Berlin) and S+U Lichtenberg Bhf (Berlin). Please use another trip."
+    },
+    {
+     "id": null,
+     "type": "status",
+     "code": "text.realtime.stop.cancelled",
+     "summary": null,
+     "text": "Stop cancelled"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1248|2|86|30092026",
+   "when": "2026-09-30T07:12:00+02:00",
+   "plannedWhen": "2026-09-30T07:12:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-bi",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|4705|2|86|30092026",
+   "when": "2026-09-30T07:12:00+02:00",
+   "plannedWhen": "2026-09-30T07:12:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-sii",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|1195|3|86|30092026",
+   "when": "2026-09-30T07:13:00+02:00",
+   "plannedWhen": "2026-09-30T07:13:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-bi",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|30272|0|86|30092026",
+   "when": "2026-09-30T07:13:00+02:00",
+   "plannedWhen": "2026-09-30T07:13:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-194",
+    "name": "194",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|72888|1|86|30092026",
+   "when": "2026-09-30T07:14:00+02:00",
+   "plannedWhen": "2026-09-30T07:06:00+02:00",
+   "delay": 480,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-r-bahn-rb26-neb",
+    "name": "RB26",
+    "product": "regional"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2425|0|86|30092026",
+   "when": "2026-09-30T07:14:00+02:00",
+   "plannedWhen": "2026-09-30T07:14:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-o",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|78972|2|86|30092026",
+   "when": "2026-09-30T07:15:00+02:00",
+   "plannedWhen": "2026-09-30T07:15:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s41-s41-ai",
+    "name": "S41",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2802|5|86|30092026",
+   "when": "2026-09-30T07:16:00+02:00",
+   "plannedWhen": "2026-09-30T07:16:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s75-s75-t",
+    "name": "S75",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|4702|3|86|30092026",
+   "when": "2026-09-30T07:16:00+02:00",
+   "plannedWhen": "2026-09-30T07:16:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-sii",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|69965|0|86|30092026",
+   "when": "2026-09-30T07:16:00+02:00",
+   "plannedWhen": "2026-09-30T07:16:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-12052000-r-bahn-re1-odeg",
+    "name": "RE1",
+    "product": "regional"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": null,
+     "type": "hint",
+     "code": "he",
+     "summary": null,
+     "text": "Fahrradmitnahme leicht gemacht: www.vbb.de/radimregio"
+    }
+   ]
+  },
+  {
+   "tripId": "1|81662|10|86|30092026",
+   "when": "2026-09-30T07:16:00+02:00",
+   "plannedWhen": "2026-09-30T07:16:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s42-s42-r",
+    "name": "S42",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1780|6|86|30092026",
+   "when": "2026-09-30T07:17:00+02:00",
+   "plannedWhen": "2026-09-30T07:17:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-e",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|30117|2|86|30092026",
+   "when": "2026-09-30T07:17:00+02:00",
+   "plannedWhen": "2026-09-30T07:18:00+02:00",
+   "delay": -60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-194",
+    "name": "194",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|1720|1|86|30092026",
+   "when": "2026-09-30T07:18:00+02:00",
+   "plannedWhen": "2026-09-30T07:18:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-e",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|4547|5|86|30092026",
+   "when": "2026-09-30T07:18:00+02:00",
+   "plannedWhen": "2026-09-30T07:18:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s85-s85-m",
+    "name": "S85",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|4596|3|86|30092026",
+   "when": "2026-09-30T07:18:00+02:00",
+   "plannedWhen": "2026-09-30T07:18:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s85-s85-m",
+    "name": "S85",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|71200|1|86|30092026",
+   "when": "2026-09-30T07:18:00+02:00",
+   "plannedWhen": "2026-09-30T07:18:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-r-bahn-rb32",
+    "name": "RB32",
+    "product": "regional"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": null,
+     "type": "hint",
+     "code": "gq",
+     "summary": null,
+     "text": "vehicle-mounted access aid"
+    },
+    {
+     "id": null,
+     "type": "hint",
+     "code": "WV",
+     "summary": null,
+     "text": "Wifi available"
+    }
+   ]
+  },
+  {
+   "tripId": "1|49363|3|86|30092026",
+   "when": "2026-09-30T07:19:00+02:00",
+   "plannedWhen": "2026-09-30T07:15:00+02:00",
+   "delay": 240,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m43",
+    "name": "M43",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|1366|3|86|30092026",
+   "when": "2026-09-30T07:19:00+02:00",
+   "plannedWhen": "2026-09-30T07:19:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-bii",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2941|5|86|30092026",
+   "when": "2026-09-30T07:19:00+02:00",
+   "plannedWhen": "2026-09-30T07:19:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s75-s75-ti",
+    "name": "S75",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|35963|0|86|30092026",
+   "when": "2026-09-30T07:19:00+02:00",
+   "plannedWhen": "2026-09-30T07:19:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-347",
+    "name": "347",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|49450|0|86|30092026",
+   "when": "2026-09-30T07:20:00+02:00",
+   "plannedWhen": "2026-09-30T07:20:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m43",
+    "name": "M43",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|80747|11|86|30092026",
+   "when": "2026-09-30T07:20:00+02:00",
+   "plannedWhen": "2026-09-30T07:20:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s41-s41-a",
+    "name": "S41",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2617|0|86|30092026",
+   "when": "2026-09-30T07:21:00+02:00",
+   "plannedWhen": "2026-09-30T07:21:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-oi",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|80267|0|86|30092026",
+   "when": "2026-09-30T07:21:00+02:00",
+   "plannedWhen": "2026-09-30T07:21:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s42-s42-ri",
+    "name": "S42",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|984|2|86|30092026",
+   "when": "2026-09-30T07:22:00+02:00",
+   "plannedWhen": "2026-09-30T07:22:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-b",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2219|2|86|30092026",
+   "when": "2026-09-30T07:22:00+02:00",
+   "plannedWhen": "2026-09-30T07:22:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-eii",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|30215|0|86|30092026",
+   "when": "2026-09-30T07:22:00+02:00",
+   "plannedWhen": "2026-09-30T07:22:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-194",
+    "name": "194",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|72763|0|86|30092026",
+   "when": "2026-09-30T07:22:00+02:00",
+   "plannedWhen": "2026-09-30T07:22:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-r-bahn-rb25-neb",
+    "name": "RB25",
+    "product": "regional"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|939|1|86|30092026",
+   "when": "2026-09-30T07:23:00+02:00",
+   "plannedWhen": "2026-09-30T07:23:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-b",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2216|3|86|30092026",
+   "when": "2026-09-30T07:23:00+02:00",
+   "plannedWhen": "2026-09-30T07:23:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-eii",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2664|4|86|30092026",
+   "when": "2026-09-30T07:24:00+02:00",
+   "plannedWhen": "2026-09-30T07:24:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-oi",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|77796|0|86|30092026",
+   "when": "2026-09-30T07:25:00+02:00",
+   "plannedWhen": "2026-09-30T07:25:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-r-bahn-re2-db",
+    "name": "RE2",
+    "product": "regional"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": null,
+     "type": "hint",
+     "code": "he",
+     "summary": null,
+     "text": "Fahrradmitnahme leicht gemacht: www.vbb.de/radimregio"
+    },
+    {
+     "id": null,
+     "type": "hint",
+     "code": "gq",
+     "summary": null,
+     "text": "vehicle-mounted access aid"
+    },
+    {
+     "id": null,
+     "type": "hint",
+     "code": "WV",
+     "summary": null,
+     "text": "Wifi available"
+    }
+   ]
+  },
+  {
+   "tripId": "1|78968|2|86|30092026",
+   "when": "2026-09-30T07:25:00+02:00",
+   "plannedWhen": "2026-09-30T07:25:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s41-s41-ai",
+    "name": "S41",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|80734|1|86|30092026",
+   "when": "2026-09-30T07:25:00+02:00",
+   "plannedWhen": "2026-09-30T07:25:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s41-s41-ai",
+    "name": "S41",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|49363|4|86|30092026",
+   "when": "2026-09-30T07:26:00+02:00",
+   "plannedWhen": "2026-09-30T07:25:00+02:00",
+   "delay": 60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m43",
+    "name": "M43",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|1362|3|86|30092026",
+   "when": "2026-09-30T07:26:00+02:00",
+   "plannedWhen": "2026-09-30T07:26:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-bii",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2927|6|86|30092026",
+   "when": "2026-09-30T07:26:00+02:00",
+   "plannedWhen": "2026-09-30T07:26:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s75-s75-ti",
+    "name": "S75",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|81662|11|86|30092026",
+   "when": "2026-09-30T07:26:00+02:00",
+   "plannedWhen": "2026-09-30T07:26:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s42-s42-r",
+    "name": "S42",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2080|5|86|30092026",
+   "when": "2026-09-30T07:27:00+02:00",
+   "plannedWhen": "2026-09-30T07:27:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-ei",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2033|5|86|30092026",
+   "when": "2026-09-30T07:28:00+02:00",
+   "plannedWhen": "2026-09-30T07:28:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-ei",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2998|1|86|30092026",
+   "when": "2026-09-30T07:28:00+02:00",
+   "plannedWhen": "2026-09-30T07:28:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s8-s8-n",
+    "name": "S8",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|3092|7|86|30092026",
+   "when": "2026-09-30T07:28:00+02:00",
+   "plannedWhen": "2026-09-30T07:28:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s8-s8-n",
+    "name": "S8",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|30146|3|86|30092026",
+   "when": "2026-09-30T07:29:00+02:00",
+   "plannedWhen": "2026-09-30T07:28:00+02:00",
+   "delay": 60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-194",
+    "name": "194",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|2855|5|86|30092026",
+   "when": "2026-09-30T07:29:00+02:00",
+   "plannedWhen": "2026-09-30T07:29:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s75-s75-t",
+    "name": "S75",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|71326|1|86|30092026",
+   "when": "2026-09-30T07:30:00+02:00",
+   "plannedWhen": "2026-09-30T07:22:00+02:00",
+   "delay": 480,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-r-bahn-rb24",
+    "name": "RB24",
+    "product": "regional"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": null,
+     "type": "hint",
+     "code": "gq",
+     "summary": null,
+     "text": "vehicle-mounted access aid"
+    },
+    {
+     "id": null,
+     "type": "hint",
+     "code": "WV",
+     "summary": null,
+     "text": "Wifi available"
+    }
+   ]
+  },
+  {
+   "tripId": "1|35928|4|86|30092026",
+   "when": "2026-09-30T07:30:00+02:00",
+   "plannedWhen": "2026-09-30T07:30:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-347",
+    "name": "347",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|49450|1|86|30092026",
+   "when": "2026-09-30T07:30:00+02:00",
+   "plannedWhen": "2026-09-30T07:30:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m43",
+    "name": "M43",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|80747|12|86|30092026",
+   "when": "2026-09-30T07:30:00+02:00",
+   "plannedWhen": "2026-09-30T07:30:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s41-s41-a",
+    "name": "S41",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2361|0|86|30092026",
+   "when": "2026-09-30T07:31:00+02:00",
+   "plannedWhen": "2026-09-30T07:31:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-o",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|80281|1|86|30092026",
+   "when": "2026-09-30T07:31:00+02:00",
+   "plannedWhen": "2026-09-30T07:31:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s42-s42-ri",
+    "name": "S42",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1248|3|86|30092026",
+   "when": "2026-09-30T07:32:00+02:00",
+   "plannedWhen": "2026-09-30T07:32:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-bi",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|4705|3|86|30092026",
+   "when": "2026-09-30T07:32:00+02:00",
+   "plannedWhen": "2026-09-30T07:32:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-sii",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|30273|0|86|30092026",
+   "when": "2026-09-30T07:33:00+02:00",
+   "plannedWhen": "2026-09-30T07:32:00+02:00",
+   "delay": 60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-194",
+    "name": "194",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|1195|4|86|30092026",
+   "when": "2026-09-30T07:33:00+02:00",
+   "plannedWhen": "2026-09-30T07:33:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-bi",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2422|4|86|30092026",
+   "when": "2026-09-30T07:34:00+02:00",
+   "plannedWhen": "2026-09-30T07:34:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-o",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|15196|0|86|30092026",
+   "when": "2026-09-30T07:34:00+02:00",
+   "plannedWhen": "2026-09-30T07:34:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "ic-2274",
+    "name": "IC 2274",
+    "product": "express"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "VU",
+     "summary": null,
+     "text": "Keine Anerkennung von VBB-Fahrausweisen."
+    },
+    {
+     "id": null,
+     "type": "hint",
+     "code": "CK",
+     "summary": null,
+     "text": "Komfort Check-in possible (visit bahn.de/kci for more information)"
+    },
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FR",
+     "summary": null,
+     "text": "Bicycles conveyed - subject to reservation"
+    },
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": null,
+     "type": "hint",
+     "code": "gt",
+     "summary": null,
+     "text": "Einstieg mit Rollstuhl stufenfrei"
+    },
+    {
+     "id": null,
+     "type": "hint",
+     "code": "gs",
+     "summary": null,
+     "text": "Food and beverages served at seat"
+    }
+   ]
+  },
+  {
+   "tripId": "1|49363|5|86|30092026",
+   "when": "2026-09-30T07:36:00+02:00",
+   "plannedWhen": "2026-09-30T07:35:00+02:00",
+   "delay": 60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m43",
+    "name": "M43",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|2802|6|86|30092026",
+   "when": "2026-09-30T07:36:00+02:00",
+   "plannedWhen": "2026-09-30T07:36:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s75-s75-t",
+    "name": "S75",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|4702|4|86|30092026",
+   "when": "2026-09-30T07:36:00+02:00",
+   "plannedWhen": "2026-09-30T07:36:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-sii",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|81662|12|86|30092026",
+   "when": "2026-09-30T07:36:00+02:00",
+   "plannedWhen": "2026-09-30T07:36:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s42-s42-r",
+    "name": "S42",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1783|0|86|30092026",
+   "when": "2026-09-30T07:37:00+02:00",
+   "plannedWhen": "2026-09-30T07:37:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-e",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|78972|3|86|30092026",
+   "when": "2026-09-30T07:38:00+02:00",
+   "plannedWhen": "2026-09-30T07:35:00+02:00",
+   "delay": 180,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s41-s41-ai",
+    "name": "S41",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1716|1|86|30092026",
+   "when": "2026-09-30T07:38:00+02:00",
+   "plannedWhen": "2026-09-30T07:38:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-e",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|4546|0|86|30092026",
+   "when": "2026-09-30T07:38:00+02:00",
+   "plannedWhen": "2026-09-30T07:38:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s85-s85-m",
+    "name": "S85",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|4596|4|86|30092026",
+   "when": "2026-09-30T07:38:00+02:00",
+   "plannedWhen": "2026-09-30T07:38:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s85-s85-m",
+    "name": "S85",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|30117|3|86|30092026",
+   "when": "2026-09-30T07:38:00+02:00",
+   "plannedWhen": "2026-09-30T07:38:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-194",
+    "name": "194",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|1366|4|86|30092026",
+   "when": "2026-09-30T07:39:00+02:00",
+   "plannedWhen": "2026-09-30T07:39:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-bii",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2941|6|86|30092026",
+   "when": "2026-09-30T07:39:00+02:00",
+   "plannedWhen": "2026-09-30T07:39:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s75-s75-ti",
+    "name": "S75",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|35963|1|86|30092026",
+   "when": "2026-09-30T07:39:00+02:00",
+   "plannedWhen": "2026-09-30T07:39:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-347",
+    "name": "347",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|49446|0|86|30092026",
+   "when": "2026-09-30T07:40:00+02:00",
+   "plannedWhen": "2026-09-30T07:40:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m43",
+    "name": "M43",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|77824|0|86|30092026",
+   "when": "2026-09-30T07:40:00+02:00",
+   "plannedWhen": "2026-09-30T07:40:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-r-bahn-re2-db",
+    "name": "RE2",
+    "product": "regional"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": null,
+     "type": "hint",
+     "code": "he",
+     "summary": null,
+     "text": "Fahrradmitnahme leicht gemacht: www.vbb.de/radimregio (S Ostkreuz Bhf (Berlin) - S Schöneweide Bhf (Berlin))"
+    },
+    {
+     "id": null,
+     "type": "hint",
+     "code": "gq",
+     "summary": null,
+     "text": "vehicle-mounted access aid"
+    },
+    {
+     "id": null,
+     "type": "hint",
+     "code": "WV",
+     "summary": null,
+     "text": "Wifi available"
+    }
+   ]
+  },
+  {
+   "tripId": "1|80747|13|86|30092026",
+   "when": "2026-09-30T07:40:00+02:00",
+   "plannedWhen": "2026-09-30T07:40:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s41-s41-a",
+    "name": "S41",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2617|1|86|30092026",
+   "when": "2026-09-30T07:41:00+02:00",
+   "plannedWhen": "2026-09-30T07:41:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-oi",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|80267|1|86|30092026",
+   "when": "2026-09-30T07:41:00+02:00",
+   "plannedWhen": "2026-09-30T07:41:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s42-s42-ri",
+    "name": "S42",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|985|2|86|30092026",
+   "when": "2026-09-30T07:42:00+02:00",
+   "plannedWhen": "2026-09-30T07:42:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-b",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2219|3|86|30092026",
+   "when": "2026-09-30T07:42:00+02:00",
+   "plannedWhen": "2026-09-30T07:42:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-eii",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|30215|1|86|30092026",
+   "when": "2026-09-30T07:42:00+02:00",
+   "plannedWhen": "2026-09-30T07:42:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-194",
+    "name": "194",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|87815|0|86|30092026",
+   "when": "2026-09-30T07:43:00+02:00",
+   "plannedWhen": "2026-09-30T07:40:00+02:00",
+   "delay": 180,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s41-s41-a",
+    "name": "S41",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|940|2|86|30092026",
+   "when": "2026-09-30T07:43:00+02:00",
+   "plannedWhen": "2026-09-30T07:43:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-b",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2216|4|86|30092026",
+   "when": "2026-09-30T07:43:00+02:00",
+   "plannedWhen": "2026-09-30T07:43:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-eii",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2664|5|86|30092026",
+   "when": "2026-09-30T07:44:00+02:00",
+   "plannedWhen": "2026-09-30T07:44:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-oi",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|49363|6|86|30092026",
+   "when": "2026-09-30T07:44:00+02:00",
+   "plannedWhen": "2026-09-30T07:45:00+02:00",
+   "delay": -60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m43",
+    "name": "M43",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|78968|3|86|30092026",
+   "when": "2026-09-30T07:45:00+02:00",
+   "plannedWhen": "2026-09-30T07:45:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s41-s41-ai",
+    "name": "S41",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1362|4|86|30092026",
+   "when": "2026-09-30T07:46:00+02:00",
+   "plannedWhen": "2026-09-30T07:46:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-bii",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2927|7|86|30092026",
+   "when": "2026-09-30T07:46:00+02:00",
+   "plannedWhen": "2026-09-30T07:46:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s75-s75-ti",
+    "name": "S75",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|70026|1|86|30092026",
+   "when": "2026-09-30T07:46:00+02:00",
+   "plannedWhen": "2026-09-30T07:46:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-12052000-r-bahn-re1-odeg",
+    "name": "RE1",
+    "product": "regional"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": null,
+     "type": "hint",
+     "code": "he",
+     "summary": null,
+     "text": "Fahrradmitnahme leicht gemacht: www.vbb.de/radimregio"
+    }
+   ]
+  },
+  {
+   "tripId": "1|71163|2|86|30092026",
+   "when": "2026-09-30T07:46:00+02:00",
+   "plannedWhen": "2026-09-30T07:46:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-r-bahn-rb32",
+    "name": "RB32",
+    "product": "regional"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": null,
+     "type": "hint",
+     "code": "gq",
+     "summary": null,
+     "text": "vehicle-mounted access aid"
+    },
+    {
+     "id": null,
+     "type": "hint",
+     "code": "WV",
+     "summary": null,
+     "text": "Wifi available"
+    },
+    {
+     "id": "365122",
+     "type": "warning",
+     "code": null,
+     "summary": "Störung.",
+     "text": "Ausfall RB<a href=\"tel:18207\" target=\"_blank\">18207</a> von Oranienburg (07:09) bis Berlin-Lichtenberg. Grund: Reparatur an der Strecke. Nutzen Sie den nachfolgenden Zug ab Oranienburg (08:09)."
+    }
+   ]
+  },
+  {
+   "tripId": "1|81662|13|86|30092026",
+   "when": "2026-09-30T07:46:00+02:00",
+   "plannedWhen": "2026-09-30T07:46:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s42-s42-r",
+    "name": "S42",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2080|6|86|30092026",
+   "when": "2026-09-30T07:47:00+02:00",
+   "plannedWhen": "2026-09-30T07:47:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-ei",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2033|6|86|30092026",
+   "when": "2026-09-30T07:48:00+02:00",
+   "plannedWhen": "2026-09-30T07:48:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-ei",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2992|2|86|30092026",
+   "when": "2026-09-30T07:48:00+02:00",
+   "plannedWhen": "2026-09-30T07:48:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s8-s8-n",
+    "name": "S8",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|3092|8|86|30092026",
+   "when": "2026-09-30T07:48:00+02:00",
+   "plannedWhen": "2026-09-30T07:48:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s8-s8-n",
+    "name": "S8",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|30146|4|86|30092026",
+   "when": "2026-09-30T07:48:00+02:00",
+   "plannedWhen": "2026-09-30T07:48:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-194",
+    "name": "194",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|72665|0|86|30092026",
+   "when": "2026-09-30T07:48:00+02:00",
+   "plannedWhen": "2026-09-30T07:48:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-12073572-r-bahn-rb12",
+    "name": "RB12",
+    "product": "regional"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|71345|0|86|30092026",
+   "when": "2026-09-30T07:49:00+02:00",
+   "plannedWhen": "2026-09-30T07:41:00+02:00",
+   "delay": 480,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-r-bahn-rb24",
+    "name": "RB24",
+    "product": "regional"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": null,
+     "type": "hint",
+     "code": "gq",
+     "summary": null,
+     "text": "vehicle-mounted access aid"
+    },
+    {
+     "id": null,
+     "type": "hint",
+     "code": "WV",
+     "summary": null,
+     "text": "Wifi available"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2855|6|86|30092026",
+   "when": "2026-09-30T07:49:00+02:00",
+   "plannedWhen": "2026-09-30T07:49:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s75-s75-t",
+    "name": "S75",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|35938|0|86|30092026",
+   "when": "2026-09-30T07:50:00+02:00",
+   "plannedWhen": "2026-09-30T07:50:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-347",
+    "name": "347",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|49454|0|86|30092026",
+   "when": "2026-09-30T07:50:00+02:00",
+   "plannedWhen": "2026-09-30T07:50:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m43",
+    "name": "M43",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|80747|14|86|30092026",
+   "when": "2026-09-30T07:50:00+02:00",
+   "plannedWhen": "2026-09-30T07:50:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s41-s41-a",
+    "name": "S41",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2360|0|86|30092026",
+   "when": "2026-09-30T07:51:00+02:00",
+   "plannedWhen": "2026-09-30T07:51:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-o",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|80281|2|86|30092026",
+   "when": "2026-09-30T07:51:00+02:00",
+   "plannedWhen": "2026-09-30T07:51:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s42-s42-ri",
+    "name": "S42",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1248|4|86|30092026",
+   "when": "2026-09-30T07:52:00+02:00",
+   "plannedWhen": "2026-09-30T07:52:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-bi",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|4705|4|86|30092026",
+   "when": "2026-09-30T07:52:00+02:00",
+   "plannedWhen": "2026-09-30T07:52:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-sii",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|30273|1|86|30092026",
+   "when": "2026-09-30T07:52:00+02:00",
+   "plannedWhen": "2026-09-30T07:52:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-194",
+    "name": "194",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|1195|5|86|30092026",
+   "when": "2026-09-30T07:53:00+02:00",
+   "plannedWhen": "2026-09-30T07:53:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-bi",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|70162|0|86|30092026",
+   "when": "2026-09-30T07:53:00+02:00",
+   "plannedWhen": "2026-09-30T07:53:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-12052000-r-bahn-re1-odeg",
+    "name": "RE1",
+    "product": "regional"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": null,
+     "type": "hint",
+     "code": "he",
+     "summary": null,
+     "text": "Fahrradmitnahme leicht gemacht: www.vbb.de/radimregio"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2426|0|86|30092026",
+   "when": "2026-09-30T07:54:00+02:00",
+   "plannedWhen": "2026-09-30T07:54:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-o",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|72775|2|86|30092026",
+   "when": "2026-09-30T07:54:00+02:00",
+   "plannedWhen": "2026-09-30T07:54:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-r-bahn-rb25-neb",
+    "name": "RB25",
+    "product": "regional"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|49363|7|86|30092026",
+   "when": "2026-09-30T07:55:00+02:00",
+   "plannedWhen": "2026-09-30T07:55:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m43",
+    "name": "M43",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|78972|4|86|30092026",
+   "when": "2026-09-30T07:55:00+02:00",
+   "plannedWhen": "2026-09-30T07:55:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s41-s41-ai",
+    "name": "S41",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2802|7|86|30092026",
+   "when": "2026-09-30T07:56:00+02:00",
+   "plannedWhen": "2026-09-30T07:56:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s75-s75-t",
+    "name": "S75",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|4702|5|86|30092026",
+   "when": "2026-09-30T07:56:00+02:00",
+   "plannedWhen": "2026-09-30T07:56:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-sii",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|81662|14|86|30092026",
+   "when": "2026-09-30T07:56:00+02:00",
+   "plannedWhen": "2026-09-30T07:56:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s42-s42-r",
+    "name": "S42",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1781|0|86|30092026",
+   "when": "2026-09-30T07:57:00+02:00",
+   "plannedWhen": "2026-09-30T07:57:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-e",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1720|2|86|30092026",
+   "when": "2026-09-30T07:58:00+02:00",
+   "plannedWhen": "2026-09-30T07:58:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-e",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|4546|1|86|30092026",
+   "when": "2026-09-30T07:58:00+02:00",
+   "plannedWhen": "2026-09-30T07:58:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s85-s85-m",
+    "name": "S85",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|4596|5|86|30092026",
+   "when": "2026-09-30T07:58:00+02:00",
+   "plannedWhen": "2026-09-30T07:58:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s85-s85-m",
+    "name": "S85",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|30117|4|86|30092026",
+   "when": "2026-09-30T07:58:00+02:00",
+   "plannedWhen": "2026-09-30T07:58:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-194",
+    "name": "194",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|1366|5|86|30092026",
+   "when": "2026-09-30T07:59:00+02:00",
+   "plannedWhen": "2026-09-30T07:59:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-bii",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2941|7|86|30092026",
+   "when": "2026-09-30T07:59:00+02:00",
+   "plannedWhen": "2026-09-30T07:59:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s75-s75-ti",
+    "name": "S75",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|35963|2|86|30092026",
+   "when": "2026-09-30T07:59:00+02:00",
+   "plannedWhen": "2026-09-30T07:59:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-347",
+    "name": "347",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|80747|15|86|30092026",
+   "when": "2026-09-30T08:00:00+02:00",
+   "plannedWhen": "2026-09-30T08:00:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s41-s41-a",
+    "name": "S41",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2617|2|86|30092026",
+   "when": "2026-09-30T08:01:00+02:00",
+   "plannedWhen": "2026-09-30T08:01:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-oi",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|80267|2|86|30092026",
+   "when": "2026-09-30T08:01:00+02:00",
+   "plannedWhen": "2026-09-30T08:01:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s42-s42-ri",
+    "name": "S42",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|984|3|86|30092026",
+   "when": "2026-09-30T08:02:00+02:00",
+   "plannedWhen": "2026-09-30T08:02:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-b",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2219|4|86|30092026",
+   "when": "2026-09-30T08:02:00+02:00",
+   "plannedWhen": "2026-09-30T08:02:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-eii",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|30215|2|86|30092026",
+   "when": "2026-09-30T08:02:00+02:00",
+   "plannedWhen": "2026-09-30T08:02:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-194",
+    "name": "194",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|49454|1|86|30092026",
+   "when": "2026-09-30T08:02:00+02:00",
+   "plannedWhen": "2026-09-30T08:02:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m43",
+    "name": "M43",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|941|0|86|30092026",
+   "when": "2026-09-30T08:03:00+02:00",
+   "plannedWhen": "2026-09-30T08:03:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-b",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2216|5|86|30092026",
+   "when": "2026-09-30T08:03:00+02:00",
+   "plannedWhen": "2026-09-30T08:03:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-eii",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2666|0|86|30092026",
+   "when": "2026-09-30T08:04:00+02:00",
+   "plannedWhen": "2026-09-30T08:04:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-oi",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|69951|1|86|30092026",
+   "when": "2026-09-30T08:04:00+02:00",
+   "plannedWhen": "2026-09-30T08:04:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-12052000-r-bahn-re1-odeg",
+    "name": "RE1",
+    "product": "regional"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": null,
+     "type": "hint",
+     "code": "he",
+     "summary": null,
+     "text": "Fahrradmitnahme leicht gemacht: www.vbb.de/radimregio"
+    }
+   ]
+  },
+  {
+   "tripId": "1|78939|0|86|30092026",
+   "when": "2026-09-30T08:05:00+02:00",
+   "plannedWhen": "2026-09-30T08:05:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s41-s41-ai",
+    "name": "S41",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1362|5|86|30092026",
+   "when": "2026-09-30T08:06:00+02:00",
+   "plannedWhen": "2026-09-30T08:06:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-bii",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2927|8|86|30092026",
+   "when": "2026-09-30T08:06:00+02:00",
+   "plannedWhen": "2026-09-30T08:06:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s75-s75-ti",
+    "name": "S75",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|49354|0|86|30092026",
+   "when": "2026-09-30T08:06:00+02:00",
+   "plannedWhen": "2026-09-30T08:06:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m43",
+    "name": "M43",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|81662|15|86|30092026",
+   "when": "2026-09-30T08:06:00+02:00",
+   "plannedWhen": "2026-09-30T08:06:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s42-s42-r",
+    "name": "S42",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2080|7|86|30092026",
+   "when": "2026-09-30T08:07:00+02:00",
+   "plannedWhen": "2026-09-30T08:07:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-ei",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2033|7|86|30092026",
+   "when": "2026-09-30T08:08:00+02:00",
+   "plannedWhen": "2026-09-30T08:08:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-ei",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2993|2|86|30092026",
+   "when": "2026-09-30T08:08:00+02:00",
+   "plannedWhen": "2026-09-30T08:08:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s8-s8-n",
+    "name": "S8",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|3092|9|86|30092026",
+   "when": "2026-09-30T08:08:00+02:00",
+   "plannedWhen": "2026-09-30T08:08:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s8-s8-n",
+    "name": "S8",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|30146|5|86|30092026",
+   "when": "2026-09-30T08:08:00+02:00",
+   "plannedWhen": "2026-09-30T08:08:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-194",
+    "name": "194",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|2855|7|86|30092026",
+   "when": "2026-09-30T08:09:00+02:00",
+   "plannedWhen": "2026-09-30T08:09:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s75-s75-t",
+    "name": "S75",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|35938|1|86|30092026",
+   "when": "2026-09-30T08:10:00+02:00",
+   "plannedWhen": "2026-09-30T08:10:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-347",
+    "name": "347",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|80747|16|86|30092026",
+   "when": "2026-09-30T08:10:00+02:00",
+   "plannedWhen": "2026-09-30T08:10:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s41-s41-a",
+    "name": "S41",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2360|1|86|30092026",
+   "when": "2026-09-30T08:11:00+02:00",
+   "plannedWhen": "2026-09-30T08:11:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-o",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|80281|3|86|30092026",
+   "when": "2026-09-30T08:11:00+02:00",
+   "plannedWhen": "2026-09-30T08:11:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s42-s42-ri",
+    "name": "S42",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1248|5|86|30092026",
+   "when": "2026-09-30T08:12:00+02:00",
+   "plannedWhen": "2026-09-30T08:12:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-bi",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|4705|5|86|30092026",
+   "when": "2026-09-30T08:12:00+02:00",
+   "plannedWhen": "2026-09-30T08:12:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-sii",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|30273|2|86|30092026",
+   "when": "2026-09-30T08:12:00+02:00",
+   "plannedWhen": "2026-09-30T08:12:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-194",
+    "name": "194",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900120003",
+    "name": "S Ostkreuz Bhf (Berlin)"
+   },
+   "remarks": []
+  }
+ ]
+}

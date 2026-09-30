@@ -1,0 +1,4371 @@
+{
+ "departures": [
+  {
+   "tripId": "1|30987|1|86|30092026",
+   "when": "2026-09-30T07:12:00+02:00",
+   "plannedWhen": "2026-09-30T07:12:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-200",
+    "name": "200",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|83918|2|86|30092026",
+   "when": "2026-09-30T07:12:00+02:00",
+   "plannedWhen": "2026-09-30T07:12:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-249",
+    "name": "249",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|40675|0|86|30092026",
+   "when": "2026-09-30T07:12:00+02:00",
+   "plannedWhen": "2026-09-30T07:15:00+02:00",
+   "delay": -180,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m45",
+    "name": "M45",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|41836|0|86|30092026",
+   "when": "2026-09-30T07:13:00+02:00",
+   "plannedWhen": "2026-09-30T07:10:00+02:00",
+   "delay": 180,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m49",
+    "name": "M49",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|2422|4|86|30092026",
+   "when": "2026-09-30T07:13:00+02:00",
+   "plannedWhen": "2026-09-30T07:11:00+02:00",
+   "delay": 120,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-o",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|2357|0|86|30092026",
+   "when": "2026-09-30T07:13:00+02:00",
+   "plannedWhen": "2026-09-30T07:13:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-o",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|44878|1|86|30092026",
+   "when": "2026-09-30T07:13:00+02:00",
+   "plannedWhen": "2026-09-30T07:13:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-x10",
+    "name": "X10",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|53988|7|86|30092026",
+   "when": "2026-09-30T07:13:00+02:00",
+   "plannedWhen": "2026-09-30T07:13:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55886|1|86|30092026",
+   "when": "2026-09-30T07:13:00+02:00",
+   "plannedWhen": "2026-09-30T07:13:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u9",
+    "name": "U9",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|83458|1|86|30092026",
+   "when": "2026-09-30T07:13:00+02:00",
+   "plannedWhen": "2026-09-30T07:13:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-204",
+    "name": "204",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "Y ",
+     "summary": null,
+     "text": "ab S Südkreuz weiter als Bus 106 Richtung Lindenhof (S+U Zoologischer Garten Bhf (Berlin) - S Südkreuz Bhf (Berlin))"
+    }
+   ]
+  },
+  {
+   "tripId": "1|83968|3|86|30092026",
+   "when": "2026-09-30T07:13:00+02:00",
+   "plannedWhen": "2026-09-30T07:13:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-249",
+    "name": "249",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|1783|0|86|30092026",
+   "when": "2026-09-30T07:14:00+02:00",
+   "plannedWhen": "2026-09-30T07:14:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-e",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|40841|1|86|30092026",
+   "when": "2026-09-30T07:14:00+02:00",
+   "plannedWhen": "2026-09-30T07:14:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m45",
+    "name": "M45",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|46146|0|86|30092026",
+   "when": "2026-09-30T07:14:00+02:00",
+   "plannedWhen": "2026-09-30T07:14:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-x34",
+    "name": "X34",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|55911|0|86|30092026",
+   "when": "2026-09-30T07:14:00+02:00",
+   "plannedWhen": "2026-09-30T07:14:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u9",
+    "name": "U9",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|41314|0|86|30092026",
+   "when": "2026-09-30T07:16:00+02:00",
+   "plannedWhen": "2026-09-30T07:09:00+02:00",
+   "delay": 420,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m46",
+    "name": "M46",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|32355|0|86|30092026",
+   "when": "2026-09-30T07:16:00+02:00",
+   "plannedWhen": "2026-09-30T07:15:00+02:00",
+   "delay": 60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-245",
+    "name": "245",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|3388|7|86|30092026",
+   "when": "2026-09-30T07:16:00+02:00",
+   "plannedWhen": "2026-09-30T07:16:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s9-s9-c",
+    "name": "S9",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|41221|7|86|30092026",
+   "when": "2026-09-30T07:17:00+02:00",
+   "plannedWhen": "2026-09-30T07:17:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m46",
+    "name": "M46",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|55876|0|86|30092026",
+   "when": "2026-09-30T07:17:00+02:00",
+   "plannedWhen": "2026-09-30T07:17:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u9",
+    "name": "U9",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1195|2|86|30092026",
+   "when": "2026-09-30T07:18:00+02:00",
+   "plannedWhen": "2026-09-30T07:18:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-bi",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|20206|1|86|30092026",
+   "when": "2026-09-30T07:18:00+02:00",
+   "plannedWhen": "2026-09-30T07:18:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-109",
+    "name": "109",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|42116|2|86|30092026",
+   "when": "2026-09-30T07:18:00+02:00",
+   "plannedWhen": "2026-09-30T07:18:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m49",
+    "name": "M49",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|53992|18|86|30092026",
+   "when": "2026-09-30T07:18:00+02:00",
+   "plannedWhen": "2026-09-30T07:18:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55912|0|86|30092026",
+   "when": "2026-09-30T07:18:00+02:00",
+   "plannedWhen": "2026-09-30T07:18:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u9",
+    "name": "U9",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|985|2|86|30092026",
+   "when": "2026-09-30T07:19:00+02:00",
+   "plannedWhen": "2026-09-30T07:19:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-b",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|32276|1|86|30092026",
+   "when": "2026-09-30T07:19:00+02:00",
+   "plannedWhen": "2026-09-30T07:19:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-245",
+    "name": "245",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|20119|0|86|30092026",
+   "when": "2026-09-30T07:19:00+02:00",
+   "plannedWhen": "2026-09-30T07:20:00+02:00",
+   "delay": -60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-109",
+    "name": "109",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|1716|0|86|30092026",
+   "when": "2026-09-30T07:21:00+02:00",
+   "plannedWhen": "2026-09-30T07:21:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-e",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|41904|0|86|30092026",
+   "when": "2026-09-30T07:21:00+02:00",
+   "plannedWhen": "2026-09-30T07:21:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m49",
+    "name": "M49",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|55877|0|86|30092026",
+   "when": "2026-09-30T07:21:00+02:00",
+   "plannedWhen": "2026-09-30T07:21:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u9",
+    "name": "U9",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|45926|0|86|30092026",
+   "when": "2026-09-30T07:21:00+02:00",
+   "plannedWhen": "2026-09-30T07:23:00+02:00",
+   "delay": -120,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-x34",
+    "name": "X34",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|33294|2|86|30092026",
+   "when": "2026-09-30T07:22:00+02:00",
+   "plannedWhen": "2026-09-30T07:22:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-249",
+    "name": "249",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|40841|2|86|30092026",
+   "when": "2026-09-30T07:22:00+02:00",
+   "plannedWhen": "2026-09-30T07:22:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m45",
+    "name": "M45",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|55917|2|86|30092026",
+   "when": "2026-09-30T07:22:00+02:00",
+   "plannedWhen": "2026-09-30T07:22:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u9",
+    "name": "U9",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|83435|0|86|30092026",
+   "when": "2026-09-30T07:22:00+02:00",
+   "plannedWhen": "2026-09-30T07:23:00+02:00",
+   "delay": -60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-204",
+    "name": "204",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|2664|5|86|30092026",
+   "when": "2026-09-30T07:23:00+02:00",
+   "plannedWhen": "2026-09-30T07:21:00+02:00",
+   "delay": 120,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-oi",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|2615|5|86|30092026",
+   "when": "2026-09-30T07:23:00+02:00",
+   "plannedWhen": "2026-09-30T07:23:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-oi",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|20383|0|86|30092026",
+   "when": "2026-09-30T07:23:00+02:00",
+   "plannedWhen": "2026-09-30T07:23:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-110",
+    "name": "110",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|33275|3|86|30092026",
+   "when": "2026-09-30T07:23:00+02:00",
+   "plannedWhen": "2026-09-30T07:23:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-249",
+    "name": "249",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|44838|0|86|30092026",
+   "when": "2026-09-30T07:23:00+02:00",
+   "plannedWhen": "2026-09-30T07:23:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-x10",
+    "name": "X10",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|53988|8|86|30092026",
+   "when": "2026-09-30T07:23:00+02:00",
+   "plannedWhen": "2026-09-30T07:23:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2080|6|86|30092026",
+   "when": "2026-09-30T07:24:00+02:00",
+   "plannedWhen": "2026-09-30T07:24:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-ei",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|30987|2|86|30092026",
+   "when": "2026-09-30T07:24:00+02:00",
+   "plannedWhen": "2026-09-30T07:24:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-200",
+    "name": "200",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|40676|0|86|30092026",
+   "when": "2026-09-30T07:24:00+02:00",
+   "plannedWhen": "2026-09-30T07:24:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m45",
+    "name": "M45",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|44959|0|86|30092026",
+   "when": "2026-09-30T07:24:00+02:00",
+   "plannedWhen": "2026-09-30T07:24:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-x10",
+    "name": "X10",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|46058|1|86|30092026",
+   "when": "2026-09-30T07:24:00+02:00",
+   "plannedWhen": "2026-09-30T07:24:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-x34",
+    "name": "X34",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|55878|0|86|30092026",
+   "when": "2026-09-30T07:25:00+02:00",
+   "plannedWhen": "2026-09-30T07:25:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u9",
+    "name": "U9",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|32299|0|86|30092026",
+   "when": "2026-09-30T07:25:00+02:00",
+   "plannedWhen": "2026-09-30T07:26:00+02:00",
+   "delay": -60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-245",
+    "name": "245",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|41313|2|86|30092026",
+   "when": "2026-09-30T07:26:00+02:00",
+   "plannedWhen": "2026-09-30T07:19:00+02:00",
+   "delay": 420,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m46",
+    "name": "M46",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|940|1|86|30092026",
+   "when": "2026-09-30T07:26:00+02:00",
+   "plannedWhen": "2026-09-30T07:26:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-b",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|1248|4|86|30092026",
+   "when": "2026-09-30T07:26:00+02:00",
+   "plannedWhen": "2026-09-30T07:26:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-bi",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|55909|1|86|30092026",
+   "when": "2026-09-30T07:26:00+02:00",
+   "plannedWhen": "2026-09-30T07:26:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u9",
+    "name": "U9",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|41221|8|86|30092026",
+   "when": "2026-09-30T07:27:00+02:00",
+   "plannedWhen": "2026-09-30T07:27:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m46",
+    "name": "M46",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|20239|1|86|30092026",
+   "when": "2026-09-30T07:28:00+02:00",
+   "plannedWhen": "2026-09-30T07:28:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-109",
+    "name": "109",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|53992|19|86|30092026",
+   "when": "2026-09-30T07:28:00+02:00",
+   "plannedWhen": "2026-09-30T07:28:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|3441|6|86|30092026",
+   "when": "2026-09-30T07:29:00+02:00",
+   "plannedWhen": "2026-09-30T07:29:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s9-s9-c",
+    "name": "S9",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|32231|1|86|30092026",
+   "when": "2026-09-30T07:29:00+02:00",
+   "plannedWhen": "2026-09-30T07:29:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-245",
+    "name": "245",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|42118|0|86|30092026",
+   "when": "2026-09-30T07:29:00+02:00",
+   "plannedWhen": "2026-09-30T07:29:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m49",
+    "name": "M49",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|55879|0|86|30092026",
+   "when": "2026-09-30T07:29:00+02:00",
+   "plannedWhen": "2026-09-30T07:29:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u9",
+    "name": "U9",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|41315|0|86|30092026",
+   "when": "2026-09-30T07:30:00+02:00",
+   "plannedWhen": "2026-09-30T07:29:00+02:00",
+   "delay": 60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m46",
+    "name": "M46",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|18697|1|86|30092026",
+   "when": "2026-09-30T07:30:00+02:00",
+   "plannedWhen": "2026-09-30T07:30:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-100",
+    "name": "100",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|40841|3|86|30092026",
+   "when": "2026-09-30T07:30:00+02:00",
+   "plannedWhen": "2026-09-30T07:30:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m45",
+    "name": "M45",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|55910|1|86|30092026",
+   "when": "2026-09-30T07:30:00+02:00",
+   "plannedWhen": "2026-09-30T07:30:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u9",
+    "name": "U9",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|20436|0|86|30092026",
+   "when": "2026-09-30T07:30:00+02:00",
+   "plannedWhen": "2026-09-30T07:31:00+02:00",
+   "delay": -60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-110",
+    "name": "110",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|83918|3|86|30092026",
+   "when": "2026-09-30T07:30:00+02:00",
+   "plannedWhen": "2026-09-30T07:32:00+02:00",
+   "delay": -120,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-249",
+    "name": "249",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|2033|4|86|30092026",
+   "when": "2026-09-30T07:31:00+02:00",
+   "plannedWhen": "2026-09-30T07:31:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-ei",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|2426|0|86|30092026",
+   "when": "2026-09-30T07:31:00+02:00",
+   "plannedWhen": "2026-09-30T07:31:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-o",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|20161|0|86|30092026",
+   "when": "2026-09-30T07:32:00+02:00",
+   "plannedWhen": "2026-09-30T07:31:00+02:00",
+   "delay": 60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-109",
+    "name": "109",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|40676|1|86|30092026",
+   "when": "2026-09-30T07:32:00+02:00",
+   "plannedWhen": "2026-09-30T07:32:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m45",
+    "name": "M45",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|2387|4|86|30092026",
+   "when": "2026-09-30T07:33:00+02:00",
+   "plannedWhen": "2026-09-30T07:33:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-o",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|41838|0|86|30092026",
+   "when": "2026-09-30T07:33:00+02:00",
+   "plannedWhen": "2026-09-30T07:33:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m49",
+    "name": "M49",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|53988|9|86|30092026",
+   "when": "2026-09-30T07:33:00+02:00",
+   "plannedWhen": "2026-09-30T07:33:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55886|2|86|30092026",
+   "when": "2026-09-30T07:33:00+02:00",
+   "plannedWhen": "2026-09-30T07:33:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u9",
+    "name": "U9",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|83459|0|86|30092026",
+   "when": "2026-09-30T07:33:00+02:00",
+   "plannedWhen": "2026-09-30T07:33:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-204",
+    "name": "204",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "Y ",
+     "summary": null,
+     "text": "ab S Südkreuz weiter als Bus 106 Richtung Lindenhof (S+U Zoologischer Garten Bhf (Berlin) - S Südkreuz Bhf (Berlin))"
+    }
+   ]
+  },
+  {
+   "tripId": "1|83968|4|86|30092026",
+   "when": "2026-09-30T07:33:00+02:00",
+   "plannedWhen": "2026-09-30T07:33:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-249",
+    "name": "249",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|44998|0|86|30092026",
+   "when": "2026-09-30T07:33:00+02:00",
+   "plannedWhen": "2026-09-30T07:34:00+02:00",
+   "delay": -60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-x10",
+    "name": "X10",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|1781|0|86|30092026",
+   "when": "2026-09-30T07:34:00+02:00",
+   "plannedWhen": "2026-09-30T07:34:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-e",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|55911|1|86|30092026",
+   "when": "2026-09-30T07:34:00+02:00",
+   "plannedWhen": "2026-09-30T07:34:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u9",
+    "name": "U9",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|44879|0|86|30092026",
+   "when": "2026-09-30T07:35:00+02:00",
+   "plannedWhen": "2026-09-30T07:35:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-x10",
+    "name": "X10",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|3388|8|86|30092026",
+   "when": "2026-09-30T07:36:00+02:00",
+   "plannedWhen": "2026-09-30T07:36:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s9-s9-c",
+    "name": "S9",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|30987|3|86|30092026",
+   "when": "2026-09-30T07:36:00+02:00",
+   "plannedWhen": "2026-09-30T07:36:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-200",
+    "name": "200",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|46148|0|86|30092026",
+   "when": "2026-09-30T07:36:00+02:00",
+   "plannedWhen": "2026-09-30T07:36:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-x34",
+    "name": "X34",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|45994|0|86|30092026",
+   "when": "2026-09-30T07:36:00+02:00",
+   "plannedWhen": "2026-09-30T07:37:00+02:00",
+   "delay": -60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-x34",
+    "name": "X34",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|41221|9|86|30092026",
+   "when": "2026-09-30T07:37:00+02:00",
+   "plannedWhen": "2026-09-30T07:37:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m46",
+    "name": "M46",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|55876|1|86|30092026",
+   "when": "2026-09-30T07:37:00+02:00",
+   "plannedWhen": "2026-09-30T07:37:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u9",
+    "name": "U9",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1195|3|86|30092026",
+   "when": "2026-09-30T07:38:00+02:00",
+   "plannedWhen": "2026-09-30T07:38:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-bi",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|20206|2|86|30092026",
+   "when": "2026-09-30T07:38:00+02:00",
+   "plannedWhen": "2026-09-30T07:38:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-109",
+    "name": "109",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|53992|20|86|30092026",
+   "when": "2026-09-30T07:38:00+02:00",
+   "plannedWhen": "2026-09-30T07:38:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55912|1|86|30092026",
+   "when": "2026-09-30T07:38:00+02:00",
+   "plannedWhen": "2026-09-30T07:38:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u9",
+    "name": "U9",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|41316|0|86|30092026",
+   "when": "2026-09-30T07:38:00+02:00",
+   "plannedWhen": "2026-09-30T07:39:00+02:00",
+   "delay": -60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m46",
+    "name": "M46",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|984|3|86|30092026",
+   "when": "2026-09-30T07:39:00+02:00",
+   "plannedWhen": "2026-09-30T07:39:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-b",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|32276|2|86|30092026",
+   "when": "2026-09-30T07:39:00+02:00",
+   "plannedWhen": "2026-09-30T07:39:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-245",
+    "name": "245",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|32355|1|86|30092026",
+   "when": "2026-09-30T07:39:00+02:00",
+   "plannedWhen": "2026-09-30T07:39:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-245",
+    "name": "245",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|40843|0|86|30092026",
+   "when": "2026-09-30T07:39:00+02:00",
+   "plannedWhen": "2026-09-30T07:39:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m45",
+    "name": "M45",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|42119|0|86|30092026",
+   "when": "2026-09-30T07:40:00+02:00",
+   "plannedWhen": "2026-09-30T07:40:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m49",
+    "name": "M49",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|40677|0|86|30092026",
+   "when": "2026-09-30T07:40:00+02:00",
+   "plannedWhen": "2026-09-30T07:41:00+02:00",
+   "delay": -60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m45",
+    "name": "M45",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|1720|1|86|30092026",
+   "when": "2026-09-30T07:41:00+02:00",
+   "plannedWhen": "2026-09-30T07:41:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-e",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|2666|0|86|30092026",
+   "when": "2026-09-30T07:41:00+02:00",
+   "plannedWhen": "2026-09-30T07:41:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-oi",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|20120|0|86|30092026",
+   "when": "2026-09-30T07:41:00+02:00",
+   "plannedWhen": "2026-09-30T07:41:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-109",
+    "name": "109",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|55877|1|86|30092026",
+   "when": "2026-09-30T07:41:00+02:00",
+   "plannedWhen": "2026-09-30T07:41:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u9",
+    "name": "U9",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|33294|3|86|30092026",
+   "when": "2026-09-30T07:42:00+02:00",
+   "plannedWhen": "2026-09-30T07:42:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-249",
+    "name": "249",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|55917|3|86|30092026",
+   "when": "2026-09-30T07:42:00+02:00",
+   "plannedWhen": "2026-09-30T07:42:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u9",
+    "name": "U9",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2617|0|86|30092026",
+   "when": "2026-09-30T07:43:00+02:00",
+   "plannedWhen": "2026-09-30T07:43:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-oi",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|20383|1|86|30092026",
+   "when": "2026-09-30T07:43:00+02:00",
+   "plannedWhen": "2026-09-30T07:43:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-110",
+    "name": "110",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|33275|4|86|30092026",
+   "when": "2026-09-30T07:43:00+02:00",
+   "plannedWhen": "2026-09-30T07:43:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-249",
+    "name": "249",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|53988|10|86|30092026",
+   "when": "2026-09-30T07:43:00+02:00",
+   "plannedWhen": "2026-09-30T07:43:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|83427|0|86|30092026",
+   "when": "2026-09-30T07:43:00+02:00",
+   "plannedWhen": "2026-09-30T07:43:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-204",
+    "name": "204",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|44960|0|86|30092026",
+   "when": "2026-09-30T07:43:00+02:00",
+   "plannedWhen": "2026-09-30T07:44:00+02:00",
+   "delay": -60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-x10",
+    "name": "X10",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|41906|0|86|30092026",
+   "when": "2026-09-30T07:43:00+02:00",
+   "plannedWhen": "2026-09-30T07:45:00+02:00",
+   "delay": -120,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m49",
+    "name": "M49",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|2080|7|86|30092026",
+   "when": "2026-09-30T07:44:00+02:00",
+   "plannedWhen": "2026-09-30T07:44:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-ei",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|18698|0|86|30092026",
+   "when": "2026-09-30T07:45:00+02:00",
+   "plannedWhen": "2026-09-30T07:45:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-100",
+    "name": "100",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|55878|1|86|30092026",
+   "when": "2026-09-30T07:45:00+02:00",
+   "plannedWhen": "2026-09-30T07:45:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u9",
+    "name": "U9",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|939|1|86|30092026",
+   "when": "2026-09-30T07:46:00+02:00",
+   "plannedWhen": "2026-09-30T07:46:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-b",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|1248|5|86|30092026",
+   "when": "2026-09-30T07:46:00+02:00",
+   "plannedWhen": "2026-09-30T07:46:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-bi",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|40844|0|86|30092026",
+   "when": "2026-09-30T07:46:00+02:00",
+   "plannedWhen": "2026-09-30T07:46:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m45",
+    "name": "M45",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|46060|0|86|30092026",
+   "when": "2026-09-30T07:46:00+02:00",
+   "plannedWhen": "2026-09-30T07:46:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-x34",
+    "name": "X34",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|55909|2|86|30092026",
+   "when": "2026-09-30T07:46:00+02:00",
+   "plannedWhen": "2026-09-30T07:46:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u9",
+    "name": "U9",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|41221|10|86|30092026",
+   "when": "2026-09-30T07:47:00+02:00",
+   "plannedWhen": "2026-09-30T07:47:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m46",
+    "name": "M46",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|44839|0|86|30092026",
+   "when": "2026-09-30T07:47:00+02:00",
+   "plannedWhen": "2026-09-30T07:47:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-x10",
+    "name": "X10",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|20239|2|86|30092026",
+   "when": "2026-09-30T07:48:00+02:00",
+   "plannedWhen": "2026-09-30T07:48:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-109",
+    "name": "109",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|30987|4|86|30092026",
+   "when": "2026-09-30T07:48:00+02:00",
+   "plannedWhen": "2026-09-30T07:48:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-200",
+    "name": "200",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|53992|21|86|30092026",
+   "when": "2026-09-30T07:48:00+02:00",
+   "plannedWhen": "2026-09-30T07:48:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|40678|0|86|30092026",
+   "when": "2026-09-30T07:48:00+02:00",
+   "plannedWhen": "2026-09-30T07:49:00+02:00",
+   "delay": -60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m45",
+    "name": "M45",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|45928|0|86|30092026",
+   "when": "2026-09-30T07:49:00+02:00",
+   "plannedWhen": "2026-09-30T07:47:00+02:00",
+   "delay": 120,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-x34",
+    "name": "X34",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|3441|7|86|30092026",
+   "when": "2026-09-30T07:49:00+02:00",
+   "plannedWhen": "2026-09-30T07:49:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s9-s9-c",
+    "name": "S9",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|32232|0|86|30092026",
+   "when": "2026-09-30T07:49:00+02:00",
+   "plannedWhen": "2026-09-30T07:49:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-245",
+    "name": "245",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|32300|0|86|30092026",
+   "when": "2026-09-30T07:49:00+02:00",
+   "plannedWhen": "2026-09-30T07:49:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-245",
+    "name": "245",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|41317|0|86|30092026",
+   "when": "2026-09-30T07:49:00+02:00",
+   "plannedWhen": "2026-09-30T07:49:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m46",
+    "name": "M46",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|55879|1|86|30092026",
+   "when": "2026-09-30T07:49:00+02:00",
+   "plannedWhen": "2026-09-30T07:49:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u9",
+    "name": "U9",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|42119|1|86|30092026",
+   "when": "2026-09-30T07:50:00+02:00",
+   "plannedWhen": "2026-09-30T07:50:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m49",
+    "name": "M49",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|55910|2|86|30092026",
+   "when": "2026-09-30T07:50:00+02:00",
+   "plannedWhen": "2026-09-30T07:50:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u9",
+    "name": "U9",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2033|5|86|30092026",
+   "when": "2026-09-30T07:51:00+02:00",
+   "plannedWhen": "2026-09-30T07:51:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-ei",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|2426|1|86|30092026",
+   "when": "2026-09-30T07:51:00+02:00",
+   "plannedWhen": "2026-09-30T07:51:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-o",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|20161|1|86|30092026",
+   "when": "2026-09-30T07:51:00+02:00",
+   "plannedWhen": "2026-09-30T07:51:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-109",
+    "name": "109",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|41840|0|86|30092026",
+   "when": "2026-09-30T07:51:00+02:00",
+   "plannedWhen": "2026-09-30T07:55:00+02:00",
+   "delay": -240,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m49",
+    "name": "M49",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|20436|1|86|30092026",
+   "when": "2026-09-30T07:52:00+02:00",
+   "plannedWhen": "2026-09-30T07:52:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-110",
+    "name": "110",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|83918|4|86|30092026",
+   "when": "2026-09-30T07:52:00+02:00",
+   "plannedWhen": "2026-09-30T07:52:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-249",
+    "name": "249",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|2361|0|86|30092026",
+   "when": "2026-09-30T07:53:00+02:00",
+   "plannedWhen": "2026-09-30T07:53:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-o",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|53988|11|86|30092026",
+   "when": "2026-09-30T07:53:00+02:00",
+   "plannedWhen": "2026-09-30T07:53:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55886|3|86|30092026",
+   "when": "2026-09-30T07:53:00+02:00",
+   "plannedWhen": "2026-09-30T07:53:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u9",
+    "name": "U9",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|83459|1|86|30092026",
+   "when": "2026-09-30T07:53:00+02:00",
+   "plannedWhen": "2026-09-30T07:53:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-204",
+    "name": "204",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "Y ",
+     "summary": null,
+     "text": "ab S Südkreuz weiter als Bus 106 Richtung Lindenhof (S+U Zoologischer Garten Bhf (Berlin) - S Südkreuz Bhf (Berlin))"
+    }
+   ]
+  },
+  {
+   "tripId": "1|83968|5|86|30092026",
+   "when": "2026-09-30T07:53:00+02:00",
+   "plannedWhen": "2026-09-30T07:53:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-249",
+    "name": "249",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|1783|1|86|30092026",
+   "when": "2026-09-30T07:54:00+02:00",
+   "plannedWhen": "2026-09-30T07:54:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-e",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|40845|0|86|30092026",
+   "when": "2026-09-30T07:54:00+02:00",
+   "plannedWhen": "2026-09-30T07:54:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m45",
+    "name": "M45",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|44999|0|86|30092026",
+   "when": "2026-09-30T07:54:00+02:00",
+   "plannedWhen": "2026-09-30T07:54:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-x10",
+    "name": "X10",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|55911|2|86|30092026",
+   "when": "2026-09-30T07:54:00+02:00",
+   "plannedWhen": "2026-09-30T07:54:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u9",
+    "name": "U9",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|40678|1|86|30092026",
+   "when": "2026-09-30T07:55:00+02:00",
+   "plannedWhen": "2026-09-30T07:57:00+02:00",
+   "delay": -120,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m45",
+    "name": "M45",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|3388|9|86|30092026",
+   "when": "2026-09-30T07:56:00+02:00",
+   "plannedWhen": "2026-09-30T07:56:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s9-s9-c",
+    "name": "S9",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|41223|0|86|30092026",
+   "when": "2026-09-30T07:56:00+02:00",
+   "plannedWhen": "2026-09-30T07:56:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m46",
+    "name": "M46",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|46148|1|86|30092026",
+   "when": "2026-09-30T07:56:00+02:00",
+   "plannedWhen": "2026-09-30T07:56:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-x34",
+    "name": "X34",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|45996|0|86|30092026",
+   "when": "2026-09-30T07:56:00+02:00",
+   "plannedWhen": "2026-09-30T07:57:00+02:00",
+   "delay": -60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-x34",
+    "name": "X34",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|41840|1|86|30092026",
+   "when": "2026-09-30T07:57:00+02:00",
+   "plannedWhen": "2026-09-30T07:57:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m49",
+    "name": "M49",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|44880|0|86|30092026",
+   "when": "2026-09-30T07:57:00+02:00",
+   "plannedWhen": "2026-09-30T07:57:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-x10",
+    "name": "X10",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|55876|2|86|30092026",
+   "when": "2026-09-30T07:57:00+02:00",
+   "plannedWhen": "2026-09-30T07:57:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u9",
+    "name": "U9",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|41318|0|86|30092026",
+   "when": "2026-09-30T07:57:00+02:00",
+   "plannedWhen": "2026-09-30T07:59:00+02:00",
+   "delay": -120,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m46",
+    "name": "M46",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|1195|4|86|30092026",
+   "when": "2026-09-30T07:58:00+02:00",
+   "plannedWhen": "2026-09-30T07:58:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-bi",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|20206|3|86|30092026",
+   "when": "2026-09-30T07:58:00+02:00",
+   "plannedWhen": "2026-09-30T07:58:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-109",
+    "name": "109",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|31193|0|86|30092026",
+   "when": "2026-09-30T07:58:00+02:00",
+   "plannedWhen": "2026-09-30T07:58:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-204",
+    "name": "204",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|53992|22|86|30092026",
+   "when": "2026-09-30T07:58:00+02:00",
+   "plannedWhen": "2026-09-30T07:58:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55912|2|86|30092026",
+   "when": "2026-09-30T07:58:00+02:00",
+   "plannedWhen": "2026-09-30T07:58:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u9",
+    "name": "U9",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|985|3|86|30092026",
+   "when": "2026-09-30T07:59:00+02:00",
+   "plannedWhen": "2026-09-30T07:59:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-b",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|32277|0|86|30092026",
+   "when": "2026-09-30T07:59:00+02:00",
+   "plannedWhen": "2026-09-30T07:59:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-245",
+    "name": "245",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|32356|0|86|30092026",
+   "when": "2026-09-30T07:59:00+02:00",
+   "plannedWhen": "2026-09-30T07:59:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-245",
+    "name": "245",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|30987|5|86|30092026",
+   "when": "2026-09-30T08:00:00+02:00",
+   "plannedWhen": "2026-09-30T08:00:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-200",
+    "name": "200",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|42119|2|86|30092026",
+   "when": "2026-09-30T08:00:00+02:00",
+   "plannedWhen": "2026-09-30T08:00:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m49",
+    "name": "M49",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|1716|1|86|30092026",
+   "when": "2026-09-30T08:01:00+02:00",
+   "plannedWhen": "2026-09-30T08:01:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-e",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|2666|1|86|30092026",
+   "when": "2026-09-30T08:01:00+02:00",
+   "plannedWhen": "2026-09-30T08:01:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-oi",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|20120|1|86|30092026",
+   "when": "2026-09-30T08:01:00+02:00",
+   "plannedWhen": "2026-09-30T08:01:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-109",
+    "name": "109",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|40846|0|86|30092026",
+   "when": "2026-09-30T08:01:00+02:00",
+   "plannedWhen": "2026-09-30T08:01:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m45",
+    "name": "M45",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|55877|2|86|30092026",
+   "when": "2026-09-30T08:01:00+02:00",
+   "plannedWhen": "2026-09-30T08:01:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u9",
+    "name": "U9",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|33294|4|86|30092026",
+   "when": "2026-09-30T08:02:00+02:00",
+   "plannedWhen": "2026-09-30T08:02:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-249",
+    "name": "249",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|55917|4|86|30092026",
+   "when": "2026-09-30T08:02:00+02:00",
+   "plannedWhen": "2026-09-30T08:02:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u9",
+    "name": "U9",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2617|1|86|30092026",
+   "when": "2026-09-30T08:03:00+02:00",
+   "plannedWhen": "2026-09-30T08:03:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-oi",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|20383|2|86|30092026",
+   "when": "2026-09-30T08:03:00+02:00",
+   "plannedWhen": "2026-09-30T08:03:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-110",
+    "name": "110",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|33275|5|86|30092026",
+   "when": "2026-09-30T08:03:00+02:00",
+   "plannedWhen": "2026-09-30T08:03:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-249",
+    "name": "249",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|53988|12|86|30092026",
+   "when": "2026-09-30T08:03:00+02:00",
+   "plannedWhen": "2026-09-30T08:03:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|83427|1|86|30092026",
+   "when": "2026-09-30T08:03:00+02:00",
+   "plannedWhen": "2026-09-30T08:03:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-204",
+    "name": "204",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|2080|8|86|30092026",
+   "when": "2026-09-30T08:04:00+02:00",
+   "plannedWhen": "2026-09-30T08:04:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-ei",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|44961|0|86|30092026",
+   "when": "2026-09-30T08:04:00+02:00",
+   "plannedWhen": "2026-09-30T08:04:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-x10",
+    "name": "X10",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|18699|0|86|30092026",
+   "when": "2026-09-30T08:05:00+02:00",
+   "plannedWhen": "2026-09-30T08:05:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-100",
+    "name": "100",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|40678|2|86|30092026",
+   "when": "2026-09-30T08:05:00+02:00",
+   "plannedWhen": "2026-09-30T08:05:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m45",
+    "name": "M45",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|41224|0|86|30092026",
+   "when": "2026-09-30T08:05:00+02:00",
+   "plannedWhen": "2026-09-30T08:05:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m46",
+    "name": "M46",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|41909|0|86|30092026",
+   "when": "2026-09-30T08:05:00+02:00",
+   "plannedWhen": "2026-09-30T08:05:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m49",
+    "name": "M49",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|55878|2|86|30092026",
+   "when": "2026-09-30T08:05:00+02:00",
+   "plannedWhen": "2026-09-30T08:05:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u9",
+    "name": "U9",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|940|2|86|30092026",
+   "when": "2026-09-30T08:06:00+02:00",
+   "plannedWhen": "2026-09-30T08:06:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-b",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|1248|6|86|30092026",
+   "when": "2026-09-30T08:06:00+02:00",
+   "plannedWhen": "2026-09-30T08:06:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-bi",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|46060|1|86|30092026",
+   "when": "2026-09-30T08:06:00+02:00",
+   "plannedWhen": "2026-09-30T08:06:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-x34",
+    "name": "X34",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|55909|3|86|30092026",
+   "when": "2026-09-30T08:06:00+02:00",
+   "plannedWhen": "2026-09-30T08:06:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u9",
+    "name": "U9",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|44839|1|86|30092026",
+   "when": "2026-09-30T08:07:00+02:00",
+   "plannedWhen": "2026-09-30T08:07:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-x10",
+    "name": "X10",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|45930|0|86|30092026",
+   "when": "2026-09-30T08:07:00+02:00",
+   "plannedWhen": "2026-09-30T08:07:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-x34",
+    "name": "X34",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|20239|3|86|30092026",
+   "when": "2026-09-30T08:08:00+02:00",
+   "plannedWhen": "2026-09-30T08:08:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-109",
+    "name": "109",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|31203|0|86|30092026",
+   "when": "2026-09-30T08:08:00+02:00",
+   "plannedWhen": "2026-09-30T08:08:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-204",
+    "name": "204",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|53992|23|86|30092026",
+   "when": "2026-09-30T08:08:00+02:00",
+   "plannedWhen": "2026-09-30T08:08:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|3441|8|86|30092026",
+   "when": "2026-09-30T08:09:00+02:00",
+   "plannedWhen": "2026-09-30T08:09:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s9-s9-c",
+    "name": "S9",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": "361225",
+     "type": "warning",
+     "code": null,
+     "summary": "Information.",
+     "text": "An alle mobilitätseingeschränkte Fahrgäste: Wegen Bauarbeiten am Bahnsteig kann keine Rollstuhlrampe an den S-Bahn-Zügen angelegt werden. Bitte nutzen Sie alternativ den Mobilitätsservice VBB-BAV unter <a href=\"tel:03025414444\" target=\"_blank\">030 - 25 41 44 44</a>."
+    }
+   ]
+  },
+  {
+   "tripId": "1|32301|0|86|30092026",
+   "when": "2026-09-30T08:09:00+02:00",
+   "plannedWhen": "2026-09-30T08:09:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-245",
+    "name": "245",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|40846|1|86|30092026",
+   "when": "2026-09-30T08:09:00+02:00",
+   "plannedWhen": "2026-09-30T08:09:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m45",
+    "name": "M45",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|41318|1|86|30092026",
+   "when": "2026-09-30T08:09:00+02:00",
+   "plannedWhen": "2026-09-30T08:09:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m46",
+    "name": "M46",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|42024|0|86|30092026",
+   "when": "2026-09-30T08:09:00+02:00",
+   "plannedWhen": "2026-09-30T08:09:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-m49",
+    "name": "M49",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|55879|2|86|30092026",
+   "when": "2026-09-30T08:09:00+02:00",
+   "plannedWhen": "2026-09-30T08:09:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u9",
+    "name": "U9",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900023201",
+    "name": "S+U Zoologischer Garten Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  }
+ ]
+}

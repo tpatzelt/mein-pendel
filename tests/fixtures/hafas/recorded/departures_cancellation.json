@@ -1,0 +1,1725 @@
+{
+ "departures": [
+  {
+   "tripId": "1|1492|0|86|30092026",
+   "when": null,
+   "plannedWhen": "2026-09-30T07:20:00+02:00",
+   "delay": null,
+   "cancelled": true,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s46-s46-d",
+    "name": "S46",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": null,
+     "type": "status",
+     "code": "text.realtime.journey.cancelled",
+     "summary": null,
+     "text": "S46 has been cancelled"
+    },
+    {
+     "id": null,
+     "type": "status",
+     "code": "text.realtime.journey.partially.cancelled.between",
+     "summary": null,
+     "text": "S46: Journey is cancelled between S Westkreuz (Berlin) and S Hohenzollerndamm (Berlin). Please use another trip."
+    },
+    {
+     "id": null,
+     "type": "status",
+     "code": "text.realtime.stop.cancelled",
+     "summary": null,
+     "text": "Stop cancelled"
+    }
+   ]
+  },
+  {
+   "tripId": "1|942|0|86|30092026",
+   "when": "2026-09-30T07:12:00+02:00",
+   "plannedWhen": "2026-09-30T07:12:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-b",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|985|2|86|30092026",
+   "when": "2026-09-30T07:12:00+02:00",
+   "plannedWhen": "2026-09-30T07:12:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-b",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|80267|1|86|30092026",
+   "when": "2026-09-30T07:12:00+02:00",
+   "plannedWhen": "2026-09-30T07:12:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s42-s42-ri",
+    "name": "S42",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|78968|0|86|30092026",
+   "when": "2026-09-30T07:14:00+02:00",
+   "plannedWhen": "2026-09-30T07:14:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s41-s41-ai",
+    "name": "S41",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1439|7|86|30092026",
+   "when": "2026-09-30T07:16:00+02:00",
+   "plannedWhen": "2026-09-30T07:16:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s46-s46-d",
+    "name": "S46",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|49245|0|86|30092026",
+   "when": "2026-09-30T07:16:00+02:00",
+   "plannedWhen": "2026-09-30T07:16:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-143",
+    "name": "143",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": "328813",
+     "type": "warning",
+     "code": null,
+     "summary": "Moved Stop",
+     "text": "Bus 143, N43: The stop S Westkreuz towards Brixplatz has been moved 110 meters against the driving direction."
+    }
+   ]
+  },
+  {
+   "tripId": "1|2664|5|86|30092026",
+   "when": "2026-09-30T07:17:00+02:00",
+   "plannedWhen": "2026-09-30T07:15:00+02:00",
+   "delay": 120,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-oi",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2080|6|86|30092026",
+   "when": "2026-09-30T07:17:00+02:00",
+   "plannedWhen": "2026-09-30T07:17:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-ei",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|81662|13|86|30092026",
+   "when": "2026-09-30T07:19:00+02:00",
+   "plannedWhen": "2026-09-30T07:17:00+02:00",
+   "delay": 120,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s42-s42-r",
+    "name": "S42",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|80747|8|86|30092026",
+   "when": "2026-09-30T07:19:00+02:00",
+   "plannedWhen": "2026-09-30T07:19:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s41-s41-a",
+    "name": "S41",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2357|0|86|30092026",
+   "when": "2026-09-30T07:20:00+02:00",
+   "plannedWhen": "2026-09-30T07:20:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-o",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|3388|7|86|30092026",
+   "when": "2026-09-30T07:22:00+02:00",
+   "plannedWhen": "2026-09-30T07:22:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s9-s9-c",
+    "name": "S9",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|3441|6|86|30092026",
+   "when": "2026-09-30T07:22:00+02:00",
+   "plannedWhen": "2026-09-30T07:22:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s9-s9-c",
+    "name": "S9",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|80281|2|86|30092026",
+   "when": "2026-09-30T07:23:00+02:00",
+   "plannedWhen": "2026-09-30T07:22:00+02:00",
+   "delay": 60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s42-s42-ri",
+    "name": "S42",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|78972|1|86|30092026",
+   "when": "2026-09-30T07:24:00+02:00",
+   "plannedWhen": "2026-09-30T07:24:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s41-s41-ai",
+    "name": "S41",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2426|0|86|30092026",
+   "when": "2026-09-30T07:25:00+02:00",
+   "plannedWhen": "2026-09-30T07:25:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-o",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1781|0|86|30092026",
+   "when": "2026-09-30T07:27:00+02:00",
+   "plannedWhen": "2026-09-30T07:27:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-e",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|81662|14|86|30092026",
+   "when": "2026-09-30T07:27:00+02:00",
+   "plannedWhen": "2026-09-30T07:27:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s42-s42-r",
+    "name": "S42",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|80747|9|86|30092026",
+   "when": "2026-09-30T07:29:00+02:00",
+   "plannedWhen": "2026-09-30T07:29:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s41-s41-a",
+    "name": "S41",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2615|5|86|30092026",
+   "when": "2026-09-30T07:30:00+02:00",
+   "plannedWhen": "2026-09-30T07:30:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-oi",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|940|1|86|30092026",
+   "when": "2026-09-30T07:32:00+02:00",
+   "plannedWhen": "2026-09-30T07:32:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-b",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|984|3|86|30092026",
+   "when": "2026-09-30T07:32:00+02:00",
+   "plannedWhen": "2026-09-30T07:32:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-b",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|80267|2|86|30092026",
+   "when": "2026-09-30T07:32:00+02:00",
+   "plannedWhen": "2026-09-30T07:32:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s42-s42-ri",
+    "name": "S42",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|78968|1|86|30092026",
+   "when": "2026-09-30T07:34:00+02:00",
+   "plannedWhen": "2026-09-30T07:34:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s41-s41-ai",
+    "name": "S41",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2666|0|86|30092026",
+   "when": "2026-09-30T07:35:00+02:00",
+   "plannedWhen": "2026-09-30T07:35:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-oi",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1439|8|86|30092026",
+   "when": "2026-09-30T07:36:00+02:00",
+   "plannedWhen": "2026-09-30T07:36:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s46-s46-d",
+    "name": "S46",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2080|7|86|30092026",
+   "when": "2026-09-30T07:37:00+02:00",
+   "plannedWhen": "2026-09-30T07:37:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-ei",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|81662|15|86|30092026",
+   "when": "2026-09-30T07:37:00+02:00",
+   "plannedWhen": "2026-09-30T07:37:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s42-s42-r",
+    "name": "S42",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|49246|0|86|30092026",
+   "when": "2026-09-30T07:39:00+02:00",
+   "plannedWhen": "2026-09-30T07:39:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-143",
+    "name": "143",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": "328813",
+     "type": "warning",
+     "code": null,
+     "summary": "Moved Stop",
+     "text": "Bus 143, N43: The stop S Westkreuz towards Brixplatz has been moved 110 meters against the driving direction."
+    }
+   ]
+  },
+  {
+   "tripId": "1|80747|10|86|30092026",
+   "when": "2026-09-30T07:39:00+02:00",
+   "plannedWhen": "2026-09-30T07:39:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s41-s41-a",
+    "name": "S41",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1490|3|86|30092026",
+   "when": "2026-09-30T07:40:00+02:00",
+   "plannedWhen": "2026-09-30T07:40:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s46-s46-d",
+    "name": "S46",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2387|4|86|30092026",
+   "when": "2026-09-30T07:40:00+02:00",
+   "plannedWhen": "2026-09-30T07:40:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-o",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|3388|8|86|30092026",
+   "when": "2026-09-30T07:42:00+02:00",
+   "plannedWhen": "2026-09-30T07:42:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s9-s9-c",
+    "name": "S9",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|3441|7|86|30092026",
+   "when": "2026-09-30T07:42:00+02:00",
+   "plannedWhen": "2026-09-30T07:42:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s9-s9-c",
+    "name": "S9",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|80281|3|86|30092026",
+   "when": "2026-09-30T07:42:00+02:00",
+   "plannedWhen": "2026-09-30T07:42:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s42-s42-ri",
+    "name": "S42",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|78972|2|86|30092026",
+   "when": "2026-09-30T07:44:00+02:00",
+   "plannedWhen": "2026-09-30T07:44:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s41-s41-ai",
+    "name": "S41",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2426|1|86|30092026",
+   "when": "2026-09-30T07:45:00+02:00",
+   "plannedWhen": "2026-09-30T07:45:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-o",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1783|1|86|30092026",
+   "when": "2026-09-30T07:47:00+02:00",
+   "plannedWhen": "2026-09-30T07:47:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-e",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|81662|16|86|30092026",
+   "when": "2026-09-30T07:47:00+02:00",
+   "plannedWhen": "2026-09-30T07:47:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s42-s42-r",
+    "name": "S42",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|80747|11|86|30092026",
+   "when": "2026-09-30T07:49:00+02:00",
+   "plannedWhen": "2026-09-30T07:49:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s41-s41-a",
+    "name": "S41",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2617|0|86|30092026",
+   "when": "2026-09-30T07:50:00+02:00",
+   "plannedWhen": "2026-09-30T07:50:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-oi",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|939|1|86|30092026",
+   "when": "2026-09-30T07:52:00+02:00",
+   "plannedWhen": "2026-09-30T07:52:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-b",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|985|3|86|30092026",
+   "when": "2026-09-30T07:52:00+02:00",
+   "plannedWhen": "2026-09-30T07:52:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-b",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|80267|0|86|30092026",
+   "when": "2026-09-30T07:52:00+02:00",
+   "plannedWhen": "2026-09-30T07:52:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s42-s42-ri",
+    "name": "S42",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|78968|2|86|30092026",
+   "when": "2026-09-30T07:54:00+02:00",
+   "plannedWhen": "2026-09-30T07:54:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s41-s41-ai",
+    "name": "S41",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|80734|1|86|30092026",
+   "when": "2026-09-30T07:54:00+02:00",
+   "plannedWhen": "2026-09-30T07:54:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s41-s41-ai",
+    "name": "S41",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2666|1|86|30092026",
+   "when": "2026-09-30T07:55:00+02:00",
+   "plannedWhen": "2026-09-30T07:55:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-oi",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1439|9|86|30092026",
+   "when": "2026-09-30T07:56:00+02:00",
+   "plannedWhen": "2026-09-30T07:56:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s46-s46-d",
+    "name": "S46",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2080|8|86|30092026",
+   "when": "2026-09-30T07:57:00+02:00",
+   "plannedWhen": "2026-09-30T07:57:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-ei",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|81662|17|86|30092026",
+   "when": "2026-09-30T07:57:00+02:00",
+   "plannedWhen": "2026-09-30T07:57:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s42-s42-r",
+    "name": "S42",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|49246|1|86|30092026",
+   "when": "2026-09-30T07:59:00+02:00",
+   "plannedWhen": "2026-09-30T07:59:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-143",
+    "name": "143",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": "328813",
+     "type": "warning",
+     "code": null,
+     "summary": "Moved Stop",
+     "text": "Bus 143, N43: The stop S Westkreuz towards Brixplatz has been moved 110 meters against the driving direction."
+    }
+   ]
+  },
+  {
+   "tripId": "1|80747|12|86|30092026",
+   "when": "2026-09-30T07:59:00+02:00",
+   "plannedWhen": "2026-09-30T07:59:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s41-s41-a",
+    "name": "S41",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1493|0|86|30092026",
+   "when": "2026-09-30T08:00:00+02:00",
+   "plannedWhen": "2026-09-30T08:00:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s46-s46-d",
+    "name": "S46",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2361|0|86|30092026",
+   "when": "2026-09-30T08:00:00+02:00",
+   "plannedWhen": "2026-09-30T08:00:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-o",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|3388|9|86|30092026",
+   "when": "2026-09-30T08:02:00+02:00",
+   "plannedWhen": "2026-09-30T08:02:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s9-s9-c",
+    "name": "S9",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|3441|8|86|30092026",
+   "when": "2026-09-30T08:02:00+02:00",
+   "plannedWhen": "2026-09-30T08:02:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s9-s9-c",
+    "name": "S9",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|80281|4|86|30092026",
+   "when": "2026-09-30T08:02:00+02:00",
+   "plannedWhen": "2026-09-30T08:02:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s42-s42-ri",
+    "name": "S42",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|78972|3|86|30092026",
+   "when": "2026-09-30T08:04:00+02:00",
+   "plannedWhen": "2026-09-30T08:04:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s41-s41-ai",
+    "name": "S41",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2426|2|86|30092026",
+   "when": "2026-09-30T08:05:00+02:00",
+   "plannedWhen": "2026-09-30T08:05:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-o",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1787|0|86|30092026",
+   "when": "2026-09-30T08:07:00+02:00",
+   "plannedWhen": "2026-09-30T08:07:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-e",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|81662|18|86|30092026",
+   "when": "2026-09-30T08:07:00+02:00",
+   "plannedWhen": "2026-09-30T08:07:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s42-s42-r",
+    "name": "S42",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|80747|13|86|30092026",
+   "when": "2026-09-30T08:09:00+02:00",
+   "plannedWhen": "2026-09-30T08:09:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s41-s41-a",
+    "name": "S41",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2617|1|86|30092026",
+   "when": "2026-09-30T08:10:00+02:00",
+   "plannedWhen": "2026-09-30T08:10:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-oi",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|87815|0|86|30092026",
+   "when": "2026-09-30T08:12:00+02:00",
+   "plannedWhen": "2026-09-30T08:09:00+02:00",
+   "delay": 180,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s41-s41-a",
+    "name": "S41",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|940|2|86|30092026",
+   "when": "2026-09-30T08:12:00+02:00",
+   "plannedWhen": "2026-09-30T08:12:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-b",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|984|4|86|30092026",
+   "when": "2026-09-30T08:12:00+02:00",
+   "plannedWhen": "2026-09-30T08:12:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-b",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|80267|1|86|30092026",
+   "when": "2026-09-30T08:12:00+02:00",
+   "plannedWhen": "2026-09-30T08:12:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s42-s42-ri",
+    "name": "S42",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900024102",
+    "name": "S Westkreuz (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  }
+ ]
+}

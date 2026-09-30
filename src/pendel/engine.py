@@ -3,10 +3,16 @@
 Given a saved `Commute` and a HAFAS v6 `/stops/:id/departures` response,
 decide whether the commute is affected right now and produce a short
 German/English reason. Pure function, no I/O: `evaluate` only reads its
-arguments. Only departures at the commute's origin stop, on one of its
-lines, and inside *today's* window (`Commute.window_bounds`, DST-safe)
-count -- everything else is ignored, so a disruption elsewhere never
-produces a false positive.
+arguments. The caller fetches departures for the commute's origin stop;
+only departures on one of the commute's lines and inside *today's* window
+(`Commute.window_bounds`, DST-safe) count -- everything else is ignored, so
+a disruption on another line never produces a false positive.
+
+The departures' own `stop.id` is deliberately not compared with the
+origin: HAFAS reports departures from a station's child stops under their
+own ids (recorded 2026-09-30: Hauptbahnhof's regional platforms as
+900003200 "[Gleis 1-8]", Alexanderplatz's trams and buses as 900100026
+"Gontardstr." and others), so an exact match silently dropped them.
 
 The delay threshold is a parameter of `evaluate`, independent of
 `Commute.delay_threshold_min` (which nothing here reads). A delay counts
@@ -22,6 +28,8 @@ from __future__ import annotations
 
 import datetime as dt
 import hashlib
+import html
+import re
 from dataclasses import dataclass
 from typing import Any
 
@@ -36,8 +44,12 @@ _DISRUPTIVE_REMARK_TYPES = {"warning"}
 # Schienenersatzverkehr) is filed as replacement service even if it also
 # mentions construction, since that is the more actionable fact for a
 # rider. Anything else of type "warning" is a generic disruption/Störung.
-_REPLACEMENT_SERVICE_KEYWORDS = ("ersatz",)
-_CONSTRUCTION_KEYWORDS = ("bauarbeiten", "baustelle")
+# The API answers in English unless asked otherwise, and BVG's own remarks
+# then read "Replacement service due to construction works", so both
+# languages are matched.
+_REPLACEMENT_SERVICE_KEYWORDS = ("ersatz", "replacement")
+_CONSTRUCTION_KEYWORDS = ("bauarbeiten", "baustelle", "construction")
+_TAG = re.compile(r"<[^>]+>")
 
 # Deterministic severity order used both to pick the primary event (whose
 # key becomes disruption_key) and to order Verdict.kinds.
@@ -91,6 +103,12 @@ def _classify_remark(haystack: str) -> str:
     return "warning"
 
 
+def _clean(value: str) -> str:
+    """Remark texts carry HTML: entities ("Ostkreuz &#60;&#62; Lichtenberg")
+    and links ("<a href=...>[MEHR/MORE]</a>"). Reasons are plain text."""
+    return " ".join(html.unescape(_TAG.sub(" ", value)).split())
+
+
 def _remark_key(remark: dict[str, Any], trip_id: str) -> str:
     """HAFAS remark codes are generic and shared across unrelated
     disruptions, so prefer the remark's own id, then the trip id, then a
@@ -139,9 +157,6 @@ def evaluate(
         line = departure.get("line") or {}
         line_name = line.get("name")
         if line_name not in commute.lines:
-            continue
-        stop = departure.get("stop") or {}
-        if stop.get("id") != commute.origin_stop_id:
             continue
         planned_when = departure.get("plannedWhen")
         if not planned_when:
@@ -197,7 +212,7 @@ def _departure_disruption_events(
             str(remark.get(field) or "") for field in ("code", "summary", "text")
         ).lower()
         kind = _classify_remark(haystack)
-        detail = remark.get("summary") or remark.get("text") or remark.get("code") or ""
+        detail = _clean(remark.get("summary") or remark.get("text") or remark.get("code") or "")
         key = f"{kind}:{line_name}:{_remark_key(remark, trip_id)}"
         events.append(_Event(kind, key, line_name, detail=detail))
 

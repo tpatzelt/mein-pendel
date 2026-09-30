@@ -1,0 +1,129 @@
+"""G1 definition of done: the engine over *recorded* HAFAS responses.
+
+Every file under fixtures/hafas/recorded/ is a real v6.bvg.transport.rest
+/stops/:id/departures response, trimmed by scripts/record_fixtures.py (see
+the README there for provenance). Offline: nothing here touches the network.
+"""
+
+import datetime as dt
+import json
+from pathlib import Path
+
+import pytest
+
+from pendel.commute import Commute
+from pendel.engine import evaluate
+
+RECORDED = Path(__file__).parent / "fixtures" / "hafas" / "recorded"
+# Wednesday 2026-09-30, 07:00 Berlin: just before the recorded departures.
+NOW = dt.datetime(2026, 9, 30, 5, 0, tzinfo=dt.timezone.utc)
+
+ALEXANDERPLATZ = "900100003"
+WESTKREUZ = "900024102"
+HAUPTBAHNHOF = "900003201"
+FRIEDRICHSTR = "900100001"
+ZOO = "900023201"
+OSTKREUZ = "900120003"
+
+
+def _commute(origin: str, lines: set[str], start: tuple[int, int], end: tuple[int, int]):
+    return Commute(
+        origin_stop_id=origin,
+        destination_stop_id="900000000",
+        lines=frozenset(lines),
+        weekdays=frozenset({0, 1, 2, 3, 4}),
+        window_start=dt.time(*start),
+        window_end=dt.time(*end),
+    )
+
+
+def _load(kind: str) -> dict:
+    return json.loads((RECORDED / f"departures_{kind}.json").read_text())
+
+
+@pytest.mark.parametrize(
+    "fixture, origin, lines, window, expected_kinds, reason_de, reason_en",
+    [
+        (
+            "undisturbed", ALEXANDERPLATZ, {"U2", "U8", "S5"}, ((7, 15), (8, 10)),
+            [], "Keine Störung", "No disruption",
+        ),
+        (
+            "cancellation", WESTKREUZ, {"S46"}, ((7, 15), (7, 25)),
+            ["cancellation"], "S46 fällt aus.", "S46 is cancelled.",
+        ),
+        # Departs from Hauptbahnhof's child stop 900003200 "[Gleis 1-8]", not
+        # the station id a visitor saves; the engine must still see it.
+        (
+            "delay", HAUPTBAHNHOF, {"ICE 644"}, ((6, 40), (6, 55)),
+            ["delay"], "30 Minuten Verspätung", "delayed by 30 minutes",
+        ),
+        # BVG's remark is English ("Replacement Service") since the API
+        # defaults to English.
+        (
+            "replacement_service", FRIEDRICHSTR, {"12"}, ((7, 10), (7, 30)),
+            ["replacement_service"], "Ersatzverkehr auf 12", "Replacement service on 12",
+        ),
+        (
+            "construction", ZOO, {"S5"}, ((7, 10), (7, 20)),
+            ["construction"], "Bauarbeiten auf S5", "Construction on S5",
+        ),
+        (
+            "warning", OSTKREUZ, {"RB32"}, ((7, 40), (7, 50)),
+            ["warning"], "Störung auf RB32", "Disruption on RB32",
+        ),
+        # Partial cancellation with its own remark: both kinds, cancellation first.
+        (
+            "warning", OSTKREUZ, {"RB26"}, ((8, 0), (8, 10)),
+            ["cancellation", "warning"], "RB26 fällt aus.", "RB26 is cancelled.",
+        ),
+    ],
+)
+def test_engine_over_recorded_fixtures(
+    fixture, origin, lines, window, expected_kinds, reason_de, reason_en
+):
+    verdict = evaluate(_commute(origin, lines, *window), _load(fixture), NOW)
+
+    assert verdict.affected == bool(expected_kinds)
+    assert verdict.kinds == expected_kinds
+    assert reason_de in verdict.reason_de
+    assert reason_en in verdict.reason_en
+    assert bool(verdict.disruption_key) == bool(expected_kinds)
+
+
+@pytest.mark.parametrize(
+    "fixture, origin, lines, window",
+    [
+        # Tram 12 has replacement service at Friedrichstr.; S-Bahn riders there don't.
+        ("replacement_service", FRIEDRICHSTR, {"S1", "S2", "S25", "S3", "S5", "S7", "S9"},
+         ((7, 10), (7, 30))),
+        # S46 is cancelled at Westkreuz; a Ring (S41/S42) rider is not affected.
+        ("cancellation", WESTKREUZ, {"S41", "S42"}, ((7, 15), (7, 25))),
+    ],
+)
+def test_disruption_on_a_line_not_ridden_is_ignored(fixture, origin, lines, window):
+    verdict = evaluate(_commute(origin, lines, *window), _load(fixture), NOW)
+
+    assert not verdict.affected
+    assert verdict.kinds == []
+
+
+def test_remark_html_never_reaches_a_reason():
+    # Ostkreuz's RB26 remark summary is "Teilausfall Ostkreuz &#60;&#62; Lichtenberg".
+    departures = _load("warning")
+    rb26 = [d for d in departures["departures"] if d["line"]["name"] == "RB26"]
+    for departure in rb26:
+        departure["cancelled"] = False
+    verdict = evaluate(
+        _commute(OSTKREUZ, {"RB26"}, (8, 0), (8, 10)), {"departures": rb26}, NOW
+    )
+
+    assert verdict.kinds == ["warning"]
+    assert "Ostkreuz <> Lichtenberg" in verdict.reason_de
+    assert "&#" not in verdict.reason_de + verdict.reason_en
+
+
+def test_every_recorded_fixture_is_documented():
+    readme = (RECORDED / "README.md").read_text()
+    for path in RECORDED.glob("*.json"):
+        assert path.name in readme

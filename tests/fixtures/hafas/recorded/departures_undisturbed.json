@@ -1,0 +1,4855 @@
+{
+ "departures": [
+  {
+   "tripId": "1|984|2|86|30092026",
+   "when": "2026-09-30T07:12:00+02:00",
+   "plannedWhen": "2026-09-30T07:12:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-b",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|52348|3|86|30092026",
+   "when": "2026-09-30T07:12:00+02:00",
+   "plannedWhen": "2026-09-30T07:12:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m2",
+    "name": "M2",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100024",
+    "name": "S+U Alexanderplatz Bhf/Dircksenstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|52712|1|86|30092026",
+   "when": "2026-09-30T07:12:00+02:00",
+   "plannedWhen": "2026-09-30T07:12:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55766|6|86|30092026",
+   "when": "2026-09-30T07:12:00+02:00",
+   "plannedWhen": "2026-09-30T07:13:00+02:00",
+   "delay": -60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u8",
+    "name": "U8",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|940|1|86|30092026",
+   "when": "2026-09-30T07:13:00+02:00",
+   "plannedWhen": "2026-09-30T07:13:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-b",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53267|6|86|30092026",
+   "when": "2026-09-30T07:13:00+02:00",
+   "plannedWhen": "2026-09-30T07:13:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m5",
+    "name": "M5",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55688|13|86|30092026",
+   "when": "2026-09-30T07:13:00+02:00",
+   "plannedWhen": "2026-09-30T07:13:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u8",
+    "name": "U8",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|52550|2|86|30092026",
+   "when": "2026-09-30T07:14:00+02:00",
+   "plannedWhen": "2026-09-30T07:13:00+02:00",
+   "delay": 60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53981|13|86|30092026",
+   "when": "2026-09-30T07:14:00+02:00",
+   "plannedWhen": "2026-09-30T07:14:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2664|4|86|30092026",
+   "when": "2026-09-30T07:15:00+02:00",
+   "plannedWhen": "2026-09-30T07:15:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-oi",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|52704|2|86|30092026",
+   "when": "2026-09-30T07:15:00+02:00",
+   "plannedWhen": "2026-09-30T07:15:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|54005|16|86|30092026",
+   "when": "2026-09-30T07:15:00+02:00",
+   "plannedWhen": "2026-09-30T07:15:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|54934|3|86|30092026",
+   "when": "2026-09-30T07:15:00+02:00",
+   "plannedWhen": "2026-09-30T07:15:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u5",
+    "name": "U5",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55036|1|86|30092026",
+   "when": "2026-09-30T07:15:00+02:00",
+   "plannedWhen": "2026-09-30T07:15:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u5",
+    "name": "U5",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|33151|3|86|30092026",
+   "when": "2026-09-30T07:16:00+02:00",
+   "plannedWhen": "2026-09-30T07:16:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-248",
+    "name": "248",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100711",
+    "name": "S+U Alexanderpl./Grunerstr.(Bln) [Grunerstr.]"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|48166|0|86|30092026",
+   "when": "2026-09-30T07:17:00+02:00",
+   "plannedWhen": "2026-09-30T07:14:00+02:00",
+   "delay": 180,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-300",
+    "name": "300",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100711",
+    "name": "S+U Alexanderpl./Grunerstr.(Bln) [Grunerstr.]"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|31012|2|86|30092026",
+   "when": "2026-09-30T07:17:00+02:00",
+   "plannedWhen": "2026-09-30T07:16:00+02:00",
+   "delay": 60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-200",
+    "name": "200",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100031",
+    "name": "S+U Alexanderplatz Bhf/Memhardstr. (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|2080|5|86|30092026",
+   "when": "2026-09-30T07:17:00+02:00",
+   "plannedWhen": "2026-09-30T07:17:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-ei",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53581|7|86|30092026",
+   "when": "2026-09-30T07:17:00+02:00",
+   "plannedWhen": "2026-09-30T07:17:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m6",
+    "name": "M6",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53524|2|86|30092026",
+   "when": "2026-09-30T07:18:00+02:00",
+   "plannedWhen": "2026-09-30T07:15:00+02:00",
+   "delay": 180,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m6",
+    "name": "M6",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|52558|2|86|30092026",
+   "when": "2026-09-30T07:18:00+02:00",
+   "plannedWhen": "2026-09-30T07:16:00+02:00",
+   "delay": 120,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2033|4|86|30092026",
+   "when": "2026-09-30T07:18:00+02:00",
+   "plannedWhen": "2026-09-30T07:18:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-ei",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|52349|0|86|30092026",
+   "when": "2026-09-30T07:18:00+02:00",
+   "plannedWhen": "2026-09-30T07:18:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m2",
+    "name": "M2",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100024",
+    "name": "S+U Alexanderplatz Bhf/Dircksenstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55688|14|86|30092026",
+   "when": "2026-09-30T07:19:00+02:00",
+   "plannedWhen": "2026-09-30T07:18:00+02:00",
+   "delay": 60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u8",
+    "name": "U8",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55769|3|86|30092026",
+   "when": "2026-09-30T07:19:00+02:00",
+   "plannedWhen": "2026-09-30T07:18:00+02:00",
+   "delay": 60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u8",
+    "name": "U8",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|52710|2|86|30092026",
+   "when": "2026-09-30T07:19:00+02:00",
+   "plannedWhen": "2026-09-30T07:19:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53981|14|86|30092026",
+   "when": "2026-09-30T07:19:00+02:00",
+   "plannedWhen": "2026-09-30T07:19:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55034|6|86|30092026",
+   "when": "2026-09-30T07:19:00+02:00",
+   "plannedWhen": "2026-09-30T07:19:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u5",
+    "name": "U5",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53134|3|86|30092026",
+   "when": "2026-09-30T07:20:00+02:00",
+   "plannedWhen": "2026-09-30T07:19:00+02:00",
+   "delay": 60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m5",
+    "name": "M5",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1248|3|86|30092026",
+   "when": "2026-09-30T07:20:00+02:00",
+   "plannedWhen": "2026-09-30T07:20:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-bi",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2387|4|86|30092026",
+   "when": "2026-09-30T07:20:00+02:00",
+   "plannedWhen": "2026-09-30T07:20:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-o",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|31004|0|86|30092026",
+   "when": "2026-09-30T07:20:00+02:00",
+   "plannedWhen": "2026-09-30T07:20:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-200",
+    "name": "200",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100031",
+    "name": "S+U Alexanderplatz Bhf/Memhardstr. (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|52551|2|86|30092026",
+   "when": "2026-09-30T07:20:00+02:00",
+   "plannedWhen": "2026-09-30T07:20:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|54005|17|86|30092026",
+   "when": "2026-09-30T07:20:00+02:00",
+   "plannedWhen": "2026-09-30T07:20:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|54935|3|86|30092026",
+   "when": "2026-09-30T07:20:00+02:00",
+   "plannedWhen": "2026-09-30T07:20:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u5",
+    "name": "U5",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|3441|5|86|30092026",
+   "when": "2026-09-30T07:22:00+02:00",
+   "plannedWhen": "2026-09-30T07:22:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s9-s9-c",
+    "name": "S9",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|52705|2|86|30092026",
+   "when": "2026-09-30T07:22:00+02:00",
+   "plannedWhen": "2026-09-30T07:22:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|3388|8|86|30092026",
+   "when": "2026-09-30T07:23:00+02:00",
+   "plannedWhen": "2026-09-30T07:23:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s9-s9-c",
+    "name": "S9",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|18783|1|86|30092026",
+   "when": "2026-09-30T07:23:00+02:00",
+   "plannedWhen": "2026-09-30T07:23:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-100",
+    "name": "100",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100031",
+    "name": "S+U Alexanderplatz Bhf/Memhardstr. (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|48125|3|86|30092026",
+   "when": "2026-09-30T07:23:00+02:00",
+   "plannedWhen": "2026-09-30T07:23:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-300",
+    "name": "300",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100712",
+    "name": "S+U Alexanderpl./Grunerstr.(Bln) [Alexanderstr.]"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|52559|2|86|30092026",
+   "when": "2026-09-30T07:23:00+02:00",
+   "plannedWhen": "2026-09-30T07:23:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53267|7|86|30092026",
+   "when": "2026-09-30T07:23:00+02:00",
+   "plannedWhen": "2026-09-30T07:23:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m5",
+    "name": "M5",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55688|15|86|30092026",
+   "when": "2026-09-30T07:23:00+02:00",
+   "plannedWhen": "2026-09-30T07:23:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u8",
+    "name": "U8",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55766|7|86|30092026",
+   "when": "2026-09-30T07:23:00+02:00",
+   "plannedWhen": "2026-09-30T07:23:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u8",
+    "name": "U8",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53981|15|86|30092026",
+   "when": "2026-09-30T07:24:00+02:00",
+   "plannedWhen": "2026-09-30T07:24:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55035|6|86|30092026",
+   "when": "2026-09-30T07:24:00+02:00",
+   "plannedWhen": "2026-09-30T07:24:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u5",
+    "name": "U5",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|54936|3|86|30092026",
+   "when": "2026-09-30T07:25:00+02:00",
+   "plannedWhen": "2026-09-30T07:24:00+02:00",
+   "delay": 60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u5",
+    "name": "U5",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1195|3|86|30092026",
+   "when": "2026-09-30T07:25:00+02:00",
+   "plannedWhen": "2026-09-30T07:25:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-bi",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2422|4|86|30092026",
+   "when": "2026-09-30T07:25:00+02:00",
+   "plannedWhen": "2026-09-30T07:25:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-o",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|52349|1|86|30092026",
+   "when": "2026-09-30T07:25:00+02:00",
+   "plannedWhen": "2026-09-30T07:25:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m2",
+    "name": "M2",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100024",
+    "name": "S+U Alexanderplatz Bhf/Dircksenstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|52711|2|86|30092026",
+   "when": "2026-09-30T07:25:00+02:00",
+   "plannedWhen": "2026-09-30T07:25:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53524|3|86|30092026",
+   "when": "2026-09-30T07:25:00+02:00",
+   "plannedWhen": "2026-09-30T07:25:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m6",
+    "name": "M6",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|54005|18|86|30092026",
+   "when": "2026-09-30T07:25:00+02:00",
+   "plannedWhen": "2026-09-30T07:25:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|33131|2|86|30092026",
+   "when": "2026-09-30T07:26:00+02:00",
+   "plannedWhen": "2026-09-30T07:26:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-248",
+    "name": "248",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100711",
+    "name": "S+U Alexanderpl./Grunerstr.(Bln) [Grunerstr.]"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|52552|2|86|30092026",
+   "when": "2026-09-30T07:27:00+02:00",
+   "plannedWhen": "2026-09-30T07:26:00+02:00",
+   "delay": 60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1783|0|86|30092026",
+   "when": "2026-09-30T07:27:00+02:00",
+   "plannedWhen": "2026-09-30T07:27:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-e",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53581|8|86|30092026",
+   "when": "2026-09-30T07:27:00+02:00",
+   "plannedWhen": "2026-09-30T07:27:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m6",
+    "name": "M6",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1720|1|86|30092026",
+   "when": "2026-09-30T07:28:00+02:00",
+   "plannedWhen": "2026-09-30T07:28:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-e",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|31012|3|86|30092026",
+   "when": "2026-09-30T07:28:00+02:00",
+   "plannedWhen": "2026-09-30T07:28:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-200",
+    "name": "200",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100031",
+    "name": "S+U Alexanderplatz Bhf/Memhardstr. (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|55688|16|86|30092026",
+   "when": "2026-09-30T07:28:00+02:00",
+   "plannedWhen": "2026-09-30T07:28:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u8",
+    "name": "U8",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55769|4|86|30092026",
+   "when": "2026-09-30T07:28:00+02:00",
+   "plannedWhen": "2026-09-30T07:28:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u8",
+    "name": "U8",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53134|4|86|30092026",
+   "when": "2026-09-30T07:28:00+02:00",
+   "plannedWhen": "2026-09-30T07:29:00+02:00",
+   "delay": -60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m5",
+    "name": "M5",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|52706|2|86|30092026",
+   "when": "2026-09-30T07:29:00+02:00",
+   "plannedWhen": "2026-09-30T07:29:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53981|16|86|30092026",
+   "when": "2026-09-30T07:29:00+02:00",
+   "plannedWhen": "2026-09-30T07:29:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|54934|4|86|30092026",
+   "when": "2026-09-30T07:29:00+02:00",
+   "plannedWhen": "2026-09-30T07:29:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u5",
+    "name": "U5",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55036|2|86|30092026",
+   "when": "2026-09-30T07:29:00+02:00",
+   "plannedWhen": "2026-09-30T07:29:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u5",
+    "name": "U5",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2617|0|86|30092026",
+   "when": "2026-09-30T07:30:00+02:00",
+   "plannedWhen": "2026-09-30T07:30:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-oi",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|54005|19|86|30092026",
+   "when": "2026-09-30T07:30:00+02:00",
+   "plannedWhen": "2026-09-30T07:30:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|52560|2|86|30092026",
+   "when": "2026-09-30T07:31:00+02:00",
+   "plannedWhen": "2026-09-30T07:30:00+02:00",
+   "delay": 60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|985|2|86|30092026",
+   "when": "2026-09-30T07:32:00+02:00",
+   "plannedWhen": "2026-09-30T07:32:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-b",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|18697|0|86|30092026",
+   "when": "2026-09-30T07:32:00+02:00",
+   "plannedWhen": "2026-09-30T07:32:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-100",
+    "name": "100",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100031",
+    "name": "S+U Alexanderplatz Bhf/Memhardstr. (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|48167|0|86|30092026",
+   "when": "2026-09-30T07:32:00+02:00",
+   "plannedWhen": "2026-09-30T07:32:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-300",
+    "name": "300",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100711",
+    "name": "S+U Alexanderpl./Grunerstr.(Bln) [Grunerstr.]"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|52348|4|86|30092026",
+   "when": "2026-09-30T07:32:00+02:00",
+   "plannedWhen": "2026-09-30T07:32:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m2",
+    "name": "M2",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100024",
+    "name": "S+U Alexanderplatz Bhf/Dircksenstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|52712|2|86|30092026",
+   "when": "2026-09-30T07:32:00+02:00",
+   "plannedWhen": "2026-09-30T07:32:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|30987|0|86|30092026",
+   "when": "2026-09-30T07:33:00+02:00",
+   "plannedWhen": "2026-09-30T07:30:00+02:00",
+   "delay": 180,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-200",
+    "name": "200",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100031",
+    "name": "S+U Alexanderplatz Bhf/Memhardstr. (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|939|1|86|30092026",
+   "when": "2026-09-30T07:33:00+02:00",
+   "plannedWhen": "2026-09-30T07:33:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-b",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|52550|3|86|30092026",
+   "when": "2026-09-30T07:33:00+02:00",
+   "plannedWhen": "2026-09-30T07:33:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53267|8|86|30092026",
+   "when": "2026-09-30T07:33:00+02:00",
+   "plannedWhen": "2026-09-30T07:33:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m5",
+    "name": "M5",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55034|7|86|30092026",
+   "when": "2026-09-30T07:33:00+02:00",
+   "plannedWhen": "2026-09-30T07:33:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u5",
+    "name": "U5",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55688|17|86|30092026",
+   "when": "2026-09-30T07:33:00+02:00",
+   "plannedWhen": "2026-09-30T07:33:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u8",
+    "name": "U8",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55766|8|86|30092026",
+   "when": "2026-09-30T07:33:00+02:00",
+   "plannedWhen": "2026-09-30T07:33:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u8",
+    "name": "U8",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53981|17|86|30092026",
+   "when": "2026-09-30T07:34:00+02:00",
+   "plannedWhen": "2026-09-30T07:34:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|54935|4|86|30092026",
+   "when": "2026-09-30T07:35:00+02:00",
+   "plannedWhen": "2026-09-30T07:34:00+02:00",
+   "delay": 60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u5",
+    "name": "U5",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2664|5|86|30092026",
+   "when": "2026-09-30T07:35:00+02:00",
+   "plannedWhen": "2026-09-30T07:35:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-oi",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|33150|1|86|30092026",
+   "when": "2026-09-30T07:35:00+02:00",
+   "plannedWhen": "2026-09-30T07:35:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-248",
+    "name": "248",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100711",
+    "name": "S+U Alexanderpl./Grunerstr.(Bln) [Grunerstr.]"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|52704|3|86|30092026",
+   "when": "2026-09-30T07:35:00+02:00",
+   "plannedWhen": "2026-09-30T07:35:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|54005|20|86|30092026",
+   "when": "2026-09-30T07:35:00+02:00",
+   "plannedWhen": "2026-09-30T07:35:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53524|4|86|30092026",
+   "when": "2026-09-30T07:36:00+02:00",
+   "plannedWhen": "2026-09-30T07:35:00+02:00",
+   "delay": 60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m6",
+    "name": "M6",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|52558|3|86|30092026",
+   "when": "2026-09-30T07:36:00+02:00",
+   "plannedWhen": "2026-09-30T07:36:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2080|6|86|30092026",
+   "when": "2026-09-30T07:37:00+02:00",
+   "plannedWhen": "2026-09-30T07:37:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-ei",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53581|9|86|30092026",
+   "when": "2026-09-30T07:37:00+02:00",
+   "plannedWhen": "2026-09-30T07:37:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m6",
+    "name": "M6",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2033|5|86|30092026",
+   "when": "2026-09-30T07:38:00+02:00",
+   "plannedWhen": "2026-09-30T07:38:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-ei",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|52379|0|86|30092026",
+   "when": "2026-09-30T07:38:00+02:00",
+   "plannedWhen": "2026-09-30T07:38:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m2",
+    "name": "M2",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100024",
+    "name": "S+U Alexanderplatz Bhf/Dircksenstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|54945|0|86|30092026",
+   "when": "2026-09-30T07:38:00+02:00",
+   "plannedWhen": "2026-09-30T07:38:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u5",
+    "name": "U5",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55035|7|86|30092026",
+   "when": "2026-09-30T07:38:00+02:00",
+   "plannedWhen": "2026-09-30T07:38:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u5",
+    "name": "U5",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55688|18|86|30092026",
+   "when": "2026-09-30T07:38:00+02:00",
+   "plannedWhen": "2026-09-30T07:38:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u8",
+    "name": "U8",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55769|5|86|30092026",
+   "when": "2026-09-30T07:38:00+02:00",
+   "plannedWhen": "2026-09-30T07:38:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u8",
+    "name": "U8",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|52710|3|86|30092026",
+   "when": "2026-09-30T07:39:00+02:00",
+   "plannedWhen": "2026-09-30T07:39:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53134|5|86|30092026",
+   "when": "2026-09-30T07:39:00+02:00",
+   "plannedWhen": "2026-09-30T07:39:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m5",
+    "name": "M5",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53981|18|86|30092026",
+   "when": "2026-09-30T07:39:00+02:00",
+   "plannedWhen": "2026-09-30T07:39:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1248|4|86|30092026",
+   "when": "2026-09-30T07:40:00+02:00",
+   "plannedWhen": "2026-09-30T07:40:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-bi",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2361|0|86|30092026",
+   "when": "2026-09-30T07:40:00+02:00",
+   "plannedWhen": "2026-09-30T07:40:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-o",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|31012|4|86|30092026",
+   "when": "2026-09-30T07:40:00+02:00",
+   "plannedWhen": "2026-09-30T07:40:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-200",
+    "name": "200",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100031",
+    "name": "S+U Alexanderplatz Bhf/Memhardstr. (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|52551|3|86|30092026",
+   "when": "2026-09-30T07:40:00+02:00",
+   "plannedWhen": "2026-09-30T07:40:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|54005|21|86|30092026",
+   "when": "2026-09-30T07:40:00+02:00",
+   "plannedWhen": "2026-09-30T07:40:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|18785|0|86|30092026",
+   "when": "2026-09-30T07:41:00+02:00",
+   "plannedWhen": "2026-09-30T07:41:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-100",
+    "name": "100",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100031",
+    "name": "S+U Alexanderplatz Bhf/Memhardstr. (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|3441|6|86|30092026",
+   "when": "2026-09-30T07:42:00+02:00",
+   "plannedWhen": "2026-09-30T07:42:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s9-s9-c",
+    "name": "S9",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|30987|1|86|30092026",
+   "when": "2026-09-30T07:42:00+02:00",
+   "plannedWhen": "2026-09-30T07:42:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-200",
+    "name": "200",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100031",
+    "name": "S+U Alexanderplatz Bhf/Memhardstr. (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|52705|3|86|30092026",
+   "when": "2026-09-30T07:42:00+02:00",
+   "plannedWhen": "2026-09-30T07:42:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|3388|9|86|30092026",
+   "when": "2026-09-30T07:43:00+02:00",
+   "plannedWhen": "2026-09-30T07:43:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s9-s9-c",
+    "name": "S9",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|48125|4|86|30092026",
+   "when": "2026-09-30T07:43:00+02:00",
+   "plannedWhen": "2026-09-30T07:43:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-300",
+    "name": "300",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100712",
+    "name": "S+U Alexanderpl./Grunerstr.(Bln) [Alexanderstr.]"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|52350|0|86|30092026",
+   "when": "2026-09-30T07:43:00+02:00",
+   "plannedWhen": "2026-09-30T07:43:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m2",
+    "name": "M2",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100024",
+    "name": "S+U Alexanderplatz Bhf/Dircksenstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|52559|3|86|30092026",
+   "when": "2026-09-30T07:43:00+02:00",
+   "plannedWhen": "2026-09-30T07:43:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53267|9|86|30092026",
+   "when": "2026-09-30T07:43:00+02:00",
+   "plannedWhen": "2026-09-30T07:43:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m5",
+    "name": "M5",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|54934|5|86|30092026",
+   "when": "2026-09-30T07:43:00+02:00",
+   "plannedWhen": "2026-09-30T07:43:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u5",
+    "name": "U5",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55036|3|86|30092026",
+   "when": "2026-09-30T07:43:00+02:00",
+   "plannedWhen": "2026-09-30T07:43:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u5",
+    "name": "U5",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55688|19|86|30092026",
+   "when": "2026-09-30T07:43:00+02:00",
+   "plannedWhen": "2026-09-30T07:43:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u8",
+    "name": "U8",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55766|9|86|30092026",
+   "when": "2026-09-30T07:43:00+02:00",
+   "plannedWhen": "2026-09-30T07:43:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u8",
+    "name": "U8",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|33152|0|86|30092026",
+   "when": "2026-09-30T07:44:00+02:00",
+   "plannedWhen": "2026-09-30T07:44:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-248",
+    "name": "248",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100711",
+    "name": "S+U Alexanderpl./Grunerstr.(Bln) [Grunerstr.]"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|53981|19|86|30092026",
+   "when": "2026-09-30T07:44:00+02:00",
+   "plannedWhen": "2026-09-30T07:44:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1195|4|86|30092026",
+   "when": "2026-09-30T07:45:00+02:00",
+   "plannedWhen": "2026-09-30T07:45:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-bi",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2426|0|86|30092026",
+   "when": "2026-09-30T07:45:00+02:00",
+   "plannedWhen": "2026-09-30T07:45:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-o",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|52711|3|86|30092026",
+   "when": "2026-09-30T07:45:00+02:00",
+   "plannedWhen": "2026-09-30T07:45:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|54005|22|86|30092026",
+   "when": "2026-09-30T07:45:00+02:00",
+   "plannedWhen": "2026-09-30T07:45:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53524|5|86|30092026",
+   "when": "2026-09-30T07:46:00+02:00",
+   "plannedWhen": "2026-09-30T07:45:00+02:00",
+   "delay": 60,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m6",
+    "name": "M6",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|52552|3|86|30092026",
+   "when": "2026-09-30T07:46:00+02:00",
+   "plannedWhen": "2026-09-30T07:46:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1781|0|86|30092026",
+   "when": "2026-09-30T07:47:00+02:00",
+   "plannedWhen": "2026-09-30T07:47:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-e",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53581|10|86|30092026",
+   "when": "2026-09-30T07:47:00+02:00",
+   "plannedWhen": "2026-09-30T07:47:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m6",
+    "name": "M6",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55034|8|86|30092026",
+   "when": "2026-09-30T07:47:00+02:00",
+   "plannedWhen": "2026-09-30T07:47:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u5",
+    "name": "U5",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1716|1|86|30092026",
+   "when": "2026-09-30T07:48:00+02:00",
+   "plannedWhen": "2026-09-30T07:48:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-e",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|52379|1|86|30092026",
+   "when": "2026-09-30T07:48:00+02:00",
+   "plannedWhen": "2026-09-30T07:48:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m2",
+    "name": "M2",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100024",
+    "name": "S+U Alexanderplatz Bhf/Dircksenstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|54935|5|86|30092026",
+   "when": "2026-09-30T07:48:00+02:00",
+   "plannedWhen": "2026-09-30T07:48:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u5",
+    "name": "U5",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55688|20|86|30092026",
+   "when": "2026-09-30T07:48:00+02:00",
+   "plannedWhen": "2026-09-30T07:48:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u8",
+    "name": "U8",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55769|6|86|30092026",
+   "when": "2026-09-30T07:48:00+02:00",
+   "plannedWhen": "2026-09-30T07:48:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u8",
+    "name": "U8",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|52706|3|86|30092026",
+   "when": "2026-09-30T07:49:00+02:00",
+   "plannedWhen": "2026-09-30T07:49:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53134|6|86|30092026",
+   "when": "2026-09-30T07:49:00+02:00",
+   "plannedWhen": "2026-09-30T07:49:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m5",
+    "name": "M5",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53981|20|86|30092026",
+   "when": "2026-09-30T07:49:00+02:00",
+   "plannedWhen": "2026-09-30T07:49:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2617|1|86|30092026",
+   "when": "2026-09-30T07:50:00+02:00",
+   "plannedWhen": "2026-09-30T07:50:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-oi",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|52560|3|86|30092026",
+   "when": "2026-09-30T07:50:00+02:00",
+   "plannedWhen": "2026-09-30T07:50:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|54005|23|86|30092026",
+   "when": "2026-09-30T07:50:00+02:00",
+   "plannedWhen": "2026-09-30T07:50:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|984|3|86|30092026",
+   "when": "2026-09-30T07:52:00+02:00",
+   "plannedWhen": "2026-09-30T07:52:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-b",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|18697|1|86|30092026",
+   "when": "2026-09-30T07:52:00+02:00",
+   "plannedWhen": "2026-09-30T07:52:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-100",
+    "name": "100",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100031",
+    "name": "S+U Alexanderplatz Bhf/Memhardstr. (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|31012|5|86|30092026",
+   "when": "2026-09-30T07:52:00+02:00",
+   "plannedWhen": "2026-09-30T07:52:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-200",
+    "name": "200",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100031",
+    "name": "S+U Alexanderplatz Bhf/Memhardstr. (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|48167|1|86|30092026",
+   "when": "2026-09-30T07:52:00+02:00",
+   "plannedWhen": "2026-09-30T07:52:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-300",
+    "name": "300",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100711",
+    "name": "S+U Alexanderpl./Grunerstr.(Bln) [Grunerstr.]"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|52712|3|86|30092026",
+   "when": "2026-09-30T07:52:00+02:00",
+   "plannedWhen": "2026-09-30T07:52:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|54937|0|86|30092026",
+   "when": "2026-09-30T07:52:00+02:00",
+   "plannedWhen": "2026-09-30T07:52:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u5",
+    "name": "U5",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55014|0|86|30092026",
+   "when": "2026-09-30T07:52:00+02:00",
+   "plannedWhen": "2026-09-30T07:52:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u5",
+    "name": "U5",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|940|2|86|30092026",
+   "when": "2026-09-30T07:53:00+02:00",
+   "plannedWhen": "2026-09-30T07:53:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-b",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|33132|0|86|30092026",
+   "when": "2026-09-30T07:53:00+02:00",
+   "plannedWhen": "2026-09-30T07:53:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-248",
+    "name": "248",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100711",
+    "name": "S+U Alexanderpl./Grunerstr.(Bln) [Grunerstr.]"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|52351|0|86|30092026",
+   "when": "2026-09-30T07:53:00+02:00",
+   "plannedWhen": "2026-09-30T07:53:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m2",
+    "name": "M2",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100024",
+    "name": "S+U Alexanderplatz Bhf/Dircksenstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|52550|4|86|30092026",
+   "when": "2026-09-30T07:53:00+02:00",
+   "plannedWhen": "2026-09-30T07:53:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53267|10|86|30092026",
+   "when": "2026-09-30T07:53:00+02:00",
+   "plannedWhen": "2026-09-30T07:53:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m5",
+    "name": "M5",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55688|21|86|30092026",
+   "when": "2026-09-30T07:53:00+02:00",
+   "plannedWhen": "2026-09-30T07:53:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u8",
+    "name": "U8",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55766|10|86|30092026",
+   "when": "2026-09-30T07:53:00+02:00",
+   "plannedWhen": "2026-09-30T07:53:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u8",
+    "name": "U8",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53524|6|86|30092026",
+   "when": "2026-09-30T07:53:00+02:00",
+   "plannedWhen": "2026-09-30T07:55:00+02:00",
+   "delay": -120,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m6",
+    "name": "M6",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|30987|2|86|30092026",
+   "when": "2026-09-30T07:54:00+02:00",
+   "plannedWhen": "2026-09-30T07:54:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-200",
+    "name": "200",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100031",
+    "name": "S+U Alexanderplatz Bhf/Memhardstr. (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|53981|21|86|30092026",
+   "when": "2026-09-30T07:54:00+02:00",
+   "plannedWhen": "2026-09-30T07:54:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2666|0|86|30092026",
+   "when": "2026-09-30T07:55:00+02:00",
+   "plannedWhen": "2026-09-30T07:55:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-oi",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|52704|4|86|30092026",
+   "when": "2026-09-30T07:55:00+02:00",
+   "plannedWhen": "2026-09-30T07:55:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|54005|24|86|30092026",
+   "when": "2026-09-30T07:55:00+02:00",
+   "plannedWhen": "2026-09-30T07:55:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|18786|0|86|30092026",
+   "when": "2026-09-30T07:56:00+02:00",
+   "plannedWhen": "2026-09-30T07:56:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-100",
+    "name": "100",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100031",
+    "name": "S+U Alexanderplatz Bhf/Memhardstr. (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|52558|4|86|30092026",
+   "when": "2026-09-30T07:56:00+02:00",
+   "plannedWhen": "2026-09-30T07:56:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2080|7|86|30092026",
+   "when": "2026-09-30T07:57:00+02:00",
+   "plannedWhen": "2026-09-30T07:57:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-ei",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53581|11|86|30092026",
+   "when": "2026-09-30T07:57:00+02:00",
+   "plannedWhen": "2026-09-30T07:57:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m6",
+    "name": "M6",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|54934|6|86|30092026",
+   "when": "2026-09-30T07:57:00+02:00",
+   "plannedWhen": "2026-09-30T07:57:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u5",
+    "name": "U5",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55045|0|86|30092026",
+   "when": "2026-09-30T07:57:00+02:00",
+   "plannedWhen": "2026-09-30T07:57:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u5",
+    "name": "U5",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2033|6|86|30092026",
+   "when": "2026-09-30T07:58:00+02:00",
+   "plannedWhen": "2026-09-30T07:58:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-ei",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|52379|2|86|30092026",
+   "when": "2026-09-30T07:58:00+02:00",
+   "plannedWhen": "2026-09-30T07:58:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m2",
+    "name": "M2",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100024",
+    "name": "S+U Alexanderplatz Bhf/Dircksenstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55688|22|86|30092026",
+   "when": "2026-09-30T07:58:00+02:00",
+   "plannedWhen": "2026-09-30T07:58:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u8",
+    "name": "U8",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55769|7|86|30092026",
+   "when": "2026-09-30T07:58:00+02:00",
+   "plannedWhen": "2026-09-30T07:58:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u8",
+    "name": "U8",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|52710|4|86|30092026",
+   "when": "2026-09-30T07:59:00+02:00",
+   "plannedWhen": "2026-09-30T07:59:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53134|7|86|30092026",
+   "when": "2026-09-30T07:59:00+02:00",
+   "plannedWhen": "2026-09-30T07:59:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m5",
+    "name": "M5",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53981|22|86|30092026",
+   "when": "2026-09-30T07:59:00+02:00",
+   "plannedWhen": "2026-09-30T07:59:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1248|5|86|30092026",
+   "when": "2026-09-30T08:00:00+02:00",
+   "plannedWhen": "2026-09-30T08:00:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-bi",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2360|0|86|30092026",
+   "when": "2026-09-30T08:00:00+02:00",
+   "plannedWhen": "2026-09-30T08:00:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-o",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|52551|4|86|30092026",
+   "when": "2026-09-30T08:00:00+02:00",
+   "plannedWhen": "2026-09-30T08:00:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|54005|25|86|30092026",
+   "when": "2026-09-30T08:00:00+02:00",
+   "plannedWhen": "2026-09-30T08:00:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|3441|7|86|30092026",
+   "when": "2026-09-30T08:02:00+02:00",
+   "plannedWhen": "2026-09-30T08:02:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s9-s9-c",
+    "name": "S9",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|52705|4|86|30092026",
+   "when": "2026-09-30T08:02:00+02:00",
+   "plannedWhen": "2026-09-30T08:02:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|54935|6|86|30092026",
+   "when": "2026-09-30T08:02:00+02:00",
+   "plannedWhen": "2026-09-30T08:02:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u5",
+    "name": "U5",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55014|1|86|30092026",
+   "when": "2026-09-30T08:02:00+02:00",
+   "plannedWhen": "2026-09-30T08:02:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u5",
+    "name": "U5",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|3388|10|86|30092026",
+   "when": "2026-09-30T08:03:00+02:00",
+   "plannedWhen": "2026-09-30T08:03:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s9-s9-c",
+    "name": "S9",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|33153|0|86|30092026",
+   "when": "2026-09-30T08:03:00+02:00",
+   "plannedWhen": "2026-09-30T08:03:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-248",
+    "name": "248",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100711",
+    "name": "S+U Alexanderpl./Grunerstr.(Bln) [Grunerstr.]"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|52350|1|86|30092026",
+   "when": "2026-09-30T08:03:00+02:00",
+   "plannedWhen": "2026-09-30T08:03:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m2",
+    "name": "M2",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100024",
+    "name": "S+U Alexanderplatz Bhf/Dircksenstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|52559|4|86|30092026",
+   "when": "2026-09-30T08:03:00+02:00",
+   "plannedWhen": "2026-09-30T08:03:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53267|11|86|30092026",
+   "when": "2026-09-30T08:03:00+02:00",
+   "plannedWhen": "2026-09-30T08:03:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m5",
+    "name": "M5",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55688|23|86|30092026",
+   "when": "2026-09-30T08:03:00+02:00",
+   "plannedWhen": "2026-09-30T08:03:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u8",
+    "name": "U8",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55766|11|86|30092026",
+   "when": "2026-09-30T08:03:00+02:00",
+   "plannedWhen": "2026-09-30T08:03:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u8",
+    "name": "U8",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|31012|6|86|30092026",
+   "when": "2026-09-30T08:04:00+02:00",
+   "plannedWhen": "2026-09-30T08:04:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-200",
+    "name": "200",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100031",
+    "name": "S+U Alexanderplatz Bhf/Memhardstr. (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|48126|0|86|30092026",
+   "when": "2026-09-30T08:04:00+02:00",
+   "plannedWhen": "2026-09-30T08:04:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-300",
+    "name": "300",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100712",
+    "name": "S+U Alexanderpl./Grunerstr.(Bln) [Alexanderstr.]"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|53981|23|86|30092026",
+   "when": "2026-09-30T08:04:00+02:00",
+   "plannedWhen": "2026-09-30T08:04:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1195|5|86|30092026",
+   "when": "2026-09-30T08:05:00+02:00",
+   "plannedWhen": "2026-09-30T08:05:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-bi",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|2426|1|86|30092026",
+   "when": "2026-09-30T08:05:00+02:00",
+   "plannedWhen": "2026-09-30T08:05:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s7-s7-o",
+    "name": "S7",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|52711|4|86|30092026",
+   "when": "2026-09-30T08:05:00+02:00",
+   "plannedWhen": "2026-09-30T08:05:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53524|7|86|30092026",
+   "when": "2026-09-30T08:05:00+02:00",
+   "plannedWhen": "2026-09-30T08:05:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m6",
+    "name": "M6",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|54005|26|86|30092026",
+   "when": "2026-09-30T08:05:00+02:00",
+   "plannedWhen": "2026-09-30T08:05:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u2",
+    "name": "U2",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|30987|3|86|30092026",
+   "when": "2026-09-30T08:06:00+02:00",
+   "plannedWhen": "2026-09-30T08:06:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-200",
+    "name": "200",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100031",
+    "name": "S+U Alexanderplatz Bhf/Memhardstr. (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|52552|4|86|30092026",
+   "when": "2026-09-30T08:06:00+02:00",
+   "plannedWhen": "2026-09-30T08:06:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m4",
+    "name": "M4",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|54937|1|86|30092026",
+   "when": "2026-09-30T08:06:00+02:00",
+   "plannedWhen": "2026-09-30T08:06:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u5",
+    "name": "U5",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1783|1|86|30092026",
+   "when": "2026-09-30T08:07:00+02:00",
+   "plannedWhen": "2026-09-30T08:07:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-e",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|18698|0|86|30092026",
+   "when": "2026-09-30T08:07:00+02:00",
+   "plannedWhen": "2026-09-30T08:07:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-bus-100",
+    "name": "100",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900100031",
+    "name": "S+U Alexanderplatz Bhf/Memhardstr. (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|53581|12|86|30092026",
+   "when": "2026-09-30T08:07:00+02:00",
+   "plannedWhen": "2026-09-30T08:07:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-tram-m6",
+    "name": "M6",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900100026",
+    "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|55045|1|86|30092026",
+   "when": "2026-09-30T08:07:00+02:00",
+   "plannedWhen": "2026-09-30T08:07:00+02:00",
+   "delay": null,
+   "cancelled": null,
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u5",
+    "name": "U5",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900100003",
+    "name": "S+U Alexanderplatz Bhf (Berlin)"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  }
+ ]
+}
