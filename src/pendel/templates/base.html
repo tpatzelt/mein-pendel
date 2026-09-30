@@ -17,6 +17,11 @@
       <a href="/impressum">{{ t("footer_impressum") }}</a>
       <a href="/datenschutz">{{ t("footer_datenschutz") }}</a>
       <a href="/about">{{ t("footer_about") }}</a>
+      {% if language == "de" %}
+      <a href="/?lang=en" hreflang="en" lang="en">{{ t("footer_language_switch") }}</a>
+      {% else %}
+      <a href="/?lang=de" hreflang="de" lang="de">{{ t("footer_language_switch") }}</a>
+      {% endif %}
     </nav>
     {% endblock %}
   </footer>
