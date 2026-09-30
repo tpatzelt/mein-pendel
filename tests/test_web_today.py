@@ -44,10 +44,36 @@ _FAILED_STOP_ID = "900666666"
 # Matches a `width: NNpx` declaration but not `max-width`/`min-width`.
 _FIXED_WIDTH_RE = re.compile(r"(?<!-)width\s*:\s*(\d+)px")
 
+_DEPARTURES_BLOCK_RE = re.compile(r'<ul class="departures">.*?</ul>', re.DOTALL)
+
 
 def _assert_no_wide_fixed_widths(text: str) -> None:
     for match in _FIXED_WIDTH_RE.finditer(text):
         assert int(match.group(1)) <= 360, f"fixed width above 360px found: {match.group(0)!r}"
+
+
+def _departures_block(text: str) -> str:
+    """The `<ul class="departures">...</ul>` markup for a card, isolated so
+    assertions about it fail if the cancellation/time text only happens to
+    appear elsewhere on the page (e.g. in the verdict's reason sentence)."""
+    match = _DEPARTURES_BLOCK_RE.search(text)
+    assert match is not None, "expected a departures list in the response"
+    return match.group(0)
+
+
+def _card_block(text: str, status: str) -> str:
+    match = re.search(
+        rf'<li data-commute-id="\d+" data-status="{status}">.*?</li>', text, re.DOTALL
+    )
+    assert match is not None, f"expected a card with status {status!r}"
+    return match.group(0)
+
+
+def _mock_client(payload: dict) -> HafasClient:
+    def handler(request: httpx.Request) -> httpx.Response:
+        return httpx.Response(200, json=payload)
+
+    return HafasClient(httpx.Client(transport=httpx.MockTransport(handler)))
 
 
 @pytest.fixture(autouse=True)
@@ -174,10 +200,105 @@ def test_today_affected_commute_shows_reason_in_german_and_english(client, tmp_p
     response_de = client.get("/today", params={"lang": "de"})
     assert response_de.status_code == 200
     assert "S41 fällt aus." in response_de.text
+    block_de = _departures_block(response_de.text)
+    assert '<time datetime="2026-01-05T07:45:00+01:00">07:45</time>' in block_de
+    assert "fällt aus" in block_de
 
     response_en = client.get("/today", params={"lang": "en"})
     assert response_en.status_code == 200
     assert "S41 is cancelled." in response_en.text
+    block_en = _departures_block(response_en.text)
+    assert '<time datetime="2026-01-05T07:45:00+01:00">07:45</time>' in block_en
+    assert "cancelled" in block_en
+
+
+def test_today_shows_planned_and_realtime_time_with_platform(client, tmp_path) -> None:
+    """Against the recorded Ostkreuz fixture (charter G3): RB32 is planned
+    17:18, delayed to real-time 17:20 (delay 120s), platform 14 on both --
+    the card must show the planned time, the real-time time, the delay in
+    minutes as text and the platform."""
+    commute = _commute(
+        origin_stop_id=_OSTKREUZ_STOP_ID,
+        lines=frozenset({"RB32"}),
+        weekdays=frozenset({2}),  # Wednesday, matching the fixed `now` below
+        window_start=dt.time(17, 0),
+        window_end=dt.time(17, 30),
+    )
+    uid = _seed_commute(tmp_path, commute)
+
+    now = dt.datetime(2026, 9, 30, 15, 0, tzinfo=dt.timezone.utc)  # 17:00 Europe/Berlin
+    app.dependency_overrides[get_now] = lambda: now
+    payload = json.loads((_RECORDED_FIXTURES_DIR / "platforms_ostkreuz.json").read_text())
+    app.dependency_overrides[get_hafas_client] = lambda: _mock_client(payload)
+    client.cookies.set("uid", uid)
+
+    response_de = client.get("/today", params={"lang": "de"})
+    assert response_de.status_code == 200
+    block_de = _departures_block(response_de.text)
+    assert '<time datetime="2026-09-30T17:18:00+02:00">17:18</time>' in block_de
+    assert '<time datetime="2026-09-30T17:20:00+02:00">17:20</time>' in block_de
+    assert "+2 Min." in block_de
+    assert "Gleis 14" in block_de
+
+    response_en = client.get("/today", params={"lang": "en"})
+    assert response_en.status_code == 200
+    block_en = _departures_block(response_en.text)
+    assert "+2 min" in block_en
+    assert "Platform 14" in block_en
+
+
+def test_today_platform_change_shown_as_text(client, tmp_path) -> None:
+    """Charter G3's platform-change wording ('Gleis 3 statt 1') appears only
+    when both the planned and real-time platform are known and differ."""
+    commute = _commute()
+    uid = _seed_commute(tmp_path, commute)
+
+    payload = {
+        "departures": [
+            {
+                "tripId": "1",
+                "stop": {"id": _ORIGIN_STOP_ID, "name": "Origin"},
+                "when": "2026-01-05T07:45:00+01:00",
+                "plannedWhen": "2026-01-05T07:45:00+01:00",
+                "delay": 0,
+                "cancelled": False,
+                "line": {"id": "line:S41", "name": "S41", "product": "suburban"},
+                "plannedPlatform": "1",
+                "platform": "3",
+                "remarks": [],
+            }
+        ]
+    }
+
+    _override_now(client)
+    app.dependency_overrides[get_hafas_client] = lambda: _mock_client(payload)
+    client.cookies.set("uid", uid)
+
+    response_de = client.get("/today", params={"lang": "de"})
+    assert response_de.status_code == 200
+    assert "Gleis 3 statt 1" in _departures_block(response_de.text)
+
+    response_en = client.get("/today", params={"lang": "en"})
+    assert response_en.status_code == 200
+    assert "Platform 3 instead of 1" in _departures_block(response_en.text)
+
+
+def test_today_no_departures_in_window_shows_localized_line(client, tmp_path) -> None:
+    commute = _commute()
+    uid = _seed_commute(tmp_path, commute)
+
+    _override_now(client)
+    app.dependency_overrides[get_hafas_client] = lambda: _mock_client({"departures": []})
+    client.cookies.set("uid", uid)
+
+    response_de = client.get("/today", params={"lang": "de"})
+    assert response_de.status_code == 200
+    assert "Keine Abfahrten in diesem Zeitfenster." in response_de.text
+    assert 'class="departures"' not in response_de.text
+
+    response_en = client.get("/today", params={"lang": "en"})
+    assert response_en.status_code == 200
+    assert "No departures in this window." in response_en.text
 
 
 def test_today_unaffected_commute_shows_no_disruption_text(client, tmp_path) -> None:
@@ -331,6 +452,14 @@ def test_today_shows_one_card_per_status_with_stop_names_and_no_raw_ids(client, 
         _FAILED_STOP_ID,
     ):
         assert stop_id not in text
+
+    # Charter G3: paused and failed cards show no departures list at all,
+    # not even the "no departures in this window" line -- a regression that
+    # started passing departures=[] for them would otherwise go unnoticed.
+    for status in ("paused", "failed"):
+        block = _card_block(text, status)
+        assert 'class="departures"' not in block
+        assert "Keine Abfahrten in diesem Zeitfenster." not in block
 
 
 def test_today_card_with_empty_stored_names_shows_generic_label(client, tmp_path) -> None:

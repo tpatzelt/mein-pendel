@@ -28,7 +28,7 @@ from starlette.concurrency import run_in_threadpool
 
 from pendel import db, telegram_link
 from pendel.commute import BERLIN, Commute
-from pendel.engine import evaluate, line_choices
+from pendel.engine import NextDeparture, evaluate, line_choices, next_departures
 from pendel.hafas import HafasClient, HafasError
 from pendel.i18n import resolve_language, translate
 from pendel.ratelimit import RateLimiter, rate_limit_per_min_from_env
@@ -448,8 +448,51 @@ def _commute_title(commute: Commute, t: Any) -> str:
     return t("today_saved_commute_generic")
 
 
+def _platform_text(t: Any, platform: str | None, planned_platform: str | None) -> str | None:
+    """Charter G3's platform-change wording ('Gleis 3 statt 1'): shown only
+    when both the real-time and planned platform are known and differ, so a
+    single reported platform is never misread as a change."""
+    if platform is not None and planned_platform is not None and platform != planned_platform:
+        return t("today_platform_changed").format(platform=platform, planned_platform=planned_platform)
+    display = platform if platform is not None else planned_platform
+    if display is None:
+        return None
+    return t("today_platform").format(platform=display)
+
+
+def _departure_item(departure: NextDeparture, t: Any) -> dict[str, Any]:
+    """One <li> for the "today" card's departures list (charter G3):
+    planned time always shown; real-time time and delay text only when the
+    delay is known and non-zero (a cancelled departure shows neither)."""
+    planned_local = departure.planned.astimezone(BERLIN)
+    show_realtime = (
+        not departure.cancelled and departure.realtime is not None and departure.delay_min
+    )
+    realtime_local = departure.realtime.astimezone(BERLIN) if show_realtime else None
+    return {
+        "line": departure.line,
+        "planned_iso": planned_local.isoformat(),
+        "planned_time": planned_local.strftime("%H:%M"),
+        "cancelled": departure.cancelled,
+        "cancelled_label": t("today_departure_cancelled") if departure.cancelled else None,
+        "realtime_iso": realtime_local.isoformat() if realtime_local else None,
+        "realtime_time": realtime_local.strftime("%H:%M") if realtime_local else None,
+        "delay_text": (
+            t("today_departure_delay").format(delay=f"{departure.delay_min:+d}")
+            if show_realtime
+            else None
+        ),
+        "platform_text": _platform_text(t, departure.platform, departure.planned_platform),
+    }
+
+
 def _status_item(
-    commute_id: int, commute: Commute, t: Any, status: str, message: str | None
+    commute_id: int,
+    commute: Commute,
+    t: Any,
+    status: str,
+    message: str | None,
+    departures: list[dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     return {
         "commute_id": commute_id,
@@ -458,6 +501,7 @@ def _status_item(
         "status_label": t(f"today_status_{status}"),
         "status_icon": _STATUS_ICONS[status],
         "message": message,
+        "departures": departures,
     }
 
 
@@ -539,9 +583,18 @@ async def today(
                 commute, departures_json, now, delay_threshold_min=commute.delay_threshold_min
             )
             message = verdict.reason_de if language == "de" else verdict.reason_en
+            departures = [
+                _departure_item(departure, t)
+                for departure in next_departures(commute, departures_json, now)
+            ]
             items.append(
                 _status_item(
-                    commute_id, commute, t, "disrupted" if verdict.affected else "ok", message
+                    commute_id,
+                    commute,
+                    t,
+                    "disrupted" if verdict.affected else "ok",
+                    message,
+                    departures,
                 )
             )
 
