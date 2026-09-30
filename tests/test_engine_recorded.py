@@ -12,7 +12,7 @@ from pathlib import Path
 import pytest
 
 from pendel.commute import Commute
-from pendel.engine import evaluate, line_choices
+from pendel.engine import evaluate, line_choices, next_departures
 
 RECORDED = Path(__file__).parent / "fixtures" / "hafas" / "recorded"
 # Wednesday 2026-09-30, 07:00 Berlin: just before the recorded departures.
@@ -163,6 +163,56 @@ def test_engine_evaluates_recorded_platform_fixture():
     verdict = evaluate(_commute(OSTKREUZ, {"RB32", "S41", "S7"}, (17, 15), (17, 25)), departures, NOW)
 
     assert verdict is not None
+
+
+NOW_PLATFORMS = dt.datetime(2026, 9, 30, 15, 15, tzinfo=dt.timezone.utc)  # 17:15 Berlin
+
+
+def test_next_departures_over_recorded_platform_fixture():
+    # platforms_ostkreuz.json (charter G3): planned vs real-time time and
+    # platform for the next departures on the ridden lines, at or after now.
+    departures = json.loads((RECORDED / "platforms_ostkreuz.json").read_text())
+    commute = _commute(OSTKREUZ, {"RB32", "S41", "S7"}, (17, 15), (17, 25))
+
+    result = next_departures(commute, departures, NOW_PLATFORMS)
+
+    assert [d.line for d in result] == ["RB32", "S41", "S7"]
+    rb32, s41, s7 = result
+    assert rb32.planned == dt.datetime.fromisoformat("2026-09-30T17:18:00+02:00")
+    assert rb32.realtime == dt.datetime.fromisoformat("2026-09-30T17:20:00+02:00")
+    assert rb32.delay_min == 2
+    assert rb32.planned_platform == "14"
+    assert rb32.platform == "14"
+    assert rb32.cancelled is False
+    assert s41.planned == s41.realtime == dt.datetime.fromisoformat("2026-09-30T17:20:00+02:00")
+    assert s41.delay_min == 0
+    assert s7.planned == s7.realtime == dt.datetime.fromisoformat("2026-09-30T17:21:00+02:00")
+
+
+def test_next_departures_includes_a_delayed_departure_whose_planned_time_has_passed():
+    # M43 is planned for 17:13 with real-time 17:33: still to come at 17:15,
+    # so it must appear, sorted by planned time (not real time).
+    departures = json.loads((RECORDED / "platforms_ostkreuz.json").read_text())
+    commute = _commute(OSTKREUZ, {"M43"}, (17, 0), (17, 30))
+
+    result = next_departures(commute, departures, NOW_PLATFORMS)
+
+    assert [d.planned.isoformat() for d in result] == [
+        "2026-09-30T17:13:00+02:00",
+        "2026-09-30T17:16:00+02:00",
+    ]
+    assert result[0].realtime == dt.datetime.fromisoformat("2026-09-30T17:33:00+02:00")
+    assert result[0].delay_min == 20
+    assert result[1].delay_min == 16
+
+
+def test_next_departures_respects_limit():
+    departures = json.loads((RECORDED / "platforms_ostkreuz.json").read_text())
+    commute = _commute(OSTKREUZ, {"RB32", "S41", "S7"}, (17, 15), (17, 25))
+
+    result = next_departures(commute, departures, NOW_PLATFORMS, limit=2)
+
+    assert [d.line for d in result] == ["RB32", "S41"]
 
 
 def test_every_recorded_fixture_is_documented():
