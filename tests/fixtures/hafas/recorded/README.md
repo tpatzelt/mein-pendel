@@ -16,3 +16,19 @@ only fields the engine does not read are dropped, and no value is edited. Kind: 
 
 `tests/test_engine_recorded.py` runs the engine over these files. The synthetic fixtures
 in `../engine/` stay for edge cases real data cannot pin down (DST, missing keys).
+
+## Stop-search fixtures
+
+Real `GET https://v6.bvg.transport.rest/locations?query=<q>&results=5` responses,
+recorded with `scripts/record_fixtures.py --locations` (one request per query, 1.5 s
+apart): only the fields the app reads (`type`, `id`, `name`, plus `station` id/name
+when present) are kept; every other field is dropped, and no value is edited. Kind:
+`verbatim-trimmed`.
+
+| File | Query | Recorded (UTC) | Contains |
+|---|---|---|---|
+| locations_alexanderplatz.json | Alexanderplatz | 2026-09-30T11:23:23+00:00 | S+U Alexanderplatz Bhf (900100003) among 5 stop matches |
+| locations_ostkreuz.json | Ostkreuz | 2026-09-30T11:23:25+00:00 | S Ostkreuz Bhf (900120003) among 4 stops and 1 POI |
+
+`tests/test_web_stops.py` replays `locations_alexanderplatz.json` through `/stops` to
+prove the real API shape survives the app's `type`/`id`/`name` filter unchanged.

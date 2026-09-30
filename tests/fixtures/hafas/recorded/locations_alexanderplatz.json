@@ -1,0 +1,27 @@
+[
+ {
+  "type": "stop",
+  "id": "900100003",
+  "name": "S+U Alexanderplatz Bhf (Berlin)"
+ },
+ {
+  "type": "stop",
+  "id": "900100024",
+  "name": "S+U Alexanderplatz Bhf/Dircksenstr. (Berlin)"
+ },
+ {
+  "type": "stop",
+  "id": "900100026",
+  "name": "S+U Alexanderplatz Bhf/Gontardstr. (Berlin)"
+ },
+ {
+  "type": "stop",
+  "id": "900100731",
+  "name": "S+U Alexanderplatz/Memhardstr. (Berlin) [Tram]"
+ },
+ {
+  "type": "stop",
+  "id": "900100005",
+  "name": "U Alexanderplatz (Berlin) [Tram]"
+ }
+]

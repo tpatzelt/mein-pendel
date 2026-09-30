@@ -1,0 +1,27 @@
+[
+ {
+  "type": "stop",
+  "id": "900120003",
+  "name": "S Ostkreuz Bhf (Berlin)"
+ },
+ {
+  "type": "stop",
+  "id": "900310725",
+  "name": "Beeskow, Ostkreuz"
+ },
+ {
+  "type": "stop",
+  "id": "900024102",
+  "name": "S Westkreuz (Berlin)"
+ },
+ {
+  "type": "location",
+  "id": "900980735",
+  "name": "Berlin, Puppentheater am Ostkreuz"
+ },
+ {
+  "type": "stop",
+  "id": "900058101",
+  "name": "S Südkreuz Bhf (Berlin)"
+ }
+]
