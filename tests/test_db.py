@@ -1,10 +1,13 @@
 from __future__ import annotations
 
+import datetime as dt
+import shutil
 import sqlite3
 
 import pytest
 
 from pendel import db
+from pendel.commute import Commute
 
 
 @pytest.fixture
@@ -63,13 +66,13 @@ def test_connect_enables_foreign_keys(conn):
 
 def test_migrate_records_initial_migration(conn):
     rows = conn.execute("SELECT filename FROM schema_migrations").fetchall()
-    assert [row[0] for row in rows] == ["0001_initial.sql"]
+    assert [row[0] for row in rows] == ["0001_initial.sql", "0002_commute_stop_names.sql"]
 
 
 def test_migrate_is_idempotent(conn):
     newly_applied = db.migrate(conn)
     assert newly_applied == []
-    assert conn.execute("SELECT COUNT(*) FROM schema_migrations").fetchone()[0] == 1
+    assert conn.execute("SELECT COUNT(*) FROM schema_migrations").fetchone()[0] == 2
 
 
 def test_migration_file_exists():
@@ -147,3 +150,84 @@ def test_delete_user_leaves_other_users_untouched(conn):
         ).fetchone()
         is not None
     )
+
+
+def test_add_commute_and_list_commutes_round_trip_stop_names(conn):
+    user_id = db.create_user(conn)
+    commute = Commute(
+        origin_stop_id="900100003",
+        destination_stop_id="900120003",
+        lines=frozenset({"S41"}),
+        weekdays=frozenset({0, 1, 2, 3, 4}),
+        window_start=dt.time(7, 30),
+        window_end=dt.time(8, 0),
+        origin_name="Alexanderplatz",
+        destination_name="Ostkreuz",
+    )
+
+    commute_id = db.add_commute(conn, user_id, commute)
+    [(row_id, loaded)] = db.list_commutes(conn, user_id)
+
+    assert row_id == commute_id
+    assert loaded.origin_name == "Alexanderplatz"
+    assert loaded.destination_name == "Ostkreuz"
+
+
+def test_add_commute_defaults_stop_names_to_empty_string(conn):
+    user_id = db.create_user(conn)
+    commute = Commute(
+        origin_stop_id="900100003",
+        destination_stop_id="900120003",
+        lines=frozenset({"S41"}),
+        weekdays=frozenset({0, 1, 2, 3, 4}),
+        window_start=dt.time(7, 30),
+        window_end=dt.time(8, 0),
+    )
+
+    db.add_commute(conn, user_id, commute)
+    [(_, loaded)] = db.list_commutes(conn, user_id)
+
+    assert loaded.origin_name == ""
+    assert loaded.destination_name == ""
+
+
+def test_migration_0002_upgrades_existing_database_without_data_loss(data_dir):
+    old_migrations = data_dir / "old_migrations"
+    old_migrations.mkdir()
+    shutil.copy(db.MIGRATIONS_DIR / "0001_initial.sql", old_migrations / "0001_initial.sql")
+
+    old_conn = sqlite3.connect(db.db_path())
+    old_conn.row_factory = sqlite3.Row
+    old_conn.execute("PRAGMA foreign_keys = ON")
+    db.migrate(old_conn, migrations_dir=old_migrations)
+
+    user_id = db.create_user(old_conn)
+    commute_id = _insert_commute(old_conn, user_id)
+    _insert_channel(old_conn, user_id)
+    old_conn.close()
+
+    conn = db.connect()
+    try:
+        applied = {row[0] for row in conn.execute("SELECT filename FROM schema_migrations")}
+        assert "0002_commute_stop_names.sql" in applied
+
+        assert conn.execute("SELECT id FROM users WHERE id = ?", (user_id,)).fetchone() is not None
+
+        commute_row = conn.execute(
+            "SELECT origin_stop_id, destination_stop_id, origin_name, destination_name "
+            "FROM commutes WHERE id = ?",
+            (commute_id,),
+        ).fetchone()
+        assert commute_row["origin_stop_id"] == "900000100001"
+        assert commute_row["destination_stop_id"] == "900000200002"
+        assert commute_row["origin_name"] == ""
+        assert commute_row["destination_name"] == ""
+
+        assert (
+            conn.execute("SELECT target FROM channels WHERE user_id = ?", (user_id,)).fetchone()[
+                "target"
+            ]
+            == "topic-abc"
+        )
+    finally:
+        conn.close()
