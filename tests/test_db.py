@@ -66,13 +66,17 @@ def test_connect_enables_foreign_keys(conn):
 
 def test_migrate_records_initial_migration(conn):
     rows = conn.execute("SELECT filename FROM schema_migrations").fetchall()
-    assert [row[0] for row in rows] == ["0001_initial.sql", "0002_commute_stop_names.sql"]
+    assert [row[0] for row in rows] == [
+        "0001_initial.sql",
+        "0002_commute_stop_names.sql",
+        "0003_commute_paused.sql",
+    ]
 
 
 def test_migrate_is_idempotent(conn):
     newly_applied = db.migrate(conn)
     assert newly_applied == []
-    assert conn.execute("SELECT COUNT(*) FROM schema_migrations").fetchone()[0] == 2
+    assert conn.execute("SELECT COUNT(*) FROM schema_migrations").fetchone()[0] == 3
 
 
 def test_migration_file_exists():

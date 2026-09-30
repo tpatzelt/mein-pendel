@@ -86,8 +86,8 @@ def add_commute(conn: sqlite3.Connection, user_id: str, commute: Commute) -> int
     cur = conn.execute(
         "INSERT INTO commutes (user_id, origin_stop_id, destination_stop_id, lines, "
         "weekdays, window_start, window_end, delay_threshold_min, origin_name, "
-        "destination_name) "
-        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        "destination_name, paused) "
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
         (
             user_id,
             commute.origin_stop_id,
@@ -99,37 +99,103 @@ def add_commute(conn: sqlite3.Connection, user_id: str, commute: Commute) -> int
             commute.delay_threshold_min,
             commute.origin_name,
             commute.destination_name,
+            int(commute.paused),
         ),
     )
     conn.commit()
     return cur.lastrowid
 
 
+_COMMUTE_COLUMNS = (
+    "origin_stop_id, destination_stop_id, lines, weekdays, window_start, "
+    "window_end, delay_threshold_min, origin_name, destination_name, paused"
+)
+
+
+def _commute_from_row(row: sqlite3.Row) -> Commute:
+    return Commute(
+        origin_stop_id=row["origin_stop_id"],
+        destination_stop_id=row["destination_stop_id"],
+        lines=frozenset(row["lines"].split(",")),
+        weekdays=frozenset(int(day) for day in row["weekdays"].split(",")),
+        window_start=dt.time.fromisoformat(row["window_start"]),
+        window_end=dt.time.fromisoformat(row["window_end"]),
+        delay_threshold_min=row["delay_threshold_min"],
+        origin_name=row["origin_name"],
+        destination_name=row["destination_name"],
+        paused=bool(row["paused"]),
+    )
+
+
 def list_commutes(conn: sqlite3.Connection, user_id: str) -> list[tuple[int, Commute]]:
     """Return `(row id, Commute)` pairs for every commute saved by `user_id`."""
     rows = conn.execute(
-        "SELECT id, origin_stop_id, destination_stop_id, lines, weekdays, window_start, "
-        "window_end, delay_threshold_min, origin_name, destination_name "
-        "FROM commutes WHERE user_id = ? ORDER BY id",
+        f"SELECT id, {_COMMUTE_COLUMNS} FROM commutes WHERE user_id = ? ORDER BY id",
         (user_id,),
     ).fetchall()
-    return [
+    return [(row["id"], _commute_from_row(row)) for row in rows]
+
+
+def get_commute(conn: sqlite3.Connection, user_id: str, commute_id: int) -> Commute | None:
+    """Return the commute `commute_id` belonging to `user_id`, or `None` if it
+    does not exist or belongs to a different user (charter G2: one visitor
+    can never reach another's commute)."""
+    row = conn.execute(
+        f"SELECT {_COMMUTE_COLUMNS} FROM commutes WHERE id = ? AND user_id = ?",
+        (commute_id, user_id),
+    ).fetchone()
+    return _commute_from_row(row) if row is not None else None
+
+
+def update_commute(
+    conn: sqlite3.Connection, user_id: str, commute_id: int, commute: Commute
+) -> bool:
+    """Overwrite every field of commute `commute_id` belonging to `user_id`.
+    Returns whether a row was actually updated, so a foreign or unknown id
+    can be told apart from a no-op."""
+    cur = conn.execute(
+        "UPDATE commutes SET origin_stop_id = ?, destination_stop_id = ?, lines = ?, "
+        "weekdays = ?, window_start = ?, window_end = ?, delay_threshold_min = ?, "
+        "origin_name = ?, destination_name = ?, paused = ? WHERE id = ? AND user_id = ?",
         (
-            row["id"],
-            Commute(
-                origin_stop_id=row["origin_stop_id"],
-                destination_stop_id=row["destination_stop_id"],
-                lines=frozenset(row["lines"].split(",")),
-                weekdays=frozenset(int(day) for day in row["weekdays"].split(",")),
-                window_start=dt.time.fromisoformat(row["window_start"]),
-                window_end=dt.time.fromisoformat(row["window_end"]),
-                delay_threshold_min=row["delay_threshold_min"],
-                origin_name=row["origin_name"],
-                destination_name=row["destination_name"],
-            ),
-        )
-        for row in rows
-    ]
+            commute.origin_stop_id,
+            commute.destination_stop_id,
+            ",".join(sorted(commute.lines)),
+            ",".join(str(day) for day in sorted(commute.weekdays)),
+            commute.window_start.strftime("%H:%M"),
+            commute.window_end.strftime("%H:%M"),
+            commute.delay_threshold_min,
+            commute.origin_name,
+            commute.destination_name,
+            int(commute.paused),
+            commute_id,
+            user_id,
+        ),
+    )
+    conn.commit()
+    return cur.rowcount > 0
+
+
+def set_paused(conn: sqlite3.Connection, user_id: str, commute_id: int, paused: bool) -> bool:
+    """Pause or resume commute `commute_id` belonging to `user_id`. Returns
+    whether a row was actually updated."""
+    cur = conn.execute(
+        "UPDATE commutes SET paused = ? WHERE id = ? AND user_id = ?",
+        (int(paused), commute_id, user_id),
+    )
+    conn.commit()
+    return cur.rowcount > 0
+
+
+def delete_commute(conn: sqlite3.Connection, user_id: str, commute_id: int) -> bool:
+    """Delete commute `commute_id` belonging to `user_id`. Returns whether a
+    row was actually deleted."""
+    cur = conn.execute(
+        "DELETE FROM commutes WHERE id = ? AND user_id = ?",
+        (commute_id, user_id),
+    )
+    conn.commit()
+    return cur.rowcount > 0
 
 
 def add_ntfy_channel(conn: sqlite3.Connection, user_id: str, topic: str) -> int:

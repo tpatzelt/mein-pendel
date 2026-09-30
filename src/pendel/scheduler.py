@@ -135,9 +135,13 @@ class Scheduler:
                     logger.exception("processing commute %s failed", due.commute_id)
 
     def _all_commute_rows(self) -> list[sqlite3.Row]:
+        """Every commute due for a scheduler pass, excluding paused ones
+        (charter G2: paused commutes are never checked). This is the
+        scheduler's only commute query."""
         return self._conn.execute(
             "SELECT id, origin_stop_id, destination_stop_id, lines, weekdays, "
-            "window_start, window_end, delay_threshold_min FROM commutes"
+            "window_start, window_end, delay_threshold_min FROM commutes "
+            "WHERE paused = 0"
         ).fetchall()
 
     def _due_commute(self, row: sqlite3.Row, now: dt.datetime) -> _DueCommute | None:

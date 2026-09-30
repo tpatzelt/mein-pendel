@@ -68,6 +68,7 @@ class Commute:
     delay_threshold_min: int = 5
     origin_name: str = ""
     destination_name: str = ""
+    paused: bool = False
 
     def __post_init__(self) -> None:
         object.__setattr__(self, "lines", frozenset(self.lines))
