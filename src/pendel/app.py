@@ -159,9 +159,9 @@ def _fetch_journeys(
 def _default_window(now: dt.datetime) -> tuple[dt.time, dt.time]:
     """Default departure window (charter G1): starts at the next full half
     hour after `now`, wrapping past midnight (e.g. 23:45 gives 00:00, not
-    23:30); window_end is start + 30 min, clamped to 23:59 when the start
-    itself is 23:30 so the window never crosses midnight. Full
-    midnight-crossing windows land in T-0016.
+    23:30); window_end is start + 30 min, wrapping past midnight the same
+    way (e.g. 23:30 gives 00:00) since a window crossing midnight is valid
+    (charter G2) and `Commute` already supports it.
     """
     local = now.astimezone(BERLIN)
     total_minutes = local.hour * 60 + local.minute
@@ -172,12 +172,29 @@ def _default_window(now: dt.datetime) -> tuple[dt.time, dt.time]:
         start_minutes = total_minutes - remainder + 30
     start_minutes %= 24 * 60
     window_start = dt.time(start_minutes // 60, start_minutes % 60)
-    if start_minutes == 23 * 60 + 30:
-        window_end = dt.time(23, 59)
-    else:
-        end_minutes = start_minutes + 30
-        window_end = dt.time(end_minutes // 60, end_minutes % 60)
+    end_minutes = (start_minutes + 30) % (24 * 60)
+    window_end = dt.time(end_minutes // 60, end_minutes % 60)
     return window_start, window_end
+
+
+def _today_window(
+    commute: Commute, now: dt.datetime, today_date: dt.date
+) -> tuple[dt.datetime, dt.datetime] | None:
+    """The departure window `/today` should fetch and evaluate `commute`
+    against, or None when the commute is inactive.
+
+    Prefers the window `now` currently falls into (`Commute.window_containing`,
+    same lookup `evaluate` uses), so a window crossing midnight (e.g.
+    23:30-00:30) that started yesterday and is still open still counts as
+    active (charter G2). Falls back to today's window when the commute runs
+    today but `now` isn't inside any window yet (e.g. before it opens).
+    """
+    window = commute.window_containing(now)
+    if window is not None:
+        return window
+    if commute.is_active_on(today_date):
+        return commute.window_bounds(today_date)
+    return None
 
 
 async def _line_choices_for_origin(
@@ -581,10 +598,15 @@ async def today(
         # filtering still applies. A paused commute's origin is never
         # fetched (charter G3: a paused-only user makes zero HAFAS calls).
         windows_by_stop: dict[str, tuple[dt.datetime, dt.datetime]] = {}
-        for _, commute in commutes:
-            if commute.paused or not commute.is_active_on(today_date):
+        commute_windows: dict[int, tuple[dt.datetime, dt.datetime] | None] = {}
+        for commute_id, commute in commutes:
+            if commute.paused:
                 continue
-            start, end = commute.window_bounds(today_date)
+            window = _today_window(commute, now, today_date)
+            commute_windows[commute_id] = window
+            if window is None:
+                continue
+            start, end = window
             existing = windows_by_stop.get(commute.origin_stop_id)
             windows_by_stop[commute.origin_stop_id] = (
                 (start, end)
@@ -607,7 +629,7 @@ async def today(
                 items.append(_status_item(commute_id, commute, t, "paused", None))
                 continue
 
-            if not commute.is_active_on(today_date):
+            if commute_windows.get(commute_id) is None:
                 items.append(
                     _status_item(commute_id, commute, t, "inactive", t("today_inactive"))
                 )
