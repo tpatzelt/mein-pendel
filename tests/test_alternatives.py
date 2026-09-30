@@ -107,6 +107,24 @@ def test_realtime_departure_and_arrival_are_preferred_over_planned():
     assert alt.arrival == dt.datetime(2026, 1, 5, 8, 1, tzinfo=BERLIN)
 
 
+def test_alternative_found_when_arrival_is_at_child_stop_of_destination():
+    # The saved destination is the parent station 900003201 (S+U Berlin
+    # Hauptbahnhof). The only qualifying journey arrives at its child stop
+    # 900003200 ("[Gleis 1-8]"), reported by HAFAS with a nested "station"
+    # object naming the parent. A journey to an unrelated stop with no
+    # matching station must still be rejected even though it departs first.
+    commute = _commute(destination_stop_id="900003201")
+    verdict = _verdict()
+
+    alt = suggest_alternative(commute, verdict, _load("synthetic_child_stop_arrival.json"))
+
+    assert alt is not None
+    assert alt.line == "U2"
+    assert alt.destination_name == "S+U Berlin Hauptbahnhof [Gleis 1-8]"
+    assert alt.departure == dt.datetime(2026, 1, 5, 7, 41, tzinfo=BERLIN)
+    assert alt.arrival == dt.datetime(2026, 1, 5, 7, 58, tzinfo=BERLIN)
+
+
 def test_falls_back_to_all_commute_lines_when_disruption_key_line_is_not_ridden():
     # disruption_key names a line the commute does not ride at all (e.g. a
     # stop-level construction remark without a specific line). The

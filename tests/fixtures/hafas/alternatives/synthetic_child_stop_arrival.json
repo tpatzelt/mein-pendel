@@ -1,0 +1,38 @@
+{
+  "_comment": "synthetic: models the real parent/child pair recorded in tests/fixtures/hafas/recorded/departures_delay.json (child stop 900003200 'S+U Berlin Hauptbahnhof [Gleis 1-8]', parent station 900003201 'S+U Berlin Hauptbahnhof'). The saved destination is the parent station 900003201; HAFAS /journeys reports the arrival as the child stop with a nested 'station' object.",
+  "journeys": [
+    {
+      "legs": [
+        {
+          "origin": {"id": "900003205", "name": "S+U Berlin Hauptbahnhof (Bus)"},
+          "destination": {
+            "type": "stop",
+            "id": "900003200",
+            "name": "S+U Berlin Hauptbahnhof [Gleis 1-8]",
+            "station": {"id": "900003201", "name": "S+U Berlin Hauptbahnhof"}
+          },
+          "departure": "2026-01-05T07:41:00+01:00",
+          "plannedDeparture": "2026-01-05T07:41:00+01:00",
+          "arrival": "2026-01-05T07:58:00+01:00",
+          "plannedArrival": "2026-01-05T07:58:00+01:00",
+          "line": {"id": "line:U2", "name": "U2", "product": "subway"},
+          "cancelled": false
+        }
+      ]
+    },
+    {
+      "legs": [
+        {
+          "origin": {"id": "900003205", "name": "S+U Berlin Hauptbahnhof (Bus)"},
+          "destination": {"id": "900100003", "name": "S+U Alexanderplatz"},
+          "departure": "2026-01-05T07:30:00+01:00",
+          "plannedDeparture": "2026-01-05T07:30:00+01:00",
+          "arrival": "2026-01-05T07:44:00+01:00",
+          "plannedArrival": "2026-01-05T07:44:00+01:00",
+          "line": {"id": "line:U5", "name": "U5", "product": "subway"},
+          "cancelled": false
+        }
+      ]
+    }
+  ]
+}

@@ -73,7 +73,12 @@ def _candidate(
         return None
 
     last_leg = legs[-1]
-    if last_leg.get("destination", {}).get("id") != commute.destination_stop_id:
+    destination = last_leg.get("destination", {})
+    destination_station = destination.get("station") or {}
+    if (
+        destination.get("id") != commute.destination_stop_id
+        and destination_station.get("id") != commute.destination_stop_id
+    ):
         return None
 
     if any(leg.get("cancelled", False) for leg in legs):
