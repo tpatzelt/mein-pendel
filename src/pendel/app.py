@@ -45,6 +45,17 @@ _LINE_CHOICES_DURATION_MINUTES = 60
 _DEFAULT_WEEKDAYS = frozenset({"0", "1", "2", "3", "4"})  # Mon-Fri
 _DEFAULT_DELAY_THRESHOLD_MIN = "5"
 
+# Decorative, aria-hidden icon per "today" card status (charter G3): status
+# is never conveyed by class or color alone, so every card also carries a
+# visible localized label (see `_status_item`).
+_STATUS_ICONS = {
+    "ok": "✓",
+    "disrupted": "⚠",
+    "paused": "⏸",
+    "failed": "✕",
+    "inactive": "○",
+}
+
 # HafasClient's TTL cache is a plain OrderedDict, not thread-safe; sync
 # endpoints run in a threadpool, so serialize access to the shared client.
 _hafas_lock = threading.Lock()
@@ -427,6 +438,29 @@ async def commutes_create(
     return response
 
 
+def _commute_title(commute: Commute, t: Any) -> str:
+    """The card heading (charter G3): 'origin name → destination name',
+    never a stop id. Old commutes saved before stop names were stored have
+    empty origin_name/destination_name; those get a localized generic
+    label instead of an empty arrow."""
+    if commute.origin_name and commute.destination_name:
+        return f"{commute.origin_name} → {commute.destination_name}"
+    return t("today_saved_commute_generic")
+
+
+def _status_item(
+    commute_id: int, commute: Commute, t: Any, status: str, message: str | None
+) -> dict[str, Any]:
+    return {
+        "commute_id": commute_id,
+        "title": _commute_title(commute, t),
+        "status": status,
+        "status_label": t(f"today_status_{status}"),
+        "status_icon": _STATUS_ICONS[status],
+        "message": message,
+    }
+
+
 @app.get("/today", response_class=HTMLResponse)
 async def today(
     request: Request,
@@ -456,12 +490,14 @@ async def today(
         commutes = db.list_commutes(db_conn, uid)
         today_date = now.astimezone(BERLIN).date()
 
-        # One departures fetch per origin stop covers every active commute
-        # from that stop, widened to the earliest start / latest end among
-        # them so evaluate()'s per-commute window filtering still applies.
+        # One departures fetch per origin stop covers every active,
+        # non-paused commute from that stop, widened to the earliest
+        # start / latest end among them so evaluate()'s per-commute window
+        # filtering still applies. A paused commute's origin is never
+        # fetched (charter G3: a paused-only user makes zero HAFAS calls).
         windows_by_stop: dict[str, tuple[dt.datetime, dt.datetime]] = {}
         for _, commute in commutes:
-            if not commute.is_active_on(today_date):
+            if commute.paused or not commute.is_active_on(today_date):
                 continue
             start, end = commute.window_bounds(today_date)
             existing = windows_by_stop.get(commute.origin_stop_id)
@@ -482,42 +518,31 @@ async def today(
                 departures_by_stop[stop_id] = None
 
         for commute_id, commute in commutes:
+            if commute.paused:
+                items.append(_status_item(commute_id, commute, t, "paused", None))
+                continue
+
             if not commute.is_active_on(today_date):
                 items.append(
-                    {
-                        "commute_id": commute_id,
-                        "origin_stop_id": commute.origin_stop_id,
-                        "destination_stop_id": commute.destination_stop_id,
-                        "status": "inactive",
-                        "message": t("today_inactive"),
-                    }
+                    _status_item(commute_id, commute, t, "inactive", t("today_inactive"))
                 )
                 continue
 
             departures_json = departures_by_stop.get(commute.origin_stop_id)
             if departures_json is None:
                 items.append(
-                    {
-                        "commute_id": commute_id,
-                        "origin_stop_id": commute.origin_stop_id,
-                        "destination_stop_id": commute.destination_stop_id,
-                        "status": "unavailable",
-                        "message": t("today_unavailable"),
-                    }
+                    _status_item(commute_id, commute, t, "failed", t("today_unavailable"))
                 )
                 continue
 
             verdict = evaluate(
                 commute, departures_json, now, delay_threshold_min=commute.delay_threshold_min
             )
+            message = verdict.reason_de if language == "de" else verdict.reason_en
             items.append(
-                {
-                    "commute_id": commute_id,
-                    "origin_stop_id": commute.origin_stop_id,
-                    "destination_stop_id": commute.destination_stop_id,
-                    "status": "affected" if verdict.affected else "unaffected",
-                    "message": verdict.reason_de if language == "de" else verdict.reason_en,
-                }
+                _status_item(
+                    commute_id, commute, t, "disrupted" if verdict.affected else "ok", message
+                )
             )
 
     response = templates.TemplateResponse(

@@ -11,8 +11,11 @@
 <ul>
   {% for item in items %}
   <li data-commute-id="{{ item.commute_id }}" data-status="{{ item.status }}">
-    <p>{{ item.origin_stop_id }} → {{ item.destination_stop_id }}</p>
-    <p>{{ item.message }}</p>
+    <p>{{ item.title }}</p>
+    <p class="status-{{ item.status }}">
+      <span aria-hidden="true">{{ item.status_icon }}</span> {{ item.status_label }}
+    </p>
+    {% if item.message %}<p>{{ item.message }}</p>{% endif %}
   </li>
   {% endfor %}
 </ul>
