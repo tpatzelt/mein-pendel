@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import dataclasses
 import datetime as dt
 import sqlite3
 
@@ -35,6 +36,19 @@ UNAFFECTED = Verdict(
     disruption_key="",
 )
 
+# A verdict whose reason text does not itself mention the line, so a test
+# asserting the line appears in the message actually exercises
+# `verdict.line` rather than incidentally matching the reason string.
+# `planned` is a summer (CEST, UTC+2) instant, pinning down the DST offset
+# used when rendering the Europe/Berlin HH:MM.
+AFFECTED_WITH_LINE_AND_TIME = dataclasses.replace(
+    AFFECTED,
+    line="U8",
+    reason_de="Zug fällt aus.",
+    reason_en="Train is cancelled.",
+    planned=dt.datetime(2026, 7, 15, 10, 30, tzinfo=dt.timezone.utc),
+)
+
 
 @pytest.fixture
 def data_dir(tmp_path, monkeypatch):
@@ -49,11 +63,28 @@ def conn(data_dir):
     connection.close()
 
 
-def _commute_id(conn: sqlite3.Connection, user_id: str) -> int:
+def _commute_id(
+    conn: sqlite3.Connection,
+    user_id: str,
+    *,
+    origin_name: str = "",
+    destination_name: str = "",
+) -> int:
     cur = conn.execute(
         "INSERT INTO commutes (user_id, origin_stop_id, destination_stop_id, "
-        "lines, weekdays, window_start, window_end) VALUES (?, ?, ?, ?, ?, ?, ?)",
-        (user_id, "900000100001", "900000200002", "S41", "0,1,2,3,4", "07:30", "08:00"),
+        "lines, weekdays, window_start, window_end, origin_name, destination_name) "
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        (
+            user_id,
+            "900000100001",
+            "900000200002",
+            "S41",
+            "0,1,2,3,4",
+            "07:30",
+            "08:00",
+            origin_name,
+            destination_name,
+        ),
     )
     conn.commit()
     return cur.lastrowid
@@ -217,3 +248,65 @@ def test_no_channels_still_records_state_but_sends_nothing(conn):
 def test_unknown_commute_id_raises(conn):
     with pytest.raises(ValueError):
         tracker.process(conn, 999, AFFECTED, {}, NOW)
+
+
+def test_disruption_message_names_commute_line_time_reason_and_today_link(conn):
+    user_id = db.create_user(conn)
+    commute_id = _commute_id(
+        conn, user_id, origin_name="Alexanderplatz", destination_name="Potsdam Hbf"
+    )
+    _add_channel(conn, user_id, "ntfy", target="topic-abc")
+    fake = FakeChannel()
+
+    tracker.process(conn, commute_id, AFFECTED_WITH_LINE_AND_TIME, {"ntfy": fake}, NOW)
+
+    assert len(fake.sent) == 1
+    _target, text = fake.sent[0]
+    assert "Alexanderplatz" in text
+    assert "Potsdam Hbf" in text
+    assert "U8" in text
+    # 2026-07-15 10:30 UTC is 12:30 in Europe/Berlin (CEST, DST in effect).
+    assert "12:30" in text
+    assert "Zug fällt aus." in text
+    assert "Train is cancelled." in text
+    assert text.rstrip().endswith("/today")
+
+
+def test_disruption_message_uses_generic_commute_name_when_names_missing(conn, commute):
+    _user_id, commute_id = commute
+    fake = FakeChannel()
+
+    tracker.process(conn, commute_id, AFFECTED_WITH_LINE_AND_TIME, {"ntfy": fake}, NOW)
+
+    _target, text = fake.sent[0]
+    assert "Deine Verbindung" in text
+    assert "Your commute" in text
+
+
+def test_disruption_message_today_url_has_no_accidental_double_slash(conn, commute):
+    _user_id, commute_id = commute
+    fake = FakeChannel()
+
+    tracker.process(conn, commute_id, AFFECTED, {"ntfy": fake}, NOW)
+
+    _target, text = fake.sent[0]
+    assert "//today" not in text
+
+
+def test_format_disruption_message_is_pure_de_block_before_en_block_and_ends_with_url():
+    text = tracker.format_disruption_message(
+        "Alexanderplatz → Potsdam Hbf",
+        AFFECTED_WITH_LINE_AND_TIME,
+        "https://example.invalid/today",
+    )
+
+    assert text.endswith("https://example.invalid/today")
+    assert text.index("Zug fällt aus.") < text.index("Train is cancelled.")
+
+
+def test_format_disruption_message_missing_planned_renders_question_mark():
+    verdict = dataclasses.replace(AFFECTED, line="U8", planned=None)
+
+    text = tracker.format_disruption_message("A → B", verdict, "/today")
+
+    assert "?" in text
