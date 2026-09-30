@@ -11,6 +11,15 @@
   --color-border: #cccccc;
   --color-error: #b00020;
 
+  --status-ok-fg: #0f5c2e;
+  --status-ok-bg: #dff3e6;
+  --status-disrupted-fg: #7a4a00;
+  --status-disrupted-bg: #fdecc8;
+  --status-paused-fg: #33415c;
+  --status-paused-bg: #e4e8f0;
+  --status-failed-fg: #8c0f24;
+  --status-failed-bg: #fbdde1;
+
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 1rem;
@@ -31,6 +40,15 @@
     --color-link: #7fb2ff;
     --color-border: #444444;
     --color-error: #ff6b6b;
+
+    --status-ok-fg: #8fe3ae;
+    --status-ok-bg: #123420;
+    --status-disrupted-fg: #ffcf7a;
+    --status-disrupted-bg: #3a2a06;
+    --status-paused-fg: #c3ccdc;
+    --status-paused-bg: #232b3d;
+    --status-failed-fg: #ffb0bb;
+    --status-failed-bg: #3a0f18;
   }
 }
 
@@ -61,6 +79,35 @@ footer {
 
 .error {
   color: var(--color-error);
+}
+
+.status-ok,
+.status-disrupted,
+.status-paused,
+.status-failed {
+  display: inline-block;
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid currentColor;
+}
+
+.status-ok {
+  color: var(--status-ok-fg);
+  background: var(--status-ok-bg);
+}
+
+.status-disrupted {
+  color: var(--status-disrupted-fg);
+  background: var(--status-disrupted-bg);
+}
+
+.status-paused {
+  color: var(--status-paused-fg);
+  background: var(--status-paused-bg);
+}
+
+.status-failed {
+  color: var(--status-failed-fg);
+  background: var(--status-failed-bg);
 }
 
 a {
