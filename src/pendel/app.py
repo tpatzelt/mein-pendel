@@ -20,7 +20,7 @@ from pathlib import Path
 from typing import Any
 
 import httpx
-from fastapi import Depends, FastAPI, Request
+from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -211,6 +211,17 @@ async def _line_choices_for_origin(
         return [], True
     choices = line_choices(departures_json)
     return choices, not choices
+
+
+def _merge_line_choices(choices: list[str], saved_lines: frozenset[str]) -> list[str]:
+    """`choices` (today's departing lines) with any `saved_lines` not among
+    them appended, so editing a commute still shows a saved line as a
+    checked checkbox even if it isn't currently departing (charter G2)."""
+    merged = list(choices)
+    for line in sorted(saved_lines):
+        if line not in merged:
+            merged.append(line)
+    return merged
 
 
 async def get_db() -> AsyncIterator[sqlite3.Connection]:
@@ -599,6 +610,7 @@ def _commute_list_item(commute_id: int, commute: Commute, t: Any) -> dict[str, A
         "pause_aria": t("commutes_pause_aria").format(title=title),
         "resume_aria": t("commutes_resume_aria").format(title=title),
         "delete_aria": t("commutes_delete_aria").format(title=title),
+        "edit_aria": t("commutes_edit_aria").format(title=title),
     }
 
 
@@ -647,6 +659,161 @@ def _require_owned_commute_redirect(
     if uid is None or not db.user_exists(db_conn, uid):
         return None
     return uid
+
+
+def _commute_new_context(
+    language: str,
+    t: Any,
+    commute_id: int,
+    commute: Commute,
+    line_choices_result: tuple[list[str], bool],
+    selected_lines: frozenset[str],
+    selected_weekdays: frozenset[str],
+    window_start: str,
+    window_end: str,
+    delay_threshold_min: str,
+    error_message: str | None,
+) -> dict[str, Any]:
+    """Shared commute_new.html context for GET .../edit and an invalid POST
+    .../{commute_id}: same shape as the create flow's context plus
+    `commute_id`, which switches the template into edit mode (charter G2)."""
+    choices, unavailable = line_choices_result
+    return {
+        "language": language,
+        "t": t,
+        "ready": True,
+        "commute_id": commute_id,
+        "origin_stop_id": commute.origin_stop_id,
+        "origin_name": commute.origin_name,
+        "destination_stop_id": commute.destination_stop_id,
+        "destination_name": commute.destination_name,
+        "line_choices": _merge_line_choices(choices, selected_lines),
+        "selected_lines": selected_lines,
+        "lines_unavailable": unavailable,
+        "selected_weekdays": selected_weekdays,
+        "window_start": window_start,
+        "window_end": window_end,
+        "delay_threshold_min": delay_threshold_min,
+        "error_message": error_message,
+    }
+
+
+@app.get("/commutes/{commute_id}/edit", response_class=HTMLResponse)
+async def commute_edit_form(
+    commute_id: int,
+    request: Request,
+    db_conn: sqlite3.Connection = Depends(get_db),
+    hafas_client: HafasClient = Depends(get_hafas_client),
+    now: dt.datetime = Depends(get_now),
+) -> HTMLResponse:
+    """Edit screen (charter G2): same fields as /commutes/new, prefilled
+    from the saved commute; origin/destination are kept as they are and
+    never re-typed. 404s (missing cookie, unknown id, foreign id) match
+    `_require_owned_commute_redirect`'s pause/resume/delete scoping."""
+    language = _language_for(request)
+
+    def t(key: str) -> str:
+        return translate(language, key)
+
+    uid = _require_owned_commute_redirect(request, db_conn)
+    commute = db.get_commute(db_conn, uid, commute_id) if uid is not None else None
+    if commute is None:
+        raise HTTPException(status_code=404)
+
+    line_choices_result = await _line_choices_for_origin(hafas_client, commute.origin_stop_id, now)
+    context = _commute_new_context(
+        language,
+        t,
+        commute_id,
+        commute,
+        line_choices_result,
+        selected_lines=commute.lines,
+        selected_weekdays=frozenset(str(day) for day in commute.weekdays),
+        window_start=commute.window_start.strftime("%H:%M"),
+        window_end=commute.window_end.strftime("%H:%M"),
+        delay_threshold_min=str(commute.delay_threshold_min),
+        error_message=None,
+    )
+    status_code = 503 if line_choices_result[1] else 200
+
+    response = templates.TemplateResponse(
+        request, "commute_new.html", context, status_code=status_code
+    )
+    if request.query_params.get("lang") in ("de", "en"):
+        response.set_cookie("lang", language, samesite="lax")
+    return response
+
+
+@app.post("/commutes/{commute_id}")
+async def commute_update(
+    commute_id: int,
+    request: Request,
+    db_conn: sqlite3.Connection = Depends(get_db),
+    hafas_client: HafasClient = Depends(get_hafas_client),
+    now: dt.datetime = Depends(get_now),
+) -> HTMLResponse:
+    """Save an edit (charter G2): same validation as POST /commutes, but the
+    origin/destination stop ids, names and the paused flag are kept from the
+    stored commute -- only lines, weekdays, window and delay threshold come
+    from the form. 404s match GET .../edit."""
+    language = _language_for(request)
+
+    def t(key: str) -> str:
+        return translate(language, key)
+
+    uid = _require_owned_commute_redirect(request, db_conn)
+    existing = db.get_commute(db_conn, uid, commute_id) if uid is not None else None
+    if existing is None:
+        raise HTTPException(status_code=404)
+
+    # See POST /commutes: no file inputs, so parse the urlencoded body
+    # directly instead of depending on python-multipart.
+    body = await request.body()
+    form = urllib.parse.parse_qs(body.decode("utf-8"), keep_blank_values=True)
+    selected_lines = [line.strip() for line in form.get("lines", []) if line.strip()]
+    weekdays_raw = form.get("weekdays", [])
+    window_start_raw = form.get("window_start", [""])[0].strip()
+    window_end_raw = form.get("window_end", [""])[0].strip()
+    delay_raw = form.get("delay_threshold_min", [""])[0].strip()
+
+    commute: Commute | None = None
+    try:
+        commute = Commute(
+            origin_stop_id=existing.origin_stop_id,
+            destination_stop_id=existing.destination_stop_id,
+            origin_name=existing.origin_name,
+            destination_name=existing.destination_name,
+            lines=frozenset(selected_lines),
+            weekdays=frozenset(int(day) for day in weekdays_raw),
+            window_start=dt.time.fromisoformat(window_start_raw),
+            window_end=dt.time.fromisoformat(window_end_raw),
+            delay_threshold_min=int(delay_raw) if delay_raw else 5,
+            paused=existing.paused,
+        )
+    except (ValueError, TypeError):
+        commute = None
+
+    if commute is None:
+        line_choices_result = await _line_choices_for_origin(
+            hafas_client, existing.origin_stop_id, now
+        )
+        context = _commute_new_context(
+            language,
+            t,
+            commute_id,
+            existing,
+            line_choices_result,
+            selected_lines=frozenset(selected_lines),
+            selected_weekdays=frozenset(weekdays_raw),
+            window_start=window_start_raw,
+            window_end=window_end_raw,
+            delay_threshold_min=delay_raw or _DEFAULT_DELAY_THRESHOLD_MIN,
+            error_message=t("commute_new_error"),
+        )
+        return templates.TemplateResponse(request, "commute_new.html", context, status_code=400)
+
+    db.update_commute(db_conn, uid, commute_id, commute)
+    return RedirectResponse(url="/commutes", status_code=303)
 
 
 @app.post("/commutes/{commute_id}/pause")

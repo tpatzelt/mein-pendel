@@ -16,6 +16,7 @@
     <p>{{ item.weekdays_text }}</p>
     <p>{{ item.window_text }}</p>
     {% if item.paused %}<p>{{ t("today_status_paused") }}</p>{% endif %}
+    <p><a href="/commutes/{{ item.commute_id }}/edit" aria-label="{{ item.edit_aria }}">{{ t("commutes_edit_button") }}</a></p>
     <form method="post" action="/commutes/{{ item.commute_id }}/{{ 'resume' if item.paused else 'pause' }}">
       <button type="submit" aria-label="{{ item.resume_aria if item.paused else item.pause_aria }}">{{ t("commutes_resume_button") if item.paused else t("commutes_pause_button") }}</button>
     </form>
