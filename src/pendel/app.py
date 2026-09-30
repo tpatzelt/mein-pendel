@@ -563,6 +563,67 @@ async def _alternative_text(
     return alternative.summary_de if language == "de" else alternative.summary_en
 
 
+_WEEKDAY_KEYS = (
+    "weekday_mon",
+    "weekday_tue",
+    "weekday_wed",
+    "weekday_thu",
+    "weekday_fri",
+    "weekday_sat",
+    "weekday_sun",
+)
+
+
+def _weekdays_text(weekdays: frozenset[int], t: Any) -> str:
+    """Localized weekday abbreviations in calendar order (charter G2's 'my
+    commutes' list), e.g. 'Mo, Mi, Fr'."""
+    return ", ".join(t(_WEEKDAY_KEYS[day]) for day in sorted(weekdays))
+
+
+def _commute_list_item(commute: Commute, t: Any) -> dict[str, Any]:
+    """One row for the 'my commutes' list (charter G2): name, sorted lines,
+    localized weekdays and the window as HH:MM-HH:MM, never a stop id."""
+    return {
+        "title": _commute_title(commute, t),
+        "lines_text": ", ".join(sorted(commute.lines)),
+        "weekdays_text": _weekdays_text(commute.weekdays, t),
+        "window_text": f"{commute.window_start:%H:%M}–{commute.window_end:%H:%M}",
+        "paused": commute.paused,
+    }
+
+
+@app.get("/commutes", response_class=HTMLResponse)
+async def commutes_list(
+    request: Request,
+    db_conn: sqlite3.Connection = Depends(get_db),
+) -> HTMLResponse:
+    """'My commutes' (charter G2): every saved commute for the uid cookie's
+    user, listed by name, lines, weekdays and window; without a user (or
+    with no saved commutes), the empty state links to /stops to start G1's
+    setup flow."""
+    language = _language_for(request)
+
+    def t(key: str) -> str:
+        return translate(language, key)
+
+    uid = request.cookies.get("uid")
+    has_user = uid is not None and db.user_exists(db_conn, uid)
+    items = (
+        [_commute_list_item(commute, t) for _commute_id, commute in db.list_commutes(db_conn, uid)]
+        if has_user
+        else []
+    )
+
+    response = templates.TemplateResponse(
+        request,
+        "commutes.html",
+        {"language": language, "t": t, "has_user": has_user, "items": items},
+    )
+    if request.query_params.get("lang") in ("de", "en"):
+        response.set_cookie("lang", language, samesite="lax")
+    return response
+
+
 @app.get("/today", response_class=HTMLResponse)
 async def today(
     request: Request,

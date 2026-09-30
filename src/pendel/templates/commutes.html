@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}{{ t("commutes_heading") }}{% endblock %}
+
+{% block content %}
+<h1>{{ t("commutes_heading") }}</h1>
+{% if not has_user or not items %}
+<p>{{ t("today_empty") }}</p>
+<p><a href="/stops">{{ t("today_empty_cta") }}</a></p>
+{% else %}
+<ul>
+  {% for item in items %}
+  <li>
+    <p>{{ item.title }}</p>
+    <p>{{ item.lines_text }}</p>
+    <p>{{ item.weekdays_text }}</p>
+    <p>{{ item.window_text }}</p>
+    {% if item.paused %}<p>{{ t("today_status_paused") }}</p>{% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}
