@@ -97,6 +97,19 @@ class Verdict:
 
 
 @dataclass(frozen=True)
+class NextDeparture:
+    """One upcoming departure on a ridden line (charter G3 "today" card)."""
+
+    line: str
+    planned: dt.datetime
+    realtime: dt.datetime | None
+    delay_min: int | None
+    planned_platform: str | None
+    platform: str | None
+    cancelled: bool
+
+
+@dataclass(frozen=True)
 class _Event:
     kind: str
     key: str
@@ -273,3 +286,59 @@ def _departure_disruption_events(
         events.append(_Event(kind, key, line_name, detail=detail))
 
     return events
+
+
+def next_departures(
+    commute: Commute,
+    departures_json: dict[str, Any],
+    now: dt.datetime,
+    limit: int = 3,
+) -> list[NextDeparture]:
+    """The next few departures on `commute`'s ridden lines (charter G3
+    "today" card), with planned vs real-time time and platform.
+
+    A departure counts as "at or after now" by its actual departure time --
+    `when` if HAFAS reports it, `plannedWhen` otherwise (cancelled
+    departures carry no `when`). This deliberately differs from `evaluate`'s
+    window filter: a delayed train still pending is exactly what the card
+    must show even though its *planned* time has already passed. Results
+    stay ordered by planned time regardless, so a heavily delayed departure
+    does not jump ahead of one that leaves sooner as planned.
+    """
+    if now.tzinfo is None:
+        raise ValueError("now must be timezone-aware")
+
+    ridden = {_line_key(name) for name in commute.lines}
+    upcoming: list[NextDeparture] = []
+    for departure in departures_json.get("departures") or []:
+        line = departure.get("line") or {}
+        line_name = line.get("name")
+        if not line_name or _line_key(line_name) not in ridden:
+            continue
+        planned_when = departure.get("plannedWhen")
+        if not planned_when:
+            continue
+        planned = dt.datetime.fromisoformat(planned_when)
+
+        when = departure.get("when")
+        realtime = dt.datetime.fromisoformat(when) if when else None
+        if (realtime or planned) < now:
+            continue
+
+        delay_seconds = departure.get("delay")
+        delay_min = int(delay_seconds / 60) if delay_seconds is not None else None
+
+        upcoming.append(
+            NextDeparture(
+                line=line_name,
+                planned=planned,
+                realtime=realtime,
+                delay_min=delay_min,
+                planned_platform=departure.get("plannedPlatform"),
+                platform=departure.get("platform"),
+                cancelled=bool(departure.get("cancelled")),
+            )
+        )
+
+    upcoming.sort(key=lambda departure: departure.planned)
+    return upcoming[:limit]
