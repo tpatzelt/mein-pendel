@@ -30,6 +30,18 @@ def test_delay_threshold_defaults_to_five_minutes():
     assert _commute().delay_threshold_min == 5
 
 
+def test_stop_names_default_to_empty_string():
+    commute = _commute()
+    assert commute.origin_name == ""
+    assert commute.destination_name == ""
+
+
+def test_stop_names_can_be_set():
+    commute = _commute(origin_name="Alexanderplatz", destination_name="Ostkreuz")
+    assert commute.origin_name == "Alexanderplatz"
+    assert commute.destination_name == "Ostkreuz"
+
+
 def test_lines_and_weekdays_are_coerced_to_frozensets():
     commute = _commute(lines={"s41", "S41"}, weekdays=[0, 1, 1, 2])
     assert commute.lines == frozenset({"s41", "S41"})

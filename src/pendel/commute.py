@@ -66,6 +66,8 @@ class Commute:
     window_start: dt.time
     window_end: dt.time
     delay_threshold_min: int = 5
+    origin_name: str = ""
+    destination_name: str = ""
 
     def __post_init__(self) -> None:
         object.__setattr__(self, "lines", frozenset(self.lines))
