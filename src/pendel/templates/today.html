@@ -16,6 +16,27 @@
       <span aria-hidden="true">{{ item.status_icon }}</span> {{ item.status_label }}
     </p>
     {% if item.message %}<p>{{ item.message }}</p>{% endif %}
+    {% if item.departures is not none %}
+      {% if item.departures %}
+      <ul class="departures">
+        {% for dep in item.departures %}
+        <li>
+          <span class="line">{{ dep.line }}</span>
+          <time datetime="{{ dep.planned_iso }}">{{ dep.planned_time }}</time>
+          {% if dep.cancelled %}
+          <span class="cancelled">{{ dep.cancelled_label }}</span>
+          {% elif dep.realtime_time %}
+          <time datetime="{{ dep.realtime_iso }}">{{ dep.realtime_time }}</time>
+          <span class="delay">{{ dep.delay_text }}</span>
+          {% endif %}
+          {% if dep.platform_text %}<span class="platform">{{ dep.platform_text }}</span>{% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p>{{ t("today_departures_empty") }}</p>
+      {% endif %}
+    {% endif %}
   </li>
   {% endfor %}
 </ul>
