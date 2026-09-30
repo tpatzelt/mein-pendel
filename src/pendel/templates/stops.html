@@ -4,10 +4,14 @@
 
 {% block content %}
 <h1>{{ t("stops_heading") }}</h1>
+{% if origin_stop_id %}
+<p>{{ t("stops_origin_label") }}: {{ origin_name }}</p>
+{% endif %}
 <form action="/stops" method="get">
   <input type="hidden" name="lang" value="{{ language }}">
   {% if origin_stop_id %}
   <input type="hidden" name="origin_stop_id" value="{{ origin_stop_id }}">
+  <input type="hidden" name="origin_name" value="{{ origin_name }}">
   {% endif %}
   <label for="q">{{ t("stops_search_label") }}</label>
   <input type="search" id="q" name="q" value="{{ query }}" minlength="2"
@@ -23,8 +27,13 @@
   {% if results %}
   <ul>
     {% for stop in results %}
-    {% set dest_params = {"origin_stop_id": origin_stop_id, "destination_stop_id": stop.id} if origin_stop_id else {"origin_stop_id": stop.id} %}
-    <li data-stop-id="{{ stop.id }}"><a href="/commutes/new?{{ dest_params | urlencode }}">{{ stop.name }}</a></li>
+    {% if origin_stop_id %}
+    {% set link_params = {"origin_stop_id": origin_stop_id, "origin_name": origin_name, "destination_stop_id": stop.id, "destination_name": stop.name} %}
+    <li data-stop-id="{{ stop.id }}"><a href="/commutes/new?{{ link_params | urlencode }}">{{ stop.name }}</a></li>
+    {% else %}
+    {% set link_params = {"origin_stop_id": stop.id, "origin_name": stop.name} %}
+    <li data-stop-id="{{ stop.id }}"><a href="/stops?{{ link_params | urlencode }}">{{ stop.name }}</a></li>
+    {% endif %}
     {% endfor %}
   </ul>
   {% else %}
