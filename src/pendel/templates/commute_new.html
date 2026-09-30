@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}{{ t("commute_new_heading") }}{% endblock %}
+{% block title %}{{ t("commute_edit_heading") if commute_id is defined else t("commute_new_heading") }}{% endblock %}
 
 {% block content %}
-<h1>{{ t("commute_new_heading") }}</h1>
+<h1>{{ t("commute_edit_heading") if commute_id is defined else t("commute_new_heading") }}</h1>
 {% if not ready %}
 <p>{{ t("commute_new_missing_stops") }}</p>
 <p><a href="/stops">{{ t("today_empty_cta") }}</a></p>
@@ -13,18 +13,26 @@
 {% endif %}
 <p>{{ t("commute_new_origin_label") }}: {{ origin_name }}</p>
 <p>{{ t("commute_new_destination_label") }}: {{ destination_name }}</p>
+{% if commute_id is defined %}
+<p><a href="/stops">{{ t("commute_edit_change_stops") }}</a></p>
+{% endif %}
 {% if lines_unavailable %}
 <p class="error" role="alert">{{ t("commute_new_lines_error") }}</p>
+{% if commute_id is defined %}
+<p><a href="/commutes/{{ commute_id }}/edit">{{ t("commute_new_retry_cta") }}</a></p>
+{% else %}
 {% set retry_params = {"origin_stop_id": origin_stop_id, "origin_name": origin_name, "destination_stop_id": destination_stop_id, "destination_name": destination_name} %}
 <p><a href="/commutes/new?{{ retry_params | urlencode }}">{{ t("commute_new_retry_cta") }}</a></p>
+{% endif %}
 {% else %}
-<form action="/commutes" method="post">
+<form action="{{ '/commutes/' ~ commute_id if commute_id is defined else '/commutes' }}" method="post">
   <input type="hidden" name="lang" value="{{ language }}">
+  {% if commute_id is not defined %}
   <input type="hidden" name="origin_stop_id" value="{{ origin_stop_id }}">
   <input type="hidden" name="origin_name" value="{{ origin_name }}">
   <input type="hidden" name="destination_stop_id" value="{{ destination_stop_id }}">
   <input type="hidden" name="destination_name" value="{{ destination_name }}">
-
+  {% endif %}
   <fieldset>
     <legend>{{ t("commute_new_lines_label") }}</legend>
     {% for line in line_choices %}
@@ -55,7 +63,7 @@
   <label for="delay_threshold_min">{{ t("commute_new_delay_label") }}</label>
   <input type="number" id="delay_threshold_min" name="delay_threshold_min" value="{{ delay_threshold_min }}" min="0">
 
-  <button type="submit">{{ t("commute_new_submit") }}</button>
+  <button type="submit">{{ t("commute_edit_submit") if commute_id is defined else t("commute_new_submit") }}</button>
 </form>
 {% endif %}
 {% endif %}
