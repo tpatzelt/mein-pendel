@@ -149,6 +149,96 @@ def test_stops_page_has_viewport_meta_and_no_wide_fixed_widths() -> None:
         _assert_no_wide_fixed_widths(response.text)
 
 
+def test_stops_page_without_origin_links_to_commutes_new_with_origin_only() -> None:
+    app.dependency_overrides[get_hafas_client] = lambda: _locations_client(
+        "synthetic_locations.json"
+    )
+
+    response = client.get("/stops", params={"q": "Alexanderplatz"})
+
+    assert response.status_code == 200
+    assert 'href="/commutes/new?origin_stop_id=900000100001"' in response.text
+    assert "destination_stop_id" not in response.text
+
+
+def test_stops_page_with_origin_stop_id_links_to_commutes_new_with_both_ids() -> None:
+    app.dependency_overrides[get_hafas_client] = lambda: _locations_client(
+        "synthetic_locations.json"
+    )
+
+    response = client.get(
+        "/stops", params={"q": "Alexanderplatz", "origin_stop_id": "900000999999"}
+    )
+
+    assert response.status_code == 200
+    assert (
+        'href="/commutes/new?origin_stop_id=900000999999&amp;destination_stop_id=900000100001"'
+        in response.text
+    )
+
+
+def test_stops_page_with_origin_stop_id_shows_destination_hint_in_de_and_en() -> None:
+    app.dependency_overrides[get_hafas_client] = lambda: _locations_client(
+        "synthetic_locations.json"
+    )
+
+    response_de = client.get(
+        "/stops", params={"q": "Alexanderplatz", "origin_stop_id": "900000999999"}
+    )
+    assert response_de.status_code == 200
+    assert "Wähle jetzt die Ziel-Haltestelle." in response_de.text
+
+    response_en = client.get(
+        "/stops",
+        params={"q": "Alexanderplatz", "origin_stop_id": "900000999999", "lang": "en"},
+    )
+    assert response_en.status_code == 200
+    assert "Now choose the destination stop." in response_en.text
+
+
+def test_stops_page_without_origin_shows_no_destination_hint() -> None:
+    app.dependency_overrides[get_hafas_client] = lambda: _locations_client(
+        "synthetic_locations.json"
+    )
+
+    response = client.get("/stops", params={"q": "Alexanderplatz"})
+
+    assert response.status_code == 200
+    assert "Wähle jetzt die Ziel-Haltestelle." not in response.text
+
+
+def test_stops_page_keeps_origin_stop_id_as_hidden_input_for_repeated_search() -> None:
+    app.dependency_overrides[get_hafas_client] = lambda: _locations_client(
+        "synthetic_locations.json"
+    )
+
+    response = client.get(
+        "/stops", params={"q": "Alexanderplatz", "origin_stop_id": "900000999999"}
+    )
+
+    assert response.status_code == 200
+    assert '<input type="hidden" name="origin_stop_id" value="900000999999">' in response.text
+
+
+def test_stops_page_origin_stop_id_cannot_inject_attribute_or_tag() -> None:
+    app.dependency_overrides[get_hafas_client] = lambda: _locations_client(
+        "synthetic_locations.json"
+    )
+    malicious = '900000999999"><script>alert(1)</script>&x=1'
+
+    response = client.get(
+        "/stops", params={"q": "Alexanderplatz", "origin_stop_id": malicious}
+    )
+
+    assert response.status_code == 200
+    assert "<script>" not in response.text
+    assert '"><script>' not in response.text
+    # The hidden input's value attribute must stay a single, well-formed attribute.
+    assert '<input type="hidden" name="origin_stop_id" value="900000999999&#34;' in response.text
+    # The destination link must percent-encode the payload instead of splicing it in raw.
+    assert "href=\"/commutes/new?origin_stop_id=900000999999%22%3E%3Cscript%3E" in response.text
+
+
 def test_get_hafas_client_is_a_shared_singleton() -> None:
     """Production code must reuse one HafasClient (and its TTL cache) per
     process rather than building a fresh, empty-cache client per request."""

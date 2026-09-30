@@ -77,6 +77,44 @@ def test_commutes_new_form_prefills_stop_ids_from_query_params(client) -> None:
     assert "900000200002" in response.text
 
 
+def test_commutes_new_form_prefills_both_ids_from_two_step_stop_search_flow(client) -> None:
+    response = client.get(
+        "/commutes/new",
+        params={"origin_stop_id": "900000100001", "destination_stop_id": "900000200002"},
+    )
+    assert response.status_code == 200
+    assert 'value="900000100001"' in response.text
+    assert 'value="900000200002"' in response.text
+
+
+def test_commutes_new_form_shows_search_destination_link_when_only_origin_is_set(client) -> None:
+    response_de = client.get("/commutes/new", params={"origin_stop_id": "900000100001"})
+    assert response_de.status_code == 200
+    assert 'href="/stops?origin_stop_id=900000100001"' in response_de.text
+    assert "Ziel suchen" in response_de.text
+
+    response_en = client.get(
+        "/commutes/new", params={"origin_stop_id": "900000100001", "lang": "en"}
+    )
+    assert response_en.status_code == 200
+    assert "Search destination" in response_en.text
+
+
+def test_commutes_new_form_hides_search_destination_link_when_destination_is_set(client) -> None:
+    response = client.get(
+        "/commutes/new",
+        params={"origin_stop_id": "900000100001", "destination_stop_id": "900000200002"},
+    )
+    assert response.status_code == 200
+    assert "/stops?origin_stop_id=" not in response.text
+
+
+def test_commutes_new_form_hides_search_destination_link_without_origin(client) -> None:
+    response = client.get("/commutes/new")
+    assert response.status_code == 200
+    assert "/stops?origin_stop_id=" not in response.text
+
+
 def test_commutes_new_form_has_viewport_meta_and_no_wide_fixed_widths(client) -> None:
     response = client.get("/commutes/new")
     assert 'name="viewport" content="width=device-width, initial-scale=1"' in response.text
