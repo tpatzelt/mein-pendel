@@ -5,7 +5,7 @@ from pathlib import Path
 import pytest
 
 from pendel.commute import Commute
-from pendel.engine import evaluate, line_choices
+from pendel.engine import evaluate, line_choices, next_departures
 
 UTC = dt.timezone.utc
 FIXTURES = Path(__file__).parent / "fixtures" / "hafas" / "engine"
@@ -321,3 +321,139 @@ def test_line_choices_deduplicates_by_normalised_line_name():
     }
 
     assert line_choices(departures) == ["S41", "S9"]
+
+
+def _departure(
+    line: str,
+    planned: str,
+    when: str | None = None,
+    *,
+    delay: int | None = None,
+    cancelled: bool = False,
+    platform: str | None = None,
+    planned_platform: str | None = None,
+) -> dict:
+    return {
+        "tripId": f"1|{line}|0|1|5012026",
+        "stop": {"id": ORIGIN_STOP_ID, "name": "S Test Ost"},
+        "when": when,
+        "plannedWhen": planned,
+        "delay": delay,
+        "cancelled": cancelled,
+        "platform": platform,
+        "plannedPlatform": planned_platform,
+        "line": {"id": f"line:{line}", "name": line, "product": "suburban"},
+        "remarks": [],
+    }
+
+
+def test_next_departures_filters_to_ridden_lines_sorted_by_planned_time():
+    commute = _commute(lines=frozenset({"S41", "S9"}))
+    departures = {
+        "departures": [
+            _departure("S9", "2026-01-05T07:50:00+01:00", "2026-01-05T07:50:00+01:00"),
+            _departure("S41", "2026-01-05T07:45:00+01:00", "2026-01-05T07:45:00+01:00"),
+            _departure("S42", "2026-01-05T07:40:00+01:00", "2026-01-05T07:40:00+01:00"),
+        ]
+    }
+
+    result = next_departures(commute, departures, NOW_WINTER)
+
+    assert [d.line for d in result] == ["S41", "S9"]
+
+
+def test_next_departures_respects_limit():
+    commute = _commute(lines=frozenset({"S41", "S9"}))
+    departures = {
+        "departures": [
+            _departure("S9", "2026-01-05T07:50:00+01:00", "2026-01-05T07:50:00+01:00"),
+            _departure("S41", "2026-01-05T07:45:00+01:00", "2026-01-05T07:45:00+01:00"),
+        ]
+    }
+
+    result = next_departures(commute, departures, NOW_WINTER, limit=1)
+
+    assert [d.line for d in result] == ["S41"]
+
+
+def test_next_departures_includes_a_still_pending_delayed_departure_and_excludes_a_left_one():
+    # NOW_WINTER is 07:00 Berlin. A departure planned before now but running
+    # late enough that its real-time is still ahead must be included (the
+    # rider can still catch it); one whose real-time has also passed must
+    # not appear, even though both were "planned" before now.
+    commute = _commute(lines=frozenset({"S41"}))
+    departures = {
+        "departures": [
+            _departure(
+                "S41", "2026-01-05T06:45:00+01:00", "2026-01-05T07:10:00+01:00", delay=1500
+            ),
+            _departure(
+                "S41", "2026-01-05T06:40:00+01:00", "2026-01-05T06:50:00+01:00", delay=600
+            ),
+        ]
+    }
+
+    result = next_departures(commute, departures, NOW_WINTER)
+
+    assert [d.planned.isoformat() for d in result] == ["2026-01-05T06:45:00+01:00"]
+    assert result[0].realtime == dt.datetime.fromisoformat("2026-01-05T07:10:00+01:00")
+
+
+def test_next_departures_uses_planned_when_as_the_departure_time_for_a_cancellation():
+    # HAFAS never reports `when` for a cancelled departure; the fallback to
+    # `plannedWhen` must still decide in/out correctly on both sides.
+    commute = _commute(lines=frozenset({"S41"}))
+    departures = {
+        "departures": [
+            _departure("S41", "2026-01-05T07:10:00+01:00", cancelled=True),
+            _departure("S41", "2026-01-05T06:50:00+01:00", cancelled=True),
+        ]
+    }
+
+    result = next_departures(commute, departures, NOW_WINTER)
+
+    assert len(result) == 1
+    assert result[0].planned == dt.datetime.fromisoformat("2026-01-05T07:10:00+01:00")
+    assert result[0].realtime is None
+    assert result[0].cancelled is True
+
+
+def test_next_departures_delay_min_truncates_toward_zero():
+    commute = _commute(lines=frozenset({"S41"}))
+    departures = {
+        "departures": [
+            _departure(
+                "S41", "2026-01-05T07:10:00+01:00", "2026-01-05T07:09:30+01:00", delay=-30
+            ),
+        ]
+    }
+
+    result = next_departures(commute, departures, NOW_WINTER)
+
+    assert result[0].delay_min == 0
+
+
+def test_next_departures_carries_platform_fields():
+    commute = _commute(lines=frozenset({"S41"}))
+    departures = {
+        "departures": [
+            _departure(
+                "S41",
+                "2026-01-05T07:10:00+01:00",
+                "2026-01-05T07:10:00+01:00",
+                platform="4",
+                planned_platform="3",
+            ),
+        ]
+    }
+
+    result = next_departures(commute, departures, NOW_WINTER)
+
+    assert result[0].platform == "4"
+    assert result[0].planned_platform == "3"
+
+
+def test_next_departures_now_must_be_timezone_aware():
+    commute = _commute(lines=frozenset({"S41"}))
+    with pytest.raises(ValueError):
+        next_departures(commute, _departures(), dt.datetime(2026, 1, 5, 6, 0))
