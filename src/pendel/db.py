@@ -85,8 +85,9 @@ def add_commute(conn: sqlite3.Connection, user_id: str, commute: Commute) -> int
     """Insert a saved commute for `user_id` and return its row id."""
     cur = conn.execute(
         "INSERT INTO commutes (user_id, origin_stop_id, destination_stop_id, lines, "
-        "weekdays, window_start, window_end, delay_threshold_min) "
-        "VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+        "weekdays, window_start, window_end, delay_threshold_min, origin_name, "
+        "destination_name) "
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
         (
             user_id,
             commute.origin_stop_id,
@@ -96,6 +97,8 @@ def add_commute(conn: sqlite3.Connection, user_id: str, commute: Commute) -> int
             commute.window_start.strftime("%H:%M"),
             commute.window_end.strftime("%H:%M"),
             commute.delay_threshold_min,
+            commute.origin_name,
+            commute.destination_name,
         ),
     )
     conn.commit()
@@ -106,7 +109,8 @@ def list_commutes(conn: sqlite3.Connection, user_id: str) -> list[tuple[int, Com
     """Return `(row id, Commute)` pairs for every commute saved by `user_id`."""
     rows = conn.execute(
         "SELECT id, origin_stop_id, destination_stop_id, lines, weekdays, window_start, "
-        "window_end, delay_threshold_min FROM commutes WHERE user_id = ? ORDER BY id",
+        "window_end, delay_threshold_min, origin_name, destination_name "
+        "FROM commutes WHERE user_id = ? ORDER BY id",
         (user_id,),
     ).fetchall()
     return [
@@ -120,6 +124,8 @@ def list_commutes(conn: sqlite3.Connection, user_id: str) -> list[tuple[int, Com
                 window_start=dt.time.fromisoformat(row["window_start"]),
                 window_end=dt.time.fromisoformat(row["window_end"]),
                 delay_threshold_min=row["delay_threshold_min"],
+                origin_name=row["origin_name"],
+                destination_name=row["destination_name"],
             ),
         )
         for row in rows
