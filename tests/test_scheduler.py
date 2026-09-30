@@ -22,7 +22,7 @@ import httpx
 import pytest
 
 from pendel import db
-from pendel.commute import BERLIN
+from pendel.commute import BERLIN, Commute
 from pendel.hafas import HafasClient
 from pendel.notify import FakeChannel
 from pendel.scheduler import Scheduler
@@ -300,4 +300,118 @@ def test_commute_due_at_lead_boundary_but_not_one_minute_earlier(conn):
     assert calls == []
 
     sched.tick(_berlin(7, 30))  # exactly 30 min before window_start: at the lead boundary
+    assert len(calls) == 1
+
+
+def test_dst_spring_forward_sunday_lead_boundary_but_not_one_minute_earlier(conn):
+    # 2026-03-29 is a Sunday; by the 06:00-07:00 window the clocks have
+    # already jumped to CEST (+02:00), so window_start is 04:00 UTC and the
+    # 30 min lead boundary is 03:30 UTC == 05:30 Berlin (CEST).
+    user_id = db.create_user(conn)
+    _insert_commute(conn, user_id, weekdays="6", window_start="06:00", window_end="07:00")
+    _insert_channel(conn, user_id, "ntfy", "topic-abc")
+    fake = FakeChannel()
+
+    calls: list[httpx.Request] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        calls.append(request)
+        return httpx.Response(200, json=_load("synthetic_undisturbed.json"))
+
+    sched = Scheduler(conn, _hafas(handler), {"ntfy": fake}, clock=lambda: None)
+
+    sched.tick(dt.datetime(2026, 3, 29, 5, 29, tzinfo=BERLIN))
+    assert calls == []
+
+    sched.tick(dt.datetime(2026, 3, 29, 5, 30, tzinfo=BERLIN))
+    assert len(calls) == 1
+
+
+def test_dst_fall_back_sunday_lead_boundary_but_not_one_minute_earlier(conn):
+    # 2026-10-25 is a Sunday; by the 06:00-07:00 window the clocks have
+    # already fallen back to CET (+01:00), so window_start is 05:00 UTC and
+    # the 30 min lead boundary is 04:30 UTC == 05:30 Berlin (CET).
+    user_id = db.create_user(conn)
+    _insert_commute(conn, user_id, weekdays="6", window_start="06:00", window_end="07:00")
+    _insert_channel(conn, user_id, "ntfy", "topic-abc")
+    fake = FakeChannel()
+
+    calls: list[httpx.Request] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        calls.append(request)
+        return httpx.Response(200, json=_load("synthetic_undisturbed.json"))
+
+    sched = Scheduler(conn, _hafas(handler), {"ntfy": fake}, clock=lambda: None)
+
+    sched.tick(dt.datetime(2026, 10, 25, 5, 29, tzinfo=BERLIN))
+    assert calls == []
+
+    sched.tick(dt.datetime(2026, 10, 25, 5, 30, tzinfo=BERLIN))
+    assert len(calls) == 1
+
+
+def test_dst_fall_back_sunday_lead_boundary_holds_when_now_is_utc_aware(conn):
+    # Same lead boundary as above (04:30 UTC == 05:30 Berlin CET), but `now`
+    # is built as a UTC-aware datetime instead of a Berlin-aware one, to
+    # prove tick() compares UTC instants rather than Berlin wall-clock
+    # fields. A fresh scheduler/HafasClient is used so the departures TTL
+    # cache (keyed on stop+when+duration) can't mask the comparison by
+    # serving a cached response instead of making a fresh request.
+    user_id = db.create_user(conn)
+    _insert_commute(conn, user_id, weekdays="6", window_start="06:00", window_end="07:00")
+    _insert_channel(conn, user_id, "ntfy", "topic-abc")
+    fake = FakeChannel()
+
+    calls: list[httpx.Request] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        calls.append(request)
+        return httpx.Response(200, json=_load("synthetic_undisturbed.json"))
+
+    sched = Scheduler(conn, _hafas(handler), {"ntfy": fake}, clock=lambda: None)
+
+    utc_boundary = dt.datetime(2026, 10, 25, 5, 30, tzinfo=BERLIN).astimezone(dt.timezone.utc)
+
+    sched.tick(utc_boundary - dt.timedelta(minutes=1))
+    assert calls == []
+
+    sched.tick(utc_boundary)
+    assert len(calls) == 1
+
+
+def test_dst_spring_forward_window_starting_in_nonexistent_hour_does_not_crash(conn):
+    # window_start=02:30 falls in the nonexistent hour on 2026-03-29; per
+    # Commute.window_bounds/_normalise this is rewritten to 03:30+02:00,
+    # which also equals the (unambiguous) window_end -- a single-instant
+    # window. The scheduler must not crash and must become due exactly at
+    # the instant window_bounds actually returns, not a hard-coded guess.
+    user_id = db.create_user(conn)
+    _insert_commute(conn, user_id, weekdays="6", window_start="02:30", window_end="03:30")
+    _insert_channel(conn, user_id, "ntfy", "topic-abc")
+    fake = FakeChannel()
+
+    calls: list[httpx.Request] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        calls.append(request)
+        return httpx.Response(200, json=_load("synthetic_undisturbed.json"))
+
+    sched = Scheduler(conn, _hafas(handler), {"ntfy": fake}, clock=lambda: None)
+
+    probe = Commute(
+        origin_stop_id="900000100001",
+        destination_stop_id="900000200002",
+        lines=frozenset({"S41"}),
+        weekdays=frozenset({6}),
+        window_start=dt.time(2, 30),
+        window_end=dt.time(3, 30),
+    )
+    start, _end = probe.window_bounds(dt.date(2026, 3, 29))
+    due_at_utc = start.astimezone(dt.timezone.utc) - dt.timedelta(minutes=30)
+
+    sched.tick(due_at_utc - dt.timedelta(minutes=1))
+    assert calls == []
+
+    sched.tick(due_at_utc)
     assert len(calls) == 1
