@@ -191,6 +191,38 @@ def test_post_with_invalid_weekday_returns_400_and_inserts_no_row(client, tmp_pa
     assert count == 0
 
 
+def test_post_with_negative_delay_threshold_returns_400_and_inserts_no_row(client, tmp_path) -> None:
+    form = _valid_form() | {"weekdays": "0", "delay_threshold_min": "-5"}
+
+    response = client.post("/commutes", data=form, follow_redirects=False)
+
+    assert response.status_code == 400
+    assert "<form" in response.text
+
+    conn = db.connect(tmp_path / "pendel.db")
+    try:
+        count = conn.execute("SELECT COUNT(*) FROM commutes").fetchone()[0]
+    finally:
+        conn.close()
+    assert count == 0
+
+
+def test_post_with_window_end_before_window_start_returns_400_and_inserts_no_row(client, tmp_path) -> None:
+    form = _valid_form() | {"weekdays": "0", "window_start": "08:00", "window_end": "07:30"}
+
+    response = client.post("/commutes", data=form, follow_redirects=False)
+
+    assert response.status_code == 400
+    assert "<form" in response.text
+
+    conn = db.connect(tmp_path / "pendel.db")
+    try:
+        count = conn.execute("SELECT COUNT(*) FROM commutes").fetchone()[0]
+    finally:
+        conn.close()
+    assert count == 0
+
+
 def test_post_with_empty_lines_returns_400_and_inserts_no_row_in_de_and_en(client, tmp_path) -> None:
     form = _valid_form() | {"weekdays": "0", "lines": ""}
 

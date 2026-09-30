@@ -51,6 +51,25 @@ def test_rejects_out_of_range_weekday():
         _commute(weekdays=frozenset({7}))
 
 
+def test_rejects_negative_delay_threshold():
+    with pytest.raises(ValueError):
+        _commute(delay_threshold_min=-5)
+
+
+def test_accepts_zero_delay_threshold():
+    assert _commute(delay_threshold_min=0).delay_threshold_min == 0
+
+
+def test_rejects_window_end_before_window_start():
+    with pytest.raises(ValueError):
+        _commute(window_start=dt.time(8, 0), window_end=dt.time(7, 30))
+
+
+def test_accepts_window_end_equal_to_window_start():
+    commute = _commute(window_start=dt.time(7, 30), window_end=dt.time(7, 30))
+    assert commute.window_start == commute.window_end
+
+
 def test_is_active_on_matches_configured_weekdays():
     commute = _commute(weekdays=frozenset({0, 2}))  # Monday, Wednesday
     assert commute.is_active_on(dt.date(2026, 1, 5))  # Monday
