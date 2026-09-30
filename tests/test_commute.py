@@ -72,9 +72,10 @@ def test_accepts_zero_delay_threshold():
     assert _commute(delay_threshold_min=0).delay_threshold_min == 0
 
 
-def test_rejects_window_end_before_window_start():
-    with pytest.raises(ValueError):
-        _commute(window_start=dt.time(8, 0), window_end=dt.time(7, 30))
+def test_accepts_window_end_before_window_start_as_a_crossing_window():
+    commute = _commute(window_start=dt.time(23, 30), window_end=dt.time(0, 30))
+    assert commute.window_start == dt.time(23, 30)
+    assert commute.window_end == dt.time(0, 30)
 
 
 def test_accepts_window_end_equal_to_window_start():
@@ -123,6 +124,91 @@ def test_window_bounds_fall_back_repeated_hour_uses_first_occurrence():
     assert start.utcoffset() == dt.timedelta(hours=2)  # first (CEST) occurrence
     assert start.astimezone(UTC) == dt.datetime(2026, 10, 25, 0, 30, tzinfo=UTC)
     assert end.utcoffset() == dt.timedelta(hours=1)  # 03:30 only exists as CET
+
+
+def test_window_bounds_crossing_midnight_on_ordinary_night():
+    commute = _commute(window_start=dt.time(23, 30), window_end=dt.time(0, 30))
+    start, end = commute.window_bounds(dt.date(2026, 1, 5))
+    assert start == dt.datetime(2026, 1, 5, 23, 30, tzinfo=BERLIN)
+    assert end == dt.datetime(2026, 1, 6, 0, 30, tzinfo=BERLIN)
+    assert end.astimezone(UTC) - start.astimezone(UTC) == dt.timedelta(hours=1)
+
+
+def test_window_bounds_crossing_midnight_equal_start_end_is_still_a_single_instant():
+    commute = _commute(window_start=dt.time(23, 30), window_end=dt.time(23, 30))
+    start, end = commute.window_bounds(dt.date(2026, 1, 5))
+    assert start == end == dt.datetime(2026, 1, 5, 23, 30, tzinfo=BERLIN)
+
+
+def test_window_bounds_crossing_fall_back_is_four_real_hours():
+    # 2026-10-24 is a Saturday; the window crosses the 2026-10-25 fall-back,
+    # where wall-clock 02:00-03:00 happens twice.
+    commute = _commute(weekdays=frozenset({5}), window_start=dt.time(23, 30), window_end=dt.time(2, 30))
+    start, end = commute.window_bounds(dt.date(2026, 10, 24))
+    assert start == dt.datetime(2026, 10, 24, 23, 30, tzinfo=BERLIN)
+    assert start.utcoffset() == dt.timedelta(hours=2)
+    assert end == dt.datetime(2026, 10, 25, 2, 30, fold=1, tzinfo=BERLIN)
+    assert end.utcoffset() == dt.timedelta(hours=1)  # second (CET) occurrence
+    assert end.astimezone(UTC) - start.astimezone(UTC) == dt.timedelta(hours=4)
+
+
+def test_window_bounds_crossing_spring_forward_gap_end_is_normalised_forward():
+    # 2027-03-27 is a Saturday; the window crosses the 2027-03-28
+    # spring-forward, where wall-clock 02:00-03:00 does not exist.
+    commute = _commute(weekdays=frozenset({5}), window_start=dt.time(23, 30), window_end=dt.time(2, 30))
+    start, end = commute.window_bounds(dt.date(2027, 3, 27))
+    assert start == dt.datetime(2027, 3, 27, 23, 30, tzinfo=BERLIN)
+    assert end == dt.datetime(2027, 3, 28, 3, 30, tzinfo=BERLIN)
+    assert end.utcoffset() == dt.timedelta(hours=2)
+
+
+def test_window_containing_rejects_naive_now():
+    commute = _commute()
+    with pytest.raises(ValueError):
+        commute.window_containing(dt.datetime(2026, 1, 5, 6, 0))
+
+
+def test_window_containing_returns_none_outside_any_window():
+    commute = _commute(weekdays=frozenset({0}))  # Monday only
+    now = dt.datetime(2026, 1, 5, 6, 0, tzinfo=UTC)  # Monday, before window
+    assert commute.window_containing(now) is None
+
+
+def test_window_containing_finds_window_on_the_same_day():
+    commute = _commute(weekdays=frozenset({0}))  # Monday only
+    now = dt.datetime(2026, 1, 5, 6, 40, tzinfo=UTC)  # within 07:30-08:00 CET
+    start, end = commute.window_containing(now)
+    assert start == dt.datetime(2026, 1, 5, 7, 30, tzinfo=BERLIN)
+    assert end == dt.datetime(2026, 1, 5, 8, 0, tzinfo=BERLIN)
+
+
+def test_window_containing_crossing_midnight_finds_window_that_started_yesterday():
+    commute = _commute(weekdays=frozenset({5}), window_start=dt.time(23, 30), window_end=dt.time(2, 30))
+    now = dt.datetime(2026, 10, 25, 0, 15, tzinfo=BERLIN)  # after Saturday midnight
+    start, end = commute.window_containing(now)
+    assert start == dt.datetime(2026, 10, 24, 23, 30, tzinfo=BERLIN)
+
+
+def test_window_containing_crossing_midnight_not_active_yesterday_returns_none():
+    # Window would cross midnight, but yesterday (Friday) is not a configured
+    # weekday, so no window started then.
+    commute = _commute(weekdays=frozenset({5}), window_start=dt.time(23, 30), window_end=dt.time(2, 30))
+    now = dt.datetime(2026, 10, 31, 0, 15, tzinfo=BERLIN)  # Saturday 2026-10-31 is not active
+    assert commute.window_containing(now) is None
+
+
+def test_window_containing_at_fall_back_first_fold_is_inside_crossing_window():
+    commute = _commute(weekdays=frozenset({5}), window_start=dt.time(23, 30), window_end=dt.time(2, 30))
+    now = dt.datetime(2026, 10, 25, 2, 30, fold=0, tzinfo=BERLIN)
+    start, end = commute.window_containing(now)
+    assert start == dt.datetime(2026, 10, 24, 23, 30, tzinfo=BERLIN)
+
+
+def test_window_containing_at_fall_back_second_fold_is_inside_crossing_window():
+    commute = _commute(weekdays=frozenset({5}), window_start=dt.time(23, 30), window_end=dt.time(2, 30))
+    now = dt.datetime(2026, 10, 25, 2, 30, fold=1, tzinfo=BERLIN)
+    start, end = commute.window_containing(now)
+    assert start == dt.datetime(2026, 10, 24, 23, 30, tzinfo=BERLIN)
 
 
 def test_next_window_start_rejects_naive_now():

@@ -81,18 +81,56 @@ class Commute:
             raise ValueError("weekdays must be within 0 (Monday) .. 6 (Sunday)")
         if self.delay_threshold_min < 0:
             raise ValueError("delay_threshold_min must not be negative")
-        if self.window_end < self.window_start:
-            raise ValueError("window_end must not be before window_start")
 
     def is_active_on(self, date: dt.date) -> bool:
         """Whether this commute is ridden on the given calendar date."""
         return date.weekday() in self.weekdays
 
     def window_bounds(self, date: dt.date) -> tuple[dt.datetime, dt.datetime]:
-        """The departure window on `date` as normalised Europe/Berlin datetimes."""
+        """The departure window starting on `date` as normalised Europe/Berlin
+        datetimes. `weekdays` refers to the day the window *starts*.
+
+        When `window_end` is before `window_start` (e.g. 23:30-00:30), the
+        window crosses midnight and ends on `date + 1`. On a DST night that
+        end wall-clock time can be ambiguous (autumn fold) or nonexistent
+        (spring gap); both folds are normalised (see `_normalise`) and the
+        one that resolves to the later UTC instant is used, so the window
+        always covers the full elapsed real time rather than ending as soon
+        as the wall clock first reads `window_end`.
+        """
         start = _normalise(dt.datetime.combine(date, self.window_start, tzinfo=BERLIN))
-        end = _normalise(dt.datetime.combine(date, self.window_end, tzinfo=BERLIN))
+        if self.window_end < self.window_start:
+            end_date = date + dt.timedelta(days=1)
+            end_fold0 = _normalise(
+                dt.datetime.combine(end_date, self.window_end.replace(fold=0), tzinfo=BERLIN)
+            )
+            end_fold1 = _normalise(
+                dt.datetime.combine(end_date, self.window_end.replace(fold=1), tzinfo=BERLIN)
+            )
+            end = max(end_fold0, end_fold1, key=lambda value: value.astimezone(_UTC))
+        else:
+            end = _normalise(dt.datetime.combine(date, self.window_end, tzinfo=BERLIN))
         return start, end
+
+    def window_containing(self, now: dt.datetime) -> tuple[dt.datetime, dt.datetime] | None:
+        """The departure window that `now` falls into, or None.
+
+        `now` must be timezone-aware; the comparison is done as UTC instants
+        (see module docstring). Checks the window starting today and, since a
+        crossing window can still be open after midnight, the one starting
+        yesterday -- but only if yesterday was itself an active weekday.
+        """
+        if now.tzinfo is None:
+            raise ValueError("now must be timezone-aware")
+        now_utc = now.astimezone(_UTC)
+        today = now.astimezone(BERLIN).date()
+        yesterday = today - dt.timedelta(days=1)
+        candidate_dates = [d for d in (today, yesterday) if self.is_active_on(d)]
+        for candidate_date in candidate_dates:
+            start, end = self.window_bounds(candidate_date)
+            if start.astimezone(_UTC) <= now_utc <= end.astimezone(_UTC):
+                return start, end
+        return None
 
     def next_window_start(self, now: dt.datetime) -> dt.datetime:
         """The next departure window start at or after `now`.
