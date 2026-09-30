@@ -23,12 +23,23 @@ from pendel.commute import Commute
 from pendel.hafas import HafasClient, HafasError
 
 _FIXTURES_DIR = Path(__file__).parent / "fixtures" / "hafas" / "web"
+_RECORDED_FIXTURES_DIR = Path(__file__).parent / "fixtures" / "hafas" / "recorded"
 
 # Monday, winter (no DST), matching the commute windows used below.
 _NOW = dt.datetime(2026, 1, 5, 6, 0, tzinfo=dt.timezone.utc)
 
 _ORIGIN_STOP_ID = "900000100001"
 _DESTINATION_STOP_ID = "900000200002"
+
+# Wednesday 08:00 Europe/Berlin, matching the plannedWhen times recorded in
+# tests/fixtures/hafas/recorded/departures_undisturbed.json (07:xx) and
+# departures_warning.json (08:06), used by the multi-status test below.
+_RECORDED_NOW = dt.datetime(2026, 9, 30, 6, 0, tzinfo=dt.timezone.utc)
+
+_ALEXANDERPLATZ_STOP_ID = "900100003"
+_OSTKREUZ_STOP_ID = "900120003"
+_PAUSED_STOP_ID = "900555555"
+_FAILED_STOP_ID = "900666666"
 
 # Matches a `width: NNpx` declaration but not `max-width`/`min-width`.
 _FIXED_WIDTH_RE = re.compile(r"(?<!-)width\s*:\s*(\d+)px")
@@ -67,10 +78,15 @@ def _commute(**overrides) -> Commute:
 
 
 def _seed_commute(tmp_path, commute: Commute) -> str:
+    return _seed_commutes(tmp_path, [commute])
+
+
+def _seed_commutes(tmp_path, commutes: list[Commute]) -> str:
     conn = db.connect(tmp_path / "pendel.db")
     try:
         uid = db.create_user(conn)
-        db.add_commute(conn, uid, commute)
+        for commute in commutes:
+            db.add_commute(conn, uid, commute)
         conn.commit()
     finally:
         conn.close()
@@ -213,6 +229,142 @@ def test_today_page_has_viewport_meta_and_no_wide_fixed_widths(client, tmp_path)
         assert response.status_code == 200
         assert 'name="viewport" content="width=device-width, initial-scale=1"' in response.text
         _assert_no_wide_fixed_widths(response.text)
+
+
+def _recorded_multi_status_hafas_client() -> HafasClient:
+    """Routes each origin stop id to its recorded fixture (charter G3's
+    "one page with an OK, a disrupted, a paused and a failed commute");
+    raises if the paused commute's origin is ever requested."""
+    undisturbed = json.loads((_RECORDED_FIXTURES_DIR / "departures_undisturbed.json").read_text())
+    warning = json.loads((_RECORDED_FIXTURES_DIR / "departures_warning.json").read_text())
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        if request.url.path == f"/stops/{_ALEXANDERPLATZ_STOP_ID}/departures":
+            return httpx.Response(200, json=undisturbed)
+        if request.url.path == f"/stops/{_OSTKREUZ_STOP_ID}/departures":
+            return httpx.Response(200, json=warning)
+        if request.url.path == f"/stops/{_FAILED_STOP_ID}/departures":
+            return httpx.Response(404)
+        if request.url.path == f"/stops/{_PAUSED_STOP_ID}/departures":
+            raise AssertionError("a paused commute's origin must never be fetched")
+        raise AssertionError(f"unexpected HAFAS request: {request.url.path}")
+
+    return HafasClient(httpx.Client(transport=httpx.MockTransport(handler)))
+
+
+def test_today_shows_one_card_per_status_with_stop_names_and_no_raw_ids(client, tmp_path) -> None:
+    # Weekday 2 (Wednesday) matches _RECORDED_NOW's date; window times
+    # bracket the recorded fixtures' plannedWhen (undisturbed: 07:xx,
+    # warning's cancelled RB26: 08:06).
+    ok_commute = Commute(
+        origin_stop_id=_ALEXANDERPLATZ_STOP_ID,
+        destination_stop_id=_OSTKREUZ_STOP_ID,
+        origin_name="S+U Alexanderplatz Bhf (Berlin)",
+        destination_name="S Ostkreuz Bhf (Berlin)",
+        lines=frozenset({"S3"}),
+        weekdays=frozenset({2}),
+        window_start=dt.time(7, 0),
+        window_end=dt.time(7, 30),
+    )
+    disrupted_commute = Commute(
+        origin_stop_id=_OSTKREUZ_STOP_ID,
+        destination_stop_id=_ALEXANDERPLATZ_STOP_ID,
+        origin_name="S Ostkreuz Bhf (Berlin)",
+        destination_name="S+U Hauptbahnhof (Berlin)",
+        lines=frozenset({"RB26"}),
+        weekdays=frozenset({2}),
+        window_start=dt.time(8, 0),
+        window_end=dt.time(8, 30),
+    )
+    paused_commute = Commute(
+        origin_stop_id=_PAUSED_STOP_ID,
+        destination_stop_id=_ALEXANDERPLATZ_STOP_ID,
+        origin_name="S Görlitzer Bahnhof (Berlin)",
+        destination_name="S+U Alexanderplatz Bhf (Berlin)",
+        lines=frozenset({"U1"}),
+        weekdays=frozenset({2}),
+        window_start=dt.time(7, 0),
+        window_end=dt.time(7, 30),
+        paused=True,
+    )
+    failed_commute = Commute(
+        origin_stop_id=_FAILED_STOP_ID,
+        destination_stop_id=_ALEXANDERPLATZ_STOP_ID,
+        origin_name="S Warschauer Str. (Berlin)",
+        destination_name="S+U Alexanderplatz Bhf (Berlin)",
+        lines=frozenset({"S3"}),
+        weekdays=frozenset({2}),
+        window_start=dt.time(7, 0),
+        window_end=dt.time(7, 30),
+    )
+    uid = _seed_commutes(
+        tmp_path, [ok_commute, disrupted_commute, paused_commute, failed_commute]
+    )
+
+    app.dependency_overrides[get_now] = lambda: _RECORDED_NOW
+    app.dependency_overrides[get_hafas_client] = _recorded_multi_status_hafas_client
+    client.cookies.set("uid", uid)
+
+    response = client.get("/today", params={"lang": "de"})
+    assert response.status_code == 200
+    text = response.text
+
+    assert "S+U Alexanderplatz Bhf (Berlin) → S Ostkreuz Bhf (Berlin)" in text
+    assert "S Ostkreuz Bhf (Berlin) → S+U Hauptbahnhof (Berlin)" in text
+    assert "S Görlitzer Bahnhof (Berlin) → S+U Alexanderplatz Bhf (Berlin)" in text
+    assert "S Warschauer Str. (Berlin) → S+U Alexanderplatz Bhf (Berlin)" in text
+
+    assert "OK" in text
+    assert "Gestört" in text
+    assert "Pausiert" in text
+    assert "Prüfung fehlgeschlagen" in text
+
+    assert 'data-status="ok"' in text
+    assert 'data-status="disrupted"' in text
+    assert 'data-status="paused"' in text
+    assert 'data-status="failed"' in text
+
+    for stop_id in (
+        _ALEXANDERPLATZ_STOP_ID,
+        _OSTKREUZ_STOP_ID,
+        _PAUSED_STOP_ID,
+        _FAILED_STOP_ID,
+    ):
+        assert stop_id not in text
+
+
+def test_today_card_with_empty_stored_names_shows_generic_label(client, tmp_path) -> None:
+    """A commute saved before origin/destination names were stored (charter
+    G3) has empty origin_name/destination_name; the card must still show a
+    localized label, never a blank arrow or a stop id."""
+    commute = Commute(
+        origin_stop_id=_ORIGIN_STOP_ID,
+        destination_stop_id=_DESTINATION_STOP_ID,
+        lines=frozenset({"S41"}),
+        weekdays=frozenset({5}),  # Saturday only, inactive on _NOW's Monday
+        window_start=dt.time(7, 30),
+        window_end=dt.time(8, 0),
+    )
+    uid = _seed_commute(tmp_path, commute)
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        raise AssertionError("HAFAS must not be called for a commute inactive today")
+
+    _override_now(client)
+    app.dependency_overrides[get_hafas_client] = lambda: HafasClient(
+        httpx.Client(transport=httpx.MockTransport(handler))
+    )
+    client.cookies.set("uid", uid)
+
+    response_de = client.get("/today", params={"lang": "de"})
+    assert response_de.status_code == 200
+    assert "Gespeicherte Verbindung" in response_de.text
+    assert _ORIGIN_STOP_ID not in response_de.text
+    assert _DESTINATION_STOP_ID not in response_de.text
+
+    response_en = client.get("/today", params={"lang": "en"})
+    assert response_en.status_code == 200
+    assert "Saved commute" in response_en.text
 
 
 def test_home_links_to_today() -> None:
