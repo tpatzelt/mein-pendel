@@ -21,6 +21,7 @@ from pendel.hafas import HafasClient, HafasError
 client = TestClient(app)
 
 _FIXTURES_DIR = Path(__file__).parent / "fixtures" / "hafas" / "web"
+_RECORDED_FIXTURES_DIR = Path(__file__).parent / "fixtures" / "hafas" / "recorded"
 
 # Matches a `width: NNpx` declaration but not `max-width`/`min-width`.
 _FIXED_WIDTH_RE = re.compile(r"(?<!-)width\s*:\s*(\d+)px")
@@ -31,8 +32,8 @@ def _assert_no_wide_fixed_widths(text: str) -> None:
         assert int(match.group(1)) <= 360, f"fixed width above 360px found: {match.group(0)!r}"
 
 
-def _locations_client(fixture_name: str) -> HafasClient:
-    payload = json.loads((_FIXTURES_DIR / fixture_name).read_text())
+def _locations_client(fixture_name: str, fixtures_dir: Path = _FIXTURES_DIR) -> HafasClient:
+    payload = json.loads((fixtures_dir / fixture_name).read_text())
 
     def handler(request: httpx.Request) -> httpx.Response:
         return httpx.Response(200, json=payload)
@@ -237,6 +238,21 @@ def test_stops_page_origin_stop_id_cannot_inject_attribute_or_tag() -> None:
     assert '<input type="hidden" name="origin_stop_id" value="900000999999&#34;' in response.text
     # The destination link must percent-encode the payload instead of splicing it in raw.
     assert "href=\"/commutes/new?origin_stop_id=900000999999%22%3E%3Cscript%3E" in response.text
+
+
+def test_stops_page_replays_recorded_alexanderplatz_locations_fixture() -> None:
+    """tests/fixtures/hafas/recorded/locations_alexanderplatz.json is a real,
+    verbatim-trimmed /locations response (see recorded/README.md); replaying
+    it through /stops proves the app's type/id/name filter still matches the
+    real HAFAS shape, not just the hand-made synthetic fixtures above."""
+    app.dependency_overrides[get_hafas_client] = lambda: _locations_client(
+        "locations_alexanderplatz.json", fixtures_dir=_RECORDED_FIXTURES_DIR
+    )
+
+    response = client.get("/stops", params={"q": "Alexanderplatz"})
+
+    assert response.status_code == 200
+    assert "S+U Alexanderplatz Bhf (Berlin)" in response.text
 
 
 def test_get_hafas_client_is_a_shared_singleton() -> None:
