@@ -51,6 +51,16 @@ _REPLACEMENT_SERVICE_KEYWORDS = ("ersatz", "replacement")
 _CONSTRUCTION_KEYWORDS = ("bauarbeiten", "baustelle", "construction")
 _TAG = re.compile(r"<[^>]+>")
 
+# A remark's own summary is sometimes just a category label rather than
+# anything a rider can act on ("Störung.", "Information."). When the
+# cleaned summary (trailing punctuation stripped) is nothing but one of
+# these labels, the reason falls back to a shortened, cleaned version of
+# the remark's own text instead.
+_GENERIC_SUMMARIES = {"information", "störung", "hinweis", "disruption", "warning", "info"}
+_TRAILING_PUNCTUATION = re.compile(r"[\s.!?:;]+$")
+_LINK_RESIDUE = re.compile(r"\[\s*mehr\s*/\s*more\s*\]\s*$", re.IGNORECASE)
+_REASON_DETAIL_LIMIT = 120
+
 # Deterministic severity order used both to pick the primary event (whose
 # key becomes disruption_key) and to order Verdict.kinds.
 _KIND_ORDER = ("cancellation", "replacement_service", "delay", "construction", "warning")
@@ -107,6 +117,22 @@ def _clean(value: str) -> str:
     """Remark texts carry HTML: entities ("Ostkreuz &#60;&#62; Lichtenberg")
     and links ("<a href=...>[MEHR/MORE]</a>"). Reasons are plain text."""
     return " ".join(html.unescape(_TAG.sub(" ", value)).split())
+
+
+def _is_generic_summary(cleaned_summary: str) -> bool:
+    stripped = _TRAILING_PUNCTUATION.sub("", cleaned_summary)
+    return stripped.casefold() in _GENERIC_SUMMARIES
+
+
+def _shorten(text: str, limit: int = _REASON_DETAIL_LIMIT) -> str:
+    """Cut a remark's full text down to reason length, dropping trailing
+    link residue like the visible "[MEHR/MORE]" anchor text `_clean`
+    can't strip, and breaking at a word boundary."""
+    text = _LINK_RESIDUE.sub("", text).rstrip()
+    if len(text) <= limit:
+        return text
+    truncated = text[:limit].rsplit(" ", 1)[0].rstrip(" .,;:!?")
+    return f"{truncated}…"
 
 
 def _line_key(name: str) -> str:
@@ -240,6 +266,9 @@ def _departure_disruption_events(
         ).lower()
         kind = _classify_remark(haystack)
         detail = _clean(remark.get("summary") or remark.get("text") or remark.get("code") or "")
+        remark_text = remark.get("text")
+        if remark_text and _is_generic_summary(detail):
+            detail = _shorten(_clean(remark_text))
         key = f"{kind}:{line_name}:{_remark_key(remark, trip_id)}"
         events.append(_Event(kind, key, line_name, detail=detail))
 

@@ -213,6 +213,87 @@ def test_disruption_key_distinguishes_different_warning_remarks():
     assert first.disruption_key != second.disruption_key
 
 
+def test_generic_summary_falls_back_to_shortened_cleaned_text():
+    # "Störung." is one of the generic category labels HAFAS reuses across
+    # unrelated disruptions; the reason must use the remark's own text
+    # instead, cut to 120 chars at a word boundary.
+    long_text = (
+        "Wegen einer Signalstörung zwischen Ostbahnhof und Ostkreuz verkehrt die Linie "
+        "heute nur eingeschränkt. Nutzen Sie bitte die S-Bahn als Ausweichmöglichkeit "
+        "bis auf Weiteres."
+    )
+    commute = _commute()
+    verdict = evaluate(
+        commute,
+        _departures(
+            remarks=[{"type": "warning", "summary": "Störung.", "text": long_text}]
+        ),
+        NOW_WINTER,
+    )
+
+    assert "Signalstörung" in verdict.reason_de
+    assert "Störung auf" in verdict.reason_de  # kind label, not the raw summary detail
+    assert verdict.reason_de.endswith("…")
+    detail = verdict.reason_de.split(": ", 1)[1]
+    assert len(detail) <= 121  # 120 chars plus the trailing ellipsis
+
+
+def test_generic_summary_with_empty_text_keeps_the_summary():
+    commute = _commute()
+    verdict = evaluate(
+        commute,
+        _departures(remarks=[{"type": "warning", "summary": "Information.", "text": ""}]),
+        NOW_WINTER,
+    )
+
+    assert "Information." in verdict.reason_de
+    assert "Information." in verdict.reason_en
+
+
+def test_non_generic_summary_is_unchanged():
+    commute = _commute()
+    verdict = evaluate(
+        commute,
+        _departures(
+            remarks=[
+                {
+                    "type": "warning",
+                    "summary": "Signalstörung bei Ostkreuz",
+                    "text": "Ein sehr viel längerer Text, der nicht verwendet werden sollte.",
+                }
+            ]
+        ),
+        NOW_WINTER,
+    )
+
+    assert "Signalstörung bei Ostkreuz" in verdict.reason_de
+    assert "sehr viel längerer Text" not in verdict.reason_de
+
+
+def test_generic_summary_link_residue_is_dropped():
+    commute = _commute()
+    verdict = evaluate(
+        commute,
+        _departures(
+            remarks=[
+                {
+                    "type": "warning",
+                    "summary": "Hinweis",
+                    "text": (
+                        'Kurzer Hinweistext. <a href="https://example.invalid">'
+                        "[MEHR/MORE]</a>"
+                    ),
+                }
+            ]
+        ),
+        NOW_WINTER,
+    )
+
+    assert "Kurzer Hinweistext." in verdict.reason_de
+    assert "MEHR" not in verdict.reason_de
+    assert "MORE" not in verdict.reason_de
+
+
 def test_line_choices_is_empty_for_no_departures():
     assert line_choices({"departures": []}) == []
     assert line_choices({}) == []
