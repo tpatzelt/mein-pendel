@@ -6,18 +6,25 @@
 <h1>{{ t("stops_heading") }}</h1>
 <form action="/stops" method="get">
   <input type="hidden" name="lang" value="{{ language }}">
+  {% if origin_stop_id %}
+  <input type="hidden" name="origin_stop_id" value="{{ origin_stop_id }}">
+  {% endif %}
   <label for="q">{{ t("stops_search_label") }}</label>
   <input type="search" id="q" name="q" value="{{ query }}" minlength="2"
          placeholder="{{ t('stops_placeholder') }}">
   <button type="submit">{{ t("stops_submit") }}</button>
 </form>
+{% if origin_stop_id %}
+<p>{{ t("stops_destination_hint") }}</p>
+{% endif %}
 {% if error_message %}
 <p class="error">{{ error_message }}</p>
 {% elif query|length >= 2 %}
   {% if results %}
   <ul>
     {% for stop in results %}
-    <li data-stop-id="{{ stop.id }}"><a href="/commutes/new?origin_stop_id={{ stop.id }}">{{ stop.name }}</a></li>
+    {% set dest_params = {"origin_stop_id": origin_stop_id, "destination_stop_id": stop.id} if origin_stop_id else {"origin_stop_id": stop.id} %}
+    <li data-stop-id="{{ stop.id }}"><a href="/commutes/new?{{ dest_params | urlencode }}">{{ stop.name }}</a></li>
     {% endfor %}
   </ul>
   {% else %}
