@@ -92,13 +92,21 @@ _UNAFFECTED_REASON_EN = "No disruption on this route."
 @dataclass(frozen=True)
 class Verdict:
     """`disruption_key` ids the single highest-priority event found (empty
-    when `affected` is False), so a notifier can send once per disruption."""
+    when `affected` is False), so a notifier can send once per disruption.
+
+    `line` and `planned` describe that same primary event: the ridden
+    line's name and the Berlin-aware `plannedWhen` of the departure that
+    produced it, so a notifier can name both (charter G5). Both stay at
+    their defaults ('' and None) when `affected` is False.
+    """
 
     affected: bool
     kinds: list[str]
     reason_de: str
     reason_en: str
     disruption_key: str
+    line: str = ""
+    planned: dt.datetime | None = None
 
 
 @dataclass(frozen=True)
@@ -121,6 +129,7 @@ class _Event:
     line: str
     minutes: int | None = None
     detail: str = ""
+    planned: dt.datetime | None = None
 
 
 def _classify_remark(haystack: str) -> str:
@@ -240,7 +249,11 @@ def evaluate(
         if not (window_start <= departure_time <= window_end):
             continue
 
-        events.extend(_departure_disruption_events(departure, line_name, delay_threshold_min))
+        events.extend(
+            _departure_disruption_events(
+                departure, line_name, delay_threshold_min, departure_time.astimezone(BERLIN)
+            )
+        )
 
     if not events:
         return Verdict(
@@ -261,23 +274,38 @@ def evaluate(
         reason_de=reason_de,
         reason_en=reason_en,
         disruption_key=primary.key,
+        line=primary.line,
+        planned=primary.planned,
     )
 
 
 def _departure_disruption_events(
-    departure: dict[str, Any], line_name: str, delay_threshold_min: int
+    departure: dict[str, Any],
+    line_name: str,
+    delay_threshold_min: int,
+    planned: dt.datetime,
 ) -> list[_Event]:
     events: list[_Event] = []
     trip_id = departure.get("tripId") or ""
 
     if departure.get("cancelled"):
-        events.append(_Event("cancellation", f"cancellation:{line_name}:{trip_id}", line_name))
+        events.append(
+            _Event(
+                "cancellation", f"cancellation:{line_name}:{trip_id}", line_name, planned=planned
+            )
+        )
 
     delay_seconds = departure.get("delay")
     if delay_seconds is not None and delay_seconds > delay_threshold_min * 60:
         minutes = delay_seconds // 60
         events.append(
-            _Event("delay", f"delay:{line_name}:{trip_id}", line_name, minutes=minutes)
+            _Event(
+                "delay",
+                f"delay:{line_name}:{trip_id}",
+                line_name,
+                minutes=minutes,
+                planned=planned,
+            )
         )
 
     for remark in departure.get("remarks") or []:
@@ -292,7 +320,7 @@ def _departure_disruption_events(
         if remark_text and _is_generic_summary(detail):
             detail = _shorten(_clean(remark_text))
         key = f"{kind}:{line_name}:{_remark_key(remark, trip_id)}"
-        events.append(_Event(kind, key, line_name, detail=detail))
+        events.append(_Event(kind, key, line_name, detail=detail, planned=planned))
 
     return events
 
