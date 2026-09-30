@@ -1,19 +1,37 @@
-"""HTTP-level tests for GET/POST /commutes/new (charter G2): saving a commute
-without a password account.
+"""HTTP-level tests for GET/POST /commutes/new (charter G1): setup screen 3
+picks lines from checkboxes built from the origin's own departures, never a
+typed stop id or line name.
 
-Tests are offline and never call HAFAS; the DB dependency is exercised
-against a real, migrated SQLite file under `tmp_path` via PENDEL_DATA_DIR.
+Tests are offline and replay tests/fixtures/hafas/recorded/departures_undisturbed.json
+via httpx.MockTransport; the DB dependency is exercised against a real,
+migrated SQLite file under `tmp_path` via PENDEL_DATA_DIR.
 """
 
 from __future__ import annotations
 
+import datetime as dt
+import json
 import re
+from pathlib import Path
 
+import httpx
 import pytest
 from fastapi.testclient import TestClient
 
 from pendel import db
-from pendel.app import app
+from pendel.app import app, get_hafas_client, get_now
+from pendel.hafas import HafasClient, HafasError
+
+_RECORDED_FIXTURES_DIR = Path(__file__).parent / "fixtures" / "hafas" / "recorded"
+_UNDISTURBED = json.loads((_RECORDED_FIXTURES_DIR / "departures_undisturbed.json").read_text())
+
+# Matches the fixture's recording instant (2026-09-30, a Wednesday, no DST edge nearby).
+_NOW = dt.datetime(2026, 9, 30, 6, 50, tzinfo=dt.timezone.utc)
+
+_ORIGIN_STOP_ID = "900100003"
+_ORIGIN_NAME = "S+U Alexanderplatz Bhf (Berlin)"
+_DESTINATION_STOP_ID = "900120003"
+_DESTINATION_NAME = "S Ostkreuz Bhf (Berlin)"
 
 _FIXED_WIDTH_RE = re.compile(r"(?<!-)width\s*:\s*(\d+)px")
 
@@ -34,13 +52,42 @@ def client():
     test_client = TestClient(app)
     yield test_client
     test_client.cookies.clear()
+    app.dependency_overrides.clear()
+
+
+def _undisturbed_hafas_client() -> HafasClient:
+    def handler(request: httpx.Request) -> httpx.Response:
+        return httpx.Response(200, json=_UNDISTURBED)
+
+    return HafasClient(httpx.Client(transport=httpx.MockTransport(handler)))
+
+
+class _FailingHafasClient:
+    def departures(self, stop_id: str, when: dt.datetime, duration: int):
+        raise HafasError("boom")
+
+
+class _EmptyHafasClient:
+    def departures(self, stop_id: str, when: dt.datetime, duration: int):
+        return {"departures": []}
+
+
+def _override_undisturbed() -> None:
+    app.dependency_overrides[get_hafas_client] = _undisturbed_hafas_client
+    app.dependency_overrides[get_now] = lambda: _NOW
+
+
+def _stop_params() -> dict[str, str]:
+    return {
+        "origin_stop_id": _ORIGIN_STOP_ID,
+        "origin_name": _ORIGIN_NAME,
+        "destination_stop_id": _DESTINATION_STOP_ID,
+        "destination_name": _DESTINATION_NAME,
+    }
 
 
 def _valid_form() -> dict[str, str]:
-    return {
-        "origin_stop_id": "900000100001",
-        "destination_stop_id": "900000200002",
-        "lines": "S41, S42",
+    return _stop_params() | {
         "window_start": "07:30",
         "window_end": "08:00",
         "delay_threshold_min": "5",
@@ -56,73 +103,161 @@ def _rows_for_only_user(data_dir) -> list:
         conn.close()
 
 
+def test_commutes_new_form_without_all_four_stop_params_links_back_to_stops_without_calling_hafas(
+    client,
+) -> None:
+    def handler(request: httpx.Request) -> httpx.Response:
+        raise AssertionError("HAFAS must not be called without all four stop params")
+
+    app.dependency_overrides[get_hafas_client] = lambda: HafasClient(
+        httpx.Client(transport=httpx.MockTransport(handler))
+    )
+
+    response = client.get("/commutes/new")
+
+    assert response.status_code == 200
+    assert 'href="/stops"' in response.text
+    assert "<form" not in response.text
+
+
+@pytest.mark.parametrize("missing", ["origin_stop_id", "origin_name", "destination_stop_id", "destination_name"])
+def test_commutes_new_form_requires_every_one_of_the_four_stop_params(client, missing) -> None:
+    def handler(request: httpx.Request) -> httpx.Response:
+        raise AssertionError("HAFAS must not be called with a stop param missing")
+
+    app.dependency_overrides[get_hafas_client] = lambda: HafasClient(
+        httpx.Client(transport=httpx.MockTransport(handler))
+    )
+    params = _stop_params()
+    del params[missing]
+
+    response = client.get("/commutes/new", params=params)
+
+    assert response.status_code == 200
+    assert 'href="/stops"' in response.text
+
+
+def test_commutes_new_form_renders_line_checkboxes_from_origin_departures(client) -> None:
+    _override_undisturbed()
+
+    response = client.get("/commutes/new", params=_stop_params())
+
+    assert response.status_code == 200
+    assert '<input type="checkbox" name="lines" value="S3"' in response.text
+    assert '<input type="checkbox" name="lines" value="S5"' in response.text
+    assert f'name="origin_stop_id" value="{_ORIGIN_STOP_ID}"' in response.text
+    assert f'name="destination_stop_id" value="{_DESTINATION_STOP_ID}"' in response.text
+    assert _ORIGIN_NAME in response.text
+    assert _DESTINATION_NAME in response.text
+    assert 'name="lines" type="text"' not in response.text
+    assert '<input type="text" id="lines"' not in response.text
+
+
 def test_commutes_new_form_renders_in_german_and_english(client) -> None:
-    response_de = client.get("/commutes/new")
+    _override_undisturbed()
+
+    response_de = client.get("/commutes/new", params=_stop_params())
     assert response_de.status_code == 200
     assert "<form" in response_de.text
 
-    response_en = client.get("/commutes/new", params={"lang": "en"})
+    response_en = client.get("/commutes/new", params=_stop_params() | {"lang": "en"})
     assert response_en.status_code == 200
     assert "<form" in response_en.text
     assert response_de.text != response_en.text
 
 
-def test_commutes_new_form_prefills_stop_ids_from_query_params(client) -> None:
-    response = client.get(
-        "/commutes/new",
-        params={"origin_stop_id": "900000100001", "destination_stop_id": "900000200002"},
-    )
+def test_commutes_new_form_defaults_to_mon_fri_and_5_minute_delay(client) -> None:
+    _override_undisturbed()
+
+    response = client.get("/commutes/new", params=_stop_params())
+
     assert response.status_code == 200
-    assert "900000100001" in response.text
-    assert "900000200002" in response.text
+    for day in ("0", "1", "2", "3", "4"):
+        assert f'value="{day}" checked' in response.text
+    for day in ("5", "6"):
+        assert f'value="{day}" checked' not in response.text
+    assert 'name="delay_threshold_min" value="5"' in response.text
 
 
-def test_commutes_new_form_prefills_both_ids_from_two_step_stop_search_flow(client) -> None:
-    response = client.get(
-        "/commutes/new",
-        params={"origin_stop_id": "900000100001", "destination_stop_id": "900000200002"},
-    )
+def test_commutes_new_form_default_window_starts_at_next_half_hour(client) -> None:
+    app.dependency_overrides[get_hafas_client] = _undisturbed_hafas_client
+    app.dependency_overrides[get_now] = lambda: dt.datetime(
+        2026, 9, 30, 5, 10, tzinfo=dt.timezone.utc
+    )  # 07:10 CEST
+
+    response = client.get("/commutes/new", params=_stop_params())
+
     assert response.status_code == 200
-    assert 'value="900000100001"' in response.text
-    assert 'value="900000200002"' in response.text
+    assert 'id="window_start" name="window_start" value="07:30"' in response.text
+    assert 'id="window_end" name="window_end" value="08:00"' in response.text
 
 
-def test_commutes_new_form_shows_search_destination_link_when_only_origin_is_set(client) -> None:
-    response_de = client.get("/commutes/new", params={"origin_stop_id": "900000100001"})
-    assert response_de.status_code == 200
-    assert 'href="/stops?origin_stop_id=900000100001"' in response_de.text
-    assert "Ziel suchen" in response_de.text
+def test_commutes_new_form_default_window_clamps_end_before_midnight(client) -> None:
+    app.dependency_overrides[get_hafas_client] = _undisturbed_hafas_client
+    app.dependency_overrides[get_now] = lambda: dt.datetime(
+        2026, 9, 30, 21, 10, tzinfo=dt.timezone.utc
+    )  # 23:10 CEST
 
-    response_en = client.get(
-        "/commutes/new", params={"origin_stop_id": "900000100001", "lang": "en"}
-    )
-    assert response_en.status_code == 200
-    assert "Search destination" in response_en.text
+    response = client.get("/commutes/new", params=_stop_params())
 
-
-def test_commutes_new_form_hides_search_destination_link_when_destination_is_set(client) -> None:
-    response = client.get(
-        "/commutes/new",
-        params={"origin_stop_id": "900000100001", "destination_stop_id": "900000200002"},
-    )
     assert response.status_code == 200
-    assert "/stops?origin_stop_id=" not in response.text
+    assert 'id="window_start" name="window_start" value="23:30"' in response.text
+    assert 'id="window_end" name="window_end" value="23:59"' in response.text
 
 
-def test_commutes_new_form_hides_search_destination_link_without_origin(client) -> None:
-    response = client.get("/commutes/new")
+def test_commutes_new_form_default_window_wraps_past_midnight(client) -> None:
+    app.dependency_overrides[get_hafas_client] = _undisturbed_hafas_client
+    app.dependency_overrides[get_now] = lambda: dt.datetime(
+        2026, 9, 30, 21, 45, tzinfo=dt.timezone.utc
+    )  # 23:45 CEST
+
+    response = client.get("/commutes/new", params=_stop_params())
+
     assert response.status_code == 200
-    assert "/stops?origin_stop_id=" not in response.text
+    assert 'id="window_start" name="window_start" value="00:00"' in response.text
+    assert 'id="window_end" name="window_end" value="00:30"' in response.text
+
+
+def test_commutes_new_form_hafas_error_shows_alert_and_retry_link_never_a_text_field(client) -> None:
+    app.dependency_overrides[get_hafas_client] = lambda: _FailingHafasClient()
+    app.dependency_overrides[get_now] = lambda: _NOW
+
+    response = client.get("/commutes/new", params=_stop_params())
+
+    assert response.status_code == 503
+    assert 'role="alert"' in response.text
+    assert "/commutes/new?" in response.text
+    assert _ORIGIN_STOP_ID in response.text
+    assert "<form" not in response.text
+    assert 'type="text"' not in response.text
+
+
+def test_commutes_new_form_no_lines_shows_alert_and_retry_link(client) -> None:
+    app.dependency_overrides[get_hafas_client] = lambda: _EmptyHafasClient()
+    app.dependency_overrides[get_now] = lambda: _NOW
+
+    response = client.get("/commutes/new", params=_stop_params())
+
+    assert response.status_code == 503
+    assert 'role="alert"' in response.text
+    assert "<form" not in response.text
 
 
 def test_commutes_new_form_has_viewport_meta_and_no_wide_fixed_widths(client) -> None:
-    response = client.get("/commutes/new")
+    _override_undisturbed()
+
+    response = client.get("/commutes/new", params=_stop_params())
+
     assert 'name="viewport" content="width=device-width, initial-scale=1"' in response.text
     _assert_no_wide_fixed_widths(response.text)
 
 
 def test_valid_post_redirects_sets_cookie_and_inserts_one_row(client, tmp_path) -> None:
-    response = client.post("/commutes", data=_valid_form() | {"weekdays": "0"}, follow_redirects=False)
+    _override_undisturbed()
+
+    response = client.post(
+        "/commutes", data=_valid_form() | {"weekdays": "0", "lines": ["S3", "S5"]}, follow_redirects=False
+    )
 
     assert response.status_code == 303
     assert response.headers["location"] == "/"
@@ -132,19 +267,25 @@ def test_valid_post_redirects_sets_cookie_and_inserts_one_row(client, tmp_path) 
     rows = _rows_for_only_user(tmp_path)
     assert len(rows) == 1
     _, commute = rows[0]
-    assert commute.origin_stop_id == "900000100001"
-    assert commute.destination_stop_id == "900000200002"
-    assert commute.lines == frozenset({"S41", "S42"})
+    assert commute.origin_stop_id == _ORIGIN_STOP_ID
+    assert commute.destination_stop_id == _DESTINATION_STOP_ID
+    assert commute.origin_name == _ORIGIN_NAME
+    assert commute.destination_name == _DESTINATION_NAME
+    assert commute.lines == frozenset({"S3", "S5"})
     assert commute.weekdays == frozenset({0})
 
 
 def test_second_post_with_same_cookie_adds_second_commute_to_same_user(client, tmp_path) -> None:
-    first = client.post("/commutes", data=_valid_form() | {"weekdays": "0"}, follow_redirects=False)
+    _override_undisturbed()
+
+    first = client.post(
+        "/commutes", data=_valid_form() | {"weekdays": "0", "lines": ["S3"]}, follow_redirects=False
+    )
     assert first.status_code == 303
 
     second = client.post(
         "/commutes",
-        data=_valid_form() | {"weekdays": ["1", "2"]},
+        data=_valid_form() | {"weekdays": ["1", "2"], "lines": ["S5"]},
         follow_redirects=False,
     )
     assert second.status_code == 303
@@ -161,9 +302,12 @@ def test_second_post_with_same_cookie_adds_second_commute_to_same_user(client, t
 
 
 def test_post_with_unknown_uid_cookie_is_treated_as_no_cookie(client, tmp_path) -> None:
+    _override_undisturbed()
     client.cookies.set("uid", "does-not-exist")
 
-    response = client.post("/commutes", data=_valid_form() | {"weekdays": "0"}, follow_redirects=False)
+    response = client.post(
+        "/commutes", data=_valid_form() | {"weekdays": "0", "lines": ["S3"]}, follow_redirects=False
+    )
 
     assert response.status_code == 303
     new_uid = response.cookies.get("uid")
@@ -178,7 +322,11 @@ def test_post_with_unknown_uid_cookie_is_treated_as_no_cookie(client, tmp_path) 
 
 
 def test_post_with_invalid_weekday_returns_400_and_inserts_no_row(client, tmp_path) -> None:
-    response = client.post("/commutes", data=_valid_form() | {"weekdays": "9"}, follow_redirects=False)
+    _override_undisturbed()
+
+    response = client.post(
+        "/commutes", data=_valid_form() | {"weekdays": "9", "lines": ["S3"]}, follow_redirects=False
+    )
 
     assert response.status_code == 400
     assert "<form" in response.text
@@ -192,7 +340,8 @@ def test_post_with_invalid_weekday_returns_400_and_inserts_no_row(client, tmp_pa
 
 
 def test_post_with_negative_delay_threshold_returns_400_and_inserts_no_row(client, tmp_path) -> None:
-    form = _valid_form() | {"weekdays": "0", "delay_threshold_min": "-5"}
+    _override_undisturbed()
+    form = _valid_form() | {"weekdays": "0", "lines": ["S3"], "delay_threshold_min": "-5"}
 
     response = client.post("/commutes", data=form, follow_redirects=False)
 
@@ -208,7 +357,13 @@ def test_post_with_negative_delay_threshold_returns_400_and_inserts_no_row(clien
 
 
 def test_post_with_window_end_before_window_start_returns_400_and_inserts_no_row(client, tmp_path) -> None:
-    form = _valid_form() | {"weekdays": "0", "window_start": "08:00", "window_end": "07:30"}
+    _override_undisturbed()
+    form = _valid_form() | {
+        "weekdays": "0",
+        "lines": ["S3"],
+        "window_start": "08:00",
+        "window_end": "07:30",
+    }
 
     response = client.post("/commutes", data=form, follow_redirects=False)
 
@@ -223,8 +378,9 @@ def test_post_with_window_end_before_window_start_returns_400_and_inserts_no_row
     assert count == 0
 
 
-def test_post_with_empty_lines_returns_400_and_inserts_no_row_in_de_and_en(client, tmp_path) -> None:
-    form = _valid_form() | {"weekdays": "0", "lines": ""}
+def test_post_with_no_lines_selected_returns_400_and_inserts_no_row_in_de_and_en(client, tmp_path) -> None:
+    _override_undisturbed()
+    form = _valid_form() | {"weekdays": "0"}
 
     response_de = client.post("/commutes", data=form, follow_redirects=False)
     assert response_de.status_code == 400
@@ -239,3 +395,14 @@ def test_post_with_empty_lines_returns_400_and_inserts_no_row_in_de_and_en(clien
     finally:
         conn.close()
     assert count == 0
+
+
+def test_post_re_renders_checked_lines_and_re_fetches_choices_on_validation_error(client, tmp_path) -> None:
+    _override_undisturbed()
+    form = _valid_form() | {"weekdays": "9", "lines": ["S3"]}
+
+    response = client.post("/commutes", data=form, follow_redirects=False)
+
+    assert response.status_code == 400
+    assert '<input type="checkbox" name="lines" value="S3" checked' in response.text
+    assert '<input type="checkbox" name="lines" value="S5"' in response.text
