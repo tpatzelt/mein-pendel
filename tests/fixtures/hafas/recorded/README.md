@@ -17,6 +17,17 @@ only fields the engine does not read are dropped, and no value is edited. Kind: 
 `tests/test_engine_recorded.py` runs the engine over these files. The synthetic fixtures
 in `../engine/` stay for edge cases real data cannot pin down (DST, missing keys).
 
+## Departures with platform fields
+
+Real `GET https://v6.bvg.transport.rest/stops/900120003/departures?duration=30&results=12&remarks=true`
+response, recorded once and trimmed the same way as above, but keeping `platform` and
+`plannedPlatform` too (charter G3: the "today" page shows the platform). Kind:
+`verbatim-trimmed`.
+
+| File | Stop | Recorded (UTC) | What makes it this kind |
+|---|---|---|---|
+| platforms_ostkreuz.json | S Ostkreuz (900120003) | 2026-09-30T15:20:13+00:00 | 13 departures, most with a `platform`/`plannedPlatform` track number |
+
 ## Stop-search fixtures
 
 Real `GET https://v6.bvg.transport.rest/locations?query=<q>&results=5` responses,
