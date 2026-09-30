@@ -1253,6 +1253,144 @@ def test_edit_form_has_viewport_meta_and_no_wide_fixed_widths(client, tmp_path) 
     _assert_no_wide_fixed_widths(response.text)
 
 
+def test_full_list_edit_pause_resume_delete_flow_leaves_the_other_commute_untouched(
+    client, tmp_path
+) -> None:
+    """G2 definition of done, end to end: list, edit, pause, resume and
+    delete a single commute through the real HTTP routes, re-checking after
+    every step that a second, unrelated commute keeps its original fields."""
+    _override_undisturbed()
+    target = Commute(
+        origin_stop_id=_ORIGIN_STOP_ID,
+        destination_stop_id=_DESTINATION_STOP_ID,
+        lines=frozenset({"S3"}),
+        weekdays=frozenset({0}),
+        window_start=dt.time(7, 30),
+        window_end=dt.time(8, 0),
+        delay_threshold_min=5,
+        origin_name=_ORIGIN_NAME,
+        destination_name=_DESTINATION_NAME,
+    )
+    other = Commute(
+        origin_stop_id="900000001",
+        destination_stop_id="900000002",
+        lines=frozenset({"S7"}),
+        weekdays=frozenset({1}),
+        window_start=dt.time(9, 0),
+        window_end=dt.time(9, 30),
+        origin_name="Origin Two",
+        destination_name="Destination Two",
+    )
+    uid = _seed_commutes(tmp_path, [target, other])
+    client.cookies.set("uid", uid)
+    target_id = _commute_id_for(tmp_path, uid, index=0)
+    other_id = _commute_id_for(tmp_path, uid, index=1)
+
+    def _other_unchanged() -> None:
+        conn = db.connect(tmp_path / "pendel.db")
+        try:
+            rows = dict(db.list_commutes(conn, uid))
+        finally:
+            conn.close()
+        unchanged = rows[other_id]
+        assert unchanged.lines == frozenset({"S7"})
+        assert unchanged.weekdays == frozenset({1})
+        assert unchanged.window_start == dt.time(9, 0)
+        assert unchanged.window_end == dt.time(9, 30)
+        assert unchanged.origin_name == "Origin Two"
+        assert unchanged.destination_name == "Destination Two"
+        assert unchanged.paused is False
+
+    # List: both commutes show up.
+    list_page = client.get("/commutes")
+    assert list_page.status_code == 200
+    assert f"{_ORIGIN_NAME} → {_DESTINATION_NAME}" in list_page.text
+    assert "Origin Two → Destination Two" in list_page.text
+    _other_unchanged()
+
+    # Edit: change the target's lines, weekdays, window and delay threshold.
+    edit_form = client.get(f"/commutes/{target_id}/edit")
+    assert edit_form.status_code == 200
+    assert '<input type="checkbox" name="lines" value="S3" checked' in edit_form.text
+
+    edit_response = client.post(
+        f"/commutes/{target_id}",
+        data={
+            "lines": ["S5"],
+            "weekdays": ["2"],
+            "window_start": "18:00",
+            "window_end": "18:30",
+            "delay_threshold_min": "10",
+        },
+        follow_redirects=False,
+    )
+    assert edit_response.status_code == 303
+    assert edit_response.headers["location"] == "/commutes"
+    _other_unchanged()
+
+    conn = db.connect(tmp_path / "pendel.db")
+    try:
+        edited = dict(db.list_commutes(conn, uid))[target_id]
+    finally:
+        conn.close()
+    assert edited.lines == frozenset({"S5"})
+    assert edited.weekdays == frozenset({2})
+    assert edited.window_start == dt.time(18, 0)
+    assert edited.window_end == dt.time(18, 30)
+    assert edited.delay_threshold_min == 10
+    assert edited.paused is False
+
+    # Pause: only the target flips to paused.
+    pause_response = client.post(f"/commutes/{target_id}/pause", follow_redirects=False)
+    assert pause_response.status_code == 303
+    assert pause_response.headers["location"] == "/commutes"
+    _other_unchanged()
+
+    conn = db.connect(tmp_path / "pendel.db")
+    try:
+        paused_commute = dict(db.list_commutes(conn, uid))[target_id]
+    finally:
+        conn.close()
+    assert paused_commute.paused is True
+
+    paused_page = client.get("/commutes")
+    assert paused_page.text.count("Pausiert") == 1
+
+    # Resume: target becomes active again.
+    resume_response = client.post(f"/commutes/{target_id}/resume", follow_redirects=False)
+    assert resume_response.status_code == 303
+    assert resume_response.headers["location"] == "/commutes"
+    _other_unchanged()
+
+    conn = db.connect(tmp_path / "pendel.db")
+    try:
+        resumed_commute = dict(db.list_commutes(conn, uid))[target_id]
+    finally:
+        conn.close()
+    assert resumed_commute.paused is False
+
+    resumed_page = client.get("/commutes")
+    assert "Pausiert" not in resumed_page.text
+
+    # Delete: target disappears, the other commute is untouched and remains.
+    delete_response = client.post(f"/commutes/{target_id}/delete", follow_redirects=False)
+    assert delete_response.status_code == 303
+    assert delete_response.headers["location"] == "/commutes"
+
+    conn = db.connect(tmp_path / "pendel.db")
+    try:
+        remaining = db.list_commutes(conn, uid)
+    finally:
+        conn.close()
+    assert len(remaining) == 1
+    assert remaining[0][0] == other_id
+    _other_unchanged()
+
+    final_page = client.get("/commutes")
+    assert "Origin Two → Destination Two" in final_page.text
+    assert f"{_ORIGIN_NAME} → {_DESTINATION_NAME}" not in final_page.text
+
+
 def test_commutes_page_has_viewport_meta_and_no_wide_fixed_widths(client, tmp_path) -> None:
     seeded = Commute(
         origin_stop_id=_ORIGIN_STOP_ID,
