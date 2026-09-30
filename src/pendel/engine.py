@@ -4,9 +4,14 @@ Given a saved `Commute` and a HAFAS v6 `/stops/:id/departures` response,
 decide whether the commute is affected right now and produce a short
 German/English reason. Pure function, no I/O: `evaluate` only reads its
 arguments. The caller fetches departures for the commute's origin stop;
-only departures on one of the commute's lines and inside *today's* window
-(`Commute.window_bounds`, DST-safe) count -- everything else is ignored, so
-a disruption on another line never produces a false positive.
+only departures on one of the commute's lines and inside the window `now`
+falls into (`Commute.window_containing`, DST-safe) count -- everything else
+is ignored, so a disruption on another line never produces a false
+positive. A window crossing midnight (e.g. 23:30-00:30) that started
+yesterday still counts as long as `now` is within it; `window_containing`
+returns None once `now` is outside every active window, and evaluate()
+then falls back to today's `window_bounds` so departures are still
+filtered by some window rather than none.
 
 The departures' own `stop.id` is deliberately not compared with the
 origin: HAFAS reports departures from a station's child stops under their
@@ -214,8 +219,12 @@ def evaluate(
     if now.tzinfo is None:
         raise ValueError("now must be timezone-aware")
 
-    date = now.astimezone(BERLIN).date()
-    window_start, window_end = commute.window_bounds(date)
+    window = commute.window_containing(now)
+    if window is None:
+        date = now.astimezone(BERLIN).date()
+        window_start, window_end = commute.window_bounds(date)
+    else:
+        window_start, window_end = window
 
     ridden = {_line_key(name) for name in commute.lines}
     events: list[_Event] = []

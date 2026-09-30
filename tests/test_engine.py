@@ -167,6 +167,52 @@ def test_dst_spring_forward_window_places_departures_correctly():
     assert verdict.kinds == ["warning"]
 
 
+def test_evaluate_uses_the_window_that_started_yesterday_when_it_crosses_midnight():
+    # Window 23:30-00:30 starting Monday: a cancellation at 00:10 Tuesday
+    # belongs to the window that started Monday evening, not to a window
+    # starting fresh on Tuesday (which `window_bounds(today)` alone would
+    # wrongly compute, and whose weekday isn't even active here). Checked
+    # once while still Monday evening and once after midnight -- both fall
+    # inside that same window.
+    commute = _commute(
+        weekdays=frozenset({0}), window_start=dt.time(23, 30), window_end=dt.time(0, 30)
+    )
+    departures = _departures(
+        plannedWhen="2026-01-06T00:10:00+01:00",
+        when="2026-01-06T00:10:00+01:00",
+        cancelled=True,
+        delay=None,
+    )
+
+    before_midnight = evaluate(commute, departures, dt.datetime(2026, 1, 5, 22, 50, tzinfo=UTC))
+    after_midnight = evaluate(commute, departures, dt.datetime(2026, 1, 5, 23, 5, tzinfo=UTC))
+
+    for verdict in (before_midnight, after_midnight):
+        assert verdict.affected is True
+        assert verdict.kinds == ["cancellation"]
+
+
+def test_evaluate_window_crossing_midnight_on_dst_fallback_night():
+    # 2026-10-25 is the autumn DST fall-back night (clocks move from CEST
+    # to CET at 03:00 local). A window starting the evening before
+    # (Saturday 23:30-00:30) must still be found via window_containing
+    # just after midnight, before the fold itself happens.
+    commute = _commute(
+        weekdays=frozenset({5}), window_start=dt.time(23, 30), window_end=dt.time(0, 30)
+    )
+    departures = _departures(
+        plannedWhen="2026-10-25T00:10:00+02:00",
+        when="2026-10-25T00:10:00+02:00",
+        cancelled=True,
+        delay=None,
+    )
+
+    verdict = evaluate(commute, departures, dt.datetime(2026, 10, 24, 22, 5, tzinfo=UTC))
+
+    assert verdict.affected is True
+    assert verdict.kinds == ["cancellation"]
+
+
 def test_kinds_are_ordered_deterministically_and_key_picks_highest_priority():
     departures = _departures(cancelled=True, delay=900)
 
