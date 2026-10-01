@@ -11,7 +11,9 @@ resolved message when it clears.
   the row is reactivated, `resolved_at` cleared).
 - a key that is already `active` -> do nothing, it was already notified.
 - an `active` row whose key is no longer present in the verdict -> send
-  one resolved message and mark the row `resolved` with `resolved_at`.
+  one resolved message (DE+EN, naming the commute, what cleared -- a
+  kind-specific phrase, charter G5 -- and the line, then a /today link)
+  and mark the row `resolved` with `resolved_at`.
 
 Each key's send and state change are committed together, right after the
 send, so a channel failure partway through a tick never leaves a message
@@ -32,6 +34,28 @@ from pendel.notify import Channel
 
 _RESOLVED_DE = "Störung auf {line} behoben."
 _RESOLVED_EN = "Disruption on {line} resolved."
+
+# Per-kind resolved phrasing (charter G5: "the resolved message says what
+# cleared"), keyed the same as engine._KIND_ORDER. Every DE phrase keeps
+# ending in "behoben." and every EN phrase keeps the word "resolved" --
+# only the noun naming what kind of disruption it was changes -- since
+# test_scheduler.py (outside this task's allowed paths) already asserts
+# those two words appear in a resolved message. "warning" is omitted
+# since its own disruption phrase is already the generic "Störung" one,
+# so it shares _RESOLVED_DE/_RESOLVED_EN with any kind this tracker
+# doesn't recognise (e.g. a disruption_key from a future engine version).
+_RESOLVED_KIND_DE = {
+    "cancellation": "Ausfall auf {line} behoben.",
+    "delay": "Verspätung auf {line} behoben.",
+    "replacement_service": "Ersatzverkehr auf {line} behoben.",
+    "construction": "Bauarbeiten auf {line} behoben.",
+}
+_RESOLVED_KIND_EN = {
+    "cancellation": "Cancellation on {line} resolved.",
+    "delay": "Delay on {line} resolved.",
+    "replacement_service": "Replacement service on {line} resolved.",
+    "construction": "Construction on {line} resolved.",
+}
 
 _GENERIC_NAME_DE = "Deine Verbindung"
 _GENERIC_NAME_EN = "Your commute"
@@ -85,6 +109,30 @@ def _line_from_key(disruption_key: str) -> str:
     return parts[1] if len(parts) > 1 else disruption_key
 
 
+def _kind_from_key(disruption_key: str) -> str:
+    """The `"{kind}:..."` prefix of `disruption_key` (see engine._Event.key)."""
+    return disruption_key.split(":", 1)[0]
+
+
+def format_resolved_message(commute_name: str, disruption_key: str, today_url: str) -> str:
+    """The cleared-disruption message (charter G5): a German block naming
+    the commute and what cleared (kind-specific phrase, e.g. 'Ausfall auf
+    S41 behoben.' for a cancellation), then the same in English, then a
+    link to `today_url`. The kind and line are read from `disruption_key`
+    (no stored migration column for either); a kind this tracker doesn't
+    recognise falls back to the generic '{line} disruption resolved'
+    phrasing. `commute_name` behaves as in `format_disruption_message`."""
+    name_de = commute_name or _GENERIC_NAME_DE
+    name_en = commute_name or _GENERIC_NAME_EN
+    line = _line_from_key(disruption_key)
+    kind = _kind_from_key(disruption_key)
+    phrase_de = _RESOLVED_KIND_DE.get(kind, _RESOLVED_DE).format(line=line)
+    phrase_en = _RESOLVED_KIND_EN.get(kind, _RESOLVED_EN).format(line=line)
+    de = f"{name_de}: {phrase_de}"
+    en = f"{name_en}: {phrase_en}"
+    return f"{de}\n{en}\n{today_url}"
+
+
 def process(
     conn: sqlite3.Connection,
     commute_id: int,
@@ -127,8 +175,7 @@ def process(
         conn.commit()
 
     for key in active_keys - current_keys:
-        line = _line_from_key(key)
-        text = f"{_RESOLVED_DE.format(line=line)}\n{_RESOLVED_EN.format(line=line)}"
+        text = format_resolved_message(commute_name, key, _TODAY_PATH)
         _send_to_all(channels, recipients, text)
         conn.execute(
             "UPDATE notifications SET state = 'resolved', resolved_at = ? "
