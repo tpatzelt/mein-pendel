@@ -18,7 +18,9 @@ import httpx
 import pytest
 from fastapi.testclient import TestClient
 
+from pendel import db
 from pendel.app import app, get_hafas_client, get_now
+from pendel.commute import Commute
 from pendel.hafas import HafasClient
 
 _CSS_PATH = Path(__file__).parent.parent / "src" / "pendel" / "static" / "css" / "style.css"
@@ -27,7 +29,16 @@ _CSS = _CSS_PATH.read_text(encoding="utf-8")
 _STATIC_DIR = Path(__file__).parent.parent / "src" / "pendel" / "static"
 _MANIFEST_PATH = _STATIC_DIR / "manifest.json"
 
-_MANIFEST_PAGES = ("/", "/stops", "/today", "/notifications", "/about", "/impressum", "/datenschutz")
+_MANIFEST_PAGES = (
+    "/",
+    "/stops",
+    "/today",
+    "/notifications",
+    "/about",
+    "/impressum",
+    "/datenschutz",
+    "/commutes",
+)
 
 
 def _empty_hafas_client() -> HafasClient:
@@ -35,6 +46,40 @@ def _empty_hafas_client() -> HafasClient:
         return httpx.Response(200, json=[])
 
     return HafasClient(httpx.Client(transport=httpx.MockTransport(handler)))
+
+
+def _no_departures_hafas_client() -> HafasClient:
+    """/commutes/new and the edit page build their line checkboxes from
+    `{"departures": [...]}` (see pendel.engine.line_choices), unlike
+    `_empty_hafas_client`'s bare `[]` used by the other manifest pages."""
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        return httpx.Response(200, json={"departures": []})
+
+    return HafasClient(httpx.Client(transport=httpx.MockTransport(handler)))
+
+
+def _seed_commute(tmp_path: Path) -> tuple[str, int]:
+    conn = db.connect(tmp_path / "pendel.db")
+    try:
+        uid = db.create_user(conn)
+        commute_id = db.add_commute(
+            conn,
+            uid,
+            Commute(
+                origin_stop_id="900100003",
+                destination_stop_id="900120003",
+                lines=frozenset({"S3"}),
+                weekdays=frozenset({0, 1, 2, 3, 4}),
+                window_start=dt.time(7, 30),
+                window_end=dt.time(8, 0),
+                origin_name="A",
+                destination_name="B",
+            ),
+        )
+        return uid, commute_id
+    finally:
+        conn.close()
 
 
 @pytest.fixture(autouse=True)
@@ -182,6 +227,35 @@ def test_page_links_manifest(client, path: str) -> None:
 
     assert response.status_code == 200
     assert 'rel="manifest"' in response.text
+    assert '<meta name="viewport"' in response.text
+
+
+def test_commutes_new_page_links_manifest(client) -> None:
+    app.dependency_overrides[get_hafas_client] = _no_departures_hafas_client
+
+    response = client.get(
+        "/commutes/new",
+        params={
+            "origin_stop_id": "900100003",
+            "origin_name": "A",
+            "destination_stop_id": "900120003",
+            "destination_name": "B",
+        },
+    )
+
+    assert 'rel="manifest"' in response.text
+    assert '<meta name="viewport"' in response.text
+
+
+def test_commute_edit_page_links_manifest(client, tmp_path) -> None:
+    app.dependency_overrides[get_hafas_client] = _no_departures_hafas_client
+    uid, commute_id = _seed_commute(tmp_path)
+    client.cookies.set("uid", uid)
+
+    response = client.get(f"/commutes/{commute_id}/edit")
+
+    assert 'rel="manifest"' in response.text
+    assert '<meta name="viewport"' in response.text
 
 
 def test_manifest_served_with_valid_json_and_required_fields() -> None:
