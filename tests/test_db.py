@@ -435,3 +435,41 @@ def test_delete_commute_is_scoped_to_owner(conn):
 def test_delete_commute_returns_false_for_unknown_id(conn):
     user_id = db.create_user(conn)
     assert db.delete_commute(conn, user_id, 999) is False
+
+
+def test_list_channels_includes_row_id(conn):
+    user_id = db.create_user(conn)
+    channel_id = db.add_ntfy_channel(conn, user_id, "pendel-alerts")
+
+    rows = db.list_channels(conn, user_id)
+
+    assert len(rows) == 1
+    assert rows[0]["id"] == channel_id
+
+
+def test_delete_channel_removes_exactly_one_and_leaves_the_rest(conn):
+    owner = db.create_user(conn)
+    keep_id = db.add_ntfy_channel(conn, owner, "keep-topic")
+    delete_id = _insert_channel(conn, owner)
+    other_user = db.create_user(conn)
+    other_channel_id = db.add_ntfy_channel(conn, other_user, "other-topic")
+
+    assert db.delete_channel(conn, owner, delete_id) is True
+
+    remaining_ids = {row["id"] for row in db.list_channels(conn, owner)}
+    assert remaining_ids == {keep_id}
+    assert {row["id"] for row in db.list_channels(conn, other_user)} == {other_channel_id}
+
+
+def test_delete_channel_is_scoped_to_owner(conn):
+    owner = db.create_user(conn)
+    channel_id = db.add_ntfy_channel(conn, owner, "pendel-alerts")
+    stranger = db.create_user(conn)
+
+    assert db.delete_channel(conn, stranger, channel_id) is False
+    assert len(db.list_channels(conn, owner)) == 1
+
+
+def test_delete_channel_returns_false_for_unknown_id(conn):
+    user_id = db.create_user(conn)
+    assert db.delete_channel(conn, user_id, 999) is False
