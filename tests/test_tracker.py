@@ -172,8 +172,8 @@ def test_cleared_disruption_sends_exactly_one_resolved_message(conn, commute):
     target, text = fake.sent[1]
     assert target == "topic-abc"
     assert "S41" in text
-    assert "behoben" in text
-    assert "resolved" in text
+    assert "behoben" in text  # AFFECTED's key is "cancellation:...": "Ausfall auf S41 behoben."
+    assert "resolved" in text  # "Cancellation on S41 resolved."
 
     row = _notification_row(conn, commute_id, AFFECTED.disruption_key)
     assert row["state"] == "resolved"
@@ -310,3 +310,43 @@ def test_format_disruption_message_missing_planned_renders_question_mark():
     text = tracker.format_disruption_message("A → B", verdict, "/today")
 
     assert "?" in text
+
+
+@pytest.mark.parametrize(
+    "kind,expected_de,expected_en",
+    [
+        ("cancellation", "Ausfall auf S41 behoben.", "Cancellation on S41 resolved."),
+        ("delay", "Verspätung auf S41 behoben.", "Delay on S41 resolved."),
+        ("replacement_service", "Ersatzverkehr auf S41 behoben.", "Replacement service on S41 resolved."),
+        ("construction", "Bauarbeiten auf S41 behoben.", "Construction on S41 resolved."),
+        ("warning", "Störung auf S41 behoben.", "Disruption on S41 resolved."),
+        ("some_future_kind", "Störung auf S41 behoben.", "Disruption on S41 resolved."),
+    ],
+)
+def test_resolved_message_names_commute_kind_phrase_and_line(conn, kind, expected_de, expected_en):
+    user_id = db.create_user(conn)
+    commute_id = _commute_id(
+        conn, user_id, origin_name="Alexanderplatz", destination_name="Potsdam Hbf"
+    )
+    _add_channel(conn, user_id, "ntfy", target="topic-abc")
+    fake = FakeChannel()
+    verdict = dataclasses.replace(AFFECTED, disruption_key=f"{kind}:S41:trip-x")
+
+    tracker.process(conn, commute_id, verdict, {"ntfy": fake}, NOW)
+    tracker.process(conn, commute_id, UNAFFECTED, {"ntfy": fake}, NOW + dt.timedelta(minutes=5))
+
+    assert len(fake.sent) == 2  # exactly one resolved message for the cleared key
+    _target, text = fake.sent[1]
+    assert "Alexanderplatz" in text
+    assert "Potsdam Hbf" in text
+    assert expected_de in text
+    assert expected_en in text
+    assert text.rstrip().endswith("/today")
+
+
+def test_format_resolved_message_uses_generic_commute_name_when_names_missing():
+    text = tracker.format_resolved_message("", "cancellation:S41:trip-1", "/today")
+
+    assert "Deine Verbindung" in text
+    assert "Your commute" in text
+    assert "S41" in text
