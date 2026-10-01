@@ -21,18 +21,36 @@ both open the database on startup.
 ```bash
 export PENDEL_DATA_DIR=./data
 
-# G2: the web app (stop search, saved commutes, "today on my route")
+# the web app
 uv run uvicorn pendel.app:app
 
-# G3: the scheduler that checks due commutes and sends notifications
+# the scheduler that checks due commutes and sends notifications
 uv run python -m pendel.runner        # add --once to run a single tick and exit
 
-# G3: the Telegram getUpdates poller that links /start deep-link tokens
+# the Telegram getUpdates poller that links /start deep-link tokens
 uv run python -m pendel.telegram_poll
 ```
 
 `pendel.telegram_poll` logs that it is disabled and exits immediately if
 `PENDEL_TELEGRAM_BOT_TOKEN` is unset, without touching the database.
+
+## Using Mein Pendel
+
+Setup takes at most three screens and works without JavaScript. On `/stops`,
+search the origin and destination by name — no stop ID to type. On
+`/commutes/new`, tick the lines that actually depart from the origin;
+defaults are Mon–Fri, a 30-minute window starting at the next full half
+hour, and a 5-minute delay threshold.
+
+`/commutes` lists every saved commute, each with edit, pause/resume and
+delete; a departure window may cross midnight (e.g. 23:30–00:30).
+
+`/today` shows one card per commute: status OK, disrupted, paused or
+checking failed, the next departures with planned vs. real-time time and
+platform, and the alternative when there is one.
+
+`/notifications` lets you link a Telegram or ntfy channel, unlink each one
+individually, and send a test message to check it works.
 
 ## Configuration
 
@@ -62,4 +80,4 @@ disruptions.
 ## Deployment
 
 See `DEPLOY.md` for the Dockerfile, `deploy/compose.yaml`, the exact Caddy
-route and cloudflared ingress lines, and the full deploy steps (charter G4).
+route and cloudflared ingress lines, and the full deploy steps.
