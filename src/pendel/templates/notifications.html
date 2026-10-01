@@ -8,14 +8,20 @@
 <p>{{ t("notifications_need_commute") }}</p>
 <p><a href="/stops">{{ t("today_empty_cta") }}</a></p>
 {% else %}
+{% if channels %}
 <ul>
   {% for channel in channels %}
   <li data-channel-kind="{{ channel.kind }}">
-    {{ channel.kind }}:
-    {% if channel.linked %}{{ channel.masked_target }}{% else %}{{ t("notifications_status_pending") }}{% endif %}
+    <span>{{ channel.kind_label }}: {% if channel.linked %}{{ t("notifications_status_linked") }}: {{ channel.masked_target }}{% else %}{{ t("notifications_status_pending") }}{% endif %}</span>
+    <form method="post" action="/notifications/channels/{{ channel.id }}/unlink">
+      <button type="submit" aria-label="{{ channel.unlink_aria }}">{{ t("notifications_unlink_button") }}</button>
+    </form>
   </li>
   {% endfor %}
 </ul>
+{% else %}
+<p>{{ t("notifications_channels_empty") }}</p>
+{% endif %}
 
 <section>
   <h2>{{ t("notifications_telegram_heading") }}</h2>

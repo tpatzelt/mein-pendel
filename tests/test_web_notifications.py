@@ -55,6 +55,28 @@ def _channel_rows(tmp_path, user_id: str) -> list[tuple]:
         conn.close()
 
 
+def _insert_telegram_channel(tmp_path, user_id: str, target: str = "12345") -> int:
+    conn = db.connect(tmp_path / "pendel.db")
+    try:
+        cur = conn.execute(
+            "INSERT INTO channels (user_id, kind, target, linked_at) "
+            "VALUES (?, 'telegram', ?, datetime('now'))",
+            (user_id, target),
+        )
+        conn.commit()
+        return cur.lastrowid
+    finally:
+        conn.close()
+
+
+def _insert_ntfy_channel(tmp_path, user_id: str, topic: str = "alerts-1") -> int:
+    conn = db.connect(tmp_path / "pendel.db")
+    try:
+        return db.add_ntfy_channel(conn, user_id, topic)
+    finally:
+        conn.close()
+
+
 def test_telegram_link_shown_when_configured_and_pending_row_exists(
     client, tmp_path, monkeypatch
 ) -> None:
@@ -184,3 +206,123 @@ def test_home_links_to_notifications() -> None:
     response = client.get("/")
     assert response.status_code == 200
     assert 'href="/notifications"' in response.text
+
+
+def test_notifications_page_shows_empty_line_when_no_channels(client, tmp_path) -> None:
+    uid = _seed_user(tmp_path)
+    client.cookies.set("uid", uid)
+
+    response_de = client.get("/notifications")
+    assert response_de.status_code == 200
+    assert "Noch keine Kanäle verknüpft." in response_de.text
+
+    response_en = client.get("/notifications?lang=en")
+    assert response_en.status_code == 200
+    assert "No channels linked yet." in response_en.text
+
+
+def test_notifications_page_lists_channels_with_kind_name_and_status(client, tmp_path) -> None:
+    uid = _seed_user(tmp_path)
+    telegram_id = _insert_telegram_channel(tmp_path, uid, target="12345")
+    ntfy_id = _insert_ntfy_channel(tmp_path, uid, topic="alerts-1")
+    client.cookies.set("uid", uid)
+
+    response_de = client.get("/notifications")
+    assert response_de.status_code == 200
+    assert "Telegram: Verknüpft: •2345" in response_de.text
+    assert "ntfy: Verknüpft: " in response_de.text
+    assert len(re.findall(r'action="/notifications/channels/\d+/unlink"', response_de.text)) == 2
+    assert 'aria-label="Telegram trennen"' in response_de.text
+    assert 'aria-label="ntfy trennen"' in response_de.text
+    assert f'action="/notifications/channels/{telegram_id}/unlink"' in response_de.text
+    assert f'action="/notifications/channels/{ntfy_id}/unlink"' in response_de.text
+
+    response_en = client.get("/notifications?lang=en")
+    assert response_en.status_code == 200
+    assert "Telegram: Linked: •2345" in response_en.text
+    assert 'aria-label="Unlink Telegram"' in response_en.text
+    assert 'aria-label="Unlink ntfy"' in response_en.text
+
+
+def test_notifications_page_shows_pending_status_for_unlinked_channel(client, tmp_path) -> None:
+    uid = _seed_user(tmp_path)
+    conn = db.connect(tmp_path / "pendel.db")
+    try:
+        conn.execute(
+            "INSERT INTO channels (user_id, kind, target, link_token) "
+            "VALUES (?, 'telegram', NULL, 'tok123')",
+            (uid,),
+        )
+        conn.commit()
+    finally:
+        conn.close()
+    client.cookies.set("uid", uid)
+
+    response_de = client.get("/notifications")
+    assert response_de.status_code == 200
+    assert "Telegram: Ausstehend" in response_de.text
+
+    response_en = client.get("/notifications?lang=en")
+    assert response_en.status_code == 200
+    assert "Telegram: Pending" in response_en.text
+
+
+def test_unlink_removes_only_that_channel(client, tmp_path) -> None:
+    uid = _seed_user(tmp_path)
+    telegram_id = _insert_telegram_channel(tmp_path, uid)
+    ntfy_id = _insert_ntfy_channel(tmp_path, uid)
+    client.cookies.set("uid", uid)
+
+    response = client.post(
+        f"/notifications/channels/{telegram_id}/unlink", follow_redirects=False
+    )
+    assert response.status_code == 303
+    assert response.headers["location"] == "/notifications"
+
+    rows = _channel_rows(tmp_path, uid)
+    assert len(rows) == 1
+    assert rows[0]["kind"] == "ntfy"
+
+    follow_up = client.get("/notifications")
+    assert 'data-channel-kind="ntfy"' in follow_up.text
+    assert 'data-channel-kind="telegram"' not in follow_up.text
+    assert f"/notifications/channels/{telegram_id}/unlink" not in follow_up.text
+    assert f"/notifications/channels/{ntfy_id}/unlink" in follow_up.text
+
+
+def test_unlink_foreign_channel_is_a_no_op(client, tmp_path) -> None:
+    uid = _seed_user(tmp_path)
+    channel_id = _insert_ntfy_channel(tmp_path, uid)
+    stranger = _seed_user(tmp_path)
+    client.cookies.set("uid", stranger)
+
+    response = client.post(
+        f"/notifications/channels/{channel_id}/unlink", follow_redirects=False
+    )
+
+    assert response.status_code == 303
+    assert response.headers["location"] == "/notifications"
+    assert len(_channel_rows(tmp_path, uid)) == 1
+
+
+def test_unlink_unknown_channel_is_a_no_op(client, tmp_path) -> None:
+    uid = _seed_user(tmp_path)
+    client.cookies.set("uid", uid)
+
+    response = client.post("/notifications/channels/999999/unlink", follow_redirects=False)
+
+    assert response.status_code == 303
+    assert response.headers["location"] == "/notifications"
+
+
+def test_unlink_without_cookie_is_a_no_op(client, tmp_path) -> None:
+    uid = _seed_user(tmp_path)
+    channel_id = _insert_ntfy_channel(tmp_path, uid)
+
+    response = client.post(
+        f"/notifications/channels/{channel_id}/unlink", follow_redirects=False
+    )
+
+    assert response.status_code == 303
+    assert response.headers["location"] == "/notifications"
+    assert len(_channel_rows(tmp_path, uid)) == 1

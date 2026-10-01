@@ -1014,9 +1014,14 @@ def _notifications_context(
         "has_user": has_user,
         "channels": [
             {
+                "id": row["id"],
                 "kind": row["kind"],
+                "kind_label": t(f"notifications_kind_{row['kind']}"),
                 "linked": row["linked_at"] is not None,
                 "masked_target": _mask_target(row["target"]) if row["target"] else "",
+                "unlink_aria": t("notifications_unlink_aria").format(
+                    title=t(f"notifications_kind_{row['kind']}")
+                ),
             }
             for row in channels
         ],
@@ -1091,4 +1096,18 @@ async def notifications_ntfy(request: Request, db_conn: sqlite3.Connection = Dep
         )
 
     db.add_ntfy_channel(db_conn, uid, topic)
+    return RedirectResponse(url="/notifications", status_code=303)
+
+
+@app.post("/notifications/channels/{channel_id}/unlink")
+async def notifications_channel_unlink(
+    channel_id: int,
+    request: Request,
+    db_conn: sqlite3.Connection = Depends(get_db),
+) -> RedirectResponse:
+    """Unlink one channel of the `uid` cookie's user (charter G5). A foreign
+    or unknown channel id is a no-op, like commute_delete."""
+    uid = request.cookies.get("uid")
+    if uid is not None and db.user_exists(db_conn, uid):
+        db.delete_channel(db_conn, uid, channel_id)
     return RedirectResponse(url="/notifications", status_code=303)

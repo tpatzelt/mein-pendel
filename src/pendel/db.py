@@ -211,10 +211,21 @@ def add_ntfy_channel(conn: sqlite3.Connection, user_id: str, topic: str) -> int:
 
 
 def list_channels(conn: sqlite3.Connection, user_id: str) -> list[sqlite3.Row]:
-    """Return `user_id`'s channel rows (kind, target, link_token, linked_at),
-    for display on the notifications page."""
+    """Return `user_id`'s channel rows (id, kind, target, link_token,
+    linked_at), for display on and unlinking from the notifications page."""
     return conn.execute(
-        "SELECT kind, target, link_token, linked_at FROM channels "
+        "SELECT id, kind, target, link_token, linked_at FROM channels "
         "WHERE user_id = ? ORDER BY id",
         (user_id,),
     ).fetchall()
+
+
+def delete_channel(conn: sqlite3.Connection, user_id: str, channel_id: int) -> bool:
+    """Delete channel `channel_id` belonging to `user_id`. Returns whether a
+    row was actually deleted (charter G5: unlink one channel at a time)."""
+    cur = conn.execute(
+        "DELETE FROM channels WHERE id = ? AND user_id = ?",
+        (channel_id, user_id),
+    )
+    conn.commit()
+    return cur.rowcount > 0
