@@ -17,17 +17,21 @@ from pathlib import Path
 import httpx
 import pytest
 from fastapi.testclient import TestClient
+from starlette.requests import Request
 
 from pendel import db
-from pendel.app import app, get_hafas_client, get_now
+from pendel.app import _status_item, app, get_hafas_client, get_now, templates
 from pendel.commute import Commute
 from pendel.hafas import HafasClient
+from pendel.i18n import translate
 
 _CSS_PATH = Path(__file__).parent.parent / "src" / "pendel" / "static" / "css" / "style.css"
 _CSS = _CSS_PATH.read_text(encoding="utf-8")
 
 _STATIC_DIR = Path(__file__).parent.parent / "src" / "pendel" / "static"
 _MANIFEST_PATH = _STATIC_DIR / "manifest.json"
+
+_TEMPLATES_DIR = Path(__file__).parent.parent / "src" / "pendel" / "templates"
 
 _MANIFEST_PAGES = (
     "/",
@@ -291,3 +295,78 @@ def test_manifest_icons_exist_and_png_dimensions_match_declared_sizes() -> None:
         assert (width, height) == (declared_width, declared_height), (
             f"{icon_path} is {width}x{height}, manifest declares {icon['sizes']}"
         )
+
+
+_TODAY_COMMUTE = Commute(
+    origin_stop_id="900100003",
+    destination_stop_id="900120003",
+    lines=frozenset({"S3"}),
+    weekdays=frozenset({0, 1, 2, 3, 4}),
+    window_start=dt.time(7, 30),
+    window_end=dt.time(8, 0),
+    origin_name="A",
+    destination_name="B",
+)
+
+_STATUS_LABEL_RE = re.compile(r'<p class="status-[a-z]+">(?P<body>.*?)</p>', re.DOTALL)
+_ARIA_HIDDEN_SPAN_RE = re.compile(r'<span aria-hidden="true">.*?</span>', re.DOTALL)
+_TAG_RE = re.compile(r"<[^>]+>")
+
+
+def _bare_request() -> Request:
+    """A minimal Starlette request good enough for base.html's `url_for`
+    calls (it needs only `request.app`/`request.url_for`, `request.method`
+    and `request.url.path`), so today.html can be rendered directly via
+    `templates.env.get_template` without going through the /today route."""
+    scope = {
+        "type": "http",
+        "method": "GET",
+        "path": "/today",
+        "raw_path": b"/today",
+        "root_path": "",
+        "scheme": "http",
+        "query_string": b"",
+        "headers": [],
+        "server": ("testserver", 80),
+        "client": ("testclient", 123),
+        "app": app,
+    }
+    return Request(scope)
+
+
+@pytest.mark.parametrize("language", ("de", "en"))
+@pytest.mark.parametrize("status", ("ok", "disrupted", "paused", "failed", "inactive"))
+def test_today_status_markup_carries_visible_text_label(status: str, language: str) -> None:
+    """charter G4: status is never shown by color alone, so the status
+    paragraph must carry a non-empty, correctly localized text label next
+    to its aria-hidden icon, for every status rendered by today.html."""
+
+    def t(key: str) -> str:
+        return translate(language, key)
+
+    item = _status_item(1, _TODAY_COMMUTE, t, status, message=None)
+    html = templates.env.get_template("today.html").render(
+        request=_bare_request(),
+        language=language,
+        t=t,
+        has_user=True,
+        items=[item],
+    )
+
+    match = _STATUS_LABEL_RE.search(html)
+    assert match, f"no status markup found for status={status!r}"
+    text_only = _TAG_RE.sub("", _ARIA_HIDDEN_SPAN_RE.sub("", match.group("body"))).strip()
+
+    expected = translate(language, f"today_status_{status}")
+    assert text_only == expected
+    assert text_only, "status label text must not be empty"
+
+
+def test_every_status_markup_template_also_carries_status_label() -> None:
+    """Guards future pages: any template rendering `class="status-..."`
+    must also use `status_label` in that same template, so a new status
+    display can't accidentally drop the text label (charter G4)."""
+    for path in sorted(_TEMPLATES_DIR.glob("*.html")):
+        text = path.read_text(encoding="utf-8")
+        if 'class="status-' in text:
+            assert "status_label" in text, f"{path.name} has status markup without status_label"
