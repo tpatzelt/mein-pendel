@@ -35,3 +35,16 @@ def test_readme_documents_entrypoints_and_deploy_doc() -> None:
 
     for needle in ("pendel.app:app", "pendel.runner", "pendel.telegram_poll", "DEPLOY.md"):
         assert needle in readme, f"README.md is missing {needle!r}"
+
+
+def test_readme_documents_visitor_pages() -> None:
+    readme = (_REPO_ROOT / "README.md").read_text()
+
+    for needle in ("/stops", "/commutes/new", "/commutes", "/today", "/notifications"):
+        assert needle in readme, f"README.md is missing {needle!r}"
+
+
+def test_readme_has_no_stale_goal_labels() -> None:
+    readme = (_REPO_ROOT / "README.md").read_text()
+
+    assert re.search(r"\bG[1-5]\b", readme) is None
