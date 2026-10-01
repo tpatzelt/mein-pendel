@@ -1,0 +1,309 @@
+{
+ "departures": [
+  {
+   "tripId": "1|71823|0|86|1102026",
+   "when": "2026-10-01T06:32:00+02:00",
+   "plannedWhen": "2026-10-01T06:07:00+02:00",
+   "delay": 1500,
+   "cancelled": null,
+   "platform": "3",
+   "plannedPlatform": "1",
+   "line": {
+    "id": "800165-re20",
+    "name": "RE20",
+    "product": "regional"
+   },
+   "stop": {
+    "id": "900003200",
+    "name": "S+U Berlin Hauptbahnhof [Gleis 1-8]"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    },
+    {
+     "id": null,
+     "type": "hint",
+     "code": "gq",
+     "summary": null,
+     "text": "vehicle-mounted access aid"
+    },
+    {
+     "id": null,
+     "type": "hint",
+     "code": "WV",
+     "summary": null,
+     "text": "Wifi available"
+    },
+    {
+     "id": null,
+     "type": "status",
+     "code": "text.realtime.stop.dep.platformChange",
+     "summary": null,
+     "text": "Departure today from Platform 3"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1195|0|86|1102026",
+   "when": "2026-10-01T06:32:00+02:00",
+   "plannedWhen": "2026-10-01T06:32:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "platform": "16",
+   "plannedPlatform": "16",
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-bi",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900003201",
+    "name": "S+U Berlin Hauptbahnhof"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|21242|0|86|1102026",
+   "when": "2026-10-01T06:33:00+02:00",
+   "plannedWhen": "2026-10-01T06:31:00+02:00",
+   "delay": 120,
+   "cancelled": null,
+   "platform": "Pos. 6",
+   "plannedPlatform": "Pos. 6",
+   "line": {
+    "id": "de-vbb-11000000-bus-120",
+    "name": "120",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900003201",
+    "name": "S+U Berlin Hauptbahnhof"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|55035|3|86|1102026",
+   "when": "2026-10-01T06:33:00+02:00",
+   "plannedWhen": "2026-10-01T06:33:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "platform": "2 (U5)",
+   "plannedPlatform": "2 (U5)",
+   "line": {
+    "id": "de-vbb-11000000-u-bahn-u5",
+    "name": "U5",
+    "product": "subway"
+   },
+   "stop": {
+    "id": "900003201",
+    "name": "S+U Berlin Hauptbahnhof"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|51149|3|86|1102026",
+   "when": "2026-10-01T06:34:00+02:00",
+   "plannedWhen": "2026-10-01T06:24:00+02:00",
+   "delay": 600,
+   "cancelled": null,
+   "platform": "Pos. 4",
+   "plannedPlatform": "Pos. 4",
+   "line": {
+    "id": "de-vbb-11000000-tram-m8-808",
+    "name": "M8",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900003201",
+    "name": "S+U Berlin Hauptbahnhof"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|32229|0|86|1102026",
+   "when": "2026-10-01T06:34:00+02:00",
+   "plannedWhen": "2026-10-01T06:32:00+02:00",
+   "delay": 120,
+   "cancelled": null,
+   "platform": "Pos. 12",
+   "plannedPlatform": "Pos. 12",
+   "line": {
+    "id": "de-vbb-11000000-bus-245",
+    "name": "245",
+    "product": "bus"
+   },
+   "stop": {
+    "id": "900003205",
+    "name": "S+U Hauptbahnhof/Washingtonplatz (Berlin)"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|1248|1|86|1102026",
+   "when": "2026-10-01T06:34:00+02:00",
+   "plannedWhen": "2026-10-01T06:33:00+02:00",
+   "delay": 60,
+   "cancelled": null,
+   "platform": "15",
+   "plannedPlatform": "15",
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s3-s3-bi",
+    "name": "S3",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900003201",
+    "name": "S+U Berlin Hauptbahnhof"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|1719|0|86|1102026",
+   "when": "2026-10-01T06:34:00+02:00",
+   "plannedWhen": "2026-10-01T06:34:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "platform": "16",
+   "plannedPlatform": "16",
+   "line": {
+    "id": "de-vbb-11000000-s-bahn-s5-s5-e",
+    "name": "S5",
+    "product": "suburban"
+   },
+   "stop": {
+    "id": "900003201",
+    "name": "S+U Berlin Hauptbahnhof"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|51193|3|86|1102026",
+   "when": "2026-10-01T06:34:00+02:00",
+   "plannedWhen": "2026-10-01T06:34:00+02:00",
+   "delay": 0,
+   "cancelled": null,
+   "platform": "Pos. 5",
+   "plannedPlatform": "Pos. 5",
+   "line": {
+    "id": "de-vbb-11000000-tram-m8-808",
+    "name": "M8",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900003201",
+    "name": "S+U Berlin Hauptbahnhof"
+   },
+   "remarks": []
+  },
+  {
+   "tripId": "1|51805|0|86|1102026",
+   "when": "2026-10-01T06:37:00+02:00",
+   "plannedWhen": "2026-10-01T06:25:00+02:00",
+   "delay": 720,
+   "cancelled": null,
+   "platform": "Pos. 4",
+   "plannedPlatform": "Pos. 4",
+   "line": {
+    "id": "de-vbb-11000000-tram-m10",
+    "name": "M10",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900003201",
+    "name": "S+U Berlin Hauptbahnhof"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|53132|5|86|1102026",
+   "when": "2026-10-01T06:37:00+02:00",
+   "plannedWhen": "2026-10-01T06:32:00+02:00",
+   "delay": 300,
+   "cancelled": null,
+   "platform": "Pos. 4",
+   "plannedPlatform": "Pos. 4",
+   "line": {
+    "id": "de-vbb-11000000-tram-m5",
+    "name": "M5",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900003201",
+    "name": "S+U Berlin Hauptbahnhof"
+   },
+   "remarks": [
+    {
+     "id": null,
+     "type": "hint",
+     "code": "FK",
+     "summary": null,
+     "text": "Bicycle conveyance"
+    }
+   ]
+  },
+  {
+   "tripId": "1|51149|4|86|1102026",
+   "when": "2026-10-01T06:40:00+02:00",
+   "plannedWhen": "2026-10-01T06:34:00+02:00",
+   "delay": 360,
+   "cancelled": null,
+   "platform": "Pos. 4",
+   "plannedPlatform": "Pos. 4",
+   "line": {
+    "id": "de-vbb-11000000-tram-m8-808",
+    "name": "M8",
+    "product": "tram"
+   },
+   "stop": {
+    "id": "900003201",
+    "name": "S+U Berlin Hauptbahnhof"
+   },
+   "remarks": []
+  }
+ ]
+}

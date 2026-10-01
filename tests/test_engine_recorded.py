@@ -215,6 +215,25 @@ def test_next_departures_respects_limit():
     assert [d.line for d in result] == ["RB32", "S41"]
 
 
+NOW_PLATFORM_CHANGE = dt.datetime(2026, 10, 1, 4, 0, tzinfo=dt.timezone.utc)  # 06:00 Berlin
+
+
+def test_next_departures_over_recorded_platform_change_fixture():
+    # departures_platform_change.json (charter G3): RE20 is planned from
+    # platform 1 but actually leaves from platform 3, reported under
+    # Hauptbahnhof's regional child stop 900003200.
+    departures = _load("platform_change")
+    commute = _commute(HAUPTBAHNHOF, {"RE20"}, (6, 0), (6, 15))
+
+    result = next_departures(commute, departures, NOW_PLATFORM_CHANGE)
+
+    assert [d.line for d in result] == ["RE20"]
+    re20 = result[0]
+    assert re20.planned_platform == "1"
+    assert re20.platform == "3"
+    assert re20.platform != re20.planned_platform
+
+
 def test_every_recorded_fixture_is_documented():
     readme = (RECORDED / "README.md").read_text()
     for path in RECORDED.glob("*.json"):
