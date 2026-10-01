@@ -26,12 +26,13 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from starlette.concurrency import run_in_threadpool
 
-from pendel import db, telegram_link
+from pendel import db, runner, telegram_link
 from pendel.alternatives import Alternative, suggest_alternative
 from pendel.commute import BERLIN, Commute
 from pendel.engine import NextDeparture, Verdict, evaluate, line_choices, next_departures
 from pendel.hafas import HafasClient, HafasError
 from pendel.i18n import resolve_language, translate
+from pendel.notify import Channel, ChannelSendError
 from pendel.ratelimit import RateLimiter, rate_limit_per_min_from_env
 
 _BASE_DIR = Path(__file__).parent
@@ -128,6 +129,14 @@ def get_hafas_client() -> HafasClient:
     """One shared HafasClient per process, so its TTL cache is actually
     reused across requests instead of starting empty every time."""
     return HafasClient(httpx.Client(timeout=10.0))
+
+
+@lru_cache(maxsize=1)
+def get_channels() -> dict[str, Channel]:
+    """One shared set of notification channels per process (charter G5),
+    built from the environment like the runner's scheduler uses. Tests
+    override this dependency with fakes; it is never hit in CI."""
+    return runner.build_channels(httpx.Client(timeout=10.0), os.environ)
 
 
 def get_now() -> dt.datetime:
@@ -1040,7 +1049,11 @@ async def notifications_page(
 
     uid = request.cookies.get("uid")
     has_user = uid is not None and db.user_exists(db_conn, uid)
-    context = {"language": language, **_notifications_context(db_conn, uid, has_user, t)}
+    context = {
+        "language": language,
+        "test_sent": request.query_params.get("test") == "sent",
+        **_notifications_context(db_conn, uid, has_user, t),
+    }
     response = templates.TemplateResponse(request, "notifications.html", context)
     if request.query_params.get("lang") in ("de", "en"):
         response.set_cookie("lang", language, samesite="lax")
@@ -1111,3 +1124,51 @@ async def notifications_channel_unlink(
     if uid is not None and db.user_exists(db_conn, uid):
         db.delete_channel(db_conn, uid, channel_id)
     return RedirectResponse(url="/notifications", status_code=303)
+
+
+@app.post("/notifications/channels/{channel_id}/test")
+def notifications_channel_test(
+    channel_id: int,
+    request: Request,
+    channels: dict[str, Channel] = Depends(get_channels),
+):
+    """Send one test message through a linked channel (charter G5). A plain
+    `def`, not `async def`, so the blocking `Channel.send()` call below runs
+    in FastAPI's threadpool, off the event loop. It opens its own sqlite3
+    connection rather than using the `get_db` dependency: that dependency is
+    an async generator meant to stay on the event-loop thread (see its
+    docstring), which this threadpool-run handler is not."""
+    language = _language_for(request)
+
+    def t(key: str) -> str:
+        return translate(language, key)
+
+    uid = request.cookies.get("uid")
+    db_conn = db.connect()
+    try:
+        has_user = uid is not None and db.user_exists(db_conn, uid)
+        if not has_user:
+            return RedirectResponse(url="/notifications", status_code=303)
+
+        row = next(
+            (r for r in db.list_channels(db_conn, uid) if r["id"] == channel_id),
+            None,
+        )
+        if row is None or row["target"] is None:
+            return RedirectResponse(url="/notifications", status_code=303)
+
+        try:
+            channels[row["kind"]].send(row["target"], t("notifications_test_message"))
+        except ChannelSendError:
+            context = {
+                "language": language,
+                **_notifications_context(db_conn, uid, has_user, t),
+                "test_error": t("notifications_test_error"),
+            }
+            return templates.TemplateResponse(
+                request, "notifications.html", context, status_code=502
+            )
+    finally:
+        db_conn.close()
+
+    return RedirectResponse(url="/notifications?test=sent", status_code=303)

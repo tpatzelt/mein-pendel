@@ -9,6 +9,12 @@
 <p><a href="/stops">{{ t("today_empty_cta") }}</a></p>
 {% else %}
 {% if channels %}
+{% if test_sent %}
+<p role="status">{{ t("notifications_test_sent") }}</p>
+{% endif %}
+{% if test_error %}
+<p class="error" role="alert">{{ test_error }}</p>
+{% endif %}
 <ul>
   {% for channel in channels %}
   <li data-channel-kind="{{ channel.kind }}">
@@ -16,6 +22,11 @@
     <form method="post" action="/notifications/channels/{{ channel.id }}/unlink">
       <button type="submit" aria-label="{{ channel.unlink_aria }}">{{ t("notifications_unlink_button") }}</button>
     </form>
+    {% if channel.linked %}
+    <form method="post" action="/notifications/channels/{{ channel.id }}/test">
+      <button type="submit">{{ t("notifications_test_button") }}</button>
+    </form>
+    {% endif %}
   </li>
   {% endfor %}
 </ul>

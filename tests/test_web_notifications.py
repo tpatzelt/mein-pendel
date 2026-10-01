@@ -13,7 +13,8 @@ import pytest
 from fastapi.testclient import TestClient
 
 from pendel import db
-from pendel.app import app
+from pendel.app import app, get_channels
+from pendel.notify import ChannelSendError, FakeChannel
 
 _FIXED_WIDTH_RE = re.compile(r"(?<!-)width\s*:\s*(\d+)px")
 
@@ -326,3 +327,144 @@ def test_unlink_without_cookie_is_a_no_op(client, tmp_path) -> None:
     assert response.status_code == 303
     assert response.headers["location"] == "/notifications"
     assert len(_channel_rows(tmp_path, uid)) == 1
+
+
+class _RaisingChannel:
+    """A Channel whose send() always fails, to exercise the ChannelSendError path."""
+
+    def __init__(self) -> None:
+        self.calls = 0
+
+    def send(self, target: str, text: str) -> None:
+        self.calls += 1
+        raise ChannelSendError("boom")
+
+
+@pytest.fixture
+def fake_channels():
+    fake = FakeChannel()
+    app.dependency_overrides[get_channels] = lambda: {"telegram": fake, "ntfy": fake}
+    yield fake
+    app.dependency_overrides.pop(get_channels, None)
+
+
+def _insert_pending_channel(tmp_path, user_id: str, kind: str = "telegram") -> int:
+    conn = db.connect(tmp_path / "pendel.db")
+    try:
+        cur = conn.execute(
+            "INSERT INTO channels (user_id, kind, target, link_token) "
+            "VALUES (?, ?, NULL, 'tok123')",
+            (user_id, kind),
+        )
+        conn.commit()
+        return cur.lastrowid
+    finally:
+        conn.close()
+
+
+def test_test_message_sends_exactly_one_message_to_linked_channel(
+    client, tmp_path, fake_channels
+) -> None:
+    uid = _seed_user(tmp_path)
+    channel_id = _insert_telegram_channel(tmp_path, uid, target="12345")
+    client.cookies.set("uid", uid)
+
+    response = client.post(
+        f"/notifications/channels/{channel_id}/test", follow_redirects=False
+    )
+
+    assert response.status_code == 303
+    assert response.headers["location"] == "/notifications?test=sent"
+    assert fake_channels.sent == [("12345", "Testnachricht von Mein Pendel")]
+
+    follow_up = client.get("/notifications?test=sent")
+    assert follow_up.status_code == 200
+    assert 'role="status"' in follow_up.text
+
+
+def test_test_message_pending_channel_sends_nothing(client, tmp_path, fake_channels) -> None:
+    uid = _seed_user(tmp_path)
+    channel_id = _insert_pending_channel(tmp_path, uid)
+    client.cookies.set("uid", uid)
+
+    response = client.post(
+        f"/notifications/channels/{channel_id}/test", follow_redirects=False
+    )
+
+    assert response.status_code == 303
+    assert response.headers["location"] == "/notifications"
+    assert fake_channels.sent == []
+
+
+def test_test_message_foreign_channel_sends_nothing(client, tmp_path, fake_channels) -> None:
+    uid = _seed_user(tmp_path)
+    channel_id = _insert_ntfy_channel(tmp_path, uid)
+    stranger = _seed_user(tmp_path)
+    client.cookies.set("uid", stranger)
+
+    response = client.post(
+        f"/notifications/channels/{channel_id}/test", follow_redirects=False
+    )
+
+    assert response.status_code == 303
+    assert response.headers["location"] == "/notifications"
+    assert fake_channels.sent == []
+
+
+def test_test_message_unknown_channel_sends_nothing(client, tmp_path, fake_channels) -> None:
+    uid = _seed_user(tmp_path)
+    client.cookies.set("uid", uid)
+
+    response = client.post("/notifications/channels/999999/test", follow_redirects=False)
+
+    assert response.status_code == 303
+    assert response.headers["location"] == "/notifications"
+    assert fake_channels.sent == []
+
+
+def test_test_message_without_cookie_sends_nothing(client, tmp_path, fake_channels) -> None:
+    uid = _seed_user(tmp_path)
+    channel_id = _insert_ntfy_channel(tmp_path, uid)
+
+    response = client.post(
+        f"/notifications/channels/{channel_id}/test", follow_redirects=False
+    )
+
+    assert response.status_code == 303
+    assert response.headers["location"] == "/notifications"
+    assert fake_channels.sent == []
+
+
+def test_test_message_send_error_shows_alert_and_502(client, tmp_path) -> None:
+    uid = _seed_user(tmp_path)
+    channel_id = _insert_ntfy_channel(tmp_path, uid)
+    raising = _RaisingChannel()
+    app.dependency_overrides[get_channels] = lambda: {"telegram": raising, "ntfy": raising}
+    client.cookies.set("uid", uid)
+
+    try:
+        response = client.post(
+            f"/notifications/channels/{channel_id}/test", follow_redirects=False
+        )
+    finally:
+        app.dependency_overrides.pop(get_channels, None)
+
+    assert response.status_code == 502
+    assert 'role="alert"' in response.text
+    assert "Testnachricht konnte nicht gesendet werden." in response.text
+    assert raising.calls == 1
+
+
+def test_notifications_page_shows_test_button_only_for_linked_channels(
+    client, tmp_path
+) -> None:
+    uid = _seed_user(tmp_path)
+    linked_id = _insert_telegram_channel(tmp_path, uid)
+    _insert_pending_channel(tmp_path, uid, kind="ntfy")
+    client.cookies.set("uid", uid)
+
+    response = client.get("/notifications")
+
+    assert response.status_code == 200
+    test_actions = re.findall(r'action="/notifications/channels/(\d+)/test"', response.text)
+    assert test_actions == [str(linked_id)]
