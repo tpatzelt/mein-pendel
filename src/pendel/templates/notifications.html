@@ -12,8 +12,7 @@
 <ul>
   {% for channel in channels %}
   <li data-channel-kind="{{ channel.kind }}">
-    {{ channel.kind_label }}:
-    {% if channel.linked %}{{ t("notifications_status_linked") }}: {{ channel.masked_target }}{% else %}{{ t("notifications_status_pending") }}{% endif %}
+    <span>{{ channel.kind_label }}: {% if channel.linked %}{{ t("notifications_status_linked") }}: {{ channel.masked_target }}{% else %}{{ t("notifications_status_pending") }}{% endif %}</span>
     <form method="post" action="/notifications/channels/{{ channel.id }}/unlink">
       <button type="submit" aria-label="{{ channel.unlink_aria }}">{{ t("notifications_unlink_button") }}</button>
     </form>
