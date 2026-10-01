@@ -28,6 +28,16 @@ response, recorded once and trimmed the same way as above, but keeping `platform
 |---|---|---|---|
 | platforms_ostkreuz.json | S Ostkreuz (900120003) | 2026-09-30T15:20:13+00:00 | 13 departures, most with a `platform`/`plannedPlatform` track number |
 
+## Departures with a platform change
+
+Real `GET https://v6.bvg.transport.rest/stops/900003201/departures?duration=30&results=12&remarks=true`
+response, recorded once and trimmed the same way as `platforms_ostkreuz.json`. Kind:
+`verbatim-trimmed`.
+
+| File | Stop | Recorded (UTC) | What makes it this kind |
+|---|---|---|---|
+| departures_platform_change.json | S+U Berlin Hauptbahnhof (900003201) | 2026-10-01T04:32:58+00:00 | RE20, planned 06:07, delayed to 06:32, platform 3 instead of planned 1 |
+
 ## Stop-search fixtures
 
 Real `GET https://v6.bvg.transport.rest/locations?query=<q>&results=5` responses,
