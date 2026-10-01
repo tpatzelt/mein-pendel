@@ -272,6 +272,41 @@ def test_disruption_message_names_commute_line_time_reason_and_today_link(conn):
     assert text.rstrip().endswith("/today")
 
 
+def test_disruption_message_links_the_public_today_page_when_configured(
+    conn, commute, monkeypatch
+):
+    monkeypatch.setenv("PENDEL_PUBLIC_URL", "https://pendel.example.org/")
+    _user_id, commute_id = commute
+    fake = FakeChannel()
+
+    tracker.process(conn, commute_id, AFFECTED, {"ntfy": fake}, NOW)
+
+    _target, text = fake.sent[0]
+    assert text.rstrip().endswith("\nhttps://pendel.example.org/today")
+
+
+def test_resolved_message_links_the_public_today_page_when_configured(
+    conn, commute, monkeypatch
+):
+    monkeypatch.setenv("PENDEL_PUBLIC_URL", "https://pendel.example.org")
+    _user_id, commute_id = commute
+    fake = FakeChannel()
+    tracker.process(conn, commute_id, AFFECTED, {"ntfy": fake}, NOW)
+
+    tracker.process(conn, commute_id, UNAFFECTED, {"ntfy": fake}, NOW)
+
+    assert len(fake.sent) == 2
+    _target, text = fake.sent[1]
+    assert text.rstrip().endswith("\nhttps://pendel.example.org/today")
+
+
+def test_today_url_is_the_bare_path_without_a_public_url(monkeypatch):
+    monkeypatch.delenv("PENDEL_PUBLIC_URL", raising=False)
+    assert tracker.today_url() == "/today"
+    monkeypatch.setenv("PENDEL_PUBLIC_URL", "  ")
+    assert tracker.today_url() == "/today"
+
+
 def test_disruption_message_uses_generic_commute_name_when_names_missing(conn, commute):
     _user_id, commute_id = commute
     fake = FakeChannel()

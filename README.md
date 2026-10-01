@@ -63,6 +63,7 @@ means to the code:
 | `PENDEL_DATA_DIR` | Directory holding `pendel.db`. Required, no default: any code path that opens the database raises `KeyError` if it is unset. |
 | `PENDEL_CHECK_LEAD_MIN` | Minutes before a saved commute's departure window that it becomes due for a check. Must be a positive integer; defaults to `30`. |
 | `PENDEL_HAFAS_BASE_URL` | Base URL of the HAFAS REST API. Defaults to `https://v6.bvg.transport.rest`. |
+| `PENDEL_PUBLIC_URL` | Public origin of the web app (e.g. `https://pendel.example.org`). Notifications link to its `/today` page; when unset they carry only the bare path `/today`, which is not a link in Telegram or ntfy. |
 | `PENDEL_NTFY_URL` | ntfy server base URL. When unset, the ntfy channel is a no-op that logs and sends nothing instead of raising. |
 | `PENDEL_RATE_LIMIT_PER_MIN` | Per-IP request limit enforced by the web app's rate limiter. Must be a positive integer; defaults to `60`; past the limit a request gets `429` with `Retry-After`. |
 | `PENDEL_TELEGRAM_BOT_TOKEN` | Telegram bot token. When unset, the Telegram channel is a no-op that logs and sends nothing, and `pendel.telegram_poll` logs that it is disabled and exits instead of polling. |

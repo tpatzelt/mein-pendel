@@ -25,6 +25,7 @@ been sent.
 from __future__ import annotations
 
 import datetime as dt
+import os
 import sqlite3
 from collections.abc import Mapping
 
@@ -60,10 +61,16 @@ _RESOLVED_KIND_EN = {
 _GENERIC_NAME_DE = "Deine Verbindung"
 _GENERIC_NAME_EN = "Your commute"
 
-# today_url is the bare relative path: this deployment has no configured
-# public base URL to prefix it with (see the worker's followups for a
-# named task to add one without touching the protected deploy/ files).
+# A notification is read in Telegram or ntfy, where a bare "/today" is not a
+# link, so it is prefixed with the deployment's public origin when one is set.
+_PUBLIC_URL_ENV = "PENDEL_PUBLIC_URL"
 _TODAY_PATH = "/today"
+
+
+def today_url() -> str:
+    """`PENDEL_PUBLIC_URL` + "/today", or the bare path when it is unset."""
+    base = os.environ.get(_PUBLIC_URL_ENV, "").strip().rstrip("/")
+    return f"{base}{_TODAY_PATH}"
 
 
 def format_disruption_message(commute_name: str, verdict: Verdict, today_url: str) -> str:
@@ -163,7 +170,7 @@ def process(
     now_iso = now.isoformat()
 
     for key in current_keys - active_keys:
-        text = format_disruption_message(commute_name, verdict, _TODAY_PATH)
+        text = format_disruption_message(commute_name, verdict, today_url())
         _send_to_all(channels, recipients, text)
         conn.execute(
             "INSERT INTO notifications (commute_id, disruption_key, state, first_notified_at, resolved_at) "
@@ -175,7 +182,7 @@ def process(
         conn.commit()
 
     for key in active_keys - current_keys:
-        text = format_resolved_message(commute_name, key, _TODAY_PATH)
+        text = format_resolved_message(commute_name, key, today_url())
         _send_to_all(channels, recipients, text)
         conn.execute(
             "UPDATE notifications SET state = 'resolved', resolved_at = ? "
