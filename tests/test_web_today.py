@@ -343,6 +343,36 @@ def test_today_platform_change_shown_as_text(client, tmp_path) -> None:
     assert "Platform 3 instead of 1" in _departures_block(response_en.text)
 
 
+def test_today_platform_change_shown_for_recorded_fixture(client, tmp_path) -> None:
+    """Same wording as above, but replaying a real recording instead of a
+    synthetic payload: RE20 at Hauptbahnhof is planned from platform 1 but
+    actually leaves from platform 3 (charter G3)."""
+    commute = _commute(
+        origin_stop_id="900003201",
+        lines=frozenset({"RE20"}),
+        weekdays=frozenset({3}),  # Thursday, matching the fixed `now` below
+        window_start=dt.time(6, 0),
+        window_end=dt.time(6, 15),
+    )
+    uid = _seed_commute(tmp_path, commute)
+
+    now = dt.datetime(2026, 10, 1, 4, 0, tzinfo=dt.timezone.utc)  # 06:00 Europe/Berlin
+    app.dependency_overrides[get_now] = lambda: now
+    payload = json.loads(
+        (_RECORDED_FIXTURES_DIR / "departures_platform_change.json").read_text()
+    )
+    app.dependency_overrides[get_hafas_client] = lambda: _mock_client(payload)
+    client.cookies.set("uid", uid)
+
+    response_de = client.get("/today", params={"lang": "de"})
+    assert response_de.status_code == 200
+    assert "Gleis 3 statt 1" in _departures_block(response_de.text)
+
+    response_en = client.get("/today", params={"lang": "en"})
+    assert response_en.status_code == 200
+    assert "Platform 3 instead of 1" in _departures_block(response_en.text)
+
+
 def test_today_no_departures_in_window_shows_localized_line(client, tmp_path) -> None:
     commute = _commute()
     uid = _seed_commute(tmp_path, commute)
