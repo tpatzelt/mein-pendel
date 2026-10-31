@@ -3,7 +3,7 @@
 # uv, pinned by a version tag (not a digest).
 FROM ghcr.io/astral-sh/uv:0.12.17 AS uv
 
-FROM python:3.12.7-slim-bookworm
+FROM python:3.12.16-slim-bookworm
 
 COPY --from=uv /uv /uvx /usr/local/bin/
 
